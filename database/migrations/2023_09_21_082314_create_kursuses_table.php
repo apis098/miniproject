@@ -42,6 +42,7 @@ return new class extends Migration
             $table->foreign('course_id')->references('id')->on('kursuses')->onDelete('cascade');
         });
         Schema::table('notifications', function (Blueprint $table) {
+            $table->integer('block_kursus_id')->nullable();
             $table->unsignedBigInteger('kursus_id')->nullable();
             $table->foreign('kursus_id')->references('id')->on('kursuses')->onDelete('cascade');
         });

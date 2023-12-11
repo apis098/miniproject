@@ -37,7 +37,9 @@ class Notifications extends Model
         'status',
         'reply_id_report',
         'complaint_id_report',
-        'resep_id'
+        'resep_id',
+        'kursus_id',
+        'block_kursus_id'
     ];
     public function ulasan() {
         return $this->belongsTo(UlasanKursus::class, 'ulasan_id');

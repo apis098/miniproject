@@ -533,6 +533,21 @@ class ReportController extends Controller
         $complaint->delete();
         return redirect('/keluhan')->with('success', 'Keluhan telah diblokir');
     }
+    public function block_kursus(Request $request, $id) {
+        $kursus = Kursus::findOrFail($id);
+        $kursus->user->increment('jumlah_pelanggaran');
+        $notification = new Notifications();
+        $notification->user_id = $kursus->users_id;
+        $notification->notification_from = auth()->user()->id;
+        $notification->block_kursus_id = 1;
+        $notification->alasan = $request->alasan;
+        $notification->save();
+        $up = Notifications::find($notification->id);
+        $up->route = "/status-baca/kursus/".$notification->id;
+        $up->save();
+        $kursus->delete();
+        return redirect('/kursus')->with('success', 'Berhasil memblokir kursus');
+    }
     public function block(Request $request, $id)
     {
         $report = Report::findOrFail($id);

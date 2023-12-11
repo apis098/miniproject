@@ -385,7 +385,7 @@
         <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}" width="197px"
           height="187px" style="border-radius: 50%; border:none;" class="p-2">
       </div>
-      <div class="col-lg-9 col-md-9 col-6 ">
+      <div class="col-lg-9 col-md-9 col-6">
         <div class="col-12 mt-2 ml-md-3 ml-xl-3 ml-lg-5 p-2">
           <h3 class="fw-bolder" style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}
           </h3>

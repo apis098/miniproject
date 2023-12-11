@@ -25,10 +25,10 @@ class Reply extends Model
     {
         return $this->hasMany(Likes::class);
     }
-    
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function replies()
     {

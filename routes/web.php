@@ -76,6 +76,7 @@ Route::put('/status-baca/tambah-resep/{id}', [NotificationController::class, 're
 Route::put('/status-baca/blokir-resep/{id}', [NotificationController::class, 'blockedRecipes'])->name('blockedRecipes.notification');
 Route::put('/status-baca/blokir-komentar/{id}', [NotificationController::class, 'blockedComent'])->name('blockedComent.notification');
 Route::put('/status-baca/blokir-feed/{id}', [NotificationController::class, 'blockedFeed'])->name('blockedFeed.notification');
+Route::put('/status-baca/blokir-kursus/{id}', [NotificationController::class, 'blockedKursus'])->name('blockedKursus.notification');
 Route::put('/status-baca/blokir-keluhan/{id}', [NotificationController::class, 'blockedComplaint'])->name('blockedComplaint.notification');
 Route::put('/status-baca/top-up/{id}', [NotificationController::class, 'top_up'])->name('topUp.notification');
 Route::put('/status-baca/verifed/{id}', [NotificationController::class, 'verifed'])->name('notification.verifed');
@@ -170,6 +171,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::put('block-resep/{id}', [ReportController::class, 'block_resep'])->name('block.resep');
         Route::put('block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
         Route::put('block-complaint/{id}', [ReportController::class, 'block_complaint'])->name('block.complaint');
+        Route::put('block-kursus/{id}', [ReportController::class, 'block_kursus'])->name('block.kursus');
         Route::get('random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');
         Route::get('blocked-user', [ReportController::class, 'blocked_index'])->name('blocked.user.status')->middleware('roleAdmin:admin_laporan');
         Route::put('unblock-user/{id}', [ReportController::class, 'unblock_store'])->name('unblock.user.store');

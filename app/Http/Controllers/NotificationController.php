@@ -82,6 +82,12 @@ class NotificationController extends Controller
         $notificattion->save();
         return redirect()->back();
     }
+    public function blockedKursus($id) {
+        $notificattion = Notifications::findOrFail($id);
+        $notificattion->status = 'sudah';
+        $notificattion->save();
+        return redirect()->back();
+    }
     public function blockedComent($id){
         $notificattion = Notifications::findOrFail($id);
         $notificattion->status = 'sudah';
