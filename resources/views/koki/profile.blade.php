@@ -19,7 +19,7 @@
     </style>
     <div class="ms-5 me-5">
         <div class="row">
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-4 col-sm-12">
                 <div class="card my-5 border border-dark sus susi" style="border-radius:25px;">
                     <div class="text-center mt-5">
                         <div style="position: relative; display: inline-block;">
@@ -407,7 +407,6 @@
                                     </a>
                                 </li>
 
-                                @if ($userLogin->isSuperUser === 'yes')
                                     <li class="nav-item tabs" role="presentation" style="">
                                         <button id="button-kursus-dibuat" class="nav-link yuhu mt-2" data-bs-toggle="tab"
                                             data-bs-target="#profile" type="button" role="tab"
@@ -419,19 +418,7 @@
                                             </div>
                                         </button>
                                     </li>
-                                @else
-                                    <li hidden class="nav-item tabs" role="presentation" style="">
-                                        <button id="button-kursus-dibuat" class="nav-link yuhu mt-2" data-bs-toggle="tab"
-                                            data-bs-target="#profile" type="button" role="tab"
-                                            aria-controls="profile" aria-selected="false">
-                                            <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Kursus
-                                                Dibuat</h5>
-                                            <div id="border4" class=""
-                                                style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
-                                            </div>
-                                        </button>
-                                    </li>
-                                @endif
+
                             </ul>
                         </div>
 

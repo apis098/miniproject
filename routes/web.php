@@ -90,7 +90,8 @@ Route::post('/favorite-store/{id}', [FavoriteController::class, 'store'])->name(
 Route::post('/favorite-feed-store/{id}', [FavoriteController::class, 'storeVeed'])->name('favorite.feed.store');
 Route::post('/favorite-delete/multiple', [FavoriteController::class, 'destroyFavorite'])->name('favorite.delete.multiple');
 
-Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
+Route::post('/keluhan-store', [ComplaintController::class, 'store'])->name('ComplaintUser.store');
+Route::delete('/keluhan-delete/{id}', [ComplaintController::class, 'destroy'])->name('complaint.destroy');
 // Login Register & logout
 
 Route::get('login', [LoginController::class, 'login'])->name('login')->middleware('guest');
@@ -104,8 +105,6 @@ Route::post('actionregister', [RegisterController::class, 'actionregister'])->na
 Route::post('update/profile', [KokiController::class, 'updateProfile'])->name('update.profile');
 Route::post('update/password', [KokiController::class, 'updatePassword'])->name('update.password');
 Route::get('delete/profile', [KokiController::class, 'deleteProfilePicture'])->name('delete.profile');
-
-
 
 //Keluhan user
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
@@ -168,7 +167,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('komentar', [ReportController::class, 'komentar'])->name('Report.komentar');
         Route::get('profil', [ReportController::class, 'profil'])->name('Report.profil');
         Route::put('content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
+        Route::put('block-resep/{id}', [ReportController::class, 'block_resep'])->name('block.resep');
         Route::put('block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
+        Route::put('block-complaint/{id}', [ReportController::class, 'block_complaint'])->name('block.complaint');
         Route::get('random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');
         Route::get('blocked-user', [ReportController::class, 'blocked_index'])->name('blocked.user.status')->middleware('roleAdmin:admin_laporan');
         Route::put('unblock-user/{id}', [ReportController::class, 'unblock_store'])->name('unblock.user.store');
