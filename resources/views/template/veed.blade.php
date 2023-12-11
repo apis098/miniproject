@@ -1492,7 +1492,7 @@
                       <div class="mx-2">
                         {{-- --}}
                         @if (Auth::user())
-                          @if (Auth::user()->role != 'admin' && Auth::user()->id !== $item_video->user->id)
+                          @if (Auth::user()->role != 'admin' && $item_video->user->role != "admin" &&Auth::user()->id !== $item_video->user->id)
                             {{-- Laporkan Komentar --}}
                             <button type="button" data-bs-toggle="modal"
                               data-bs-target="#Modalsd{{ $urut }}" class="yuhu text-dark btn-sm rounded-5 "
@@ -1544,7 +1544,7 @@
                                 </div>
                               </div>
                             </div>
-                          @elseif(Auth::user()->id == $item_video->user->id)
+                          @elseif(Auth::user()->id == $item_video->user->id || $item_video->user->role == "admin")
                             <form method="POST" action="{{ route('hapus.feed', $item_video->id) }}"
                               id="delete-feed-form{{ $item_video->id }}">
                               @csrf
@@ -1555,7 +1555,7 @@
                                 <i class="fa-solid fa-lg fa-trash" style="font-size: medium;"></i>
                               </button>
                             </form>
-                          @elseif(Auth::user()->role == 'admin')
+                          @elseif(Auth::user()->role == 'admin' && $item_video->user->role != "admin")
                             <button type="button" data-toggle="modal"
                               data-target="#blocksModal{{ $item_video->id }}"
                               class="yuhu text-dark btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg"

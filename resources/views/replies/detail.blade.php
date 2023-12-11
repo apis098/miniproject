@@ -258,7 +258,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                @elseif(Auth::user()->role == 'admin')
+                                @elseif(Auth::user()->role == 'admin' && $data->user->role  != 'admin')
                                     <button type="submit" class="btn zoom-effects text-light btn-sm rounded-circle p-2"
                                         style="background-color:#F7941E ;" data-toggle="modal" data-target="#ModalBlokir">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
