@@ -466,12 +466,38 @@
             margin-right: ;
         }
     }
+    @media(max-width: 575px) {
+        .reseps {
+            display: flex;
+            justify-content: center;
+        }
+        .cardReseps{
+            max-width: 280px;
+        }
+
+    }
+    .text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+
+    @supports (-webkit-line-clamp: 2) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: initial;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
     </style>
 
 
 
     <div>
-        <div class="my-4 mr-4 ml-1 main">
+        <div class="my-4 mr-4 ml-4 ml-md-1 main">
             <ul class="nav mb-2 mt-3 ul_resep" id="pills-tab" role="tablist">
                 <li class="tab" role="presentation">
                     <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
@@ -548,10 +574,10 @@
                                 <p><b>Tidak ada data</b></p>
                             </div>
                         @endif
-                        <div class="row mx-auto " style="flex-wrap: wrap;" id="resepDibuat">
+                        <div class="row mx-auto reseps " style="flex-wrap: wrap;" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
-                                <div class=" d-flex justify-content-center col-lg-3  col-xl-3 p-1 col-md-4 col-sm-6 "
-                                    style=" width: 100%; box-shadow:none;">
+                                <div class=" d-flex cardReseps justify-content-center col-lg-3  col-xl-3 p-1 col-md-4 col-sm-6 "
+                                    style=" width: 100%; box-shadow:none; ">
                                     <div class="border card" style="border-radius: 15px">
                                         <div class=" " style="border: none; max-height:120px; padding:10px 0px;">
                                             <img src="{{ asset('storage/' . $my_recipe->foto_resep) }}" class="mx-2"
@@ -562,7 +588,7 @@
                                             <div class="col-12 p-0">
                                                 <a style="color: black; font-size: 24px; margin-left:-1px;text-align:left;"
                                                     href="/artikel/{{ $my_recipe->id }}/{{ $my_recipe->nama_resep }}">
-                                                    <p class="fw-bold mb-0">{{ $my_recipe->nama_resep }}</p>
+                                                    <p class="fw-bold mb-0 text">{{ $my_recipe->nama_resep }}</p>
                                                 </a>
                                             </div>
                                             <div class="row">
