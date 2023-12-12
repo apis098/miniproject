@@ -1913,7 +1913,7 @@
                             <form action="/balasan-komentar-resep/${response.id}/${response.user}" method="POST" id="FormBalasanKomentarResep${response.id}">
                                 @csrf
                                 <div class="input-group mb-3">
-                                    <input type="text" id="reply_comment" name="reply_comment" width="500px"
+                                    <input type="text" id="reply_comment${response.id}" name="reply_comment" width="500px"
                                         class="form-control form-control-sm rounded-3 me-lg-5"
                                         placeholder="Balas komentar dari ${response.pengirim}....">
 
