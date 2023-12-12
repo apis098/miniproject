@@ -2495,6 +2495,7 @@
                         "X-CSRF-Token": "{{ csrf_token() }}",
                     },
                     success: function(response) {
+                        iziToast.destroy();
                         if (response.success) {
                             if (response.isShared == 1) {
                                 share_button_icon.style.backgroundColor = "#F7941E";
