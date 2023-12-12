@@ -1558,12 +1558,8 @@
                           @elseif(Auth::user()->role == 'admin' && $item_video->user->role != "admin")
                             <button type="button" data-toggle="modal"
                               data-target="#blocksModal{{ $item_video->id }}"
-                              class="yuhu text-dark btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg"
-                                width="20" height="26" viewBox="0 0 24 24">
-                                <path
-                                  d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
-                                  fill="currentColor" fill-rule="nonzero" />
-                              </svg>
+                              class="yuhu text-dark btn-sm rounded-5 ">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 16 16"><path fill="#111111" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM3.965 13.096a6.5 6.5 0 0 0 9.131-9.131ZM1.5 8a6.474 6.474 0 0 0 1.404 4.035l9.131-9.131A6.499 6.499 0 0 0 1.5 8Z"/></svg>
                             </button>
                             <!-- <div class="modal fade" id="blocskModal{{ $item_video->id }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -2323,7 +2319,7 @@
                                                               @elseif(Auth::user()->role == 'admin')
                                                                 {{-- Blokir Komentar --}}
                                                                 <button type="button" data-bs-toggle="modal"
-                                                                  data-bs-target="#blookModal{{ $reply_comment->id }}"
+                                                                  data-bs-target="#blockModal{{ $reply_comment->id }}"
                                                                   class="yuhu text-danger btn-sm rounded-5 "><svg
                                                                     xmlns="http://www.w3.org/2000/svg" width="20"
                                                                     height="20" viewBox="0 0 24 24">
@@ -2333,7 +2329,7 @@
                                                                   </svg>
                                                                 </button>
                                                                 <div class="modal fade" data-bs-backdrop="static"
-                                                                  id="blookModal{{ $reply_comment->id }}"
+                                                                  id="blockModal{{ $reply_comment->id }}"
                                                                   tabindex="-1" role="dialog"
                                                                   aria-labelledby="exampleModalCenterTitle"
                                                                   aria-hidden="true">
@@ -2699,9 +2695,9 @@
                                                                             <span aria-hidden="true">&times;</span>
                                                                           </button>
                                                                         </div>
-                                                                        <form action="{{-- route('Report.comment.recipes',$reply_replyComment->id) --}}"
+                                                                        <form action="{{route('block.reply.comment.feed', $reply_replyComment->id)}}" id="FormBlokirReplyCommentFeed{{$reply_replyComment->id}}"
                                                                           method="POST">
-                                                                          {{-- @csrf --}}
+                                                                          @csrf
                                                                           <div class="modal-body col-12 row pr-0">
                                                                             <div
                                                                               class="col-lg-3 col-md-12 col-12 text-center mb-3 pr-0">
@@ -2712,18 +2708,19 @@
                                                                                 alt="">
                                                                             </div>
                                                                             <div class="col-lg-9 col-md-12 col-12 pr-0">
-                                                                              <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                              <textarea class="form-control rounded-5" style="border-radius: 15px" name="alasan" rows="5" id="AlasanBlokirReplyCommentFeed{{$reply_replyComment->id}}"
+
                                                                                 placeholder="Alasan..."></textarea>
                                                                             </div>
                                                                             {{-- @endif --}}
                                                                           </div>
                                                                           <div class="modal-footer">
-                                                                            <button type="submit"
+                                                                            <button type="submit" id="ButtonBlokirReplyCommentFeed{{$reply_replyComment->id}}" onclick="BlokirReplyCommentFeed({{$reply_replyComment->id}})"
                                                                               class="btn btn-light text-light d-none d-sm-inline-block"
                                                                               style="border-radius: 15px; background-color:#F7941E;"><b
                                                                                 class="ms-2 me-2">Blokir</b></button>
 
-                                                                            <button type="submit"
+                                                                            <button type="submit"  id="ButtonBlokirReplyCommentFeed{{$reply_replyComment->id}}" onclick="BlokirReplyCommentFeed({{$reply_replyComment->id}})"
                                                                               class="btn btn-light text-light btn-sm d-sm-none"
                                                                               style="border-radius: 15px; background-color:#F7941E;"><b
                                                                                 class="ms-2 me-2">Blokir</b></button>
@@ -4477,6 +4474,39 @@
           }
         });
       });
+    }
+    function BlokirReplyCommentFeed(num) {
+        $("#FormBlokirReplyCommentFeed"+num).off("submit");
+        $("#FormBlokirReplyCommentFeed"+num).submit(function (event) {
+            event.preventDefault();
+            let route = $(this).attr('action');
+            let data = new FormData($(this)[0]);
+            $.ajax({
+                url: route,
+                data: data,
+                method: "POST",
+                contentType: false,
+                processData: false,
+                success: function success(response) {
+                    iziToast.destroy();
+                    iziToast.success({
+                        'title': 'Success',
+                        'message': 'Sukses memblokir resep',
+                        'position': 'topCenter'
+                    });
+                    $("#AlasanBlokirReplyCommentFeed"+num).val("");
+                    $("#ButtonBlokirReplyCommentFeed"+num).prop("disabled", true);
+                },
+                error: function error(xhr, error, status) {
+                    iziToast.destroy();
+                    iziToast.error({
+                        'title': 'Error',
+                        'message': xhr.responseText,
+                        'position': 'topCenter'
+                    });
+                }
+            });
+        });
     }
   </script>
   <script>

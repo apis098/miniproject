@@ -100,6 +100,7 @@ class NotificationController extends Controller
         $notification->save();
         return redirect()->back();
     }
+    
     public function repliesBlocked($id){
         $notificattion = Notifications::findOrFail($id);
         $notificattion->status = 'sudah';

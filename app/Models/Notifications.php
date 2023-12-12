@@ -39,7 +39,10 @@ class Notifications extends Model
         'complaint_id_report',
         'resep_id',
         'kursus_id',
-        'block_kursus_id'
+        'block_kursus_id',
+        'balas_reply_comment_feed_report',
+        'reply_comment_feed_report',
+        'comment_feed_report'
     ];
     public function ulasan() {
         return $this->belongsTo(UlasanKursus::class, 'ulasan_id');

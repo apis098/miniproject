@@ -576,6 +576,57 @@ class ReportController extends Controller
         $kursus->delete();
         return redirect('/kursus')->with('success', 'Berhasil memblokir kursus');
     }
+    public function block_reply_comment_feed(Request $request, $id) {
+        $komen = BalasReplyCommentfeeds::findOrFail($id);
+        $komen->user_pengirim->increment('jumlah_pelanggaran');
+        $notification = new Notifications();
+        $notification->user_id = $komen->pengirim_reply_comment_id->id;
+        $notification->notification_from = auth()->user()->id;
+        $notification->balas_reply_comment_feed_report = 1;
+        $notification->alasan = $request->alasan;
+        $notification->save();
+        $komen->delete();
+        $up = Notifications::find($notification->id);
+        $up->route = "/status-baca/blokir-feed/".$notification->id;
+        $up->save();
+        return response()->json([
+            'message' => 'Berhasil memblokir balasan komentar feed ini',
+        ]);
+    }
+    public function block_reply1_comment_feed(Request $request, $id) {
+        $komen = ReplyCommentFeed::findOrFail($id);
+        $komen->user->increment("jumlah_pelanggaran");
+        $notification = new Notifications();
+        $notification->user_id = $komen->user->id;
+        $notification->notification_from = auth()->user()->id;
+        $notification->reply_comment_feed_report = 1;
+        $notification->alasan = $request->alasan;
+        $notification->save();
+        $komen->delete();
+        $up = Notifications::find($notification->id);
+        $up->route = "/status-baca/blokir-feed/".$notification->id;
+        $up->save();
+        return response()->json([
+            'message' => 'Berhasil memblokir balasan komentar feed ini',
+        ]);
+    }
+    public function block_comment_feed() {
+        $komen = CommentFeed::findOrFail($id);
+        $komen->user_pengirin->increment("jumlah_pelanggaran");
+        $notification = new Notifications();
+        $notification->user_id = $komen->user_pengirim->id;
+        $notification->notification_from = auth()->user()->id;
+        $notification->comment_feed_report = 1;
+        $notification->alasan = $request->alasan;
+        $notification->save();
+        $komen->delete();
+        $up = Notifications::find($notification->id);
+        $up->route = "/status-baca/blokir-feed/".$notification->id;
+        $up->save();
+        return response()->json([
+            'message' => 'Berhasil memblokir balasan komentar feed ini',
+        ]);
+    }
     public function block_komen_replies(Request $request, $id) {
         $komen = Reply::findOrFail($id);
         $komen->user->increment('jumlah_pelanggaran');

@@ -21,6 +21,9 @@ return new class extends Migration
             $table->integer('complaint_id_report')->nullable();
             $table->integer('resep_id_report')->nullable();
             $table->integer('veed_id_report')->nullable();
+            $table->integer('balas_reply_comment_feed_report')->nullable();
+            $table->integer('reply_comment_feed_report')->nullable();
+            $table->integer('comment_feed_report')->nullable();
             $table->string('random_name')->nullable();
             $table->string('alasan')->nullable();
             $table->string('message')->nullable();
