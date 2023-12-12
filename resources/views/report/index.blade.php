@@ -188,7 +188,8 @@
 
     ::placeholder {
       color: grey;
-      opacity: 1
+      opacity: 1;
+      margin-left: 5%;
     }
 
     .search-2 {
@@ -394,7 +395,7 @@
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
                 <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
-                  id="search-resep">
+                  id="search-resep" class="p-3">
                 <button type="submit" class="zoom-effects cari2"
                   style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                   Cari
@@ -450,7 +451,7 @@
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
                 <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
-                  id="search-feed">
+                  id="search-feed" class="p-3">
                 <button type="submit" class="zoom-effects cari2"
                   style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                   Cari
@@ -508,7 +509,7 @@
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
                 <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
-                  id="search-keluhan">
+                  id="search-keluhan" class="p-3">
                 <button type="submit" class="zoom-effects cari2"
                   style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                   Cari
@@ -562,7 +563,7 @@
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
                 <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
-                  id="search-komentar">
+                  id="search-komentar" class="p-3">
                 <button type="submit" class="zoom-effects cari2"
                   style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                   Cari
@@ -616,7 +617,7 @@
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
                 <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
-                  id="search-profile">
+                  id="search-profile" class="p-3">
                 <button type="submit" class="zoom-effects cari2"
                   style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                   Cari
@@ -668,7 +669,7 @@
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
                 <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
-                  id="search-kursus">
+                  id="search-kursus" class="p-3">
                 <button type="submit" class="zoom-effects cari2"
                   style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                   Cari
