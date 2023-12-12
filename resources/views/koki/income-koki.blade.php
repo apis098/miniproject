@@ -163,6 +163,7 @@
                 </div>
                 <div class="modal-body col-12">
                     @if ($check)
+                    {{--
                         <form action="{{ route('ajukan.penarikan') }}" id="FormAjukanPenarikan" method="post">
                             @csrf
                             <div class="row justify-content-center p-2">
@@ -383,6 +384,38 @@
                             </div>
 
                         </form>
+                    --}}
+                    <form
+                        action="{{route('ajukan.penarikan')}}"
+                        method="post">
+                        @csrf
+
+                        <div class="modal-body row d-flex align-items-center col-12">
+                          <!-- Tambahkan kelas "align-items-center" -->
+                          <div class="col-2 mt-2">
+                            <img class="mr-3" src="{{ asset('image 94.png') }}" width="100px" height="100px"
+                              style="border-radius: 50%" alt="">
+                          </div>
+                          <div class="col-10">
+                            <div class="widget-49-meeting-info">
+
+                            </div>
+                            <p class="ml-4 text-bold" style="font-size: 20px;">
+                              Apakah anda yakin ingin menarik semua uang anda dengan nominal RP {{ number_format(Auth::user()->saldo_pemasukan, 2, ',', '.') }} (dipotong RP 2.000,00) ?
+                            </p>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-light text-light rounded-3"
+                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                              class="ms-2 me-2">Ya</b>
+                          </button>
+                          <button type="button" data-dismiss="modal" class="btn btn-light text-light rounded-3"
+                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                              class="ms-2 me-2">Tidak</b>
+                          </button>
+                        </div>
+                      </form>
                     @else
                         <form action="{{ route('kirim.dataPribadiChef') }}" method="post" id="FormKirimDataPribadiChef">
                             @csrf
@@ -771,7 +804,6 @@
             </div>
         @endif
         {{ $income_koki->links('pagination::default') }}
-
     </div>
 
     <script>
