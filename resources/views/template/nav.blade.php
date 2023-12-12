@@ -2148,7 +2148,7 @@
                         {{-- <i class="fa fa-map-marker" aria-hidden="true" style="margin-right:25%;"></i> --}}
                         <h5 class="fw-bold" style="margin-top: -0.5em;">Maps</h5>
                     </h1>
-                    <iframe src="{{ $footer->lokasi }}" height="200" style="border:0;margin-top:8%"
+                    <iframe src="{{ $footer->lokasi }}" height="200" width="250"  style="border:0;margin-top:8% "
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
