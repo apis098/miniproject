@@ -610,9 +610,9 @@ class ReportController extends Controller
             'message' => 'Berhasil memblokir balasan komentar feed ini',
         ]);
     }
-    public function block_comment_feed() {
+    public function block_comment_feed(Request $request, $id) {
         $komen = CommentFeed::findOrFail($id);
-        $komen->user_pengirin->increment("jumlah_pelanggaran");
+        $komen->user_pengirim->increment("jumlah_pelanggaran");
         $notification = new Notifications();
         $notification->user_id = $komen->user_pengirim->id;
         $notification->notification_from = auth()->user()->id;
