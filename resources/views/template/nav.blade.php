@@ -2809,7 +2809,7 @@
                     return this.getAttribute('data-id');
                 })
                 .get();
-
+                console.log(selectedIds);
             if ($('#select-all').prop('checked')) {
                 $('.data-checkbox').prop('checked', true);
             } else {
@@ -2852,10 +2852,19 @@
                                 ids: selectedIds
                             },
                             success: function(response) {
+
+                                iziToast.success({
+                                    title: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48"><defs><mask id="ipSSuccess0"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path fill="#fff" stroke="#fff" d="m24 4l5.253 3.832l6.503-.012l1.997 6.188l5.268 3.812L41 24l2.021 6.18l-5.268 3.812l-1.997 6.188l-6.503-.012L24 44l-5.253-3.832l-6.503.012l-1.997-6.188l-5.268-3.812L7 24l-2.021-6.18l5.268-3.812l1.997-6.188l6.503.012L24 4Z"/><path stroke="#000" d="m17 24l5 5l10-10"/></g></mask></defs><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSSuccess0)"/></svg> Sukses',
+                                    titleColor: 'white',
+                                    messageColor: 'white',
+                                    message: 'Sukses menghapus data',
+                                    position: 'topCenter',
+                                    progressBarColor: 'white',
+                                });
                                 location.reload();
                             },
                             error: function(xhr, status, error) {
-                                iziToast.show({
+                                iziToast.success({
                                     backgroundColor: '#f2a5a8',
                                     title: '<i class="fa-regular fa-circle-xmark"></i> Error',
                                     titleColor: 'dark',
