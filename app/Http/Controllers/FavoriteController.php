@@ -73,26 +73,35 @@ class FavoriteController extends Controller
     public function destroyFavorite(Request $request)
     {
         $selectedIds = $request->input('ids');
-
+        // dd($selectedIds);
         if (!is_array($selectedIds)) {
             return response()->json(['message' => 'Invalid input.'], 400);
+        }else{
+            $favorites = Favorite::whereIn('id', $selectedIds)->get();
+            // dd($favorites);
+            foreach ($favorites as $favorite) {
+                $hasil = Favorite::FindOrFail($favorite->id);
+                $hasil->delete();
+
+            };
+
         }
 
         // Hapus data berdasarkan ID yang diterima dari permintaan
-        $favorites = Favorite::whereIn('id', $selectedIds)->get();
+        // $favorites = Favorite::whereIn('id', $selectedIds)->get();
+        // dd($favorites);
 
         // Iterasi melalui setiap data favorite untuk mengurangi favorite_count pada resep terkait
-        foreach ($favorites as $favorite) {
-            $resep = Reseps::find($favorite->resep_id);
-            if ($resep) {
-                $resep->decrement('favorite_count');
-            }
-        }
+        // foreach ($favorites as $favorite) {
+        //     $resep = Reseps::find($favorite->resep_id);
+        //     if ($resep) {
+        //         $resep->decrement('favorite_count');
+        //     }
+        // }
 
         // Hapus data favorite setelah mengurangi favorite_count pada resep terkait
-        Favorite::whereIn('id', $selectedIds)->delete();
 
-       return redirect()->back()->with('success','data favorite berhasil dihapus');
+       return response()->json();
     }
 
 }
