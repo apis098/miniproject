@@ -286,7 +286,7 @@
       }
     }
   </style>
-  <div class="" style="overflow-x:auto;">
+  <div class="mx-lg-5 mx-xl-1" style="overflow-x:auto;">
     <div class="">
       <div class="my-5">
 
