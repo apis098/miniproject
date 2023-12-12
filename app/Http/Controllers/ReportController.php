@@ -520,7 +520,31 @@ class ReportController extends Controller
     }
     public function block_comment_recipe(Request $request,$id){
         $comment = CommentResipes::findOrFail($id);
-
+        $comment->user_pengirim->increment('jumlah_pelanggaran');
+        $comment->delete();
+        $notification = new Notifications();
+        $notification->user_id = $comment->pengirim_id;
+        $notification->notification_from = auth()->user()->id;
+        $notification->categories = 'blocked_comment';
+        $notification->message = "Komentar kamu telah diblokir!";
+        $notification->reply_id_report = $comment->id;
+        $notification->alasan =  $request->alasan;
+        $notification->save();
+        return redirect()->back()->with('success','Komentar berhasil di blokir.');
+    }
+    public function block_reply_comment_recipe(Request $request,$id){
+        $comment = ReplyCommentRecipe::findOrFail($id);
+        $comment->user->increment('jumlah_pelanggaran');
+        $comment->delete();
+        $notification = new Notifications();
+        $notification->user_id = $comment->users_id;
+        $notification->notification_from = auth()->user()->id;
+        $notification->categories = 'blocked_comment';
+        $notification->message = "Komentar kamu telah diblokir!";
+        $notification->reply_id_report = $comment->id;
+        $notification->alasan =  $request->alasan;
+        $notification->save();
+        return redirect()->back()->with('success','Komentar berhasil di blokir.');
     }
     public function block_complaint(Request $request, $id) {
         $complaint = Complaint::findOrFail($id);
