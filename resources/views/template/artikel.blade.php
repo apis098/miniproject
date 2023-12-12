@@ -428,7 +428,7 @@
                             <div class="d-flex">
                                 @if ($userLog === 2)
                                     @if ($show_resep->User->id === Auth::user()->id)
-                                        <div class="d-flex right rigt ml-md-4">
+                                        <div class="d-flex right rigt ml-sm-3 ml-md-4">
                                             <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
                                                 <button type="submit" class="btn btn-edit ">Edit</button>
                                             </form>
