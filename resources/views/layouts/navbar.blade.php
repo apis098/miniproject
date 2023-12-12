@@ -577,10 +577,14 @@
                 </div>
                 <div class="btn-group dropstart">
 
-                        <svg xmlns="http://www.w3.org/2000/svg" data-bs-toggle="dropdown" width="50" height="50" viewBox="0 0 12 12"><path fill="#888888" d="M4.217 6.264A.753.753 0 0 1 4.775 6h2.45c.232 0 .427.118.558.264A.84.84 0 0 1 8 6.81v.16c0 .817-.817 1.53-2 1.53s-2-.713-2-1.53v-.16c0-.202.087-.4.217-.546ZM6 5a1 1 0 1 0 0-2a1 1 0 0 0 0 2Zm0 6A5 5 0 1 0 6 1a5 5 0 0 0 0 10Zm0-1a4 4 0 1 1 0-8a4 4 0 0 1 0 8Z"/></svg>
+                <img class="mr-3 ms-2 mb-1 rounded-circle"
+                data-bs-toggle="dropdown"
+                src="{{ asset('images/default.jpg') }}" alt="profile image"
+                style="max-width:40px">
+                      
                     <ul class="dropdown-menu mt-5" style="margin-right: -30px;width:255px;">
                         <li>
-                            <a href="#" style="color: black;">
+                            <a href="#" style="color: #fd7e14;">
                                 @if (Auth::user()->foto)
                                     <img class="mr-3 ms-2 mb-1 rounded-circle"
                                         src="{{ asset('storage/' . Auth::user()->foto) }}" alt="profile image"
@@ -590,11 +594,11 @@
                                         src="{{ asset('images/default.jpg') }}" alt="profile image"
                                         style="max-width:40px">
                                 @endif
-                                {{ Auth::user()->name }}
+                                <strong>{{ Auth::user()->name }}</strong>
                             </a>
                         </li>
                         <div class="dropdown-divider"></div>
-                        <li><a class=" mx-3" href="/admin/dashboard" style="color: black;">
+                        <li><a class=" mx-3" href="/admin/dashboard" style="color: #fd7e14;">
                                 <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25"
                                     height="25" viewBox="0 0 36 36" class="me-2">
                                     <path fill="currentColor"
@@ -609,8 +613,8 @@
                             </a>
                         </li>
                         <div class="dropdown-divider"></div>
-                        <li><a class=" mx-3" href="{{ route('actionlogout') }}" style="color: black;">
-                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        <li><a href="{{ route('actionlogout') }}" style="margin-left: 8%;margin-right: 3%; color: #fd7e14;">
+                                <svg style="margin-right: 4%;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />

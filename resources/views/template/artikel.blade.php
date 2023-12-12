@@ -141,6 +141,12 @@
             }
 
         }
+        @media(min-width:860px){
+            img.besar{
+                width: 83px;
+                height: 83px;
+            }
+        }
 
         /* untuk tampilan ipad */
         @media (min-width: 760px) and (max-width: 1000px) {
@@ -219,6 +225,13 @@
             }
         }
 
+        @media(min-width:740px) and (max-width:770px) {
+            .judul {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+        }
         @media(min-width:750px) {
             .judul {
                 display: flex;
@@ -234,6 +247,19 @@
             div.rigt {
                 margin-left: 0px;
                 margin-top: 0px;
+            }
+            .CardComponen{
+                flex-wrap: nowrap;
+            }
+        }
+        @media(min-width:424px) and (max-width:990px){
+            .CardComponen{
+                flex-wrap: wrap;
+            }
+        }
+        @media(min-width:990px) {
+            .CardComponen{
+                flex-wrap: nowrap;
             }
         }
 
@@ -266,8 +292,8 @@
             display: flex;
             flex-wrap: wrap;
             margin-top: calc(var(--bs-gutter-y) * -1);
-            margin-right: calc(var(--bs-gutter-x) * -.5);
-            margin-left: calc(var(--bs-gutter-x) * -.5);
+            margin-right: calc(var(--bs-gutter-x) * -.0);
+            margin-left: calc(var(--bs-gutter-x) * -.0);
         }
 
         ::-webkit-scrollbar {
@@ -282,6 +308,7 @@
             display: none;
             background-color: transparent;
         }
+
     </style>
     <section class="container-section">
         <div class="row mt-4  align-item-center">
@@ -387,7 +414,7 @@
                 <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}"
                     width="197px" height="187px" style="border-radius: 50%; border:none;" class="p-2">
             </div>
-            <div class="col-lg-9 col-md-9 col-6">
+            <div class="col-lg-9 col-md-8 col-6">
                 <div class="col-12 mt-2 ml-md-3 ml-xl-3 ml-lg-5 p-2">
                     <h3 class="fw-bolder" style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}
                     </h3>
@@ -410,7 +437,8 @@
                                             </form>
                                         </div>
                                     @else
-                                        <form action="{{ route('Resep.like', $show_resep->id) }}" method="POST"
+                                    <div class="card CardComponen " style="display: flex; box-shadow: none; border:none; flex-direction: row; ">
+                                        <form  action="{{ route('Resep.like', $show_resep->id) }}" method="POST"
                                             class="like-form">
                                             @csrf
                                             @if (
@@ -556,6 +584,7 @@
                                                     class="me-3"">{{ $show_resep->share_count() }}</small>
                                             </div>
                                         </form>
+                                    </div>
                                         {{-- share modal --}}
                                         <style>
                                             /* Gaya khusus untuk checkbox */
@@ -985,7 +1014,7 @@
                     </div>
                 </div>
             </div>
-            <div class="kategori mt-2">
+            <div class="kategori mt-2 ml-0 ml-md-1">
                 @if ($show_resep->kategori_resep)
                     @foreach ($show_resep->kategori_resep()->get() as $nk)
                         <button type="button" class="btn-edit p-2 mx-1 mt-2">#{{ $nk->nama_makanan }}</button>
@@ -1108,7 +1137,7 @@
                         aria-selected="false">
                         <h5 style="font-weight: 600; word-warp:break-word;">Tutorial</h5>
                         <div id="border3" style="width: 90%; height: 100%; border: 1px #F7941E solid; display: none;"
-                            class="kiri"></div>
+                            class=""></div>
                     </a>
                 </li>
             </ul>
