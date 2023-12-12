@@ -91,6 +91,14 @@
             .icon-komentar2 {
               margin-left: 17px;
             }
+
+            .icon-komentar3 {
+              margin-left: 26px;
+            }
+
+            .komentar3 {
+              margin-left: 35px;
+            }
           }
 
           @media (max-width: 425px) {
@@ -139,6 +147,14 @@
 
             .icon-komentar2 {
               margin-left: 7px;
+            }
+
+            .icon-komentar3 {
+              margin-left: 14px;
+            }
+
+            .komentar3 {
+              margin-left: 25px;
             }
 
           }
@@ -2189,12 +2205,12 @@
                                                       </div>
                                                       <div style="margin-top:-1.2%;"
                                                         class="d-flex pl-0 text-deskripsi">
-                                                        <p class="komentar1">{{ $reply_comment->komentar }}
+                                                        <p class="komentar2">{{ $reply_comment->komentar }}
                                                         </p>
                                                       </div>
                                                       {{-- ini like button --}}
                                                       <div class="d-flex ">
-                                                        <div class="d-flex col-2 icon-komentar1 pl-0 mr-auto"
+                                                        <div class="d-flex col-2 icon-komentar3 pl-0 mr-auto"
                                                           style="margin-top:-3%;">
                                                           @if (Auth::user())
                                                             @if ($reply_comment->checkLikedOrNo(auth()->user()->id))
@@ -2518,18 +2534,15 @@
                                                           </span>
 
                                                           <small
-                                                            class="d-flex flex-row-reverse ml-auto text-small limit-waktu"
-                                                            style="margin-left: 50%;">{{ \Carbon\Carbon::parse($reply_replyComment->created_at)->locale('id_ID')->diffForHumans() }}
+                                                            class="text-small limit-waktu ml-auto">{{ \Carbon\Carbon::parse($reply_replyComment->created_at)->locale('id_ID')->diffForHumans() }}
                                                           </small>
 
                                                         </div>
-                                                        <div class="d-flex pl-0" style="margin-top: -1.2%;">
-                                                          <p class="text-deskripsi komentar2">
-                                                            <a href=""
-                                                              class="limit-name text-deskripsi">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
+                                                        <a href=""
+                                                          class="limit-name text-deskripsi komentar3">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
+                                                          <p class="text-deskripsi komentar3">
                                                             {{ $reply_replyComment->komentar }}
                                                           </p>
-                                                        </div>
                                                         <div class="d-flex icon-komentar2" style="margin-top: -3%;">
                                                           <div class="d-flex col-2 ms-2 pl-0 mr-auto">
                                                             @if (Auth::user())
@@ -3171,19 +3184,18 @@
                                                                                                                     <p class="fw-bolder mb-2 limit-name text-deskripsi">${pengirim['name']}</p>
                                                                                                                 </span>
 
-                                                                                                                <small class="d-flex flex-row-reverse ml-auto text-small limit-waktu" style="margin-left: 50%;">
+                                                                                                                <small class="ml-auto text-small limit-waktu">
                                                                                                                     ${time}
                                                                                                                 </small>
 
                                                                                                             </div>
-                                                                                                            <div class="d-flex pl-0" style="margin-top: -1.2%;">
-                                                                                                                <p class="text-deskripsi komentar2"><a class="text-primary " href="" class="limit-name text-deskripsi">@${penerima['name']}</a> ${up['komentar']}
+                                                                                                            <a class="text-primary limit-name text-deskripsi komentar3" href="">@${penerima['name']}</a>
+                                                                                                                <p class="text-deskripsi komentar3"> ${up['komentar']}
                                                                                                                 </p>
-                                                                                                            </div>
                                                                                                             {{-- ini like button --}}
                                                                                                              <div class="d-flex"
                                                                                                                     style="margin-top: -3%;">
-                                                                                                                    <div class="d-flex col-2 icon-komentar2 pl-0 mr-auto">
+                                                                                                                    <div class="d-flex col-2 icon-komentar3 pl-0 mr-auto">
                                                                                                                         @if (Auth::user())
                                                                                                                                 <form
                                                                                                                                     action="/sukai/reply_balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${feed_id}"
@@ -3386,12 +3398,12 @@
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div style="margin-top:-1.2%;" class="d-flex pl-0 text-deskripsi">
-                                                                                                                <p class="komentar1">${up['komentar']}
+                                                                                                                <p class="komentar2">${up['komentar']}
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex">
-                                                                                                                <div class="d-flex col-2 icon-komentar1 pl-0 mr-auto" style="margin-top:-3%;">
+                                                                                                                <div class="d-flex col-2 icon-komentar3 pl-0 mr-auto" style="margin-top:-3%;">
                                                                                                                     @if (Auth::user())
                                                                                                                             <form
                                                                                                                                 action="/sukai/balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
@@ -3982,7 +3994,7 @@
                                                                                                                 <span><p class="fw-bolder mb-2 limit-name text-deskripsi">${pengirim['name']}</p></span>
 
                                                                                                                 <small
-                                                                                                                class="d-flex flex-row-reverse ml-auto text-small limit-waktu" style="margin-left: 50%;">${time}
+                                                                                                                class="ml-auto text-small limit-waktu">${time}
                                                                                                                 </small>
 
                                                                                                             </div>
@@ -3992,7 +4004,7 @@
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex" style="margin-top: -3%;">
-                                                                                                                <div class="d-flex col-2 icon-komentar2 pl-0 mr-auto">
+                                                                                                                <div class="d-flex col-2 icon-komentar3 pl-0 mr-auto">
                                                                                                                         @if (Auth::user())
                                                                                                                                 <form
                                                                                                                                     action="/sukai/reply_balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${feed_id}"
