@@ -223,6 +223,7 @@ padding-left: 0;
     text-overflow: ellipsis;
 }
 }
+
 @media (max-width: 425px) {
   .limit-name {
       display: block;

@@ -530,8 +530,11 @@
                   </a>
                   <div class="col-lg-11 col-md-11 col-10 my-auto pr-0">
                     <div class="d-flex waktu justify-content-between">
-                      <a href="{{ route('show.profile', $item_video->user->id) }}" class="text-dark my-auto d-block">
-                        <strong class="text-truncate limit-name text-deskripsi">{{ $item_video->user->name }}</strong>
+                      <a href="{{ route('show.profile', $item_video->user->id) }}" class="text-dark my-auto d-block d-flex">
+                        <strong class="text-truncate text-deskripsi ellipsis-name" id="ellipsis">{{ $item_video->user->name }}</strong>
+                        @if ($item_video->user->isSuperUser == 'yes')
+                              <i class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
+                        @endif
                       </a>
                       <small class="text-muted text-small">
                         {{ \Carbon\Carbon::parse($item_video->created_at)->locale('id_ID')->diffForHumans() }}
@@ -1115,18 +1118,18 @@
                     <span class="d-flex" style="float: right;">
                       <!-- gift start -->
                       @if (Auth::check() && auth()->user()->id != $item_video->users_id)
-                        <a type="button" class="text-dark"><i class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
+                        <a type="button" class="text-dark" style="margin-top: 1px;"><i class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
                             data-toggle="modal" data-target="#giftModal{{ $item_video->id }}"
-                            style="font-size: medium;"></i>
+                            style="font-size: 13pt;"></i>
                         </a>
                       @elseif(!Auth::check())
-                        <a type="button" class="text-dark"><i class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
-                            onclick="harusLogin()" style="font-size: medium;"></i>
+                        <a type="button" class="text-dark" style="margin-top: 1px;"><i class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
+                            onclick="harusLogin()" style="font-size: 13pt;"></i>
                         </a>
                       @else
                         <a type="button" data-bs-toggle="modal" data-bs-target="#income{{ $item_video->id }}"
-                          class="text-dark me-1">
-                          <i class="fa-solid fa-coins fa-lg my-auto me-1 ms-3" style="font-size: medium;"></i>
+                          class="text-dark me-1" style="margin-top: 2px;">
+                          <i class="fa-solid fa-coins fa-lg my-auto me-1 ms-3" style="font-size: 13pt;"></i>
                         </a>
                         <div class="modal fade" id="income{{ $item_video->id }}" tabindex="-1" role="dialog"
                           aria-hidden="true">
@@ -1512,8 +1515,8 @@
                             {{-- Laporkan Komentar --}}
                             <button type="button" data-bs-toggle="modal"
                               data-bs-target="#Modalsd{{ $urut }}" class="yuhu text-dark btn-sm rounded-5 "
-                              style=""><i class="fa-solid fa-xl mt-1 fa-triangle-exclamation mt-1"
-                                style="font-size: medium; "></i>
+                              style=" vertical-align: middle;"><i class="fa-solid fa-xl mt-1 fa-triangle-exclamation mt-1"
+                                style="font-size: 13pt; "></i>
                             </button>
                             <div class="modal fade" id="Modalsd{{ $urut }}" tabindex="-1" role="dialog"
                               aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1567,8 +1570,8 @@
                               @method('DELETE')
                               <button type="submit" hidden id="delete-feed-button{{ $item_video->id }}"></button>
                               <button type="button" onclick="confirmation_delete_feed({{ $item_video->id }})"
-                                class="yuhu text-dark btn-sm rounded-5 me-1">
-                                <i class="fa-solid fa-lg fa-trash" style="font-size: medium;"></i>
+                                class="yuhu text-dark btn-sm rounded-5 me-1" style="vertical-align: middle;">
+                                <i class="fa-solid fa-lg fa-trash" style="font-size: 13pt;"></i>
                               </button>
                             </form>
                           @elseif(Auth::user()->role == 'admin' && $item_video->user->role != "admin")
@@ -1698,8 +1701,8 @@
                           @endif
                         @else
                           {{-- Untuk user belum login --}}
-                          <button type="button" onclick="harusLogin()" class="yuhu text-dark btn-sm rounded-5 "><i
-                              class="fa-solid fa-xl fa-triangle-exclamation mt-1" style="font-size: medium;"></i>
+                          <button type="button" onclick="harusLogin()" class="yuhu text-dark btn-sm rounded-5 " style="vertical-align: middle;"><i
+                              class="fa-solid fa-xl fa-triangle-exclamation mt-1" style="font-size: 13pt;"></i>
                           </button>
                         @endif
                         {{-- --}}
@@ -1711,22 +1714,22 @@
                         @if (Auth::check() &&
                                 $item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                           <button type="button" id="favorite-button{{ $item_video->id }}"
-                            onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu">
+                            onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu" style=" vertical-align: middle;">
                             <i class="text-orange fa-solid fa-xl fa-bookmark icons{{ $item_video->id }}"
-                              style="font-size: medium;"></i>
+                              style="font-size: 13pt;"></i>
                           </button>
                         @elseif(Auth::check() &&
                                 !$item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                           <button type="button" id="favorite-button{{ $item_video->id }}"
-                            onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu ">
+                            onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu " style=" vertical-align: middle;">
                             <i class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}"
-                              style="font-size: medium;"></i>
+                              style="font-size: 13pt;"></i>
                           </button>
                         @else
                           <button type="button" id="favorite-button{{ $item_video->id }}" onclick="harusLogin()"
-                            class="ms-1 yuhu ">
+                            class="ms-1 yuhu " style=" vertical-align: middle;">
                             <i class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}"
-                              style="font-size: medium;"></i>
+                              style="font-size: 13pt;"></i>
                           </button>
                         @endif
                       </form>
@@ -1879,9 +1882,12 @@
                                           src="{{ asset('images/default.jpg') }}"
                                           alt="{{ $item_comment->user_pengirim->name }}">
                                       @endif
-                                      <p class="ms-2 mb-2 fw-bolder limit-name text-deskripsi">
+                                      <p class="ms-2 mb-2 fw-bolder ellipsis-name text-deskripsi">
                                         {{ $item_comment->user_pengirim->name }}
                                       </p>
+                                      @if ($item_comment->user_pengirim->isSuperUser == 'yes')
+                                            <i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                                      @endif
                                       <div class="d-flex flex-row-reverse ml-auto">
                                         <small class="text-small limit-waktu">
                                           {{ \Carbon\Carbon::parse($item_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
@@ -1889,7 +1895,7 @@
                                     </div>
                                     <div style="margin-top: -2%;">
                                       <div class="d-flex pt-0  komentar1">
-                                        <p class="text-truncate text-deskripsi">{{ $item_comment->komentar }}</p>
+                                        <p class="text-truncate ellipsis-name text-deskripsi">{{ $item_comment->komentar }}</p>
                                       </div>
                                       <div class="d-flex col-lg-12" style="margin-top:-3%;">
                                         @php
@@ -2192,9 +2198,13 @@
                                                           src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                           alt="{{ $reply_comment->user->name }}">
 
-                                                        <span>
-                                                          <p class="fw-bolder mb-2 limit-name text-deskripsi">
-                                                            {{ $reply_comment->user->name }}</p>
+                                                        <span class="d-flex">
+                                                          <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
+                                                            {{ $reply_comment->user->name }}
+                                                          </p>
+                                                          @if ($reply_comment->user->isSuperUser == 'yes')
+                                                                <i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                                                          @endif
                                                         </span>
 
                                                         <div class="d-flex flex-row-reverse ml-auto"
@@ -2528,9 +2538,13 @@
                                                               src="{{ asset('images/default.jpg') }}"
                                                               alt="{{ $reply_replyComment->user_pengirim->name }}">
                                                           @endif
-                                                          <span>
-                                                            <p class="fw-bolder mb-2 limit-name text-deskripsi">
-                                                              {{ $reply_replyComment->user_pengirim->name }}</p>
+                                                          <span class="d-flex">
+                                                            <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
+                                                              {{ $reply_replyComment->user_pengirim->name }}
+                                                            </p>
+                                                            @if ($reply_replyComment->user_pengirim->isSuperUser == 'yes')
+                                                                  <i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                                                            @endif
                                                           </span>
 
                                                           <small
@@ -2539,8 +2553,8 @@
 
                                                         </div>
                                                         <a href=""
-                                                          class="limit-name text-deskripsi komentar3">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
-                                                          <p class="text-deskripsi komentar3">
+                                                          class=" text-deskripsi ellipsis-name komentar3">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
+                                                          <p class="text-deskripsi ellipsis-name komentar3">
                                                             {{ $reply_replyComment->komentar }}
                                                           </p>
                                                         <div class="d-flex icon-komentar2" style="margin-top: -3%;">
@@ -3162,7 +3176,11 @@
               let time = response.time;
               let commentId = response.commentId
               let feed_id = response.feed_id;
+              let isUserSuper = response.isUserSuper;
               let foto = '';
+              if (isUserSuper === 'yes') {
+                isUserSuper = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+              }
               $("#jumlah_komentar_feed" + feed_id).html(response.comment_count);
               if (pengirim['foto'] != null) {
                 foto = 'storage/' + pengirim['foto'];
@@ -3180,8 +3198,11 @@
                                                                                                                 src="{{ asset('${foto}') }}"
                                                                                                                 alt="${pengirim['name']}">
 
-                                                                                                                <span>
-                                                                                                                    <p class="fw-bolder mb-2 limit-name text-deskripsi">${pengirim['name']}</p>
+                                                                                                                <span class="d-flex">
+                                                                                                                    <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
+                                                                                                                    ${pengirim['name']}
+                                                                                                                    </p>
+                                                                                                                    ${isUserSuper}
                                                                                                                 </span>
 
                                                                                                                 <small class="ml-auto text-small limit-waktu">
@@ -3189,7 +3210,7 @@
                                                                                                                 </small>
 
                                                                                                             </div>
-                                                                                                            <a class="text-primary limit-name text-deskripsi komentar3" href="">@${penerima['name']}</a>
+                                                                                                            <a class="text-primary ellipsis-name text-deskripsi komentar3" href="">@${penerima['name']}</a>
                                                                                                                 <p class="text-deskripsi komentar3"> ${up['komentar']}
                                                                                                                 </p>
                                                                                                             {{-- ini like button --}}
@@ -3275,6 +3296,8 @@
                                                                                                         </div>
                                                                                                     </div>`;
               $("#replies_reply" + num).append(innerHtml);
+              console.log(innerHtml);
+              limitName();
             }
           },
           error: function error(xhr, status, erorr) {
@@ -3371,6 +3394,9 @@
               let time = response.time;
               let commentId = response.commentId
               let foto = '';
+              if (isUserSuper === 'yes') {
+                isUserSuper = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+              }
               $("#jumlah_komentar_feed" + veed_id).html(response.comment_count);
               if (pengirim['foto'] != null) {
                 foto = 'storage/' + pengirim['foto'];
@@ -3387,8 +3413,11 @@
                                                                                                                 src="{{ asset('${foto}') }}"
                                                                                                                 alt="${pengirim['name']}">
 
-                                                                                                                <span>
-                                                                                                                    <p class=" fw-bolder mb-2 limit-name text-deskripsi">${pengirim['name']}</p>
+                                                                                                                <span class="d-flex">
+                                                                                                                    <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
+                                                                                                                    ${pengirim['name']}
+                                                                                                                    </p>
+                                                                                                                    ${isUserSuper}
                                                                                                                 </span>
 
                                                                                                                 <div class="d-flex flex-row-reverse ml-auto" style="margin-left: 50%;">
@@ -3397,7 +3426,7 @@
                                                                                                                     </small>
                                                                                                                 </div>
                                                                                                             </div>
-                                                                                                            <div style="margin-top:-1.2%;" class="d-flex pl-0 text-deskripsi">
+                                                                                                            <div style="margin-top:-1.2%;" class="d-flex pl-0  text-deskripsi">
                                                                                                                 <p class="komentar2">${up['komentar']}
                                                                                                                 </p>
                                                                                                             </div>
@@ -3538,6 +3567,7 @@
 
                                                                                                             </div>`;
               $("#repliesCommentList" + num).append(innerHtml);
+              limitName();
             }
           },
           error: function error(xhr, status, errors) {
@@ -3974,6 +4004,9 @@
               let time = response.time;
               let commentId = response.commentId
               let foto = '';
+              if (isUserSuper === 'yes') {
+                isUserSuper = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+              }
               $("#jumlah_komentar_feed" + feed_id).html(response.comment_count);
               if (pengirim['foto'] != null) {
                 foto = 'storage/' + pengirim['foto'];
@@ -3991,15 +4024,19 @@
                                                                                                                 src="{{ asset('${foto}') }}"
                                                                                                                 alt="${pengirim['name']}">
 
-                                                                                                                <span><p class="fw-bolder mb-2 limit-name text-deskripsi">${pengirim['name']}</p></span>
+                                                                                                                <span class="d-flex">
+                                                                                                                <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
+                                                                                                                ${pengirim['name']}</p>
+                                                                                                                ${isUserSuper}
+                                                                                                                </span>
 
                                                                                                                 <small
                                                                                                                 class="ml-auto text-small limit-waktu">${time}
                                                                                                                 </small>
 
                                                                                                             </div>
-                                                                                                            <div class="d-flex pl-0 text-deskripsi" style="margin-top:-1.2%;">
-                                                                                                                <p class="komentar2"><a class="text-primary limit-name text-deskripsi me-2" href="">@${penerima['name']}</a>${up['komentar']}
+                                                                                                            <div class="d-flex pl-0 text-deskripsi ellipsis-name" style="margin-top:-1.2%;">
+                                                                                                                <p class="komentar2"><a class="text-primary ellipsis-name  text-deskripsi me-2" href="">@${penerima['name']}</a>${up['komentar']}
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
@@ -4083,6 +4120,7 @@
                                                                                                         </div>
                                                                                                     </div>`;
               $("#replies_reply2" + num).append(innerHtml);
+              limitName();
             }
           },
           error: function error(xhr, status, erorr) {
@@ -4300,6 +4338,9 @@
               let commentId = response.commentId
               let foto = '';
               let pengirimId = response.pengirim.id;
+              if (isUserSuper === 'yes') {
+                isUserSuper = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+              }
               $("#jumlah_komentar_feed" + num).html(response.comment_count);
               if (pengirim['foto'] != null) {
                 foto = 'storage/' + pengirim['foto'];
@@ -4318,9 +4359,10 @@
                                                                                     src="{{ asset('${foto}') }}"
                                                                                     alt="">
 
-                                                                            <p class="ms-2 mb-2 fw-bolder limit-name text-deskripsi">
+                                                                            <p class="ms-2 mb-2 fw-bolder ellipsis-name text-deskripsi">
                                                                                 ${pengirim['name']}
                                                                             </p>
+                                                                            ${isUserSuper}
                                                                             <div
                                                                                 class="d-flex flex-row-reverse ml-auto">
                                                                                 <small>
@@ -4471,6 +4513,7 @@
               balasButton.addEventListener('click', function() {
 
               });
+              limitName();
             }
           },
           error: function error(xhr, status, errors) {
@@ -4694,6 +4737,77 @@
       });
     }
   </script>
+  
+  <!-- <script>
+    function limitName() {
+      let elements = document.querySelectorAll('.ellipsis-name');
+      
+      elements.forEach(element => {
+        let text = element.textContent;
+        let screenWidth = window.innerWidth;
+        
+        let maxLength;
+        if (screenWidth <= 425) {
+          maxLength = 5; 
+        } else if (screenWidth <= 767 && screenWidth >= 426) {
+          maxLength = 10;
+        } else {
+          maxLength = 20;
+        } 
+        
+        let originalText = element.getAttribute('data-original-text');
+        if (!originalText) {
+          originalText = text;
+          element.setAttribute('data-original-text', originalText);
+        }
+        
+        if (text.length > maxLength) {
+          let shortenedText = originalText.substr(0, maxLength) + '...';
+          element.textContent = shortenedText;
+        } else {
+          element.textContent = originalText;
+        }
+      });
+    }
+
+    // Panggil fungsi untuk pertama kali saat halaman dimuat
+    limitName();
+
+    // Tambahkan event listener untuk mengubah panjang teks saat ukuran layar berubah
+    window.addEventListener('resize', limitName);
+
+  </script> -->
+
+  <script>
+  function limitName() {
+    let elements = document.querySelectorAll('.ellipsis-name');
+
+    elements.forEach(element => {
+      let text = element.textContent.trim(); // Mengambil teks asli dari elemen
+      let screenWidth = window.innerWidth;
+      let maxLength;
+
+      if (screenWidth <= 425) {
+        maxLength = 5;
+      } else if (screenWidth <= 767 && screenWidth >= 426) {
+        maxLength = 10;
+      } else {
+        maxLength = 20;
+      }
+
+      let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+      element.textContent = shortenedText;
+    });
+  }
+
+  document.addEventListener('readystatechange', () => {
+    if (document.readyState === 'interactive') {
+      limitName();
+      window.addEventListener('resize', limitName);
+    }
+  });
+</script>
+
 
   <!-- <script>
     //    // Fungsi untuk mengatur kelas pada lebar layar tertentu
