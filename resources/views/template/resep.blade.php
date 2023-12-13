@@ -790,7 +790,15 @@
                                                   class="judul-resep" href="">
                                                   {{ $item->nama_resep }}</a>
                                           </h5>
-                                          <span>Oleh {{ $item->User->name }}</span> <br>
+                                          <strong style="flex-direction: column;">
+                                            Oleh :
+                                            </strong>
+                                            <br>
+                                            <span class="ellipsis-name">{{ $item->User->name }} </span>
+                                            @if ($item->user->isSuperUser == 'yes')
+                                                <i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                                            @endif
+                                             <br>
                                           <p class="mt-2 my-2">RP.
                                               {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}
                                           </p>
@@ -862,6 +870,35 @@
       function openButtonPremium() {
           document.getElementById("buttonPremium").click();
       }
+  </script>
+   <script>
+    function limitName() {
+      let elements = document.querySelectorAll('.ellipsis-name');
+
+      elements.forEach(element => {
+        let text = element.textContent.trim(); // Mengambil teks asli dari elemen
+        let screenWidth = window.innerWidth;
+        let maxLength;
+
+        if (screenWidth <= 425) {
+          maxLength = 5;
+        } else if (screenWidth <= 767 && screenWidth >= 426) {
+          maxLength = 10;
+        } else {
+          maxLength = 15;
+        }
+
+        let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+        element.textContent = shortenedText;
+      });
+    }
+
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        limitName();
+        window.addEventListener('resize', limitName);
+      }
+    });
   </script>
 @endsection
 

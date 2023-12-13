@@ -423,7 +423,11 @@
                     <h3 class="fw-bolder" style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}
                     </h3>
                     <div class="judul">
-                        <span class="text-nowrap">Oleh {{ $show_resep->User->name }}</span>
+                        <span class="text-nowrap"><strong>Oleh :</strong> <span class="ellipsis-name">{{ $show_resep->User->name }}</span>
+                        @if ($show_resep->User->isSuperUser == 'yes')
+                            <i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                        @endif
+                        </span>
                         <div class="pl mt-3 mt-md-0">
                             <div class="d-flex">
                                 @if ($userLog === 2)
@@ -3081,4 +3085,33 @@
             return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
     </script>
+    <script>
+    function limitName() {
+      let elements = document.querySelectorAll('.ellipsis-name');
+
+      elements.forEach(element => {
+        let text = element.textContent.trim(); // Mengambil teks asli dari elemen
+        let screenWidth = window.innerWidth;
+        let maxLength;
+
+        if (screenWidth <= 425) {
+          maxLength = 5;
+        } else if (screenWidth <= 767 && screenWidth >= 426) {
+          maxLength = 10;
+        } else {
+          maxLength = 50;
+        }
+
+        let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+        element.textContent = shortenedText;
+      });
+    }
+
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        limitName();
+        window.addEventListener('resize', limitName);
+      }
+    });
+  </script>
 @endsection
