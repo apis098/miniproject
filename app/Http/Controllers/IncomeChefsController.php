@@ -88,77 +88,28 @@ class IncomeChefsController extends Controller
     public function ajukan_penarikan(Request $request)
     {
         // validasi saldo koki
-        $saldo_koki = Auth::user()->saldo_pemasukan + 2000;
-        $nilai = 0;
-        if($request->nilai == null) {
-            $nilai = $request->select_input;
-        } elseif($request->select_input == "null") {
-            $nilai = $request->nilai;
-        }
-        if ($request->select_input == "null") {
-            if ($saldo_koki < $request->nilai) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Saldo anda tidak cukup untuk tarik tunai!'
-                ]);
-            }
-        } elseif ($request->nilai == null) {
-            if ($saldo_koki < $request->select_input) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Saldo anda tidak cukup untuk tarik tunai!'
-                ]);
-            }
-        }
+
+        $saldo_koki = Auth::user()->saldo_pemasukan;
         $penarikan = Penarikans::where('chef_id', Auth::user()->id)->where('status', 'diproses')->exists();
 
         if ($penarikan) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Pengajuan anda sebelumnya belum selesai di proses oleh admin!'
-            ]);
+            return redirect()->back()->with("error", "Pengajuan anda sebelumnya belum selesai di proses oleh admin!");
         }
 
-        if ($request->select_input == "null") {
-            if ($request->nilai < 0) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Tidak boleh menginputkan nilai minus!'
-                ]);
-            }
-        } elseif ($request->nilai == null) {
-            if ($request->select_input < 0) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Tidak boleh menginputkan nilai minus!'
-                ]);
-            }
+        if($saldo_koki <= 52000) {
+            return redirect()->back()->with("error", "Minimum saldo yang bisa ditarik adalah RP 52.000!");
         }
-
-        if ($request->select_input == "null") {
-            if ($request->nilai % 50000 != 0) {
-                return response()->json([
-                    "success" => false,
-                    "message" => "Harus berkelipatan RP50.000,00!"
-                ]);
-            }
-        } elseif ($request->nilai == null) {
-            if ($request->select_input % 50000 != 0) {
-                return response()->json([
-                    "success" => false,
-                    "message" => "Harus berkelipatan RP50.000,00!"
-                ]);
-            }
+        $saldo_tarik = $saldo_koki - 2000;
+        if($saldo_tarik % 5000 != 0) {
+            $selisih = $saldo_tarik % 5000;
+            $saldo_tarik = $saldo_tarik - $selisih;
         }
         $data = DataPribadiKoki::where("chef_id", Auth::user()->id)->first();
         Penarikans::create([
             "chef_id" => Auth::user()->id,
             "data_id" => $data->id,
-            "nilai" => $nilai
+            "nilai" => $saldo_tarik
         ]);
-        return response()->json([
-            "success" => "true",
-            "message" => "Berhasil mengajukan penarikan, harap tunggu konfirmasi admin!"
-        ]);
+       return redirect()->back()->with('success', 'Pengajuan sudah dikirim ke admin, harap tunggu konfirmasi dari admin!');
     }
 }

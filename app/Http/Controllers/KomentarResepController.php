@@ -111,7 +111,8 @@ class KomentarResepController extends Controller
             'user_id' => $reply->user->id,
             'user_name' => $reply->user->name,
             'user' => $user,
-            'id2' => $id
+            'id2' => $id,
+            'comment_id' => $comment->id,
         ]);
     }
     public function reply_reply_comment(Request $request,$id,$user){

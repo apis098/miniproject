@@ -91,6 +91,14 @@
             .icon-komentar2 {
               margin-left: 17px;
             }
+
+            .icon-komentar3 {
+              margin-left: 26px;
+            }
+
+            .komentar3 {
+              margin-left: 35px;
+            }
           }
 
           @media (max-width: 425px) {
@@ -139,6 +147,14 @@
 
             .icon-komentar2 {
               margin-left: 7px;
+            }
+
+            .icon-komentar3 {
+              margin-left: 14px;
+            }
+
+            .komentar3 {
+              margin-left: 25px;
             }
 
           }
@@ -446,8 +462,8 @@
                     @media (max-width: 370px) {
 
                       /* .d-flex {
-                                                flex-direction: column;
-                                            } */
+                                                  flex-direction: column;
+                                              } */
                       .margin-atas {
                         margin-top: 5%;
                       }
@@ -514,8 +530,13 @@
                   </a>
                   <div class="col-lg-11 col-md-11 col-10 my-auto pr-0">
                     <div class="d-flex waktu justify-content-between">
-                      <a href="{{ route('show.profile', $item_video->user->id) }}" class="text-dark my-auto d-block">
-                        <strong class="text-truncate limit-name text-deskripsi">{{ $item_video->user->name }}</strong>
+                      <a href="{{ route('show.profile', $item_video->user->id) }}"
+                        class="text-dark my-auto d-block d-flex">
+                        <strong class="text-truncate text-deskripsi ellipsis-name"
+                          id="ellipsis">{{ $item_video->user->name }}</strong>
+                        @if ($item_video->user->isSuperUser == 'yes')
+                          <i class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
+                        @endif
                       </a>
                       <small class="text-muted text-small">
                         {{ \Carbon\Carbon::parse($item_video->created_at)->locale('id_ID')->diffForHumans() }}
@@ -531,15 +552,15 @@
                       }
 
                       /* .text-muted {
-                                      margin-top: 0.5rem;
-                                  } */
+                                        margin-top: 0.5rem;
+                                    } */
                     }
 
                     @media (min-width: 426px) {
                       .d-flex .waktu {
                         flex-direction: row;
                         /* align-items: center;
-                                      justify-content: space-between; */
+                                        justify-content: space-between; */
                       }
                     }
                   </style>
@@ -748,7 +769,7 @@
                         </form>
                       @endif
                       <!-- <span class="my-auto"
-                                                id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span> -->
+                                                  id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span> -->
 
                       <!-- like feed end -->
                       <!-- komentar feed start -->
@@ -1099,18 +1120,19 @@
                     <span class="d-flex" style="float: right;">
                       <!-- gift start -->
                       @if (Auth::check() && auth()->user()->id != $item_video->users_id)
-                        <a type="button" class="text-dark"><i class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
-                            data-toggle="modal" data-target="#giftModal{{ $item_video->id }}"
-                            style="font-size: medium;"></i>
+                        <a type="button" class="text-dark" style="margin-top: 1px;"><i
+                            class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto" data-toggle="modal"
+                            data-target="#giftModal{{ $item_video->id }}" style="font-size: 13pt;"></i>
                         </a>
                       @elseif(!Auth::check())
-                        <a type="button" class="text-dark"><i class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
-                            onclick="harusLogin()" style="font-size: medium;"></i>
+                        <a type="button" class="text-dark" style="margin-top: 1px;"><i
+                            class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto" onclick="harusLogin()"
+                            style="font-size: 13pt;"></i>
                         </a>
                       @else
                         <a type="button" data-bs-toggle="modal" data-bs-target="#income{{ $item_video->id }}"
-                          class="text-dark me-1">
-                          <i class="fa-solid fa-coins fa-lg my-auto me-1 ms-3" style="font-size: medium;"></i>
+                          class="text-dark me-1" style="margin-top: 2px;">
+                          <i class="fa-solid fa-coins fa-lg my-auto me-1 ms-3" style="font-size: 13pt;"></i>
                         </a>
                         <div class="modal fade" id="income{{ $item_video->id }}" tabindex="-1" role="dialog"
                           aria-hidden="true">
@@ -1233,28 +1255,28 @@
                                   </label>
 
                                   <!-- <label for="moreInput"
-                                                                        class="col-lg-3 col-md-6 col-12 my-1 ">
-                                                                        <div class="card border-2 scale border-black"
-                                                                            onclick="more_gift_click('{{ $item_video->id }}')"
-                                                                            id="moreGift{{ $item_video->id }}"
-                                                                            style="width: auto; height: auto;"
-                                                                            data-card-selected="false">
-                                                                            <img src="{{ asset('img/lainnya.png') }}"
-                                                                                class="card-img-top" alt="">
-                                                                            <div class="card-body">
+                                                                          class="col-lg-3 col-md-6 col-12 my-1 ">
+                                                                          <div class="card border-2 scale border-black"
+                                                                              onclick="more_gift_click('{{ $item_video->id }}')"
+                                                                              id="moreGift{{ $item_video->id }}"
+                                                                              style="width: auto; height: auto;"
+                                                                              data-card-selected="false">
+                                                                              <img src="{{ asset('img/lainnya.png') }}"
+                                                                                  class="card-img-top" alt="">
+                                                                              <div class="card-body">
 
-                                                                                <div class="mx-3 mt-2">
-                                                                                    <p class="card-title text-center mb-0"
-                                                                                        style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                        Lainnya</p>
-                                                                                </div>
-                                                                                <p id="displayNumber{{ $item_video->id }}"
-                                                                                    class="text-center mb-0"
-                                                                                    style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                                    Masukkan Nilai</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </label> -->
+                                                                                  <div class="mx-3 mt-2">
+                                                                                      <p class="card-title text-center mb-0"
+                                                                                          style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                          Lainnya</p>
+                                                                                  </div>
+                                                                                  <p id="displayNumber{{ $item_video->id }}"
+                                                                                      class="text-center mb-0"
+                                                                                      style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                      Masukkan Nilai</p>
+                                                                              </div>
+                                                                          </div>
+                                                                      </label> -->
 
                                   <label for="moreInput" class="col-lg-3 col-md-6 col-12 my-1 ">
                                     <button type="button" class="card border-2 scale border-black"
@@ -1278,28 +1300,28 @@
                                   </label>
 
                                   <!-- <label for="moreInput" class="col-lg-3 col-md-6 col-12 my-1 ">
-                                                                        <div type="button"
-                                                                            onclick="more_gift_click({{ $item_video->id }})"
-                                                                            id="moreGift{{ $item_video->id }}"
-                                                                            style="width: 100%; height: 100%;"
-                                                                            class="card border-2 border-black scale"
-                                                                            data-card-selected="false">
-                                                                            <img src="{{ asset('img/lainnya.png') }}"
-                                                                                class="card-img-top" alt="">
-                                                                            <div class="card-body">
+                                                                          <div type="button"
+                                                                              onclick="more_gift_click({{ $item_video->id }})"
+                                                                              id="moreGift{{ $item_video->id }}"
+                                                                              style="width: 100%; height: 100%;"
+                                                                              class="card border-2 border-black scale"
+                                                                              data-card-selected="false">
+                                                                              <img src="{{ asset('img/lainnya.png') }}"
+                                                                                  class="card-img-top" alt="">
+                                                                              <div class="card-body">
 
-                                                                                <div class="mx-4 mt-2">
-                                                                                    <p class="card-title mb-0"
-                                                                                        style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                        Lainnya</p>
-                                                                                </div>
-                                                                                <p id="displayNumber{{ $item_video->id }}"
-                                                                                    class="text-center mb-0"
-                                                                                    style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                                    Masukkan Nilai</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </label> -->
+                                                                                  <div class="mx-4 mt-2">
+                                                                                      <p class="card-title mb-0"
+                                                                                          style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                          Lainnya</p>
+                                                                                  </div>
+                                                                                  <p id="displayNumber{{ $item_video->id }}"
+                                                                                      class="text-center mb-0"
+                                                                                      style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                      Masukkan Nilai</p>
+                                                                              </div>
+                                                                          </div>
+                                                                      </label> -->
 
                                 </div>
                                 <div class="col-12">
@@ -1492,12 +1514,12 @@
                       <div class="mx-2">
                         {{-- --}}
                         @if (Auth::user())
-                          @if (Auth::user()->role != 'admin' && $item_video->user->role != "admin" &&Auth::user()->id !== $item_video->user->id)
+                          @if (Auth::user()->role != 'admin' && $item_video->user->role != 'admin' && Auth::user()->id !== $item_video->user->id)
                             {{-- Laporkan Komentar --}}
                             <button type="button" data-bs-toggle="modal"
                               data-bs-target="#Modalsd{{ $urut }}" class="yuhu text-dark btn-sm rounded-5 "
-                              style=""><i class="fa-solid fa-xl mt-1 fa-triangle-exclamation mt-1"
-                                style="font-size: medium; "></i>
+                              style=" vertical-align: middle;"><i
+                                class="fa-solid fa-xl mt-1 fa-triangle-exclamation mt-1" style="font-size: 13pt; "></i>
                             </button>
                             <div class="modal fade" id="Modalsd{{ $urut }}" tabindex="-1" role="dialog"
                               aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1544,59 +1566,59 @@
                                 </div>
                               </div>
                             </div>
-                          @elseif(Auth::user()->id == $item_video->user->id || $item_video->user->role == "admin")
+                          @elseif(Auth::user()->id == $item_video->user->id || $item_video->user->role == 'admin')
                             <form method="POST" action="{{ route('hapus.feed', $item_video->id) }}"
                               id="delete-feed-form{{ $item_video->id }}">
                               @csrf
                               @method('DELETE')
                               <button type="submit" hidden id="delete-feed-button{{ $item_video->id }}"></button>
                               <button type="button" onclick="confirmation_delete_feed({{ $item_video->id }})"
-                                class="yuhu text-dark btn-sm rounded-5 me-1">
-                                <i class="fa-solid fa-lg fa-trash" style="font-size: medium;"></i>
+                                class="yuhu text-dark btn-sm rounded-5 me-1" style="vertical-align: middle;">
+                                <i class="fa-solid fa-lg fa-trash" style="font-size: 13pt;"></i>
                               </button>
                             </form>
-                          @elseif(Auth::user()->role == 'admin' && $item_video->user->role != "admin")
+                          @elseif(Auth::user()->role == 'admin' && $item_video->user->role != 'admin')
                             <button type="button" data-toggle="modal"
                               data-target="#blocksModal{{ $item_video->id }}"
-                              class="yuhu text-dark btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg"
-                                width="20" height="26" viewBox="0 0 24 24">
-                                <path
-                                  d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
-                                  fill="currentColor" fill-rule="nonzero" />
+                              class="yuhu text-dark btn-sm rounded-5 ">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
+                                viewBox="0 0 16 16">
+                                <path fill="#111111"
+                                  d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM3.965 13.096a6.5 6.5 0 0 0 9.131-9.131ZM1.5 8a6.474 6.474 0 0 0 1.404 4.035l9.131-9.131A6.499 6.499 0 0 0 1.5 8Z" />
                               </svg>
                             </button>
                             <!-- <div class="modal fade" id="blocskModal{{ $item_video->id }}" tabindex="-1"
-                                role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="reportModal"
-                                        style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                        Blokir komentar
-                                      </h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                    <form action="{{-- route('Report.comment.recipes',$row->id) --}}" method="POST">
-                                      {{-- @csrf --}}
-                                      <div class="modal-body d-flex align-items-center">
+                                  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="reportModal"
+                                          style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                          Blokir komentar
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <form action="{{-- route('Report.comment.recipes',$row->id) --}}" method="POST">
+                                        {{-- @csrf --}}
+                                        <div class="modal-body d-flex align-items-center">
 
-                                        <img class="me-2" src="{{ asset('images/default.jpg') }}" width="106px"
-                                          height="104px" style="border-radius: 50%" alt="">
-                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                          placeholder="Alasan..."></textarea>
-                                        {{-- @endif --}}
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="submit" class="btn btn-light text-light"
-                                          style="border-radius: 15px; background-color:#F7941E;"><b
-                                            class="ms-2 me-2">Blokir</b></button>
-                                      </div>
-                                    </form>
+                                          <img class="me-2" src="{{ asset('images/default.jpg') }}" width="106px"
+                                            height="104px" style="border-radius: 50%" alt="">
+                                          <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                            placeholder="Alasan..."></textarea>
+                                          {{-- @endif --}}
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="submit" class="btn btn-light text-light"
+                                            style="border-radius: 15px; background-color:#F7941E;"><b
+                                              class="ms-2 me-2">Blokir</b></button>
+                                        </div>
+                                      </form>
+                                    </div>
                                   </div>
-                                </div>
-                              </div> -->
+                                </div> -->
 
                             <div class="modal fade p-0" id="blocksModal{{ $item_video->id }}" tabindex="-1"
                               role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1609,7 +1631,8 @@
                                     <button type="button" class="btn-close" style="margin-top: 1px;"
                                       data-dismiss="modal" aria-label="Close"></button>
                                   </div>
-                                  <form action="admin/block-feed/{{$item_video->id}}" method="POST" id="FormBlockFeed{{ $item_video->id }}">
+                                  <form action="admin/block-feed/{{ $item_video->id }}" method="POST"
+                                    id="FormBlockFeed{{ $item_video->id }}">
                                     @csrf
                                     @method('PUT')
                                     <div class="row col-12 mb-3 pr-0 mt-3">
@@ -1652,42 +1675,43 @@
                             </style>
 
                             <!-- <div class="modal" id="blocksModal{{ $item_video->id }}">
-                                  <div class="modal-dialog modal-dialog-centered">
-                                      <div class="modal-content" style="width: 100%;">
-                                          <div class="modal-header">
-                                              <h5 class="modal-title fw-bolder">Kirim alasan</h5>
-                                              <button type="button" class="btn-close" data-dismiss="modal"
-                                                  aria-label="Close"></button>
-                                          </div>
-                                          <div class="modal-body" style="text-align: right;">
-                                              <form action="" method="post">
-                                                  <input type="hidden" name="block_resep" value="yes">
-                                                  <div class="row mb-3">
-                                                      <div class="col-lg-4 col-md-12 align-items-ceneter text-center">
-                                                          <img class="img-fluid" src="{{ asset('images/alasan.png') }}"
-                                                              width="100%" alt="">
-                                                      </div>
-                                                      <div class="col-lg-8 col-md-12 align-items-center">
-                                                          <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
-                                                            cols="5" rows="5"></textarea>
-                                                      </div>
-                                                  </div>
-                                                  <div>
-                                                  <button type="submit"
-                                                      style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                      class="btn  btn-sm text-light">
-                                                      <b class="me-3 ms-3">Kirim</b></button>
-                                              </form>
-                                          </div>
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content" style="width: 100%;">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title fw-bolder">Kirim alasan</h5>
+                                                <button type="button" class="btn-close" data-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body" style="text-align: right;">
+                                                <form action="" method="post">
+                                                    <input type="hidden" name="block_resep" value="yes">
+                                                    <div class="row mb-3">
+                                                        <div class="col-lg-4 col-md-12 align-items-ceneter text-center">
+                                                            <img class="img-fluid" src="{{ asset('images/alasan.png') }}"
+                                                                width="100%" alt="">
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-12 align-items-center">
+                                                            <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
+                                                              cols="5" rows="5"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                    <button type="submit"
+                                                        style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                        class="btn  btn-sm text-light">
+                                                        <b class="me-3 ms-3">Kirim</b></button>
+                                                </form>
+                                            </div>
 
-                                      </div>
-                                  </div>
-                              </div> -->
+                                        </div>
+                                    </div>
+                                </div> -->
                           @endif
                         @else
                           {{-- Untuk user belum login --}}
-                          <button type="button" onclick="harusLogin()" class="yuhu text-dark btn-sm rounded-5 "><i
-                              class="fa-solid fa-xl fa-triangle-exclamation mt-1" style="font-size: medium;"></i>
+                          <button type="button" onclick="harusLogin()" class="yuhu text-dark btn-sm rounded-5 "
+                            style="vertical-align: middle;"><i class="fa-solid fa-xl fa-triangle-exclamation mt-1"
+                              style="font-size: 13pt;"></i>
                           </button>
                         @endif
                         {{-- --}}
@@ -1699,22 +1723,24 @@
                         @if (Auth::check() &&
                                 $item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                           <button type="button" id="favorite-button{{ $item_video->id }}"
-                            onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu">
+                            onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu"
+                            style=" vertical-align: middle;">
                             <i class="text-orange fa-solid fa-xl fa-bookmark icons{{ $item_video->id }}"
-                              style="font-size: medium;"></i>
+                              style="font-size: 13pt;"></i>
                           </button>
                         @elseif(Auth::check() &&
                                 !$item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                           <button type="button" id="favorite-button{{ $item_video->id }}"
-                            onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu ">
+                            onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu "
+                            style=" vertical-align: middle;">
                             <i class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}"
-                              style="font-size: medium;"></i>
+                              style="font-size: 13pt;"></i>
                           </button>
                         @else
                           <button type="button" id="favorite-button{{ $item_video->id }}" onclick="harusLogin()"
-                            class="ms-1 yuhu ">
+                            class="ms-1 yuhu " style=" vertical-align: middle;">
                             <i class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}"
-                              style="font-size: medium;"></i>
+                              style="font-size: 13pt;"></i>
                           </button>
                         @endif
                       </form>
@@ -1867,9 +1893,12 @@
                                           src="{{ asset('images/default.jpg') }}"
                                           alt="{{ $item_comment->user_pengirim->name }}">
                                       @endif
-                                      <p class="ms-2 mb-2 fw-bolder limit-name text-deskripsi">
+                                      <p class="ms-2 mb-2 fw-bolder ellipsis-name text-deskripsi">
                                         {{ $item_comment->user_pengirim->name }}
                                       </p>
+                                      @if ($item_comment->user_pengirim->isSuperUser == 'yes')
+                                        <i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                                      @endif
                                       <div class="d-flex flex-row-reverse ml-auto">
                                         <small class="text-small limit-waktu">
                                           {{ \Carbon\Carbon::parse($item_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
@@ -1877,7 +1906,8 @@
                                     </div>
                                     <div style="margin-top: -2%;">
                                       <div class="d-flex pt-0  komentar1">
-                                        <p class="text-truncate text-deskripsi">{{ $item_comment->komentar }}</p>
+                                        <p class="text-truncate ellipsis-name text-deskripsi">
+                                          {{ $item_comment->komentar }}</p>
                                       </div>
                                       <div class="d-flex col-lg-12" style="margin-top:-3%;">
                                         @php
@@ -2023,29 +2053,29 @@
                                                         <span aria-hidden="true">&times;</span>
                                                       </button>
                                                     </div>
-                                                    <form action="{{-- route('Report.comment.recipes',$item_comment->id) --}}" method="POST">
-                                                      {{-- @csrf --}}
+                                                <form action="{{route('block.comment.feed',$item_comment->id)}}" id="FormBlokirKomentar{{$item_comment->id}}" method="POST">
+                                                      @csrf
+                                                      @method("PUT")
                                                       <div class="modal-body col-12 row pr-0">
                                                         <div class="col-lg-3 col-md-12 col-12 text-center mb-3 pr-0">
-
                                                           <img class="me-2"
                                                             src="{{ asset('images/default.jpg') }}" width="80px"
                                                             height="80px" style="border-radius: 50%"
                                                             alt="">
                                                         </div>
                                                         <div class="col-lg-9 col-md-12 col-12 pr-0">
-                                                          <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                          <textarea class="form-control rounded-5" style="border-radius: 15px" name="alasan" id="AlasanBlokirKomentar{{$item_comment->id}}" rows="5"
                                                             placeholder="Alasan..."></textarea>
                                                         </div>
                                                         {{-- @endif --}}
                                                       </div>
                                                       <div class="modal-footer">
-                                                        <button type="submit"
+                                                        <button type="submit" id="ButtonBlokirKomentar{{$item_comment->id}}" onclick="BlokirKomentar({{$item_comment->id}})"
                                                           class="btn btn-light text-light d-none d-sm-inline-block"
                                                           style="border-radius: 15px; background-color:#F7941E;"><b
                                                             class="ms-2 me-2">Blokir</b></button>
 
-                                                        <button type="submit"
+                                                        <button type="submit" id="ButtonBlokirKomentar{{$item_comment->id}}" onclick="BlokirKomentar({{$item_comment->id}})"
                                                           class="btn btn-light text-light btn-sm d-sm-none"
                                                           style="border-radius: 15px; background-color:#F7941E;"><b
                                                             class="ms-2 me-2">Blokir</b></button>
@@ -2180,9 +2210,14 @@
                                                           src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                           alt="{{ $reply_comment->user->name }}">
 
-                                                        <span>
-                                                          <p class="fw-bolder mb-2 limit-name text-deskripsi">
-                                                            {{ $reply_comment->user->name }}</p>
+                                                        <span class="d-flex">
+                                                          <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
+                                                            {{ $reply_comment->user->name }}
+                                                          </p>
+                                                          @if ($reply_comment->user->isSuperUser == 'yes')
+                                                            <i
+                                                              class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                                                          @endif
                                                         </span>
 
                                                         <div class="d-flex flex-row-reverse ml-auto"
@@ -2193,12 +2228,12 @@
                                                       </div>
                                                       <div style="margin-top:-1.2%;"
                                                         class="d-flex pl-0 text-deskripsi">
-                                                        <p class="komentar1">{{ $reply_comment->komentar }}
+                                                        <p class="komentar2">{{ $reply_comment->komentar }}
                                                         </p>
                                                       </div>
                                                       {{-- ini like button --}}
                                                       <div class="d-flex ">
-                                                        <div class="d-flex col-2 icon-komentar1 pl-0 mr-auto"
+                                                        <div class="d-flex col-2 icon-komentar3 pl-0 mr-auto"
                                                           style="margin-top:-3%;">
                                                           @if (Auth::user())
                                                             @if ($reply_comment->checkLikedOrNo(auth()->user()->id))
@@ -2323,7 +2358,7 @@
                                                               @elseif(Auth::user()->role == 'admin')
                                                                 {{-- Blokir Komentar --}}
                                                                 <button type="button" data-bs-toggle="modal"
-                                                                  data-bs-target="#blookModal{{ $reply_comment->id }}"
+                                                                  data-bs-target="#blockModale{{ $reply_comment->id }}"
                                                                   class="yuhu text-danger btn-sm rounded-5 "><svg
                                                                     xmlns="http://www.w3.org/2000/svg" width="20"
                                                                     height="20" viewBox="0 0 24 24">
@@ -2333,7 +2368,7 @@
                                                                   </svg>
                                                                 </button>
                                                                 <div class="modal fade" data-bs-backdrop="static"
-                                                                  id="blookModal{{ $reply_comment->id }}"
+                                                                  id="blockModale{{ $reply_comment->id }}"
                                                                   tabindex="-1" role="dialog"
                                                                   aria-labelledby="exampleModalCenterTitle"
                                                                   aria-hidden="true">
@@ -2353,9 +2388,9 @@
                                                                           <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                       </div>
-                                                                      <form action="{{-- route('Report.comment.recipes',$row->id) --}}"
+                                                                      <form action="{{route('block.reply1.comment.feed')}}" id="FormBlokirKomen{{$reply_comment->id}}"
                                                                         method="POST">
-                                                                        {{-- @csrf --}}
+                                                                        @csrf
                                                                         <div class="modal-body col-12 row pr-0">
                                                                           <div
                                                                             class="col-lg-3 col-md-12 col-12 text-center mb-3 pr-0">
@@ -2367,18 +2402,18 @@
                                                                               alt="">
                                                                           </div>
                                                                           <div class="col-lg-9 col-md-12 col-12 pr-0">
-                                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="alasan" id="AlasanBlokirKomen{{$reply_comment->id}}" rows="5"
                                                                               placeholder="Alasan..."></textarea>
                                                                           </div>
                                                                           {{-- @endif --}}
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                          <button type="submit"
+                                                                          <button type="submit" id="ButtonBlokirKomen{{$reply_comment->id}}" onclick="BlokirKomen({{$reply_comment->id}})"
                                                                             class="btn btn-light text-light d-none d-sm-inline-block"
                                                                             style="border-radius: 15px; background-color:#F7941E;"><b
                                                                               class="ms-2 me-2">Blokir</b></button>
 
-                                                                          <button type="submit"
+                                                                          <button type="submit" id="ButtonBlokirKomen{{$reply_comment->id}}" onclick="BlokirKomen({{$reply_comment->id}})"
                                                                             class="btn btn-light text-light btn-sm d-sm-none"
                                                                             style="border-radius: 15px; background-color:#F7941E;"><b
                                                                               class="ms-2 me-2">Blokir</b></button>
@@ -2516,24 +2551,26 @@
                                                               src="{{ asset('images/default.jpg') }}"
                                                               alt="{{ $reply_replyComment->user_pengirim->name }}">
                                                           @endif
-                                                          <span>
-                                                            <p class="fw-bolder mb-2 limit-name text-deskripsi">
-                                                              {{ $reply_replyComment->user_pengirim->name }}</p>
+                                                          <span class="d-flex">
+                                                            <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
+                                                              {{ $reply_replyComment->user_pengirim->name }}
+                                                            </p>
+                                                            @if ($reply_replyComment->user_pengirim->isSuperUser == 'yes')
+                                                              <i
+                                                                class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                                                            @endif
                                                           </span>
 
                                                           <small
-                                                            class="d-flex flex-row-reverse ml-auto text-small limit-waktu"
-                                                            style="margin-left: 50%;">{{ \Carbon\Carbon::parse($reply_replyComment->created_at)->locale('id_ID')->diffForHumans() }}
+                                                            class="text-small limit-waktu ml-auto">{{ \Carbon\Carbon::parse($reply_replyComment->created_at)->locale('id_ID')->diffForHumans() }}
                                                           </small>
 
                                                         </div>
-                                                        <div class="d-flex pl-0" style="margin-top: -1.2%;">
-                                                          <p class="text-deskripsi komentar2">
-                                                            <a href=""
-                                                              class="limit-name text-deskripsi">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
-                                                            {{ $reply_replyComment->komentar }}
-                                                          </p>
-                                                        </div>
+                                                        <a href=""
+                                                          class=" text-deskripsi ellipsis-name komentar3">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
+                                                        <p class="text-deskripsi ellipsis-name komentar3">
+                                                          {{ $reply_replyComment->komentar }}
+                                                        </p>
                                                         <div class="d-flex icon-komentar2" style="margin-top: -3%;">
                                                           <div class="d-flex col-2 ms-2 pl-0 mr-auto">
                                                             @if (Auth::user())
@@ -2699,9 +2736,12 @@
                                                                             <span aria-hidden="true">&times;</span>
                                                                           </button>
                                                                         </div>
-                                                                        <form action="{{-- route('Report.comment.recipes',$reply_replyComment->id) --}}"
+                                                                        <form
+                                                                          action="{{ route('block.reply.comment.feed', $reply_replyComment->id) }}"
+                                                                          id="FormBlokirReplyCommentFeed{{ $reply_replyComment->id }}"
                                                                           method="POST">
-                                                                          {{-- @csrf --}}
+                                                                          @csrf
+                                                                          @method("PUT")
                                                                           <div class="modal-body col-12 row pr-0">
                                                                             <div
                                                                               class="col-lg-3 col-md-12 col-12 text-center mb-3 pr-0">
@@ -2712,18 +2752,22 @@
                                                                                 alt="">
                                                                             </div>
                                                                             <div class="col-lg-9 col-md-12 col-12 pr-0">
-                                                                              <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                                                placeholder="Alasan..."></textarea>
+                                                                              <textarea class="form-control rounded-5" style="border-radius: 15px" name="alasan" rows="5"
+                                                                                id="AlasanBlokirReplyCommentFeed{{ $reply_replyComment->id }}" placeholder="Alasan..."></textarea>
                                                                             </div>
                                                                             {{-- @endif --}}
                                                                           </div>
                                                                           <div class="modal-footer">
                                                                             <button type="submit"
+                                                                              id="ButtonBlokirReplyCommentFeed{{ $reply_replyComment->id }}"
+                                                                              onclick="BlokirReplyCommentFeed({{ $reply_replyComment->id }})"
                                                                               class="btn btn-light text-light d-none d-sm-inline-block"
                                                                               style="border-radius: 15px; background-color:#F7941E;"><b
                                                                                 class="ms-2 me-2">Blokir</b></button>
 
                                                                             <button type="submit"
+                                                                              id="ButtonBlokirReplyCommentFeed{{ $reply_replyComment->id }}"
+                                                                              onclick="BlokirReplyCommentFeed({{ $reply_replyComment->id }})"
                                                                               class="btn btn-light text-light btn-sm d-sm-none"
                                                                               style="border-radius: 15px; background-color:#F7941E;"><b
                                                                                 class="ms-2 me-2">Blokir</b></button>
@@ -2891,7 +2935,7 @@
                     <div class="bg-light rounded-3 px-3 py-1">
                       <a href="/artikel/{{ $resep->id }}/{{ $resep->nama_resep }}" class="text-dark mb-0">
                         <div class="pl-0 pr-0 d-flex justify-content-between">
-                          <strong class="ellipsis">{{ explode(' ', $item_video->user->name)[0] }}</strong>
+                          <strong class="ellipsis">{{ explode(' ', $resep->user->name)[0] }}</strong>
                           @if ($resep->user->isSuperUser == 'yes')
                             <i class="fa-regular fa-sm text-primary fa-circle-check my-auto"></i>
                           @endif
@@ -3152,7 +3196,11 @@
               let time = response.time;
               let commentId = response.commentId
               let feed_id = response.feed_id;
+              let isUserSuper = response.isUserSuper;
               let foto = '';
+              if (isUserSuper === 'yes') {
+                isUserSuper = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+              }
               $("#jumlah_komentar_feed" + feed_id).html(response.comment_count);
               if (pengirim['foto'] != null) {
                 foto = 'storage/' + pengirim['foto'];
@@ -3170,23 +3218,25 @@
                                                                                                                 src="{{ asset('${foto}') }}"
                                                                                                                 alt="${pengirim['name']}">
 
-                                                                                                                <span>
-                                                                                                                    <p class="fw-bolder mb-2 limit-name text-deskripsi">${pengirim['name']}</p>
+                                                                                                                <span class="d-flex">
+                                                                                                                    <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
+                                                                                                                    ${pengirim['name']}
+                                                                                                                    </p>
+                                                                                                                    ${isUserSuper}
                                                                                                                 </span>
 
-                                                                                                                <small class="d-flex flex-row-reverse ml-auto text-small limit-waktu" style="margin-left: 50%;">
+                                                                                                                <small class="ml-auto text-small limit-waktu">
                                                                                                                     ${time}
                                                                                                                 </small>
 
                                                                                                             </div>
-                                                                                                            <div class="d-flex pl-0" style="margin-top: -1.2%;">
-                                                                                                                <p class="text-deskripsi komentar2"><a class="text-primary " href="" class="limit-name text-deskripsi">@${penerima['name']}</a> ${up['komentar']}
+                                                                                                            <a class="text-primary ellipsis-name text-deskripsi komentar3" href="">@${penerima['name']}</a>
+                                                                                                                <p class="text-deskripsi komentar3"> ${up['komentar']}
                                                                                                                 </p>
-                                                                                                            </div>
                                                                                                             {{-- ini like button --}}
                                                                                                              <div class="d-flex"
                                                                                                                     style="margin-top: -3%;">
-                                                                                                                    <div class="d-flex col-2 icon-komentar2 pl-0 mr-auto">
+                                                                                                                    <div class="d-flex col-2 icon-komentar3 pl-0 mr-auto">
                                                                                                                         @if (Auth::user())
                                                                                                                                 <form
                                                                                                                                     action="/sukai/reply_balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${feed_id}"
@@ -3266,6 +3316,8 @@
                                                                                                         </div>
                                                                                                     </div>`;
               $("#replies_reply" + num).append(innerHtml);
+              console.log(innerHtml);
+              limitName();
             }
           },
           error: function error(xhr, status, erorr) {
@@ -3362,6 +3414,9 @@
               let time = response.time;
               let commentId = response.commentId
               let foto = '';
+              if (isUserSuper === 'yes') {
+                isUserSuper = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+              }
               $("#jumlah_komentar_feed" + veed_id).html(response.comment_count);
               if (pengirim['foto'] != null) {
                 foto = 'storage/' + pengirim['foto'];
@@ -3378,8 +3433,11 @@
                                                                                                                 src="{{ asset('${foto}') }}"
                                                                                                                 alt="${pengirim['name']}">
 
-                                                                                                                <span>
-                                                                                                                    <p class=" fw-bolder mb-2 limit-name text-deskripsi">${pengirim['name']}</p>
+                                                                                                                <span class="d-flex">
+                                                                                                                    <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
+                                                                                                                    ${pengirim['name']}
+                                                                                                                    </p>
+                                                                                                                    ${isUserSuper}
                                                                                                                 </span>
 
                                                                                                                 <div class="d-flex flex-row-reverse ml-auto" style="margin-left: 50%;">
@@ -3388,13 +3446,13 @@
                                                                                                                     </small>
                                                                                                                 </div>
                                                                                                             </div>
-                                                                                                            <div style="margin-top:-1.2%;" class="d-flex pl-0 text-deskripsi">
-                                                                                                                <p class="komentar1">${up['komentar']}
+                                                                                                            <div style="margin-top:-1.2%;" class="d-flex pl-0  text-deskripsi">
+                                                                                                                <p class="komentar2">${up['komentar']}
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex">
-                                                                                                                <div class="d-flex col-2 icon-komentar1 pl-0 mr-auto" style="margin-top:-3%;">
+                                                                                                                <div class="d-flex col-2 icon-komentar3 pl-0 mr-auto" style="margin-top:-3%;">
                                                                                                                     @if (Auth::user())
                                                                                                                             <form
                                                                                                                                 action="/sukai/balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
@@ -3529,6 +3587,7 @@
 
                                                                                                             </div>`;
               $("#repliesCommentList" + num).append(innerHtml);
+              limitName();
             }
           },
           error: function error(xhr, status, errors) {
@@ -3965,6 +4024,9 @@
               let time = response.time;
               let commentId = response.commentId
               let foto = '';
+              if (isUserSuper === 'yes') {
+                isUserSuper = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+              }
               $("#jumlah_komentar_feed" + feed_id).html(response.comment_count);
               if (pengirim['foto'] != null) {
                 foto = 'storage/' + pengirim['foto'];
@@ -3982,20 +4044,24 @@
                                                                                                                 src="{{ asset('${foto}') }}"
                                                                                                                 alt="${pengirim['name']}">
 
-                                                                                                                <span><p class="fw-bolder mb-2 limit-name text-deskripsi">${pengirim['name']}</p></span>
+                                                                                                                <span class="d-flex">
+                                                                                                                <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
+                                                                                                                ${pengirim['name']}</p>
+                                                                                                                ${isUserSuper}
+                                                                                                                </span>
 
                                                                                                                 <small
-                                                                                                                class="d-flex flex-row-reverse ml-auto text-small limit-waktu" style="margin-left: 50%;">${time}
+                                                                                                                class="ml-auto text-small limit-waktu">${time}
                                                                                                                 </small>
 
                                                                                                             </div>
-                                                                                                            <div class="d-flex pl-0 text-deskripsi" style="margin-top:-1.2%;">
-                                                                                                                <p class="komentar2"><a class="text-primary limit-name text-deskripsi me-2" href="">@${penerima['name']}</a>${up['komentar']}
+                                                                                                            <div class="d-flex pl-0 text-deskripsi ellipsis-name" style="margin-top:-1.2%;">
+                                                                                                                <p class="komentar2"><a class="text-primary ellipsis-name  text-deskripsi me-2" href="">@${penerima['name']}</a>${up['komentar']}
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex" style="margin-top: -3%;">
-                                                                                                                <div class="d-flex col-2 icon-komentar2 pl-0 mr-auto">
+                                                                                                                <div class="d-flex col-2 icon-komentar3 pl-0 mr-auto">
                                                                                                                         @if (Auth::user())
                                                                                                                                 <form
                                                                                                                                     action="/sukai/reply_balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${feed_id}"
@@ -4074,6 +4140,7 @@
                                                                                                         </div>
                                                                                                     </div>`;
               $("#replies_reply2" + num).append(innerHtml);
+              limitName();
             }
           },
           error: function error(xhr, status, erorr) {
@@ -4291,6 +4358,9 @@
               let commentId = response.commentId
               let foto = '';
               let pengirimId = response.pengirim.id;
+              if (isUserSuper === 'yes') {
+                isUserSuper = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+              }
               $("#jumlah_komentar_feed" + num).html(response.comment_count);
               if (pengirim['foto'] != null) {
                 foto = 'storage/' + pengirim['foto'];
@@ -4309,9 +4379,10 @@
                                                                                     src="{{ asset('${foto}') }}"
                                                                                     alt="">
 
-                                                                            <p class="ms-2 mb-2 fw-bolder limit-name text-deskripsi">
+                                                                            <p class="ms-2 mb-2 fw-bolder ellipsis-name text-deskripsi">
                                                                                 ${pengirim['name']}
                                                                             </p>
+                                                                            ${isUserSuper}
                                                                             <div
                                                                                 class="d-flex flex-row-reverse ml-auto">
                                                                                 <small>
@@ -4462,6 +4533,7 @@
               balasButton.addEventListener('click', function() {
 
               });
+              limitName();
             }
           },
           error: function error(xhr, status, errors) {
@@ -4473,6 +4545,106 @@
               messageColor: 'dark',
               message: 'Komentar tidak Valid',
               position: 'topCenter',
+            });
+          }
+        });
+      });
+    }
+
+    function BlokirKomentar(num) {
+      $("#FormBlokirKomentar" + num).off("submit");
+      $("#FormBlokirKomentar" + num).submit(function(event) {
+        event.preventDefault();
+        let route = $(this).attr('action');
+        let data = new FormData($(this)[0]);
+        $.ajax({
+          url: route,
+          data: data,
+          method: "POST",
+          contentType: false,
+          processData: false,
+          success: function success(response) {
+            iziToast.destroy();
+            iziToast.success({
+              'title': 'Success',
+              'message': 'Sukses memblokir resep',
+              'position': 'topCenter'
+            });
+            $("#AlasanBlokirKomentar" + num).val("");
+            $("#ButtonBlokirKomentar" + num).prop("disabled", true);
+          },
+          error: function error(xhr, error, status) {
+            iziToast.destroy();
+            iziToast.error({
+              'title': 'Error',
+              'message': xhr.responseText,
+              'position': 'topCenter'
+            });
+          }
+        });
+      });
+    }
+    function BlokirKomen(num) {
+      $("#FormBlokirKomen" + num).off("submit");
+      $("#FormBlokirKomen" + num).submit(function(event) {
+        event.preventDefault();
+        let route = $(this).attr('action');
+        let data = new FormData($(this)[0]);
+        $.ajax({
+          url: route,
+          data: data,
+          method: "POST",
+          contentType: false,
+          processData: false,
+          success: function success(response) {
+            iziToast.destroy();
+            iziToast.success({
+              'title': 'Success',
+              'message': 'Sukses memblokir resep',
+              'position': 'topCenter'
+            });
+            $("#AlasanBlokirKomen" + num).val("");
+            $("#ButtonBlokirKomen" + num).prop("disabled", true);
+          },
+          error: function error(xhr, error, status) {
+            iziToast.destroy();
+            iziToast.error({
+              'title': 'Error',
+              'message': xhr.responseText,
+              'position': 'topCenter'
+            });
+          }
+        });
+      });
+    }
+    function BlokirReplyCommentFeed(num) {
+      $("#FormBlokirReplyCommentFeed" + num).off("submit");
+      $("#FormBlokirReplyCommentFeed" + num).submit(function(event) {
+        event.preventDefault();
+        let route = $(this).attr('action');
+        let data = new FormData($(this)[0]);
+        $.ajax({
+          url: route,
+          data: data,
+          method: "POST",
+          contentType: false,
+          processData: false,
+          success: function success(response) {
+            iziToast.destroy();
+            iziToast.success({
+              'title': 'Success',
+              'message': 'Sukses memblokir resep',
+              'position': 'topCenter'
+            });
+            $("#AlasanBlokirReplyCommentFeed" + num).val("");
+            $("#ButtonBlokirReplyCommentFeed" + num).prop("disabled", true);
+          },
+          error: function error(xhr, error, status) {
+            iziToast.destroy();
+            iziToast.error({
+              'title': 'Error',
+              'message': xhr.responseText,
+              'position': 'topCenter'
             });
           }
         });
@@ -4654,6 +4826,76 @@
   </script>
 
   <!-- <script>
+    function limitName() {
+      let elements = document.querySelectorAll('.ellipsis-name');
+
+      elements.forEach(element => {
+        let text = element.textContent;
+        let screenWidth = window.innerWidth;
+
+        let maxLength;
+        if (screenWidth <= 425) {
+          maxLength = 5;
+        } else if (screenWidth <= 767 && screenWidth >= 426) {
+          maxLength = 10;
+        } else {
+          maxLength = 20;
+        }
+
+        let originalText = element.getAttribute('data-original-text');
+        if (!originalText) {
+          originalText = text;
+          element.setAttribute('data-original-text', originalText);
+        }
+
+        if (text.length > maxLength) {
+          let shortenedText = originalText.substr(0, maxLength) + '...';
+          element.textContent = shortenedText;
+        } else {
+          element.textContent = originalText;
+        }
+      });
+    }
+
+    // Panggil fungsi untuk pertama kali saat halaman dimuat
+    limitName();
+
+    // Tambahkan event listener untuk mengubah panjang teks saat ukuran layar berubah
+    window.addEventListener('resize', limitName);
+  </script> -->
+
+  <script>
+    function limitName() {
+      let elements = document.querySelectorAll('.ellipsis-name');
+
+      elements.forEach(element => {
+        let text = element.textContent.trim(); // Mengambil teks asli dari elemen
+        let screenWidth = window.innerWidth;
+        let maxLength;
+
+        if (screenWidth <= 425) {
+          maxLength = 5;
+        } else if (screenWidth <= 767 && screenWidth >= 426) {
+          maxLength = 10;
+        } else {
+          maxLength = 20;
+        }
+
+        let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+        element.textContent = shortenedText;
+      });
+    }
+
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        limitName();
+        window.addEventListener('resize', limitName);
+      }
+    });
+  </script>
+
+
+  <!-- <script>
     //    // Fungsi untuk mengatur kelas pada lebar layar tertentu
     // function handleClassesOnResize() {
     //     var element1 = document.querySelector('.col-lg-1.col-md-1.col-sm-1.pr-0');
@@ -4691,24 +4933,24 @@
     // Menjalankan fungsi ketika ukuran layar berubah
     window.addEventListener('resize', removeClassOnResize);
   </script>
-    <script>
-      // Mengambil elemen dengan kelas tertentu
-      var element = document.querySelector('.col-lg-8 col-md-8 col-sm-11 text-dark my-auto pl-3');
+      <script>
+        // Mengambil elemen dengan kelas tertentu
+        var element = document.querySelector('.col-lg-8 col-md-8 col-sm-11 text-dark my-auto pl-3');
 
-      // Fungsi untuk menghapus kelas pada lebar layar 425px atau lebih besar
-      function removeClassOnResize() {
-        if (window.innerWidth >= 425) {
-          element.classList.remove('pl-0');
-        } else {
-          element.classList.add('pl-0');
+        // Fungsi untuk menghapus kelas pada lebar layar 425px atau lebih besar
+        function removeClassOnResize() {
+          if (window.innerWidth >= 425) {
+            element.classList.remove('pl-0');
+          } else {
+            element.classList.add('pl-0');
+          }
         }
-      }
 
-      // Menjalankan fungsi ketika halaman dimuat
-      removeClassOnResize();
+        // Menjalankan fungsi ketika halaman dimuat
+        removeClassOnResize();
 
-      // Menjalankan fungsi ketika ukuran layar berubah
-      window.addEventListener('resize', removeClassOnResize);
-    </script> -->
+        // Menjalankan fungsi ketika ukuran layar berubah
+        window.addEventListener('resize', removeClassOnResize);
+      </script> -->
 
 @endsection

@@ -176,6 +176,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::put('block-comment-recipe/{id}', [ReportController::class, 'block_comment_recipe'])->name('block.comment.recipe');
         Route::put('block-reply-comment-recipe/{id}', [ReportController::class, 'block_reply_comment_recipe'])->name('block.reply.comment.recipe');
         Route::put('block-feed/{id}', [ReportController::class, 'block_feed'])->name('block.feed');
+        Route::put('block-reply-comment-feed/{id}', [ReportController::class, 'block_reply_comment_feed'])->name('block.reply.comment.feed');
+        Route::put('block-reply1-comment-feed/{id}', [ReportController::class, 'block_reply1_comment_feed'])->name('block.reply1.comment.feed');
+        Route::put('block-comment-feed/{id}', [ReportController::class, 'block_comment_feed'])->name('block.comment.feed');
         Route::put('block-comment-replies/{id}', [ReportController::class, 'block_komen_replies'])->name('block.komen.replies');
         Route::put('block-reply-comment-replies/{id}', [ReportController::class, 'block_reply_comment_replies'])->name('block.reply.comment.replies');
         Route::get('random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');

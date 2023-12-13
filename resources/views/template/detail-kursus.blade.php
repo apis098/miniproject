@@ -22,6 +22,23 @@
                 font-size: 20px;
             }
 
+            .color-yellow {
+                color: #F7941E;
+                border-color: #F7941E;
+            }
+
+            .color-grey {
+                color: #000;
+                border-color: #000;
+            }
+
+            .border-tepi {
+                border: 1px solid #000;
+                border-radius: 15px;
+                /* Properti lain yang Anda perlukan untuk border */
+            }
+
+
             .fas.fa-star {
                 color: #ccc;
                 /* Warna saat bintang belum terisi */
@@ -424,20 +441,17 @@
                                     @endif
                                     @if (Auth::check())
                                         @if (Auth::user()->isFavoriteCourse($detail_course->id))
-                                            <button type="submit" class="btn text-dark mx-1"
-                                                style="border: 1px solid #000; border-radius: 15px;"><b
-                                                    class="ms-3 me-3"><i id="bookmark" onclick="favoriteKursus()"
-                                                        class="fa-regular fa-solid fa-bookmark"></i></b></button>
+                                            <button type="submit" class="btn text-dark mx-1 border-tepi" onclick="favoriteKursus()"><b
+                                                    class="ms-3 me-3"><i id="bookmark" 
+                                                        class="fa-regular fa-solid fa-bookmark color-yellow"></i></b></button>
                                         @else
-                                            <button type="submit" class="btn text-dark mx-1"
-                                                style="border: 1px solid #000; border-radius: 15px;"><b
-                                                    class="ms-3 me-3"><i id="bookmark" onclick="favoriteKursus()"
-                                                        class="fa-regular fa-bookmark"></i></b></button>
+                                            <button type="submit" class="btn text-dark mx-1 border-tepi" onclick="favoriteKursus()"><b
+                                                    class="ms-3 me-3"><i id="bookmark" 
+                                                        class="fa-regular fa-bookmark color-grey"></i></b></button>
                                         @endif
                                     @else
-                                        <button type="submit" class="btn text-dark mx-1"
-                                            style="border: 1px solid #000; border-radius: 15px;"><b class="ms-3 me-3"><i
-                                                    id="bookmark" class="fa-regular fa-bookmark"></i></b></button>
+                                        <button type="submit" class="btn text-dark mx-1 border-tepi"><b class="ms-3 me-3"><i
+                                                    id="bookmark" class="fa-regular fa-bookmark color-grey"></i></b></button>
                                     @endif
                                 </div>
 
@@ -821,20 +835,28 @@
                     headers: {
                         "X-Csrf-Token": "{{ csrf_token() }}"
                     },
-                    success: function success(response) {
+                    success: function(response) {
                         if (response.favorite) {
-                            $("#bookmark").removeClass("fa-reguler");
+                            $("#bookmark").removeClass("fa-regular");
                             $("#bookmark").addClass("fa-solid");
+                            $("#bookmark").removeClass("color-grey");
+                            $("#bookmark").addClass("color-yellow");
+                            $(".border-tepi").css("border-color", "#FFD700"); // Ganti warna border ke kuning (#FFD700)
                         } else if (response.unfavorite) {
                             $("#bookmark").removeClass("fa-solid");
-                            $("#bookmark").addClass("fa-reguler");
+                            $("#bookmark").addClass("fa-regular");
+                            $("#bookmark").removeClass("color-yellow");
+                            $("#bookmark").addClass("color-grey");
+                            $(".border-tepi").css("border-color", "#000"); // Ganti warna border ke abu-abu (#808080)
                         }
                     },
-                    error: function error(xhr, error, status) {
+                    error: function(xhr, error, status) {
                         console.log(xhr.responseText);
                     }
                 });
             }
+
+
 
             function konfirmasi_hapus_ulasanrating(num) {
                 iziToast.destroy();
