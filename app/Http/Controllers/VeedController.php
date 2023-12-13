@@ -225,6 +225,7 @@ class VeedController extends Controller
         $comment_count = $data_veed->countCommentFeed();
         $pengirim_veed = User::findOrFail($pengirim_id);
         $commentId = $comment_veed->id;
+        $isSuperUser = User::findOrFail(Auth()->user()->id);
         $jumlah_like_veed = LikeCommentFeed::query()
         ->where('comment_veed_id', $comment_veed->id)
         ->where('veed_id', $veed_id)
@@ -241,6 +242,7 @@ class VeedController extends Controller
             "commentId" => $commentId,
             "active" => true,
             "comment_count" => $comment_count,
+            "isSuperUser" => $isSuperUser,
         ]);
     }
     public function like_komentar_veed(string $user_id, string $komentar_veed_id, string $veed_id)
@@ -320,6 +322,7 @@ class VeedController extends Controller
         }
         $item_comment = ReplyCommentFeed::where('comment_id', $comment_id)->first();
         $dataReplies = ReplyCommentFeed::findOrFail($store_comment->id);
+        $isSuperUser = User::findOrFail(Auth()->user()->id);
         $feed = UploadVideo::findOrFail($store_comment->veed_id);
         $comment_count = $feed->countCommentFeed();
         $jumlah_like_veed = LikeReplyCommentFeed::query();
@@ -336,6 +339,7 @@ class VeedController extends Controller
                 "time" => $time,
                 "commentId" => $comment_id,
                 "comment_count" => $comment_count,
+                "isSuperUser" => $isSuperUser,
             ]);
         }
     }
@@ -548,6 +552,7 @@ class VeedController extends Controller
         $user_penerima = User::findOrFail($pemilik_id);
         $feed_id = $store->reply_comment->veed_id;
         $jumlah_like_veed = LikeReplyCommentFeed::query();
+        $isSuperUser = User::findOrFail(Auth()->user()->id);
         $time =  \Carbon\Carbon::parse($dataReplies->created_at)->locale('id_ID')->diffForHumans();
         return response()->json([
             "success" => true,
@@ -560,6 +565,7 @@ class VeedController extends Controller
             "commentId" => $comment_id,
             "feed_id" => $feed_id,
             "comment_count" => $comment_count,
+            "isSuperUser" => $isSuperUser,
         ]);
     }
     public function sukaiBalasRepliesCommentsFeeds(string $user, string $comment)
