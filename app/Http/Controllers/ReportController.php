@@ -542,7 +542,10 @@ class ReportController extends Controller
         $notification->reply_id_report = $comment->id;
         $notification->alasan =  $request->alasan;
         $notification->save();
-        return redirect()->back()->with('success','Komentar berhasil di blokir.');
+        return response()->json([
+            'success'=>true,
+            'message'=>'Komentar berhasil di blokir'
+        ]);
     }
     public function block_reply_comment_recipe(Request $request,$id){
         $comment = ReplyCommentRecipe::findOrFail($id);
@@ -556,7 +559,10 @@ class ReportController extends Controller
         $notification->reply_id_report = $comment->id;
         $notification->alasan =  $request->alasan;
         $notification->save();
-        return redirect()->back()->with('success','Komentar berhasil di blokir.');
+        return response()->json([
+            'success'=>true,
+            'message'=>'Komentar berhasil di blokir'
+        ]);
     }
     public function block_complaint(Request $request, $id) {
         $complaint = Complaint::findOrFail($id);
@@ -889,9 +895,9 @@ class ReportController extends Controller
     public function block_profile(Request $request,$id){
         $user = User::findOrFail($id);
         if ($user->foto != null) {
-            Storage::disk('public')->delete($user->foto);     
+            Storage::disk('public')->delete($user->foto);
             $user->foto = null;
-            $user->save(); 
+            $user->save();
             $notification = new Notifications();
             $notification->user_id = $id;
             $notification->notification_from = auth()->user()->id;

@@ -1381,123 +1381,150 @@
                                         </button>
                                     @endif
                                 </form>
-                                @if (Auth::check() &&
-                                        auth()->user()->id != $row->users_id &&
-                                        auth()->user()->role != 'admin' &&
-                                        $row->pengirim_id != auth()->user()->id)
-                                    <button type="button" data-toggle="modal" data-target="#Modald{{ $row->id }}"
-                                        class="yuhu text-danger btn-sm rounded-5 "><i
-                                            class="fa-solid fa-triangle-exclamation me-2"></i>
-                                    </button>
-                                    {{-- modal --}}
-                                    <div class="modal fade" id="Modald{{ $row->id }}" tabindex="-1"
-                                        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="reportModal"
-                                                        style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                        Laporkan komentar</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <form action="{{ route('Report.comment.recipes', $row->id) }}"
-                                                    id="FormReportKomentar{{ $row->id }}" method="POST">
-                                                    @csrf
-                                                    <div class="modal-body d-flex align-items-center">
-                                                        <!-- Tambahkan kelas "align-items-center" -->
-                                                        @if ($row->foto)
-                                                            <img class="me-2"
-                                                                src="{{ asset('storage/' . $row->foto) }}"
-                                                                width="106px" height="104px" style="border-radius: 50%"
-                                                                alt="">
-                                                            <textarea class="form-control" style="border-radius: 15px" name="alasan"
-                                                                id="AlasanReportKomentar{{ $row->id }}" rows="5" placeholder="Alasan"></textarea>
-                                                        @else
-                                                            <img class="me-2" src="{{ asset('images/default.jpg') }}"
-                                                                width="106px" height="104px" style="border-radius: 50%"
-                                                                alt="">
-                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="alasan"
-                                                                id="AlasanReportKomentar{{ $row->id }}" rows="5" placeholder="Alasan..."></textarea>
-                                                        @endif
+                                @if (Auth::check())
+                                    @if (Auth::check() &&
+                                            $row->user_pengirim->role != 'admin' &&
+                                            auth()->user()->id != $row->users_id &&
+                                            auth()->user()->role != 'admin' &&
+                                            $row->pengirim_id != auth()->user()->id)
+                                        <button type="button" data-toggle="modal"
+                                            data-target="#Modald{{ $row->id }}"
+                                            class="yuhu text-danger btn-sm rounded-5 "><i
+                                                class="fa-solid fa-triangle-exclamation me-2"></i>
+                                        </button>
+                                        {{-- modal --}}
+                                        <div class="modal fade" id="Modald{{ $row->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="reportModal"
+                                                            style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                            Laporkan komentar</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-light text-light"
-                                                            id="ButtonReportKomentar{{ $row->id }}"
-                                                            onclick="ReportKomentar({{ $row->id }})"
-                                                            style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                class="ms-2 me-2">Laporkan</b></button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- end Modal --}}
-                                @elseif(Auth::check() && auth()->user()->role == 'admin')
-                                    <button type="button" data-toggle="modal"
-                                        data-target="#blockComment{{ $row->id }}"
-                                        class="yuhu text-danger btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="20" height="20" viewBox="0 0 24 24">
-                                            <path
-                                                d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
-                                                fill="currentColor" fill-rule="nonzero" />
-                                        </svg>
-                                    </button>
-                                    <div class="modal" id="blockComment{{ $row->id }}">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content" style="width: 100%;">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title fw-bolder">Kirim alasan</h5>
-                                                    <button type="button" class="btn-close" data-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body" style="text-align: right;">
-                                                    <form action="{{ route('block.comment.recipe', $row->id) }}"
-                                                        method="post">
+                                                    <form action="{{ route('Report.comment.recipes', $row->id) }}"
+                                                        id="FormReportKomentar{{ $row->id }}" method="POST">
                                                         @csrf
-                                                        @method('PUT')
-                                                        <input type="hidden" name="block_resep" value="yes">
-                                                        <div class="row mb-3">
-                                                            <div
-                                                                class="col-lg-4 col-md-12 align-items-ceneter text-center">
-                                                                <img class="img-fluid"
-                                                                    src="{{ asset('images/alasan.png') }}"
-                                                                    width="100%" alt="">
-                                                            </div>
-                                                            <div class="col-lg-8 col-md-12 align-items-center">
-                                                                <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
-                                                                    cols="5" rows="5"></textarea>
-                                                            </div>
+                                                        <div class="modal-body d-flex align-items-center">
+                                                            <!-- Tambahkan kelas "align-items-center" -->
+                                                            @if ($row->foto)
+                                                                <img class="me-2"
+                                                                    src="{{ asset('storage/' . $row->foto) }}"
+                                                                    width="106px" height="104px"
+                                                                    style="border-radius: 50%" alt="">
+                                                                <textarea class="form-control" style="border-radius: 15px" name="alasan"
+                                                                    id="AlasanReportKomentar{{ $row->id }}" rows="5" placeholder="Alasan"></textarea>
+                                                            @else
+                                                                <img class="me-2"
+                                                                    src="{{ asset('images/default.jpg') }}"
+                                                                    width="106px" height="104px"
+                                                                    style="border-radius: 50%" alt="">
+                                                                <textarea class="form-control rounded-5" style="border-radius: 15px" name="alasan"
+                                                                    id="AlasanReportKomentar{{ $row->id }}" rows="5" placeholder="Alasan..."></textarea>
+                                                            @endif
                                                         </div>
-                                                        <button type="submit"
-                                                            style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                            class="btn  btn-sm text-light">
-                                                            <b class="me-3 ms-3">Kirim</b></button>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-light text-light"
+                                                                id="ButtonReportKomentar{{ $row->id }}"
+                                                                onclick="ReportKomentar({{ $row->id }})"
+                                                                style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                    class="ms-2 me-2">Laporkan</b></button>
+                                                        </div>
                                                     </form>
                                                 </div>
-
                                             </div>
                                         </div>
-                                    </div>
-                                @elseif(Auth::check() && auth()->user()->id == $row->pengirim_id)
-                                    <form method="POST" action="{{ route('delete.comment', $row->id) }}"
-                                        id="delete-comment-form{{ $row->id }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" id="ButtonHapusKomentarResep{{ $row->id }}"
-                                            onclick="ClickHapusKomentarResep({{ $row->id }})" hidden></button>
-                                        <button type="button" onclick="confirmation({{ $row->id }})"
-                                            class="yuhu text-danger btn-sm rounded-5 ">
-                                            <i class="fa-solid fa-trash"></i>
+                                        {{-- end Modal --}}
+                                    @elseif(Auth::check() && $row->user_pengirim->role != "admin" && auth()->user()->role == 'admin')
+                                        <button type="button" data-toggle="modal"
+                                            data-target="#blockComment{{ $row->id }}"
+                                            class="yuhu text-danger btn-sm rounded-5 "><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
+                                                    fill="currentColor" fill-rule="nonzero" />
+                                            </svg>
                                         </button>
-                                    </form>
-                                @elseif(empty(auth()->user()->id))
-                                    <button type="button" onclick="harusLogin()"
-                                        class="yuhu text-danger btn-sm rounded-5 "><i
-                                            class="fa-solid fa-triangle-exclamation me-2"></i>
-                                    </button>
+                                        <div class="modal" id="blockComment{{ $row->id }}">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content" style="width: 100%;">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title fw-bolder">Kirim alasan</h5>
+                                                        <button type="button" class="btn-close" data-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body" style="text-align: right;">
+                                                        <form action="{{ route('block.comment.recipe', $row->id) }}" id="FormBlockCommentRecipe{{$row->id}}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="block_resep" value="yes">
+                                                            <div class="row mb-3">
+                                                                <div
+                                                                    class="col-lg-4 col-md-12 align-items-ceneter text-center">
+                                                                    <img class="img-fluid"
+                                                                        src="{{ asset('images/alasan.png') }}"
+                                                                        width="100%" alt="">
+                                                                </div>
+                                                                <div class="col-lg-8 col-md-12 align-items-center">
+                                                                    <textarea name="alasan" id="AlasanBlockCommentRecipe{{$row->id}}" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
+                                                                        cols="5" rows="5"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" id="ButtonBlockCommentRecipe{{$row->id}}" onclick="BlockCommentRecipe({{$row->id}})"
+                                                                style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                class="btn  btn-sm text-light">
+                                                                <b class="me-3 ms-3">Kirim</b></button>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @elseif(Auth::check() && auth()->user()->id == $row->pengirim_id)
+                                        <form method="POST" action="{{ route('delete.comment', $row->id) }}"
+                                            id="delete-comment-form{{ $row->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" id="ButtonHapusKomentarResep{{ $row->id }}"
+                                                onclick="ClickHapusKomentarResep({{ $row->id }})" hidden></button>
+                                            <button type="button" onclick="confirmation({{ $row->id }})"
+                                                class="yuhu text-danger btn-sm rounded-5 ">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    @elseif($row->user_pengirim->role === 'admin' && auth()->user()->role === 'admin')
+                                        <form method="POST" action="{{ route('delete.comment', $row->id) }}"
+                                            id="delete-comment-form{{ $row->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" id="ButtonHapusKomentarResep{{ $row->id }}"
+                                                onclick="ClickHapusKomentarResep({{ $row->id }})" hidden></button>
+                                            <button type="button" onclick="confirmation({{ $row->id }})"
+                                                class="yuhu text-danger btn-sm rounded-5 ">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    @elseif(empty(auth()->user()->id))
+                                        @if ($row->user_pengirim->role != 'admin')
+                                            <button type="button" onclick="harusLogin()"
+                                                class="yuhu text-danger btn-sm rounded-5 "><i
+                                                    class="fa-solid fa-triangle-exclamation me-2"></i>
+                                            </button>
+                                        @endif
+                                    @endif
+                                @else
+                                    @if ($row->user_pengirim->role != 'admin')
+                                        <button type="button" onclick="harusLogin()"
+                                            class="yuhu text-danger btn-sm rounded-5 "><i
+                                                class="fa-solid fa-triangle-exclamation me-2"></i>
+                                        </button>
+                                    @endif
                                 @endif
                             </div>
                             <div class="d-flex justify-content-end input-group">
@@ -1609,130 +1636,166 @@
                                                         </button>
                                                     @endif
                                                 </form>
-                                                @if (Auth::check() && $userLogin->id != $item->users_id && $userLogin->role != 'admin')
-                                                    <button type="button" data-toggle="modal"
-                                                        data-target="#modalRpl{{ $item->id }}"
-                                                        class="yuhu text-danger btn-sm rounded-5 "><i
-                                                            class="fa-solid fa-triangle-exclamation me-2"></i>
-                                                    </button>
-                                                    {{-- modal --}}
-                                                    <div class="modal fade" id="modalRpl{{ $item->id }}"
-                                                        tabindex="-1" role="dialog"
-                                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="reportModal"
-                                                                        style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                                        Laporkan komentar</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <form id="FormReportReplyComment{{$item->id}}"
-                                                                    action="{{ route('Report.reply.comment.recipes', $item->id) }}"
-                                                                    method="POST">
-                                                                    @csrf
-                                                                    <div class="modal-body d-flex align-items-center">
-                                                                        <!-- Tambahkan kelas "align-items-center" -->
-                                                                        @if ($item->user->foto)
-                                                                            <img class="me-2"
-                                                                                src="{{ asset('storage/' . $item->user->foto) }}"
-                                                                                width="106px" height="104px"
-                                                                                style="border-radius: 50%" alt="">
-                                                                            <textarea class="form-control" id="AlasanReportReplyComment{{$item->id}}" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
-                                                                        @else
-                                                                            <img class="me-2"
-                                                                                src="{{ asset('images/default.jpg') }}"
-                                                                                width="106px" height="104px"
-                                                                                style="border-radius: 50%" alt="">
-                                                                            <textarea class="form-control rounded-5" id="AlasanReportReplyComment{{$item->id}}" style="border-radius: 15px" name="description" rows="5"
-                                                                                placeholder="Alasan..."></textarea>
-                                                                        @endif
+                                                @if (Auth::check())
+                                                    @if (Auth::check() && $userLogin->id != $item->users_id && $item->user->role != 'admin' && $userLogin->role != 'admin')
+                                                        <button type="button" data-toggle="modal"
+                                                            data-target="#modalRpl{{ $item->id }}"
+                                                            class="yuhu text-danger btn-sm rounded-5 "><i
+                                                                class="fa-solid fa-triangle-exclamation me-2"></i>
+                                                        </button>
+                                                        {{-- modal --}}
+                                                        <div class="modal fade" id="modalRpl{{ $item->id }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="reportModal"
+                                                                            style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                            Laporkan komentar</h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
                                                                     </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="submit" onclick="ReportReplyComment({{$item->id}})" id="ButtonReportReplyComment{{$item->id}}"
-                                                                            class="btn btn-light text-light"
-                                                                            style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                                class="ms-2 me-2">Laporkan</b></button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    {{-- end Modal --}}
-                                                @elseif(Auth::check() && auth()->user()->role == 'admin')
-                                                    <button type="button" data-toggle="modal"
-                                                        data-target="#blockModalReply{{ $item->id }}"
-                                                        class="yuhu text-danger btn-sm rounded-5 "><svg
-                                                            xmlns="http://www.w3.org/2000/svg" width="20"
-                                                            height="20" viewBox="0 0 24 24">
-                                                            <path
-                                                                d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
-                                                                fill="currentColor" fill-rule="nonzero" />
-                                                        </svg>
-                                                    </button>
-                                                    <div class="modal" id="blockModalReply{{ $item->id }}">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content" style="width: 100%;">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title fw-bolder">Kirim alasan</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body" style="text-align: right;">
-                                                                    <form
-                                                                        action="{{ route('block.reply.comment.recipe', $item->id) }}"
-                                                                        method="post">
+                                                                    <form id="FormReportReplyComment{{ $item->id }}"
+                                                                        action="{{ route('Report.reply.comment.recipes', $item->id) }}"
+                                                                        method="POST">
                                                                         @csrf
-                                                                        @method('PUT')
-                                                                        <input type="hidden" name="block_resep"
-                                                                            value="yes">
-                                                                        <div class="row mb-3">
-                                                                            <div
-                                                                                class="col-lg-4 col-md-12 align-items-ceneter text-center">
-                                                                                <img class="img-fluid"
-                                                                                    src="{{ asset('images/alasan.png') }}"
-                                                                                    width="100%" alt="">
-                                                                            </div>
-                                                                            <div
-                                                                                class="col-lg-8 col-md-12 align-items-center">
-                                                                                <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;"
-                                                                                    placeholder="Alasan..." cols="5" rows="5"></textarea>
-                                                                            </div>
+                                                                        <div class="modal-body d-flex align-items-center">
+                                                                            <!-- Tambahkan kelas "align-items-center" -->
+                                                                            @if ($item->user->foto)
+                                                                                <img class="me-2"
+                                                                                    src="{{ asset('storage/' . $item->user->foto) }}"
+                                                                                    width="106px" height="104px"
+                                                                                    style="border-radius: 50%"
+                                                                                    alt="">
+                                                                                <textarea class="form-control" id="AlasanReportReplyComment{{ $item->id }}" style="border-radius: 15px"
+                                                                                    name="description" rows="5" placeholder="Alasan"></textarea>
+                                                                            @else
+                                                                                <img class="me-2"
+                                                                                    src="{{ asset('images/default.jpg') }}"
+                                                                                    width="106px" height="104px"
+                                                                                    style="border-radius: 50%"
+                                                                                    alt="">
+                                                                                <textarea class="form-control rounded-5" id="AlasanReportReplyComment{{ $item->id }}"
+                                                                                    style="border-radius: 15px" name="description" rows="5" placeholder="Alasan..."></textarea>
+                                                                            @endif
                                                                         </div>
-                                                                        <button type="submit"
-                                                                            style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                                            class="btn  btn-sm text-light">
-                                                                            <b class="me-3 ms-3">Kirim</b></button>
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit"
+                                                                                onclick="ReportReplyComment({{ $item->id }})"
+                                                                                id="ButtonReportReplyComment{{ $item->id }}"
+                                                                                class="btn btn-light text-light"
+                                                                                style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                                    class="ms-2 me-2">Laporkan</b></button>
+                                                                        </div>
                                                                     </form>
                                                                 </div>
-
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                @elseif(Auth::check() && auth()->user()->id == $item->users_id)
-                                                    <form method="POST"
-                                                        action="{{ route('delete.reply.comment', $item->id) }}"
-                                                        id="delete-reply-comment-form{{ $item->id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            id="buttonreplycomment{{ $item->id }}"
-                                                            onclick="ClickDeleteReplyComment({{ $item->id }})"
-                                                            hidden></button>
-                                                        <button type="button"
-                                                            onclick="confirmationReply({{ $item->id }})"
-                                                            class="yuhu text-danger btn-sm rounded-5 ">
-                                                            <i class="fa-solid fa-trash"></i>
+                                                        {{-- end Modal --}}
+                                                    @elseif(Auth::check() && $item->user->role != "admin" && auth()->user()->role == 'admin')
+                                                        <button type="button" data-toggle="modal"
+                                                            data-target="#blockModalReply{{ $item->id }}"
+                                                            class="yuhu text-danger btn-sm rounded-5 "><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                height="20" viewBox="0 0 24 24">
+                                                                <path
+                                                                    d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
+                                                                    fill="currentColor" fill-rule="nonzero" />
+                                                            </svg>
                                                         </button>
-                                                    </form>
-                                                @elseif(empty(auth()->user()->id))
-                                                    <button type="button" onclick="harusLogin()"
-                                                        class="yuhu text-danger btn-sm rounded-5 "><i
-                                                            class="fa-solid fa-triangle-exclamation me-2"></i>
-                                                    </button>
+                                                        <div class="modal" id="blockModalReply{{ $item->id }}">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content" style="width: 100%;">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title fw-bolder">Kirim alasan
+                                                                        </h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body" style="text-align: right;">
+                                                                        <form
+                                                                            action="{{ route('block.reply.comment.recipe', $item->id) }}" id="FormBlockReplyCommentRecipe{{$item->id}}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            @method('PUT')
+                                                                            {{$item->id}}
+                                                                            <input type="hidden" name="block_resep"
+                                                                                value="yes">
+                                                                            <div class="row mb-3">
+                                                                                <div
+                                                                                    class="col-lg-4 col-md-12 align-items-ceneter text-center">
+                                                                                    <img class="img-fluid"
+                                                                                        src="{{ asset('images/alasan.png') }}"
+                                                                                        width="100%" alt="">
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-lg-8 col-md-12 align-items-center">
+                                                                                    <textarea name="alasan" class="form-control" style="border-radius: 15px;" id="AlasanBlockReplyCommentRecipe{{$item->id}}"
+                                                                                        placeholder="Alasan..." cols="5" rows="5"></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                            <button type="submit" id="ButtonBlockReplyCommentRecipe{{$item->id}}" onclick="BlockReplyCommentRecipe({{$item->id}})"
+                                                                                style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                class="btn  btn-sm text-light">
+                                                                                <b class="me-3 ms-3">Kirim</b></button>
+                                                                        </form>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @elseif(Auth::check() && auth()->user()->id == $item->users_id)
+                                                        <form method="POST"
+                                                            action="{{ route('delete.reply.comment', $item->id) }}"
+                                                            id="delete-reply-comment-form{{ $item->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                id="buttonreplycomment{{ $item->id }}"
+                                                                onclick="ClickDeleteReplyComment({{ $item->id }})"
+                                                                hidden></button>
+                                                            <button type="button"
+                                                                onclick="confirmationReply({{ $item->id }})"
+                                                                class="yuhu text-danger btn-sm rounded-5 ">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    @elseif(Auth::check() && auth()->user()->role === 'admin' && $item->user->role === 'admin')
+                                                        <form method="POST"
+                                                            action="{{ route('delete.reply.comment', $item->id) }}"
+                                                            id="delete-reply-comment-form{{ $item->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                id="buttonreplycomment{{ $item->id }}"
+                                                                onclick="ClickDeleteReplyComment({{ $item->id }})"
+                                                                hidden></button>
+                                                            <button type="button"
+                                                                onclick="confirmationReply({{ $item->id }})"
+                                                                class="yuhu text-danger btn-sm rounded-5 ">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    @elseif(empty(auth()->user()->id))
+                                                        @if ($item->user->role != 'admin')
+                                                            <button type="button" onclick="harusLogin()"
+                                                                class="yuhu text-danger btn-sm rounded-5 "><i
+                                                                    class="fa-solid fa-triangle-exclamation me-2"></i>
+                                                            </button>
+                                                        @endif
+                                                    @endif
+                                                @else
+                                                    @if ($item->user->role != 'admin')
+                                                        <button type="button" onclick="harusLogin()"
+                                                            class="yuhu text-danger btn-sm rounded-5 "><i
+                                                                class="fa-solid fa-triangle-exclamation me-2"></i>
+                                                        </button>
+                                                    @endif
                                                 @endif
                                             </div>
 
@@ -1798,6 +1861,94 @@
         integrity="sha512-rO18JLH5mM83ToEn/5KhZ8BpHJ4uUKrGLybcp6wK0yuRfqQCSGVbEq1yIn/9coUjRU88TA6UJDLPK9sO6DN0Iw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+         // function block reply comment recipe
+         function BlockReplyCommentRecipe(num) {
+            $("#FormBlockReplyCommentRecipe" + num).off("submit");
+            $("#FormBlockReplyCommentRecipe" + num).submit(function(e) {
+                e.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function success(response) {
+                        iziToast.destroy();
+                        if (response.success === true) {
+                            iziToast.success({
+                                'title': 'Success',
+                                'message': response.message,
+                                'position': 'topCenter'
+                            });
+                            $("#AlasanBlockReplyCommentRecipe" + num).val("");
+                            $("#ButtonBlockReplyCommentRecipe" + num).prop("disabled", true);
+                            $("#CardBalasanKomentarResep" + num).css("display", "none");
+                            $("#blockModalReply"+num).click();
+                        } else {
+                            iziToast.error({
+                                'title': 'Error',
+                                'message': xhr.responseText,
+                                'position': 'topCenter'
+                            });
+                        }
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
+        // function block comment recipe
+        function BlockCommentRecipe(num) {
+            $("#FormBlockCommentRecipe" + num).off("submit");
+            $("#FormBlockCommentRecipe" + num).submit(function(e) {
+                e.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function success(response) {
+                        iziToast.destroy();
+                        if (response.success === true) {
+                            iziToast.success({
+                                'title': 'Success',
+                                'message': response.message,
+                                'position': 'topCenter'
+                            });
+                            $("#AlasanBlockCommentRecipe" + num).val("");
+                            $("#ButtonBlockCommentRecipe" + num).prop("disabled", true);
+                            $("#cardKomentarResep"+num).css('display', 'none');
+                            $("#blockComment"+num).click();
+                        } else {
+                            iziToast.error({
+                                'title': 'Error',
+                                'message': xhr.responseText,
+                                'position': 'topCenter'
+                            });
+                        }
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
         // function report balas komentar resep
         function ReportReplyComment(num) {
             $("#FormReportReplyComment" + num).off("submit");
