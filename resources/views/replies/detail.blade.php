@@ -116,55 +116,7 @@
             }
         }
 
-        @media (min-width: 768px) {
-            .ellipsis-name {
-                display: block;
-                width: 200px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-        }
-
-        @media (max-width: 425px) {
-            .ellipsis-name {
-                display: block;
-                width: 155px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-        }
-
-        @media (max-width: 373px) {
-            .ellipsis-name {
-                display: block;
-                width: 125px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-        }
-
-        @media (min-width:426px) and (max-width: 767px) {
-            .ellipsis-name {
-                display: block;
-                width: 200px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-        }
-
-        @media (min-width:374px) and (max-width: 400px) {
-            .ellipsis-name {
-                display: block;
-                width: 155px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-        }
+       
     </style>
     <section class="py-1 py-md-3 py-lg-4" style="margin-top: -6%;">
         <div class="container px-3 px-lg-5 my-5">
@@ -188,9 +140,16 @@
                                 <img src="{{ asset('images/default.jpg') }}" width="52px" height="52px"
                                     style="border-radius: 50%" alt="">
                             @endif
-                            <div>
-                                <p class="ms-3 fw-bolder">{{ $data->user->name }}<br><small
-                                        class=""><i>{{ $data->user->email }}</i></small></p>
+                            <div class="d-flex">
+                                <span style="flex-direction: column;">
+                                <p class="ms-3 fw-bolder ellipsis-name mb-0">{{ $data->user->name }}</p>
+                                    <small class="ms-3">
+                                        <i>{{ $data->user->email }}</i>
+                                    </small>
+                                </span>
+                                @if ($data->user->isSuperUser == 'yes')
+                                    <i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                                @endif
                             </div>
                         </div>
                         <div class="" style="">
@@ -406,7 +365,10 @@
                                 @if ($row->user->role == 'admin')
                                     <span>
                                         <div class="font-weight-semibold ms-1 me-2">
-                                            <small class="font-weight-bolder">{{ $row->user->name }}</small>
+                                            <small class="font-weight-bolder ellipsis-name">{{ $row->user->name }}</small>
+                                            @if ($row->user->isSuperUser == 'yes')
+                                            <i class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
+                                            @endif
                                             <svg class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg"
                                                 width="15" height="15" viewBox="0 0 24 24">
                                                 <path fill="currentColor"
@@ -425,13 +387,18 @@
                                     <div class="d-flex">
                                         <span>
                                             <div class="font-weight-semibold ms-1 me-2">
+                                                <span class="d-flex">
                                                 <small
-                                                    class="font-weight-bolder font-weight-bolder">{{ $row->user->name }}</small>
-                                                @if ($repliesCount > 0)
-                                                    <div class="text-black" style="font-size: 13px">
-                                                        <small>{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
-                                                    </div>
-                                                @endif
+                                                    class="font-weight-bolder font-weight-bolder ellipsis-name">{{ $row->user->name }}</small>
+                                                    @if ($row->user->isSuperUser == 'yes')
+                                                    <i class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
+                                                    @endif
+                                                </span>
+                                                    @if ($repliesCount > 0)
+                                                        <div class="text-black" style="font-size: 13px">
+                                                            <small>{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
+                                                        </div>
+                                                    @endif
                                             </div>
                                             <div>
                                                 <small>{{ $row->reply }}</small>
@@ -542,7 +509,10 @@
                                             <span>
                                                 <div class="font-weight-semibold ms-1 me-2">
                                                     <div class="d-flex">
-                                                        <small class="font-weight-bolder">{{ $item->userSender->name }}</small>
+                                                        <small class="font-weight-bolder ellipsis-name">{{ $item->userSender->name }}</small>
+                                                        @if ($item->userSender->isSuperUser == 'yes')
+                                                        <i class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
+                                                        @endif
                                                         @if ($item->userSender->role == 'admin')
                                                         <svg class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg"
                                                             width="15" height="15" viewBox="0 0 24 24">
@@ -562,7 +532,7 @@
                                                 <div class="pt-3" style="max-width: 90%;">
                                                     <small class="font-weight">
                                                         @if ($item->parent_id != null)
-                                                            <a href="">
+                                                            <a href="" class="ellipsis-name">
                                                                 {{ '@' . $item->user->name }}
                                                             </a>
                                                         @endif
@@ -1143,6 +1113,7 @@
                 let route = $(this).attr("action");
                 let data = new FormData($(this)[0]);
                 let value = $('#reply').val();
+                
                 if (value.length > 1000) {
                     errorComment();
                 } else {
@@ -1158,93 +1129,104 @@
                                 iziToast.success({
                                     'title': 'Success',
                                     'message': response.message,
-                                    'position': 'topCenter'
+                                    'position': 'topCenter',
+                                
                                 });
+                                let isSuperUser = response.isSuperUser;
+                                    if (isSuperUser.isSuperUser == 'yes') {
+                                    isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+                                    } else {
+                                    isSuperUser = 'yooo'
+                                    }
+                                console.log(isSuperUser.isSuperUser);
                                 let inner =
                                     `
                                 <div class="card p-3" id="replies${response.id}">
-                            <div class="d-flex justify-content-between">
-                                <div class="user d-flex flex-row">
-                                        <img src="{{ asset('${response.foto}') }}" width="30" height="30"
-                                            class="user-img rounded-circle mr-2">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="user d-flex flex-row">
+                                                <img src="{{ asset('${response.foto}') }}" width="30" height="30"
+                                                    class="user-img rounded-circle mr-2">
 
-                                        <div class="d-flex">
-                                            <span>
-                                                <div class="font-weight-semibold ms-1 me-2">
-                                                    <small class="font-weight-bolder font-weight-bolder">${response.name}</small>
-                                                        <div class="text-black" style="font-size: 13px">
-                                                            <small>1 detik yang lalu</small>
+                                                <div class="d-flex">
+                                                    <span>
+                                                        <div class="font-weight-semibold ms-1 me-2">
+                                                            <small class="font-weight-bolder font-weight-bolder ellipsis-name">${response.name}</small>
+                                                            ${isSuperUser}
+                                                                <div class="text-black" style="font-size: 13px">
+                                                                    <small>1 detik yang lalu</small>
+                                                                </div>
+                                                                
                                                         </div>
-                                                </div>
-                                                <div>
-                                                    <small>${response.reply}</small>
+                                                        <div>
+                                                            <small>${response.reply}</small>
+                                                        </div>
+
+                                                    </span>
                                                 </div>
 
-                                            </span>
                                         </div>
 
-                                </div>
-
-                            </div>
-                            <div class="action d-flex mt-2 align-items-center">
-
-
-
-                                <div class="icons align-items-center input-group">
-
-                                    <form action="/comments/${response.id}/like" method="POST" id="likeForm${response.id}" class="like-form">
-                                        @csrf
-
-                                            <button type="submit" onclick="likeButton(${response.id})" class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
-                                                <i class="fa-regular fa-thumbs-up" id="iconLike${response.id}"></i>
-                                            </button>
-
-                                    </form>
-                                    <div class="reply px-7 me-2">
-                                        <small id="like-count-${response.id}">0</small>
                                     </div>
+                                    <div class="action d-flex mt-2 align-items-center">
 
-                                        <form action="/reply-destroy/${response.id}" method="POST"
-                                            id="formDelete${response.id}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" onclick="hapus_komentar(${response.id})" id="buttonDelete${response.id}" hidden>Hapus</button>
-                                            <button type="button" onclick="confirmation(${response.id})"
-                                                class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash" style="font-size: 11pt;"></i>
-                                            </button>
-                                        </form>
 
-                                </div>
-                                <div class="d-flex justify-content-end input-group">
-                                    <a href="#" class="text-secondary " data-toggle="collapse"
-                                        data-target="#collapse${response.id}" aria-expanded="true"
-                                        aria-controls="collapseOne">
-                                        <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="collapse" id="collapse${response.id}">
-                                <div class="card card-body mx-3">
-                                    <form action="/replies-store/${response.id}" method="POST" id="formBalasKomentar${response.id}">
-                                        <div class="input-group mb-3">
-                                            @csrf
-                                            <input type="text" id="reply_comment${response.id}" name="reply_comment" width="500px"
-                                                class="form-control form-control-sm rounded-3 me-1"
-                                                placeholder="Balas komentar dari ${response.name}....">
 
-                                            <button type="submit" onclick="clickBalasKomentar(${response.id})"
-                                                style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                class="btn btn-sm text-light ms-1"><b class="me-1 ms-1">Kirim</b></button>
+                                        <div class="icons align-items-center input-group">
+
+                                            <form action="/comments/${response.id}/like" method="POST" id="likeForm${response.id}" class="like-form">
+                                                @csrf
+
+                                                    <button type="submit" onclick="likeButton(${response.id})" class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
+                                                        <i class="fa-regular fa-thumbs-up" id="iconLike${response.id}"></i>
+                                                    </button>
+
+                                            </form>
+                                            <div class="reply px-7 me-2">
+                                                <small id="like-count-${response.id}">0</small>
+                                            </div>
+
+                                                <form action="/reply-destroy/${response.id}" method="POST"
+                                                    id="formDelete${response.id}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" onclick="hapus_komentar(${response.id})" id="buttonDelete${response.id}" hidden>Hapus</button>
+                                                    <button type="button" onclick="confirmation(${response.id})"
+                                                        class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash" style="font-size: 11pt;"></i>
+                                                    </button>
+                                                </form>
+
                                         </div>
-                                    </form>
-
-                                    <div id="new-replies2${response.id}"></div>
+                                        <div class="d-flex justify-content-end input-group">
+                                            <a href="#" class="text-secondary " data-toggle="collapse"
+                                                data-target="#collapse${response.id}" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                                `;
+                                    <div class="collapse" id="collapse${response.id}">
+                                        <div class="card card-body mx-3">
+                                            <form action="/replies-store/${response.id}" method="POST" id="formBalasKomentar${response.id}">
+                                                <div class="input-group mb-3">
+                                                    @csrf
+                                                    <input type="text" id="reply_comment${response.id}" name="reply_comment" width="500px"
+                                                        class="form-control form-control-sm rounded-3 me-1"
+                                                        placeholder="Balas komentar dari ${response.name}....">
+
+                                                    <button type="submit" onclick="clickBalasKomentar(${response.id})"
+                                                        style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                        class="btn btn-sm text-light ms-1"><b class="me-1 ms-1">Kirim</b></button>
+                                                </div>
+                                            </form>
+
+                                            <div id="new-replies2${response.id}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        `;
                                 $("#reply").val('');
                                 $("#new-replies").append(inner);
+                                limitName();
                             } else {
                                 iziToast.error({
                                     'title': 'Error',
@@ -1508,6 +1490,13 @@
                                 });
                             }
                             $("#reply_comment" + num).val('');
+                            let isSuperUser = response.isSuperUser;
+                            if (isSuperUser.isSuperUser == 'yes') {
+                            isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+                            } else {
+                            isSuperUser = 'yooo'
+                            }
+                            console.log(isSuperUser.isSuperUser);
                             let inner =
                                 `
                             <div id="cardReplyComment${response.id}">
@@ -1522,6 +1511,7 @@
                                                 <small
                                                     class="font-weight-bolder font-weight-bolder ellipsis-name"><b>${response.name}</b>
                                                     </small>
+                                                    ${isSuperUser}
 
                                             </div>
                                                     <div class="text-black" style="font-size: 13px">
@@ -1529,10 +1519,10 @@
                                                             class="float-start">1 detik yang lalu</small>
                                                     </div>
                                                 </div>
-                                                <div class="">
+                                                <div class="tegar">
                                                     <small class="font-weight">
                                                         <br>
-                                                            <a href="">
+                                                            <a href="" class="ellipsis-name">
                                                                ${response.at}
                                                             </a>
                                                         ${response.reply}
@@ -1606,6 +1596,7 @@
                              </div>`;
                             $("#reply_comment2" + num).val('');
                             $("#new-replies2" + num).append(inner);
+                            limitName();
                         },
                         error: function error(xhr, error, status) {
                             iziToast.destroy();
@@ -1685,6 +1676,12 @@
                                 });
                             }
                             $("#reply_comment" + num).val('');
+                            let isSuperUser = response.isSuperUser;
+                            if (isSuperUser.isSuperUser == 'yes') {
+                            isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+                            } else {
+                            isSuperUser = 'yooo'
+                            }
                             let inner =
                                 `
                             <div id="cardReplyComment${response.id}">
@@ -1699,19 +1696,20 @@
                                                 <small
                                                     class="font-weight-bolder font-weight-bolder ellipsis-name"><b>${response.name}</b>
                                                     </small>
-
+                                                    ${isSuperUser}
                                                 </div>
                                                     <div class="text-black" style="font-size: 13px">
                                                         <small
                                                             class="float-start">1 detik yang lalu</small>
                                                     </div>
                                                 </div>
-                                                    <div class="">
+                                                    <div class="trisqi">
                                                     <small class="font-weight">
-                                                        <br>
-                                                            <a href="">
+                                                    <br>
+                                                            <a href="" class="ellipsis-name">
                                                                 @${response.at}
                                                             </a>
+                                                            <br>
                                                         ${response.reply}
                                                     </small>
                                                 </div>
@@ -1784,6 +1782,7 @@
                             </div>            `;
                             $("#reply_comment2" + num).val('');
                             $("#new-replies2" + num2).append(inner);
+                            limitName();
                         },
                         error: function error(xhr, error, status) {
                             iziToast.destroy();
@@ -1896,6 +1895,35 @@
                 ],
             });
         }
+    </script>
+     <script>
+    function limitName() {
+      let elements = document.querySelectorAll('.ellipsis-name');
+
+      elements.forEach(element => {
+        let text = element.textContent.trim(); // Mengambil teks asli dari elemen
+        let screenWidth = window.innerWidth;
+        let maxLength;
+
+        if (screenWidth <= 425) {
+          maxLength = 5;
+        } else if (screenWidth <= 767 && screenWidth >= 426) {
+          maxLength = 10;
+        } else {
+          maxLength = 20;
+        }
+
+        let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+        element.textContent = shortenedText;
+      });
+    }
+
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        limitName();
+        window.addEventListener('resize', limitName);
+      }
+    });
     </script>
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

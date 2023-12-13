@@ -11,6 +11,7 @@ use App\Models\Notifications;
 use App\Models\Reply;
 use App\Models\ReplyComplaint;
 use App\Models\TopUpCategories;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -70,6 +71,7 @@ class ReplyController extends Controller
     public function reply(Request $request, $id)
     {
 
+        $isSuperUser = User::findOrFail(Auth()->user()->id);
         $validasi = Validator::make($request->all(), [
             'reply' => 'required|string',
         ], [
@@ -109,6 +111,7 @@ class ReplyController extends Controller
                 'foto' => $foto,
                 'reply' => $request->reply,
                 'id' => $reply->id,
+                "isSuperUser" => $isSuperUser,
             ]);
         } else {
             return response()->json([
@@ -131,6 +134,7 @@ class ReplyController extends Controller
 
 
         $user = Auth::check();
+        $isSuperUser = User::findOrFail(Auth()->user()->id);
         if ($user) {
             $comment = Reply::findOrFail($id);
             $reply = new ReplyComplaint();
@@ -160,6 +164,7 @@ class ReplyController extends Controller
             }
             return response()->json([
                 'success'=>true,
+                "isSuperUser" => $isSuperUser,
                 'message'=>'Berhasil membalas komentar.',
                 'name' => Auth::user()->name,
                 'foto' => $foto,
@@ -178,6 +183,7 @@ class ReplyController extends Controller
     }
     public function replyReplyComment(Request $request, $id,$id2)
     {
+        $isSuperUser = User::findOrFail(Auth()->user()->id);
         $validasi = Validator::make($request->all(), [
             'reply_comment' => 'required|string',
         ], [
@@ -219,6 +225,7 @@ class ReplyController extends Controller
             }
             return response()->json([
                 'success'=>true,
+                "isSuperUser" => $isSuperUser,
                 'message'=>'Berhasil membalas komentar.',
                 'name' => Auth::user()->name,
                 'foto' => $foto,
