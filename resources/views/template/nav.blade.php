@@ -717,7 +717,7 @@
                                                 method="POST">
                                                 @method('PUT')
                                                 @csrf
-                                                <button class="yuhu mt-2" type="submit">
+                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
                                                     <small class="mt-1 ms-1 text-secondary">Foto
                                                         profil
                                                         kamu telah diblokir</small>
@@ -1678,7 +1678,7 @@
                                                                         method="POST">
                                                                         @method('PUT')
                                                                         @csrf
-                                                                        <button class="yuhu mt-2" type="submit">
+                                                                        <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
                                                                             <small
                                                                                 class="mt-1 ms-1 text-secondary">Foto
                                                                                 profil

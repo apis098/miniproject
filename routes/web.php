@@ -170,6 +170,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('profil', [ReportController::class, 'profil'])->name('Report.profil');
         Route::put('content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
         Route::put('block-resep/{id}', [ReportController::class, 'block_resep'])->name('block.resep');
+        Route::put('block-profile/{id}', [ReportController::class, 'block_profile'])->name('block.profile');
         Route::put('block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
         Route::put('block-complaint/{id}', [ReportController::class, 'block_complaint'])->name('block.complaint');
         Route::put('block-kursus/{id}', [ReportController::class, 'block_kursus'])->name('block.kursus');

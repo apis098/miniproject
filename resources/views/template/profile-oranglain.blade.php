@@ -266,14 +266,56 @@
                                 <img src="{{ asset('images/default.jpg') }}" width="146px" height="144px"
                                     style="border-radius: 50%" alt="">
                             @endif
-                            <button type="submit" class="btn btn-light zoom-effects text-light btn-sm rounded-circle p-2"
-                                style="position: absolute;  right: -2px; background-color:#F7941E;" data-toggle="modal"
-                                data-target="#exampleModalCenter">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
-                                    <path fill="currentColor"
-                                        d="M3.5 2.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0v-4.392l1.657-.348a6.449 6.449 0 0 1 4.271.572a7.948 7.948 0 0 0 5.965.524l2.078-.64A.75.75 0 0 0 18 12.25v-8.5a.75.75 0 0 0-.904-.734l-2.38.501a7.25 7.25 0 0 1-4.186-.363l-.502-.2a8.75 8.75 0 0 0-5.053-.439l-1.475.31V2.75Z" />
-                                </svg>
-                            </button>
+                            
+                            @if($user->id != auth()->user()->id && auth()->user()->role == 'koki')
+                                <button type="submit" class="btn btn-light zoom-effects text-light btn-sm rounded-circle p-2"
+                                    style="position: absolute;  right: -2px; background-color:#F7941E;" data-toggle="modal"
+                                    data-target="#exampleModalCenter">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
+                                        <path fill="currentColor"
+                                            d="M3.5 2.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0v-4.392l1.657-.348a6.449 6.449 0 0 1 4.271.572a7.948 7.948 0 0 0 5.965.524l2.078-.64A.75.75 0 0 0 18 12.25v-8.5a.75.75 0 0 0-.904-.734l-2.38.501a7.25 7.25 0 0 1-4.186-.363l-.502-.2a8.75 8.75 0 0 0-5.053-.439l-1.475.31V2.75Z" />
+                                    </svg>
+                                </button>
+                            @elseif($user->id != auth()->user()->id && auth()->user()->role == 'admin')
+                                <button type="submit" class="btn btn-light zoom-effects text-light btn-sm rounded-circle p-2"
+                                    style="position: absolute;  right: -2px; background-color:#F7941E;" data-toggle="modal"
+                                    data-target="#modalAlasan">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8c1.85 0 3.55.63 4.9 1.69L5.69 16.9A7.902 7.902 0 0 1 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1A7.902 7.902 0 0 1 20 12c0 4.42-3.58 8-8 8z"/></svg>
+                                </button>
+                                <div class="modal" id="modalAlasan">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content" style="width: 100%;">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title fw-bolder">Kirim alasan</h5>
+                                                <button type="button" class="btn-close" data-dismiss="modal"
+                                                    aria-label="Close"> </button>
+                                            </div>
+                                            <div class="modal-body" style="text-align: right;">
+                                                <form action="{{ route('block.profile', $user->id) }}" method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="block_resep" value="yes">
+                                                    <div class="row mb-3">
+                                                        <div class="col-lg-4 col-md-12 align-items-ceneter text-center">
+                                                            <img class="img-fluid" src="{{ asset('images/alasan.png') }}"
+                                                                width="100%" alt="">
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-12 align-items-center">
+                                                            <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
+                                                                cols="5" rows="5"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit"
+                                                        style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                        class="btn  btn-sm text-light">
+                                                        <b class="me-3 ms-3">Kirim</b></button>
+                                                </form>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="card-body text-center">

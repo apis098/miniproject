@@ -886,4 +886,26 @@ class ReportController extends Controller
         ]);
         return redirect()->back()->with('success', 'Sukses melaporkan kursus!');
     }
+    public function block_profile(Request $request,$id){
+        $user = User::findOrFail($id);
+        if ($user->foto != null) {
+            Storage::disk('public')->delete($user->foto);     
+            $user->foto = null;
+            $user->save(); 
+            $notification = new Notifications();
+            $notification->user_id = $id;
+            $notification->notification_from = auth()->user()->id;
+            $notification->profile_id = $id;
+            $notification->categories = "block_profile";
+            $notification->message = "Foto profile kamu telah di blokir.";
+            $notification->alasan = $request->alasan;
+            $notification->save();
+            $up = Notifications::find($notification->id);
+            $up->route = "/status-baca/profile-blocked/".$notification->id;
+            $up->save();
+            return redirect()->back()->with('success','Foto profile berhasil di blokir.');
+        }else{
+            return redirect()->back()->with('error','foto pengguna tidak boleh kosong');
+        }
+    }
 }
