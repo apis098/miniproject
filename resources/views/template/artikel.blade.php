@@ -1181,7 +1181,7 @@
                                 <div class=" d-flex flex-column knan" style="position: relative;">
                                     <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}" class="mt-3 besar"
                                         alt="{{ $item_langkah->foto_langkah }}"
-                                        style="border-radius: 10px; border: 1px solid black;">
+                                        style="max-width:100%; min-width:100%; min-height: 150px; max-height:150px;  border-radius:15px; object-fit: cover;border-radius: 10px; border: 1px solid black;">
                                     <button type="button"
                                         style="background-color:#F7941E; width: 45px; height: 45px; position: absolute; top: 0; left: -30px;"
                                         class="btn btn-light btn-sm text-light rounded-circle p-2 ml-2">
@@ -1404,7 +1404,7 @@
                                                     </button>
                                                 </div>
                                                 <form action="{{ route('Report.comment.recipes', $row->id) }}"
-                                                    method="POST">
+                                                    id="FormReportKomentar{{ $row->id }}" method="POST">
                                                     @csrf
                                                     <div class="modal-body d-flex align-items-center">
                                                         <!-- Tambahkan kelas "align-items-center" -->
@@ -1413,17 +1413,20 @@
                                                                 src="{{ asset('storage/' . $row->foto) }}"
                                                                 width="106px" height="104px" style="border-radius: 50%"
                                                                 alt="">
-                                                            <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
+                                                            <textarea class="form-control" style="border-radius: 15px" name="alasan"
+                                                                id="AlasanReportKomentar{{ $row->id }}" rows="5" placeholder="Alasan"></textarea>
                                                         @else
                                                             <img class="me-2" src="{{ asset('images/default.jpg') }}"
                                                                 width="106px" height="104px" style="border-radius: 50%"
                                                                 alt="">
-                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                                placeholder="Alasan..."></textarea>
+                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="alasan"
+                                                                id="AlasanReportKomentar{{ $row->id }}" rows="5" placeholder="Alasan..."></textarea>
                                                         @endif
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-light text-light"
+                                                            id="ButtonReportKomentar{{ $row->id }}"
+                                                            onclick="ReportKomentar({{ $row->id }})"
                                                             style="border-radius: 15px; background-color:#F7941E;"><b
                                                                 class="ms-2 me-2">Laporkan</b></button>
                                                     </div>
@@ -1627,7 +1630,7 @@
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
-                                                                <form
+                                                                <form id="FormReportReplyComment{{$item->id}}"
                                                                     action="{{ route('Report.reply.comment.recipes', $item->id) }}"
                                                                     method="POST">
                                                                     @csrf
@@ -1638,18 +1641,18 @@
                                                                                 src="{{ asset('storage/' . $item->user->foto) }}"
                                                                                 width="106px" height="104px"
                                                                                 style="border-radius: 50%" alt="">
-                                                                            <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
+                                                                            <textarea class="form-control" id="AlasanReportReplyComment{{$item->id}}" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
                                                                         @else
                                                                             <img class="me-2"
                                                                                 src="{{ asset('images/default.jpg') }}"
                                                                                 width="106px" height="104px"
                                                                                 style="border-radius: 50%" alt="">
-                                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                            <textarea class="form-control rounded-5" id="AlasanReportReplyComment{{$item->id}}" style="border-radius: 15px" name="description" rows="5"
                                                                                 placeholder="Alasan..."></textarea>
                                                                         @endif
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="submit"
+                                                                        <button type="submit" onclick="ReportReplyComment({{$item->id}})" id="ButtonReportReplyComment{{$item->id}}"
                                                                             class="btn btn-light text-light"
                                                                             style="border-radius: 15px; background-color:#F7941E;"><b
                                                                                 class="ms-2 me-2">Laporkan</b></button>
@@ -1795,6 +1798,90 @@
         integrity="sha512-rO18JLH5mM83ToEn/5KhZ8BpHJ4uUKrGLybcp6wK0yuRfqQCSGVbEq1yIn/9coUjRU88TA6UJDLPK9sO6DN0Iw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+        // function report balas komentar resep
+        function ReportReplyComment(num) {
+            $("#FormReportReplyComment" + num).off("submit");
+            $("#FormReportReplyComment" + num).submit(function(e) {
+                e.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function success(response) {
+                        iziToast.destroy();
+                        if (response.success === true) {
+                            iziToast.success({
+                                'title': 'Success',
+                                'message': response.message,
+                                'position': 'topCenter'
+                            });
+                            $("#AlasanReportReplyComment" + num).val("");
+                            $("#ButtonReportReplyComment" + num).prop("disabled", true);
+                        } else {
+                            iziToast.error({
+                                'title': 'Error',
+                                'message': xhr.responseText,
+                                'position': 'topCenter'
+                            });
+                        }
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
+        // function report komentar resep
+        function ReportKomentar(num) {
+            $("#FormReportKomentar" + num).off("submit");
+            $("#FormReportKomentar" + num).submit(function(e) {
+                e.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function success(response) {
+                        iziToast.destroy();
+                        if (response.success === true) {
+                            iziToast.success({
+                                'title': 'Success',
+                                'message': response.message,
+                                'position': 'topCenter'
+                            });
+                            $("#AlasanReportKomentar" + num).val("");
+                            $("#ButtonReportKomentar" + num).prop("disabled", true);
+                        } else {
+                            iziToast.error({
+                                'title': 'Error',
+                                'message': xhr.responseText,
+                                'position': 'topCenter'
+                            });
+                        }
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
         // function report resep
         function ButtonReportResep() {
             $("#FormReportResep").off("submit");

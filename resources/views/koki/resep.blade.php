@@ -23,7 +23,7 @@
                         <div class="mb-4 text-center" style="width: 100%;">
 
                                 <img src="{{ asset('images/default.jpg') }}"
-                                style="width: 100%; height: 100%;display:none; margin-left:-15px;" alt=""
+                                style="max-width:90%; min-width:90%; min-height: 150px; max-height:150px;  border-radius:15px; object-fit: cover; display:none;" alt=""
                                 id="uploadedPhoto" class="mx-1">
                             <svg id="svgPhoto" xmlns="http://www.w3.org/2000/svg" class="m-5 p-1" width="100"
                                 height="100" viewBox="0 0 24 24">
@@ -194,8 +194,8 @@
                                     <div id="div2" class="card my-4 col-lg-4 border border-dark"
                                         style="border-radius: 15px;">
                                         <div class="card-body text-center">
-                                            <img id="gambar" src="{{ asset('images/default.jpg') }}"
-                                                style="max-width: 100%; max-height: 100%;display:none; margin-left:-15px;" alt=""
+                                            <img id="gambar" src="{{ asset('images/default.jpg') }}" style="max-width:90%; min-width:90%; min-height: 150px; max-height:150px;  border-radius:15px; object-fit: cover;display:none;"
+                                                alt=""
                                                 id="uploadedImage" class="">
                                             <svg id="svg2" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5"
                                                 width="100" height="100" viewBox="0 0 24 24">
@@ -504,7 +504,8 @@
                                 style="border-radius: 15px;">
                                 <div class="card-body text-center">
                                     <img id="gambar3${num2}" src="{{ asset('images/default.jpg') }}"
-                                        style="max-width: 100%; max-height: 100%; display:none; margin-left:-15px;" alt=""
+                                     style="max-width:90%; min-width:90%; min-height: 150px; max-height:150px;  border-radius:15px; object-fit: cover;display:none;"
+                                        alt=""
                                         id="uploadedImage" class="">
                                     <svg id="svg3${num2}" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5"
                                         width="100" height="100" viewBox="0 0 24 24">

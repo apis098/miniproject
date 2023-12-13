@@ -432,11 +432,17 @@ class ReportController extends Controller
             $report->user_id = $comment->pengirim_id;
             $report->user_id_sender = auth()->user()->id;
             $report->comment_id = $comment->id;
-            $report->description = $request->description;
+            $report->description = $request->alasan;
             $report->save();
-            return redirect()->back()->with('success', 'Laporan anda telah terkirim');
+            return response()->json([
+                'success'=>true,
+                'message'=>'Laporan anda telah terkirim'
+            ]);
         } else {
-            return redirect()->route('login')->with('info', 'Silahkan login terlebih dahulu sebelum melaporkan pelanggaran');
+            return response()->json([
+                'success'=>false,
+                'message'=>'Anda harus login terlebih dahulu untuk melaporkan komentar ini!'
+            ]);
         }
     }
     public function reply_comment_recipes(Request $request, $id)
@@ -449,9 +455,15 @@ class ReportController extends Controller
             $report->reply_comment_id = $comment->id;
             $report->description = $request->description;
             $report->save();
-            return redirect()->back()->with('success', 'Laporan anda telah terkirim');
+            return response()->json([
+                'success'=>true,
+                'message'=>'Laporan anda telah terkirim'
+            ]);
         } else {
-            return redirect()->route('login')->with('info', 'Silahkan login terlebih dahulu sebelum melaporkan pelanggaran');
+            return response()->json([
+                'success'=>false,
+                'message'=>'Anda harus login terlebih dahulu untuk melaporkan komentar ini!'
+            ]);
         }
     }
     public function store(Request $request)

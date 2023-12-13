@@ -20,7 +20,8 @@
                 <div class="col-lg-3 mt-2 mb-5">
                     <div class="card my-5">
                         <div class="card-body text-center">
-                            <img src="{{ asset('storage/' . $edit_resep->foto_resep) }}" width="100%"
+                            <img src="{{ asset('storage/' . $edit_resep->foto_resep) }}"
+                            style="max-width:90%; min-width:90%; min-height: 150px; max-height:150px;  border-radius:15px; object-fit: cover;"
                                 alt="{{ $edit_resep->foto_resep }}" class="" id="changePhotoResep">
                         </div>
                     </div>
@@ -208,7 +209,8 @@
                                     <div class="card my-4 col-lg-4 mx-3">
                                         <div class="card-body text-center div3">
                                             <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}"
-                                                width="100%" class="" id="IMAGE{{ $int }}">
+                                            style="max-width:90%; min-width:90%; min-height: 150px; max-height:150px;  border-radius:15px; object-fit: cover;"
+                                            class="" id="IMAGE{{ $int }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-7 my-auto mx-1">
@@ -536,7 +538,7 @@
                                             </b></label>
                                     <div class="card mt-3 mb-4 col-lg-4">
                                         <div class="card-body text-center div3">
-                                            <img src=" class="" id="IMAGE${num2}" style="display: none;">
+                                            <img src=" class="" id="IMAGE${num2}"                                      style="max-width:90%; min-width:90%; min-height: 150px; max-height:150px;  border-radius:15px; object-fit: cover;display:none;">
                                             <svg id="svg${num2}" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5" width="100"
                                 height="100" viewBox="0 0 24 24">
                                 <path fill="currentColor"
