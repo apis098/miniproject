@@ -220,7 +220,12 @@
                       src="{{ asset('images/default.jpg') }}"alt="">
                   </div>
                   <div class="widget-49-meeting-info">
-                    <span class="widget-49-pro-title fw-bolder">{{ $item->user->name }}</span>
+                    <span class="d-flex">
+                    <span class="widget-49-pro-title fw-bolder ellipsis-name">{{ $item->user->name }}</span>
+                      @if ($item->user->isSuperUser == 'yes')
+                          <i class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
+                      @endif
+                      </span>
                     <small class="text-secondary"><i>{{ $item->user->email }}</i></small>
                   </div>
                 </div>
@@ -539,6 +544,35 @@
       color: #727686;
     }
   </style>
+    <script>
+    function limitName() {
+      let elements = document.querySelectorAll('.ellipsis-name');
+
+      elements.forEach(element => {
+        let text = element.textContent.trim(); // Mengambil teks asli dari elemen
+        let screenWidth = window.innerWidth;
+        let maxLength;
+
+        if (screenWidth <= 425) {
+          maxLength = 5;
+        } else if (screenWidth <= 767 && screenWidth >= 426) {
+          maxLength = 10;
+        } else {
+          maxLength = 20;
+        }
+
+        let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+        element.textContent = shortenedText;
+      });
+    }
+
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        limitName();
+        window.addEventListener('resize', limitName);
+      }
+    });
+  </script>
   {{-- <section class="content mt-5">
         <div class="container-fluid">
             <div class="row">
