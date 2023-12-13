@@ -277,6 +277,56 @@
         justify-content: center;
       }
     }
+    .image-link {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .image-link::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(220, 220, 220);
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .image-link:hover::after {
+        opacity: 0.2;
+    }
+
+    .image {
+        object-fit: cover;
+        transition: transform 0.5s;
+    }
+
+    .image-link:hover .image {
+        transform: scale(1.1);
+    }
+
+    .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgb(104, 104, 104);
+        font-size: 24px;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .image-link:hover .icon {
+        opacity: 1;
+    }
+
+
+
+
   </style>
   <script>
     $(document).ready(function() {
@@ -333,21 +383,29 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h2 class="fs-5" id="exampleModalLabel">
-                          Detail</h2>
+                        <div class="fs-5" id="exampleModalLabel">
+                          Detail</div>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body" style="text-align: left;">
                         <div class="row text-center">
-                          <div class="col-6">
-                            <img width="150px" height="100px" style="border-radius: 10px;"
-                              src="{{ asset('storage/' . $data_verified->foto_ktp) }}" alt="">
+                          <div class="col-12 col-sm-6">
+                            <a href="{{ asset('storage/' . $data_verified->foto_ktp) }}" data-toggle="lightbox" class="image-link">
+                                <img src="{{ asset('storage/' . $data_verified->foto_ktp) }}" width="150px" height="100px" class="image">
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M156 112a12 12 0 0 1-12 12h-20v20a12 12 0 0 1-24 0v-20H80a12 12 0 0 1 0-24h20V80a12 12 0 0 1 24 0v20h20a12 12 0 0 1 12 12Zm76.49 120.49a12 12 0 0 1-17 0L168 185a92.12 92.12 0 1 1 17-17l47.54 47.53a12 12 0 0 1-.05 16.96ZM112 180a68 68 0 1 0-68-68a68.08 68.08 0 0 0 68 68Z"/></svg>
+                                </span>
+                            </a>
                             <br>
                             Foto KTP
                           </div>
-                          <div class="col-6">
-                            <img width="150px" height="100px" style="border-radius: 10px;"
-                              src="{{ asset('storage/' . $data_verified->foto_ktp) }}" alt="">
+                          <div class="col-12 col-sm-6">
+                            <a href="{{ asset('storage/' . $data_verified->foto_diri_ktp) }}" data-toggle="lightbox" class="image-link">
+                                <img  src="{{ asset('storage/' . $data_verified->foto_diri_ktp) }}"  width="150px" height="100px" class="image">
+                                <span class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256"><path fill="currentColor" d="M156 112a12 12 0 0 1-12 12h-20v20a12 12 0 0 1-24 0v-20H80a12 12 0 0 1 0-24h20V80a12 12 0 0 1 24 0v20h20a12 12 0 0 1 12 12Zm76.49 120.49a12 12 0 0 1-17 0L168 185a92.12 92.12 0 1 1 17-17l47.54 47.53a12 12 0 0 1-.05 16.96ZM112 180a68 68 0 1 0-68-68a68.08 68.08 0 0 0 68 68Z"/></svg>
+                                </span>
+                            </a>
                             <br>
                             Foto Diri Dengan KTP
                           </div>

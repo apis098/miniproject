@@ -11,6 +11,16 @@ use Intervention\Image\Gd\Shapes\EllipseShape;
 
 class FavoriteController extends Controller
 {
+    public function Index()  {
+        $userLogin = Auth::user();
+        $favorite = [];
+        if ($userLogin) {
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')->with('resep', 'kursus', 'veed', 'user')
+                ->get();
+        }
+        return response()->json(['favorite'=>$favorite]);
+    }
     public function store($id)
     {
         $user = Auth::user();

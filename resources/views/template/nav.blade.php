@@ -116,6 +116,21 @@
         text-overflow: ellipsis; /* Shows an ellipsis (...) to indicate truncated text */
         width: 100px; /* Adjust this width to fit your layout */
         }
+        .deskripsi{
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+
+            @supports (-webkit-line-clamp: 2) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: initial;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            }
+        }
         </style>
     </head>
 
@@ -2167,11 +2182,11 @@
                             </button>
 
                         </div>
-                        @foreach ($favorite as $row)
                             <form action="{{ route('favorite.delete.multiple') }}" method="POST">
                                 @csrf
-                                @if ($row->resep_id != null)
-                                    <div class="modal-body d-flex align-items-center">
+                                {{-- @if ($row->resep_id != null) --}}
+                                <input type="hidden" name="type" value="Resep">
+                                    {{-- <div class="modal-body d-flex align-items-center">
                                         <input type="checkbox" name="selected_ids[]"
                                             class="form-check-input ms-3 data-checkbox"
                                             data-id="{{ $row->id }}">
@@ -2190,9 +2205,10 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    </div>
-                                @elseif($row->feed_id != null)
-                                    <div class="modal-body d-flex align-items-center">
+                                    </div> --}}
+                                    <div id="NotificationsUser"></div>
+                                {{-- @elseif($row->feed_id != null) --}}
+                                    {{-- <div class="modal-body d-flex align-items-center">
                                         <input type="checkbox" name="selected_ids[]"
                                             class="form-check-input ms-3 data-checkbox"
                                             data-id="{{ $row->id }}">
@@ -2213,10 +2229,9 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    </div>
-                                @endif
+                                    </div> --}}
+                                {{-- @endif --}}
                             </form>
-                        @endforeach
                         @forelse ($favorite as $row)
                         @empty
                             <div class="d-flex flex-column h-100 justify-content-center align-items-center"
@@ -3042,6 +3057,71 @@
         //                                         $('#mobile-top-up-button').addClass('black-outline');
         //                                         $('#text').removeClass('text-orange');
         //                                     }
+    </script>
+    <script>
+        $(document).ready(function () {
+            let formUrl = "{{route('NotificationNavbar')}}"
+            $.ajax({
+                   url: formUrl,
+                   type: 'GET',
+                   success: function(response) {
+
+                    $.each(response.favorite, function(index, item) {
+                        let file, url, nama, deskripsi;
+
+                        if(item.feed_id != null){
+                            url = "#";
+                            nama = "postingan";
+                            let ImageVeed = 'storage/'+item.veed.upload_video;
+                           file = ` <video class="video ms-5 video-fav" controls width="180"
+                                            height="120">
+                                            <source src="${ImageVeed}"
+                                                type="video/mp4">
+                                        </video>`;
+                            deskripsi = item.veed.deskripsi_video;
+                        } else if(item.kursus_id != null){
+                            let ImageKursus = 'storage/'+item.kursus.foto_kursus;
+                            url = "#";
+                            nama = item.kursus.nama_kursus;
+                            deskripsi = item.kursus.deskripsi_kursus;
+                            file = `<img src="{{ asset('${ImageKursus}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:180px" alt="">`;
+                        } else if(item.resep_id != null){
+                            let ImageResep = 'storage/'+item.resep.foto_resep;
+                            file = `<img src="{{ asset('${ImageResep}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:180px" alt="">`;
+                            nama = item.resep.nama_resep;
+                            url = "/artikel/"+item.resep.id/item.resep.nama_resep;
+                            deskripsi = item.resep.deskripsi_resep;
+                        }
+
+
+                        let Notifications = `
+                            <div class="modal-body row">
+                                <div class=" d-flex align-items-center justify-content-start col-12 col-sm-6 ">
+                                    <input type="checkbox" name="selected_ids[]" class="form-check-input ms-3 data-checkbox" data-id="${item.id}">
+                                    ${file}
+                                </div>
+                                <div class="card mx-auto col-12 col-sm-6 " style="box-shadow:none; border:none;">
+                                    <a class="ml-5 ml-sm-0" href="${url}">
+                                        <div  style="" class="mb-1 d-flex justify-content-start justify-content-sm-center">
+                                            <h6 class="fw-bolder modal-title mt-2  text-orange">${nama}</h6>
+                                        </div>
+                                        <div style="" class="mb-1 d-flex justify-content-start justify-content-sm-center">
+                                            <small class="text-secondary text-break deskripsi ">${deskripsi}</small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                        $('#NotificationsUser').append(Notifications);
+                    });
+
+
+                   },
+                   error: function(error) {
+                       console.log(error);
+                   } // Removed unnecessary semicolon
+           });
+        })
     </script>
 </body>
 
