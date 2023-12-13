@@ -2388,7 +2388,7 @@
                                                                           <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                       </div>
-                                                                      <form action="{{route('block.reply1.comment.feed')}}" id="FormBlokirKomen{{$reply_comment->id}}"
+                                                                      <form action="{{route('block.reply1.comment.feed', $reply_comment->id)}}" id="FormBlokirKomen{{$reply_comment->id}}"
                                                                         method="POST">
                                                                         @csrf
                                                                         <div class="modal-body col-12 row pr-0">
@@ -3168,46 +3168,52 @@
       });
     }
   </script>
-  <script>
-    // balas komentar balasan di feed
-    function balas_replies_comments_feeds1(num) {
-      $("#formBalasRepliesCommentsFeeds1" + num).off("submit");
-      $("#formBalasRepliesCommentsFeeds1" + num).submit(function(event) {
-        event.preventDefault();
-        let route = $(this).attr("action");
-        let data = new FormData($(this)[0]);
-        $.ajax({
-          url: route,
-          method: "POST",
-          data: data,
-          processData: false,
-          contentType: false,
-          headers: {
-            "X-CSRF-Token": "{{ csrf_token() }}",
-          },
-          success: function success(response) {
-            $("#inputBalasRepliesCommentsFeeds1" + num).val('');
-            if (response.success) {
-              let up = response.up;
-              let random = Math.random();
-              let pengirim = response.pengirim;
-              let penerima = response.penerima;
-              let jumlah_like = response.jumlah_like_veed;
-              let time = response.time;
-              let commentId = response.commentId
-              let feed_id = response.feed_id;
-              let isUserSuper = response.isUserSuper;
-              let foto = '';
-              if (isUserSuper === 'yes') {
-                isUserSuper = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
-              }
-              $("#jumlah_komentar_feed" + feed_id).html(response.comment_count);
-              if (pengirim['foto'] != null) {
-                foto = 'storage/' + pengirim['foto'];
-              } else {
-                foto = 'images/default.jpg';
-              }
-              let innerHtml = `
+<script>
+  // balas komentar balasan di feed
+  function balas_replies_comments_feeds1(num) {
+    $("#formBalasRepliesCommentsFeeds1" + num).off("submit");
+    $("#formBalasRepliesCommentsFeeds1" + num).submit(function(event) {
+      event.preventDefault();
+      let route = $(this).attr("action");
+      let data = new FormData($(this)[0]);
+      $.ajax({
+        url: route,
+        method: "POST",
+        data: data,
+        processData: false,
+        contentType: false,
+        headers: {
+          "X-CSRF-Token": "{{ csrf_token() }}",
+        },
+        success: function success(response) {
+          $("#inputBalasRepliesCommentsFeeds1" + num).val('');
+          if (response.success) {
+            let up = response.up;
+            let random = Math.random();
+            let pengirim = response.pengirim;
+            let penerima = response.penerima;
+            let jumlah_like = response.jumlah_like_veed;
+            let time = response.time;
+            let commentId = response.commentId
+            let feed_id = response.feed_id;
+            let isSuperUser = response.isSuperUser;
+            let iconVerifikasi = '';
+            let foto = '';
+
+            $("#jumlah_komentar_feed" + feed_id).html(response.comment_count);
+            if (pengirim['foto'] != null) {
+              foto = 'storage/' + pengirim['foto'];
+            } else {
+              foto = 'images/default.jpg';
+            }
+
+            if (isSuperUser.isSuperUser === 'yes') {
+              isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+            } else {
+              isSuperUser = 'yooo'
+            }
+            console.log(response.isSuperUser);
+            let innerHtml = `
                             <div class="" id="balasan_komentar_ini2${up['id']}">
                                                                                                         <div
                                                                                                             class="mb-4 row">
@@ -3222,7 +3228,7 @@
                                                                                                                     <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
                                                                                                                     ${pengirim['name']}
                                                                                                                     </p>
-                                                                                                                    ${isUserSuper}
+                                                                                                                    ${isSuperUser}
                                                                                                                 </span>
 
                                                                                                                 <small class="ml-auto text-small limit-waktu">
@@ -3315,116 +3321,122 @@
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>`;
-              $("#replies_reply" + num).append(innerHtml);
-              console.log(innerHtml);
-              limitName();
-            }
-          },
-          error: function error(xhr, status, erorr) {
-
+            $("#replies_reply" + num).append(innerHtml);
+            console.log(innerHtml);
+            limitName();
           }
-        });
-      });
-    }
+        },
+        error: function error(xhr, status, erorr) {
 
-    function like_replies_reply(num) {
-      $("#form_like_replies_reply" + num).off("submit");
-      $("#form_like_replies_reply" + num).submit(function(event) {
-        event.preventDefault();
-        let rutes = $(this).attr("action");
-        $.ajax({
-          url: rutes,
-          method: "POST",
-          headers: {
-            "X-CSRF-Token": "{{ csrf_token() }}",
-          },
-          success: function success(response) {
-            if (response.success) {
-              if (response.like) {
-                $("#icon_like_replies_reply" + num).removeClass("fa-regular");
-                $("#icon_like_replies_reply" + num).addClass("fa-solid");
-                $("#icon_like_replies_reply" + num).addClass("text-orange");
-                $("#count_like_replies_reply" + num).text(response.countLike);
-              } else {
-                $("#icon_like_replies_reply" + num).removeClass("fa-solid");
-                $("#icon_like_replies_reply" + num).addClass("fa-regular");
-                $("#icon_like_replies_reply" + num).removeClass("text-orange");
-                $("#count_like_replies_reply" + num).text(response.countLike);
-              }
+        }
+      });
+    });
+  }
+
+  function like_replies_reply(num) {
+    $("#form_like_replies_reply" + num).off("submit");
+    $("#form_like_replies_reply" + num).submit(function(event) {
+      event.preventDefault();
+      let rutes = $(this).attr("action");
+      $.ajax({
+        url: rutes,
+        method: "POST",
+        headers: {
+          "X-CSRF-Token": "{{ csrf_token() }}",
+        },
+        success: function success(response) {
+          if (response.success) {
+            if (response.like) {
+              $("#icon_like_replies_reply" + num).removeClass("fa-regular");
+              $("#icon_like_replies_reply" + num).addClass("fa-solid");
+              $("#icon_like_replies_reply" + num).addClass("text-orange");
+              $("#count_like_replies_reply" + num).text(response.countLike);
+            } else {
+              $("#icon_like_replies_reply" + num).removeClass("fa-solid");
+              $("#icon_like_replies_reply" + num).addClass("fa-regular");
+              $("#icon_like_replies_reply" + num).removeClass("text-orange");
+              $("#count_like_replies_reply" + num).text(response.countLike);
             }
           }
-        });
+        }
       });
-    }
+    });
+  }
 
-    // komentar reply feed ajax
-    function balas_komentar(num) {
-      $("#formBalasKomentar" + num).off('submit');
-      $("#formBalasKomentar" + num).submit(function(e) {
-        e.preventDefault();
-        let route = $(this).attr("action");
-        let data = new FormData($(this)[0]);
-        $.ajax({
-          url: route,
-          data: data,
-          method: "POST",
-          processData: false,
-          contentType: false,
-          success: function success(response) {
-            if (response.success) {
-              iziToast.destroy();
-              iziToast.show({
-                backgroundColor: '#a1dfb0',
-                title: '<i class="fa-solid fa-check"></i>',
-                titleColor: 'dark',
-                messageColor: 'dark',
-                message: response.message,
-                position: 'topCenter',
-                progressBarColor: 'dark',
-              });
-              $("#reply_comments" + num).html(response.update);
-              $("#inputKomentarBalasan" + num).val('');
-            }
-          },
-        });
+  // komentar reply feed ajax
+  function balas_komentar(num) {
+    $("#formBalasKomentar" + num).off('submit');
+    $("#formBalasKomentar" + num).submit(function(e) {
+      e.preventDefault();
+      let route = $(this).attr("action");
+      let data = new FormData($(this)[0]);
+      $.ajax({
+        url: route,
+        data: data,
+        method: "POST",
+        processData: false,
+        contentType: false,
+        success: function success(response) {
+          if (response.success) {
+            iziToast.destroy();
+            iziToast.show({
+              backgroundColor: '#a1dfb0',
+              title: '<i class="fa-solid fa-check"></i>',
+              titleColor: 'dark',
+              messageColor: 'dark',
+              message: response.message,
+              position: 'topCenter',
+              progressBarColor: 'dark',
+            });
+            $("#reply_comments" + num).html(response.update);
+            $("#inputKomentarBalasan" + num).val('');
+          }
+        },
       });
-    }
-    // balas komentar ajaxx
-    function replies_comment(num) {
-      $('#formReplyComment' + num).off('submit');
-      $("#formReplyComment" + num).submit(function(event) {
-        event.preventDefault();
-        let route = $(this).attr("action");
-        let data = new FormData($(this)[0]);
-        $.ajax({
-          url: route,
-          method: "POST",
-          data: data,
-          processData: false,
-          contentType: false,
-          success: function success(response) {
-            if (response.success) {
-              $("#inputKomentarBalasan" + num).val("");
-              // $("#input_comment_veed" + num).val('');
-              let up = response.up;
-              let random = Math.random();
-              let pengirim = response.pengirim;
-              let jumlah_like = response.jumlah_like_veed;
-              let veed_id = response.veed_id;
-              let time = response.time;
-              let commentId = response.commentId
-              let foto = '';
-              if (isUserSuper === 'yes') {
-                isUserSuper = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
-              }
-              $("#jumlah_komentar_feed" + veed_id).html(response.comment_count);
-              if (pengirim['foto'] != null) {
-                foto = 'storage/' + pengirim['foto'];
-              } else {
-                foto = 'images/default.jpg';
-              }
-              console.log(pengirim);
-              let innerHtml = `
+    });
+  }
+  // balas komentar ajaxx
+  function replies_comment(num) {
+    $('#formReplyComment' + num).off('submit');
+    $("#formReplyComment" + num).submit(function(event) {
+      event.preventDefault();
+      let route = $(this).attr("action");
+      let data = new FormData($(this)[0]);
+      $.ajax({
+        url: route,
+        method: "POST",
+        data: data,
+        processData: false,
+        contentType: false,
+        success: function success(response) {
+          if (response.success) {
+            $("#inputKomentarBalasan" + num).val("");
+            // $("#input_comment_veed" + num).val('');
+            let up = response.up;
+            let random = Math.random();
+            let pengirim = response.pengirim;
+            let jumlah_like = response.jumlah_like_veed;
+            let veed_id = response.veed_id;
+            let time = response.time;
+            let commentId = response.commentId;
+            let isSuperUser = response.isSuperUser;
+            let iconVerifikasi = '';
+            let foto = '';
+
+            $("#jumlah_komentar_feed" + veed_id).html(response.comment_count);
+            if (pengirim['foto'] != null) {
+              foto = 'storage/' + pengirim['foto'];
+            } else {
+              foto = 'images/default.jpg';
+            }
+            console.log(pengirim);
+            if (isSuperUser.isSuperUser === 'yes') {
+              isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+            } else {
+              isSuperUser = 'yooo'
+            }
+            console.log(response.isSuperUser);
+            let innerHtml = `
                             <div class="" id="balasan_komentar_ini${up['id']}">
                                                                                                         <div class="mb-4 mt-4 row">
                                                                                                             <div class="d-flex col-12 pl-0 pr-0">
@@ -3437,7 +3449,7 @@
                                                                                                                     <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
                                                                                                                     ${pengirim['name']}
                                                                                                                     </p>
-                                                                                                                    ${isUserSuper}
+                                                                                                                    ${isSuperUser}
                                                                                                                 </span>
 
                                                                                                                 <div class="d-flex flex-row-reverse ml-auto" style="margin-left: 50%;">
@@ -3586,68 +3598,12 @@
                                                                                                                 </div>
 
                                                                                                             </div>`;
-              $("#repliesCommentList" + num).append(innerHtml);
-              limitName();
-            }
-          },
-          error: function error(xhr, status, errors) {
-            iziToast.destroy();
-            iziToast.show({
-              backgroundColor: '#f2a5a8',
-              title: '<i class="fa-solid fa-triangle-exclamation"></i>',
-              titleColor: 'dark',
-              messageColor: 'dark',
-              message: xhr.responseText,
-              position: 'topCenter',
-              progressBarColor: 'dark',
-            });
-          }
-        });
-      });
-    }
-
-    function showLoadingOverlay() {
-      $("#loading-overlay").show();
-      $("#text-loading").show();
-    }
-
-    function hideLoadingOverlay() {
-      $("#loading-overlay").hide();
-      $("#text-loading").hide();
-    }
-
-    function testingButton() {
-      showLoadingOverlay();
-    }
-    // upload video feed ajax
-    $("#formUploadVideo").submit(function(e) {
-      e.preventDefault();
-      showLoadingOverlay();
-      let data = new FormData($(this)[0]);
-      $.ajax({
-        url: "{{ route('upload.video') }}",
-        method: "POST",
-        processData: false,
-        contentType: false,
-        data: data,
-        success: function success(response) {
-          hideLoadingOverlay();
-          if (response.success) {
-            location.reload();
-            iziToast.show({
-              backgroundColor: '#a1dfb0',
-              title: '<i class="fa-solid fa-check"></i>',
-              titleColor: 'dark',
-              messageColor: 'dark',
-              message: response.message,
-              position: 'topCenter',
-              progressBarColor: 'dark',
-            });
+            $("#repliesCommentList" + num).append(innerHtml);
+            limitName();
           }
         },
         error: function error(xhr, status, errors) {
-          hideLoadingOverlay();
-          console.log(xhr.responseText);
+          iziToast.destroy();
           iziToast.show({
             backgroundColor: '#f2a5a8',
             title: '<i class="fa-solid fa-triangle-exclamation"></i>',
@@ -3657,383 +3613,446 @@
             position: 'topCenter',
             progressBarColor: 'dark',
           });
-
         }
       });
     });
-    // like reply comment feed ajax
-    function likeReplyComment(num) {
-      $("#formLikeReplyComment" + num).off("submit");
-      $("#formLikeReplyComment" + num).submit(function(event) {
-        event.preventDefault();
-        let rutes = $(this).attr("action");
-        $.ajax({
-          url: rutes,
-          method: "POST",
-          headers: {
-            "X-CSRF-Token": "{{ csrf_token() }}",
-          },
-          success: function success(response) {
-            if (response.success) {
-              if (response.like) {
-                $("#iconLikeReplyComment" + num).removeClass("fa-regular");
-                $("#iconLikeReplyComment" + num).addClass("fa-solid");
-                $("#iconLikeReplyComment" + num).addClass("text-orange");
-                $("#like-count" + num).text(response.countLike);
-              } else {
-                $("#iconLikeReplyComment" + num).removeClass("fa-solid");
-                $("#iconLikeReplyComment" + num).addClass("fa-regular");
-                $("#iconLikeReplyComment" + num).removeClass("text-orange");
-                $("#like-count" + num).text(response.countLike);
-              }
-            }
-          }
-        });
-      });
-    }
+  }
 
-    // like comment feed ajax
-    function likeCommentFeed(nums) {
-      $("#formLikeCommentFeed" + nums).off('submit');
-      $("#formLikeCommentFeed" + nums).submit(function(event) {
-        event.preventDefault();
-        let nilai = parseInt($("#jumlah_like" + nums).text());
-        if (nilai == 1) {
-          $("#jumlah_like" + nums).empty().append('0');
+  function showLoadingOverlay() {
+    $("#loading-overlay").show();
+    $("#text-loading").show();
+  }
 
-        } else {
-          $("#jumlah_like" + nums).empty().append('1');
+  function hideLoadingOverlay() {
+    $("#loading-overlay").hide();
+    $("#text-loading").hide();
+  }
+
+  function testingButton() {
+    showLoadingOverlay();
+  }
+  // upload video feed ajax
+  $("#formUploadVideo").submit(function(e) {
+    e.preventDefault();
+    showLoadingOverlay();
+    let data = new FormData($(this)[0]);
+    $.ajax({
+      url: "{{ route('upload.video') }}",
+      method: "POST",
+      processData: false,
+      contentType: false,
+      data: data,
+      success: function success(response) {
+        hideLoadingOverlay();
+        if (response.success) {
+          location.reload();
+          iziToast.show({
+            backgroundColor: '#a1dfb0',
+            title: '<i class="fa-solid fa-check"></i>',
+            titleColor: 'dark',
+            messageColor: 'dark',
+            message: response.message,
+            position: 'topCenter',
+            progressBarColor: 'dark',
+          });
         }
-
-        let rutte = $(this).attr("action");
-        $.ajax({
-          url: rutte,
-          method: "POST",
-          headers: {
-            "X-CSRF-TOKEN": "{{ csrf_token() }}",
-          },
-          success: function success(response) {
-            if (response.success) {
-              iziToast.destroy();
-              if (response.like) {
-                $("#iLikeComment" + nums).removeClass("fa-regular");
-                $("#iLikeComment" + nums).addClass("fa-solid");
-                $("#iLikeComment" + nums).addClass("text-orange");
-                $("#countLikeComment" + nums).text(response.count);
-              } else {
-                $("#iLikeComment" + nums).removeClass("fa-solid");
-                $("#iLikeComment" + nums).addClass("fa-regular");
-                $("#iLikeComment" + nums).removeClass("text-orange");
-                $("#countLikeComment" + nums).text(response.count);
-              }
-            }
-          }
+      },
+      error: function error(xhr, status, errors) {
+        hideLoadingOverlay();
+        console.log(xhr.responseText);
+        iziToast.show({
+          backgroundColor: '#f2a5a8',
+          title: '<i class="fa-solid fa-triangle-exclamation"></i>',
+          titleColor: 'dark',
+          messageColor: 'dark',
+          message: xhr.responseText,
+          position: 'topCenter',
+          progressBarColor: 'dark',
         });
-      });
-    }
 
-    function shareButton(num) {
-      $('#share_form' + num).off('submit');
-      $('#share_form' + num).submit(function(e) {
-        e.preventDefault();
-        // var share_button_icon = document.getElementById('share_button_icon');
-        // var share_icon = document.getElementById('share_icon');
-        var shared_count = document.getElementById('shared_count' + num);
-        let route = $('#share_form' + num).attr('action');
-        let data = new FormData($('#share_form' + num)[0]);
-        $.ajax({
-          type: "POST",
-          url: route,
-          data: data,
-          processData: false,
-          contentType: false,
-          headers: {
-            "X-CSRF-Token": "{{ csrf_token() }}",
-          },
-          success: function(response) {
-            if (response.success) {
-              shared_count.textContent = response.shared_count;
-              document.getElementById('shr-btn' + num).disabled = true;
-              setTimeout(function() {
-                document.getElementById('shr-btn' + num)
-                  .disabled = false;
-              }, 60000);
-              iziToast.show({
-                backgroundColor: '#a1dfb0',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'dark',
-                messageColor: 'dark',
-                message: response.message,
-                position: 'topCenter',
-                progressBarColor: 'dark',
-              });
+      }
+    });
+  });
+  // like reply comment feed ajax
+  function likeReplyComment(num) {
+    $("#formLikeReplyComment" + num).off("submit");
+    $("#formLikeReplyComment" + num).submit(function(event) {
+      event.preventDefault();
+      let rutes = $(this).attr("action");
+      $.ajax({
+        url: rutes,
+        method: "POST",
+        headers: {
+          "X-CSRF-Token": "{{ csrf_token() }}",
+        },
+        success: function success(response) {
+          if (response.success) {
+            if (response.like) {
+              $("#iconLikeReplyComment" + num).removeClass("fa-regular");
+              $("#iconLikeReplyComment" + num).addClass("fa-solid");
+              $("#iconLikeReplyComment" + num).addClass("text-orange");
+              $("#like-count" + num).text(response.countLike);
             } else {
-              iziToast.show({
-                backgroundColor: '#f2a5a8',
-                title: '<i class="fa-solid fa-triangle-exclamation"></i>',
-                titleColor: 'dark',
-                messageColor: 'dark',
-                message: response.message,
-                position: 'topCenter',
-              });
+              $("#iconLikeReplyComment" + num).removeClass("fa-solid");
+              $("#iconLikeReplyComment" + num).addClass("fa-regular");
+              $("#iconLikeReplyComment" + num).removeClass("text-orange");
+              $("#like-count" + num).text(response.countLike);
             }
           }
-        });
+        }
       });
-    }
-    // like feed ajax
-    function likeFeed(num) {
-      // sebelumnya ngebug duplikasi aksi, dengan ini akan menonaktifkan aksi yang sebelumnya.
-      $("#formLikeVeed" + num).off('submit');
-      $("#formLikeVeed" + num).submit(function(event) {
-        event.preventDefault();
-        // karena like feednya pakai foreach makanya harus diambil satu-satu nilai rutenya dari form action dengan .attr('action')
-        let route = $(this).attr("action");
-        $.ajax({
-          url: route,
-          method: "POST",
-          success: function success(response) {
-            if (response.success) {
-              if (response.like) {
-                $("#likeB" + num).removeClass("fa-reguler");
-                $("#likeB" + num).addClass("fa-solid");
-                $("#likeB" + num).addClass("text-orange");
-                $("#countLikeFeed" + num).html(response.count);
-              } else {
-                $("#likeB" + num).removeClass("fa-solid");
-                $("#likeB" + num).removeClass("text-orange");
-                $("#likeB" + num).addClass("fa-regular");
-                $("#countLikeFeed" + num).html(response.count);
-              }
+    });
+  }
+
+  // like comment feed ajax
+  function likeCommentFeed(nums) {
+    $("#formLikeCommentFeed" + nums).off('submit');
+    $("#formLikeCommentFeed" + nums).submit(function(event) {
+      event.preventDefault();
+      let nilai = parseInt($("#jumlah_like" + nums).text());
+      if (nilai == 1) {
+        $("#jumlah_like" + nums).empty().append('0');
+
+      } else {
+        $("#jumlah_like" + nums).empty().append('1');
+      }
+
+      let rutte = $(this).attr("action");
+      $.ajax({
+        url: rutte,
+        method: "POST",
+        headers: {
+          "X-CSRF-TOKEN": "{{ csrf_token() }}",
+        },
+        success: function success(response) {
+          if (response.success) {
+            iziToast.destroy();
+            if (response.like) {
+              $("#iLikeComment" + nums).removeClass("fa-regular");
+              $("#iLikeComment" + nums).addClass("fa-solid");
+              $("#iLikeComment" + nums).addClass("text-orange");
+              $("#countLikeComment" + nums).text(response.count);
+            } else {
+              $("#iLikeComment" + nums).removeClass("fa-solid");
+              $("#iLikeComment" + nums).addClass("fa-regular");
+              $("#iLikeComment" + nums).removeClass("text-orange");
+              $("#countLikeComment" + nums).text(response.count);
             }
-
-          },
-          headers: {
-            "X-CSRF-Token": "{{ csrf_token() }}",
-          },
-          error: function error(xhr, status, errors) {
-            console.log(xhr);
           }
-        });
-      });
-    }
-    // membuka mengklik input file upload video
-    function openV() {
-      document.getElementById("inputVideo").click();
-      document.getElementById("inputVideo").addEventListener("change", function(event) {
-        const fileTarget = event.target;
-        const file = fileTarget.files[0];
-
-        document.getElementById("aVideo").textContent = file.name;
-      });
-    }
-    // onclick alert harus login
-    function harusLogin() {
-      iziToast.destroy();
-      iziToast.show({
-        backgroundColor: '#eea2a6',
-        title: '',
-        titleColor: 'dark',
-        messageColor: 'dark',
-        message: 'Anda harus login terlebih dahulu!',
-        position: 'topCenter',
-        progressBarColor: 'dark',
-      });
-    }
-
-    function confirmation_delete_comment_feed(num) {
-      iziToast.destroy();
-      iziToast.show({
-        backgroundColor: '#eea2a6',
-        title: '<i class="fa-regular fa-circle-question"></i>',
-        titleColor: 'dark',
-        messageColor: 'dark',
-        message: 'Apakah Anda yakin ingin menghapus komentar ini?',
-        position: 'topCenter',
-        progressBarColor: 'dark',
-        close: false,
-        buttons: [
-          ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
-            instance, toast) {
-            instance.hide({
-              transitionOut: 'fadeOutUp',
-              onClosing: function(instance, toast, closedBy) {
-                document.getElementById('delete-comment-button' + num).click();
-              }
-            }, toast, 'buttonName');
-          }, false], // true to focus
-          ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
-            instance, toast) {
-            instance.hide({}, toast, 'buttonName');
-          }]
-        ],
-        onOpening: function(instance, toast) {
-          console.info('callback abriu!');
-        },
-        onClosing: function(instance, toast, closedBy) {
-          console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
         }
       });
-    }
+    });
+  }
 
-    function confirmation_delete_feed(num) {
-      iziToast.show({
-        backgroundColor: '#eea2a6',
-        title: '<i class="fa-regular fa-circle-question"></i>',
-        titleColor: 'dark',
-        messageColor: 'dark',
-        message: 'Apakah Anda yakin ingin menghapus feed anda?',
-        position: 'topCenter',
-        progressBarColor: 'dark',
-        close: false,
-        buttons: [
-          ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
-            instance, toast) {
-            instance.hide({
-              transitionOut: 'fadeOutUp',
-              onClosing: function(instance, toast, closedBy) {
-                $("#delete-feed-button" + num).click();
-              }
-            }, toast, 'buttonName');
-          }, false], // true to focus
-          ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
-            instance, toast) {
-            instance.hide({}, toast, 'buttonName');
-          }]
-        ],
-        onOpening: function(instance, toast) {
-          console.info('callback abriu!');
+  function shareButton(num) {
+    $('#share_form' + num).off('submit');
+    $('#share_form' + num).submit(function(e) {
+      e.preventDefault();
+      // var share_button_icon = document.getElementById('share_button_icon');
+      // var share_icon = document.getElementById('share_icon');
+      var shared_count = document.getElementById('shared_count' + num);
+      let route = $('#share_form' + num).attr('action');
+      let data = new FormData($('#share_form' + num)[0]);
+      $.ajax({
+        type: "POST",
+        url: route,
+        data: data,
+        processData: false,
+        contentType: false,
+        headers: {
+          "X-CSRF-Token": "{{ csrf_token() }}",
         },
-        onClosing: function(instance, toast, closedBy) {
-          console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
-        }
-      });
-    }
-
-    function confirmation_delete_reply_comment(num) {
-      iziToast.show({
-        backgroundColor: '#eea2a6',
-        title: '<i class="fa-regular fa-circle-question"></i>',
-        titleColor: 'dark',
-        messageColor: 'dark',
-        message: 'Apakah Anda yakin ingin menghapus komentar ini?',
-        position: 'topCenter',
-        progressBarColor: 'dark',
-        close: false,
-        buttons: [
-          ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
-            instance, toast) {
-            instance.hide({
-              transitionOut: 'fadeOutUp',
-              onClosing: function(instance, toast, closedBy) {
-                document.getElementById('delete-reply-comment-button' + num)
-                  .click();
-              }
-            }, toast, 'buttonName');
-          }, false], // true to focus
-          ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
-            instance, toast) {
-            instance.hide({}, toast, 'buttonName');
-          }]
-        ],
-        onOpening: function(instance, toast) {
-          console.info('callback abriu!');
-        },
-        onClosing: function(instance, toast, closedBy) {
-          console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
-        }
-      });
-    }
-
-    function deletedCommentFeed(num) {
-      $("#delete-comment-form" + num).submit(function(event) {
-        event.preventDefault();
-        let route = $(this).attr("action");
-        $.ajax({
-          url: route,
-          method: "DELETE",
-          headers: {
-            "X-CSRF-TOKEN": "{{ csrf_token() }}",
-          },
-          success: function success(response) {
-            $("#komen_veed_ini" + num).empty();
+        success: function(response) {
+          if (response.success) {
+            shared_count.textContent = response.shared_count;
+            document.getElementById('shr-btn' + num).disabled = true;
+            setTimeout(function() {
+              document.getElementById('shr-btn' + num)
+                .disabled = false;
+            }, 60000);
             iziToast.show({
               backgroundColor: '#a1dfb0',
-              title: '<i class="fa-solid fa-check"></i>',
+              title: '<i class="fa-regular fa-circle-question"></i>',
               titleColor: 'dark',
               messageColor: 'dark',
               message: response.message,
               position: 'topCenter',
               progressBarColor: 'dark',
             });
-          }
-        });
-      });
-    }
-
-    function deletedReplyCommentFeed(num) {
-      $("#delete-reply-comment-form" + num).submit(function(event) {
-        event.preventDefault();
-        let route = $(this).attr("action");
-        $.ajax({
-          url: route,
-          method: "DELETE",
-          headers: {
-            "X-CSRF-TOKEN": "{{ csrf_token() }}",
-          },
-          success: function success(response) {
-            $("#balasan_komentar_ini" + num).empty();
+          } else {
             iziToast.show({
-              backgroundColor: '#a1dfb0',
-              title: '<i class="fa-regular fa-circle-question"></i>',
+              backgroundColor: '#f2a5a8',
+              title: '<i class="fa-solid fa-triangle-exclamation"></i>',
               titleColor: 'dark',
               messageColor: 'dark',
-              message: "Sukses menghapus komentar",
+              message: response.message,
               position: 'topCenter',
-              progressBarColor: 'dark',
             });
           }
-        });
+        }
       });
-    }
+    });
+  }
+  // like feed ajax
+  function likeFeed(num) {
+    // sebelumnya ngebug duplikasi aksi, dengan ini akan menonaktifkan aksi yang sebelumnya.
+    $("#formLikeVeed" + num).off('submit');
+    $("#formLikeVeed" + num).submit(function(event) {
+      event.preventDefault();
+      // karena like feednya pakai foreach makanya harus diambil satu-satu nilai rutenya dari form action dengan .attr('action')
+      let route = $(this).attr("action");
+      $.ajax({
+        url: route,
+        method: "POST",
+        success: function success(response) {
+          if (response.success) {
+            if (response.like) {
+              $("#likeB" + num).removeClass("fa-reguler");
+              $("#likeB" + num).addClass("fa-solid");
+              $("#likeB" + num).addClass("text-orange");
+              $("#countLikeFeed" + num).html(response.count);
+            } else {
+              $("#likeB" + num).removeClass("fa-solid");
+              $("#likeB" + num).removeClass("text-orange");
+              $("#likeB" + num).addClass("fa-regular");
+              $("#countLikeFeed" + num).html(response.count);
+            }
+          }
 
-    function balas_replies_comments_feeds2(num) {
-      $("#formBalasRepliesCommentsFeeds2" + num).off("submit");
-      $("#formBalasRepliesCommentsFeeds2" + num).submit(function(event) {
-        event.preventDefault();
-        let route = $(this).attr("action");
-        let data = new FormData($(this)[0]);
-        $.ajax({
-          url: route,
-          method: "POST",
-          data: data,
-          processData: false,
-          contentType: false,
-          headers: {
-            "X-CSRF-Token": "{{ csrf_token() }}",
-          },
-          success: function success(response) {
-            $("#inputBalasRepliesCommentsFeeds2" + num).val('');
-            if (response.success) {
-              let up = response.up;
-              let random = Math.random();
-              let pengirim = response.pengirim;
-              let penerima = response.penerima;
-              let jumlah_like = response.jumlah_like_veed;
-              let feed_id = response.feed_id;
-              let time = response.time;
-              let commentId = response.commentId
-              let foto = '';
-              if (isUserSuper === 'yes') {
-                isUserSuper = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
-              }
-              $("#jumlah_komentar_feed" + feed_id).html(response.comment_count);
-              if (pengirim['foto'] != null) {
-                foto = 'storage/' + pengirim['foto'];
-              } else {
-                foto = 'images/default.jpg';
-              }
-              let innerHtml = `
+        },
+        headers: {
+          "X-CSRF-Token": "{{ csrf_token() }}",
+        },
+        error: function error(xhr, status, errors) {
+          console.log(xhr);
+        }
+      });
+    });
+  }
+  // membuka mengklik input file upload video
+  function openV() {
+    document.getElementById("inputVideo").click();
+    document.getElementById("inputVideo").addEventListener("change", function(event) {
+      const fileTarget = event.target;
+      const file = fileTarget.files[0];
+
+      document.getElementById("aVideo").textContent = file.name;
+    });
+  }
+  // onclick alert harus login
+  function harusLogin() {
+    iziToast.destroy();
+    iziToast.show({
+      backgroundColor: '#eea2a6',
+      title: '',
+      titleColor: 'dark',
+      messageColor: 'dark',
+      message: 'Anda harus login terlebih dahulu!',
+      position: 'topCenter',
+      progressBarColor: 'dark',
+    });
+  }
+
+  function confirmation_delete_comment_feed(num) {
+    iziToast.destroy();
+    iziToast.show({
+      backgroundColor: '#eea2a6',
+      title: '<i class="fa-regular fa-circle-question"></i>',
+      titleColor: 'dark',
+      messageColor: 'dark',
+      message: 'Apakah Anda yakin ingin menghapus komentar ini?',
+      position: 'topCenter',
+      progressBarColor: 'dark',
+      close: false,
+      buttons: [
+        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+          instance, toast) {
+          instance.hide({
+            transitionOut: 'fadeOutUp',
+            onClosing: function(instance, toast, closedBy) {
+              document.getElementById('delete-comment-button' + num).click();
+            }
+          }, toast, 'buttonName');
+        }, false], // true to focus
+        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+          instance, toast) {
+          instance.hide({}, toast, 'buttonName');
+        }]
+      ],
+      onOpening: function(instance, toast) {
+        console.info('callback abriu!');
+      },
+      onClosing: function(instance, toast, closedBy) {
+        console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+      }
+    });
+  }
+
+  function confirmation_delete_feed(num) {
+    iziToast.show({
+      backgroundColor: '#eea2a6',
+      title: '<i class="fa-regular fa-circle-question"></i>',
+      titleColor: 'dark',
+      messageColor: 'dark',
+      message: 'Apakah Anda yakin ingin menghapus feed anda?',
+      position: 'topCenter',
+      progressBarColor: 'dark',
+      close: false,
+      buttons: [
+        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+          instance, toast) {
+          instance.hide({
+            transitionOut: 'fadeOutUp',
+            onClosing: function(instance, toast, closedBy) {
+              $("#delete-feed-button" + num).click();
+            }
+          }, toast, 'buttonName');
+        }, false], // true to focus
+        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+          instance, toast) {
+          instance.hide({}, toast, 'buttonName');
+        }]
+      ],
+      onOpening: function(instance, toast) {
+        console.info('callback abriu!');
+      },
+      onClosing: function(instance, toast, closedBy) {
+        console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+      }
+    });
+  }
+
+  function confirmation_delete_reply_comment(num) {
+    iziToast.show({
+      backgroundColor: '#eea2a6',
+      title: '<i class="fa-regular fa-circle-question"></i>',
+      titleColor: 'dark',
+      messageColor: 'dark',
+      message: 'Apakah Anda yakin ingin menghapus komentar ini?',
+      position: 'topCenter',
+      progressBarColor: 'dark',
+      close: false,
+      buttons: [
+        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+          instance, toast) {
+          instance.hide({
+            transitionOut: 'fadeOutUp',
+            onClosing: function(instance, toast, closedBy) {
+              document.getElementById('delete-reply-comment-button' + num)
+                .click();
+            }
+          }, toast, 'buttonName');
+        }, false], // true to focus
+        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+          instance, toast) {
+          instance.hide({}, toast, 'buttonName');
+        }]
+      ],
+      onOpening: function(instance, toast) {
+        console.info('callback abriu!');
+      },
+      onClosing: function(instance, toast, closedBy) {
+        console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+      }
+    });
+  }
+
+  function deletedCommentFeed(num) {
+    $("#delete-comment-form" + num).submit(function(event) {
+      event.preventDefault();
+      let route = $(this).attr("action");
+      $.ajax({
+        url: route,
+        method: "DELETE",
+        headers: {
+          "X-CSRF-TOKEN": "{{ csrf_token() }}",
+        },
+        success: function success(response) {
+          $("#komen_veed_ini" + num).empty();
+          iziToast.show({
+            backgroundColor: '#a1dfb0',
+            title: '<i class="fa-solid fa-check"></i>',
+            titleColor: 'dark',
+            messageColor: 'dark',
+            message: response.message,
+            position: 'topCenter',
+            progressBarColor: 'dark',
+          });
+        }
+      });
+    });
+  }
+
+  function deletedReplyCommentFeed(num) {
+    $("#delete-reply-comment-form" + num).submit(function(event) {
+      event.preventDefault();
+      let route = $(this).attr("action");
+      $.ajax({
+        url: route,
+        method: "DELETE",
+        headers: {
+          "X-CSRF-TOKEN": "{{ csrf_token() }}",
+        },
+        success: function success(response) {
+          $("#balasan_komentar_ini" + num).empty();
+          iziToast.show({
+            backgroundColor: '#a1dfb0',
+            title: '<i class="fa-regular fa-circle-question"></i>',
+            titleColor: 'dark',
+            messageColor: 'dark',
+            message: "Sukses menghapus komentar",
+            position: 'topCenter',
+            progressBarColor: 'dark',
+          });
+        }
+      });
+    });
+  }
+
+  function balas_replies_comments_feeds2(num) {
+    $("#formBalasRepliesCommentsFeeds2" + num).off("submit");
+    $("#formBalasRepliesCommentsFeeds2" + num).submit(function(event) {
+      event.preventDefault();
+      let route = $(this).attr("action");
+      let data = new FormData($(this)[0]);
+      $.ajax({
+        url: route,
+        method: "POST",
+        data: data,
+        processData: false,
+        contentType: false,
+        headers: {
+          "X-CSRF-Token": "{{ csrf_token() }}",
+        },
+        success: function success(response) {
+          $("#inputBalasRepliesCommentsFeeds2" + num).val('');
+          if (response.success) {
+            let up = response.up;
+            let random = Math.random();
+            let pengirim = response.pengirim;
+            let penerima = response.penerima;
+            let jumlah_like = response.jumlah_like_veed;
+            let feed_id = response.feed_id;
+            let time = response.time;
+            let commentId = response.commentId;
+            let isSuperUser = response.isSuperUser;
+            let iconVerifikasi = '';
+            let foto = '';
+
+            $("#jumlah_komentar_feed" + feed_id).html(response.comment_count);
+            if (pengirim['foto'] != null) {
+              foto = 'storage/' + pengirim['foto'];
+            } else {
+              foto = 'images/default.jpg';
+            }
+
+            if (isSuperUser.isSuperUser === 'yes') {
+              isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+            } else {
+              isSuperUser = 'yooo'
+            }
+            console.log(response.isSuperUser);
+            let innerHtml = `
                             <div class="" id="balasan_komentar_ini2${up['id']}">
                                                                                                         <div
                                                                                                             class="mb-4 row">
@@ -4047,7 +4066,8 @@
                                                                                                                 <span class="d-flex">
                                                                                                                 <p class="fw-bolder mb-2 ellipsis-name text-deskripsi">
                                                                                                                 ${pengirim['name']}</p>
-                                                                                                                ${isUserSuper}
+
+                                                                                                                ${isSuperUser}
                                                                                                                 </span>
 
                                                                                                                 <small
@@ -4139,137 +4159,138 @@
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>`;
-              $("#replies_reply2" + num).append(innerHtml);
-              limitName();
+            $("#replies_reply2" + num).append(innerHtml);
+            limitName();
+          }
+        },
+        error: function error(xhr, status, erorr) {
+
+        }
+      });
+    });
+  }
+
+  function confirmation_delete_replies_reply2(num) {
+    iziToast.show({
+      backgroundColor: '#eea2a6',
+      title: '<i class="fa-regular fa-circle-question"></i>',
+      titleColor: 'dark',
+      messageColor: 'dark',
+      message: 'Apakah Anda yakin ingin menghapus komentar ini?',
+      position: 'topCenter',
+      progressBarColor: 'dark',
+      close: false,
+      buttons: [
+        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+          instance, toast) {
+          instance.hide({
+            transitionOut: 'fadeOutUp',
+            onClosing: function(instance, toast, closedBy) {
+              $('#delete-replies-reply-button2' + num).click();
             }
-          },
-          error: function error(xhr, status, erorr) {
+          }, toast, 'buttonName');
+        }, false], // true to focus
+        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+          instance, toast) {
+          instance.hide({}, toast, 'buttonName');
+        }]
+      ],
+      onOpening: function(instance, toast) {
+        console.info('callback abriu!');
+      },
+      onClosing: function(instance, toast, closedBy) {
+        console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+      }
+    });
+  }
 
-          }
-        });
-      });
-    }
-
-    function confirmation_delete_replies_reply2(num) {
-      iziToast.show({
-        backgroundColor: '#eea2a6',
-        title: '<i class="fa-regular fa-circle-question"></i>',
-        titleColor: 'dark',
-        messageColor: 'dark',
-        message: 'Apakah Anda yakin ingin menghapus komentar ini?',
-        position: 'topCenter',
-        progressBarColor: 'dark',
-        close: false,
-        buttons: [
-          ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
-            instance, toast) {
-            instance.hide({
-              transitionOut: 'fadeOutUp',
-              onClosing: function(instance, toast, closedBy) {
-                $('#delete-replies-reply-button2' + num).click();
-              }
-            }, toast, 'buttonName');
-          }, false], // true to focus
-          ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
-            instance, toast) {
-            instance.hide({}, toast, 'buttonName');
-          }]
-        ],
-        onOpening: function(instance, toast) {
-          console.info('callback abriu!');
+  function deleted_replies_reply_comment_feed2(num) {
+    $("#form-delete-replies-reply2" + num).submit(function(event) {
+      event.preventDefault();
+      let route = $(this).attr("action");
+      $.ajax({
+        url: route,
+        method: "DELETE",
+        headers: {
+          "X-CSRF-TOKEN": "{{ csrf_token() }}",
         },
-        onClosing: function(instance, toast, closedBy) {
-          console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+        success: function success(response) {
+          $("#balasan_komentar_ini2" + num).empty();
+          iziToast.show({
+            backgroundColor: '#a1dfb0',
+            title: '<i class="fa-solid fa-check"></i>',
+            titleColor: 'dark',
+            messageColor: 'dark',
+            message: response.message,
+            position: 'topCenter',
+            progressBarColor: 'dark',
+          });
         }
       });
-    }
+    });
+  }
 
-    function deleted_replies_reply_comment_feed2(num) {
-      $("#form-delete-replies-reply2" + num).submit(function(event) {
-        event.preventDefault();
-        let route = $(this).attr("action");
-        $.ajax({
-          url: route,
-          method: "DELETE",
-          headers: {
-            "X-CSRF-TOKEN": "{{ csrf_token() }}",
-          },
-          success: function success(response) {
-            $("#balasan_komentar_ini2" + num).empty();
-            iziToast.show({
-              backgroundColor: '#a1dfb0',
-              title: '<i class="fa-solid fa-check"></i>',
-              titleColor: 'dark',
-              messageColor: 'dark',
-              message: response.message,
-              position: 'topCenter',
-              progressBarColor: 'dark',
-            });
-          }
-        });
-      });
-    }
+  function confirmation_delete_replies_reply(num) {
+    iziToast.show({
+      backgroundColor: '#eea2a6',
+      title: '<i class="fa-regular fa-circle-question"></i>',
+      titleColor: 'dark',
+      messageColor: 'dark',
+      message: 'Apakah Anda yakin ingin menghapus komentar ini?',
+      position: 'topCenter',
+      progressBarColor: 'dark',
+      close: false,
+      buttons: [
+        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+          instance, toast) {
+          instance.hide({
+            transitionOut: 'fadeOutUp',
+            onClosing: function(instance, toast, closedBy) {
+              $('#delete-replies-reply-button' + num).click();
+            }
+          }, toast, 'buttonName');
+        }, false], // true to focus
+        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+          instance, toast) {
+          instance.hide({}, toast, 'buttonName');
+        }]
+      ],
+      onOpening: function(instance, toast) {
+        console.info('callback abriu!');
+      },
+      onClosing: function(instance, toast, closedBy) {
+        console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+      }
+    });
+  }
 
-    function confirmation_delete_replies_reply(num) {
-      iziToast.show({
-        backgroundColor: '#eea2a6',
-        title: '<i class="fa-regular fa-circle-question"></i>',
-        titleColor: 'dark',
-        messageColor: 'dark',
-        message: 'Apakah Anda yakin ingin menghapus komentar ini?',
-        position: 'topCenter',
-        progressBarColor: 'dark',
-        close: false,
-        buttons: [
-          ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
-            instance, toast) {
-            instance.hide({
-              transitionOut: 'fadeOutUp',
-              onClosing: function(instance, toast, closedBy) {
-                $('#delete-replies-reply-button' + num).click();
-              }
-            }, toast, 'buttonName');
-          }, false], // true to focus
-          ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
-            instance, toast) {
-            instance.hide({}, toast, 'buttonName');
-          }]
-        ],
-        onOpening: function(instance, toast) {
-          console.info('callback abriu!');
+  function deleted_replies_reply_comment_feed(num) {
+    $("#form-delete-replies-reply" + num).submit(function(event) {
+      event.preventDefault();
+      let route = $(this).attr("action");
+      $.ajax({
+        url: route,
+        method: "DELETE",
+        headers: {
+          "X-CSRF-TOKEN": "{{ csrf_token() }}",
         },
-        onClosing: function(instance, toast, closedBy) {
-          console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+        success: function success(response) {
+          $("#balasan_komentar_ini2" + num).empty();
+          iziToast.show({
+            backgroundColor: '#a1dfb0',
+            title: '<i class="fa-solid fa-check"></i>',
+            titleColor: 'dark',
+            messageColor: 'dark',
+            message: response.message,
+            position: 'topCenter',
+            progressBarColor: 'dark',
+          });
         }
       });
-    }
+    });
+  }
+</script>
 
-    function deleted_replies_reply_comment_feed(num) {
-      $("#form-delete-replies-reply" + num).submit(function(event) {
-        event.preventDefault();
-        let route = $(this).attr("action");
-        $.ajax({
-          url: route,
-          method: "DELETE",
-          headers: {
-            "X-CSRF-TOKEN": "{{ csrf_token() }}",
-          },
-          success: function success(response) {
-            $("#balasan_komentar_ini2" + num).empty();
-            iziToast.show({
-              backgroundColor: '#a1dfb0',
-              title: '<i class="fa-solid fa-check"></i>',
-              titleColor: 'dark',
-              messageColor: 'dark',
-              message: response.message,
-              position: 'topCenter',
-              progressBarColor: 'dark',
-            });
-          }
-        });
-      });
-    }
-  </script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const likeForms = document.querySelectorAll("#like-form");
@@ -4332,44 +4353,51 @@
       });
     });
   </script>
-  <script>
-    // komentar feed ajax
+<script>
+  // komentar feed ajax
 
-    function komentar_feed(num) {
-      $('#formCommentFeed' + num).off('submit');
-      $("#formCommentFeed" + num).submit(function(event) {
-        event.preventDefault();
-        let route = $(this).attr("action");
-        let data = new FormData($(this)[0]);
-        $.ajax({
-          url: route,
-          method: "POST",
-          data: data,
-          processData: false,
-          contentType: false,
-          success: function success(response) {
-            if (response.success) {
-              $("#input_comment_veed" + num).val('');
-              let up = response.up;
-              let pengirim = response.pengirim;
-              let jumlah_like = response.jumlah_like_veed;
-              let veed_id = num;
-              let time = response.time;
-              let commentId = response.commentId
-              let foto = '';
-              let pengirimId = response.pengirim.id;
-              if (isUserSuper === 'yes') {
-                isUserSuper = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
-              }
-              $("#jumlah_komentar_feed" + num).html(response.comment_count);
-              if (pengirim['foto'] != null) {
-                foto = 'storage/' + pengirim['foto'];
-              } else {
-                foto = 'images/default.jpg';
-              }
-              console.log(pengirim);
-              if (response.active) {
-                let innerHtml = `
+  function komentar_feed(num) {
+
+    $('#formCommentFeed' + num).off('submit');
+    $("#formCommentFeed" + num).submit(function(event) {
+      event.preventDefault();
+      let route = $(this).attr("action");
+      let data = new FormData($(this)[0]);
+      $.ajax({
+        url: route,
+        method: "POST",
+        data: data,
+        processData: false,
+        contentType: false,
+        success: function success(response) {
+          if (response.success) {
+            $("#input_comment_veed" + num).val('');
+            let up = response.up;
+            let pengirim = response.pengirim;
+            let jumlah_like = response.jumlah_like_veed;
+            let veed_id = num;
+            let time = response.time;
+            let commentId = response.commentId;
+            let isSuperUser = response.isSuperUser;
+            let iconVerifikasi = '';
+            let foto = '';
+            let pengirimId = response.pengirim.id;
+
+            $("#jumlah_komentar_feed" + num).html(response.comment_count);
+            if (pengirim['foto'] != null) {
+              foto = 'storage/' + pengirim['foto'];
+            } else {
+              foto = 'images/default.jpg';
+            }
+            console.log(pengirim);
+            if (isSuperUser.isSuperUser == 'yes') {
+              isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+            } else {
+              isSuperUser = 'yooo'
+            }
+            console.log(isSuperUser.isSuperUser);
+            if (response.active) {
+              let innerHtml = `
                             <div class="media row mb-2" id="komen_veed_ini${up['id']}"
                                                                         style="">
                                                                         <div class="d-flex col-12">
@@ -4378,16 +4406,18 @@
                                                                                     class="rounded-circle foto-komentar"
                                                                                     src="{{ asset('${foto}') }}"
                                                                                     alt="">
-
+                                                                            <span class="d-flex">
                                                                             <p class="ms-2 mb-2 fw-bolder ellipsis-name text-deskripsi">
                                                                                 ${pengirim['name']}
-                                                                            </p>
-                                                                            ${isUserSuper}
-                                                                            <div
-                                                                                class="d-flex flex-row-reverse ml-auto">
-                                                                                <small>
+                                                                                </p>
+                                                                                ${isSuperUser}
+                                                                            </span>
+                                                                            
+                                                                                
+                                                                            <div class="d-flex flex-row-reverse ml-auto" style="margin-left: 50%;">
+                                                                                <small class="text-small limit-waktu">
                                                                                     ${time}
-                                                                                    </small>
+                                                                                </small>
                                                                             </div>
                                                                         </div>
                                                                         <div style="margin-top:-2%;" class="">
@@ -4528,129 +4558,64 @@
 
                                                                             </div>
                                                                         </div>`;
-                $("#new_komentar_feed" + num).append(innerHtml);
-              }
-              balasButton.addEventListener('click', function() {
-
-              });
-              limitName();
+              $("#new_komentar_feed" + num).append(innerHtml);
             }
-          },
-          error: function error(xhr, status, errors) {
-            iziToast.destroy();
-            iziToast.show({
-              backgroundColor: '#f2a5a8',
-              title: '<i class="fa-solid fa-triangle-exclamation"></i>',
-              titleColor: 'dark',
-              messageColor: 'dark',
-              message: 'Komentar tidak Valid',
-              position: 'topCenter',
-            });
-          }
-        });
-      });
-    }
+            limitName();
+            balasButton.addEventListener('click', function() {
 
-    function BlokirKomentar(num) {
-      $("#FormBlokirKomentar" + num).off("submit");
-      $("#FormBlokirKomentar" + num).submit(function(event) {
-        event.preventDefault();
-        let route = $(this).attr('action');
-        let data = new FormData($(this)[0]);
-        $.ajax({
-          url: route,
-          data: data,
-          method: "POST",
-          contentType: false,
-          processData: false,
-          success: function success(response) {
-            iziToast.destroy();
-            iziToast.success({
-              'title': 'Success',
-              'message': 'Sukses memblokir resep',
-              'position': 'topCenter'
             });
-            $("#AlasanBlokirKomentar" + num).val("");
-            $("#ButtonBlokirKomentar" + num).prop("disabled", true);
-          },
-          error: function error(xhr, error, status) {
-            iziToast.destroy();
-            iziToast.error({
-              'title': 'Error',
-              'message': xhr.responseText,
-              'position': 'topCenter'
-            });
+            
           }
-        });
+        },
+        error: function error(xhr, status, errors) {
+          iziToast.destroy();
+          iziToast.show({
+            backgroundColor: '#f2a5a8',
+            title: '<i class="fa-solid fa-triangle-exclamation"></i>',
+            titleColor: 'dark',
+            messageColor: 'dark',
+            message: 'Komentar tidak Valid',
+            position: 'topCenter',
+          });
+        }
       });
-    }
-    function BlokirKomen(num) {
-      $("#FormBlokirKomen" + num).off("submit");
-      $("#FormBlokirKomen" + num).submit(function(event) {
-        event.preventDefault();
-        let route = $(this).attr('action');
-        let data = new FormData($(this)[0]);
-        $.ajax({
-          url: route,
-          data: data,
-          method: "POST",
-          contentType: false,
-          processData: false,
-          success: function success(response) {
-            iziToast.destroy();
-            iziToast.success({
-              'title': 'Success',
-              'message': 'Sukses memblokir resep',
-              'position': 'topCenter'
-            });
-            $("#AlasanBlokirKomen" + num).val("");
-            $("#ButtonBlokirKomen" + num).prop("disabled", true);
-          },
-          error: function error(xhr, error, status) {
-            iziToast.destroy();
-            iziToast.error({
-              'title': 'Error',
-              'message': xhr.responseText,
-              'position': 'topCenter'
-            });
-          }
-        });
+    });
+  }
+
+  function BlokirReplyCommentFeed(num) {
+    $("#FormBlokirReplyCommentFeed" + num).off("submit");
+    $("#FormBlokirReplyCommentFeed" + num).submit(function(event) {
+      event.preventDefault();
+      let route = $(this).attr('action');
+      let data = new FormData($(this)[0]);
+      $.ajax({
+        url: route,
+        data: data,
+        method: "POST",
+        contentType: false,
+        processData: false,
+        success: function success(response) {
+          iziToast.destroy();
+          iziToast.success({
+            'title': 'Success',
+            'message': 'Sukses memblokir resep',
+            'position': 'topCenter'
+          });
+          $("#AlasanBlokirReplyCommentFeed" + num).val("");
+          $("#ButtonBlokirReplyCommentFeed" + num).prop("disabled", true);
+        },
+        error: function error(xhr, error, status) {
+          iziToast.destroy();
+          iziToast.error({
+            'title': 'Error',
+            'message': xhr.responseText,
+            'position': 'topCenter'
+          });
+        }
       });
-    }
-    function BlokirReplyCommentFeed(num) {
-      $("#FormBlokirReplyCommentFeed" + num).off("submit");
-      $("#FormBlokirReplyCommentFeed" + num).submit(function(event) {
-        event.preventDefault();
-        let route = $(this).attr('action');
-        let data = new FormData($(this)[0]);
-        $.ajax({
-          url: route,
-          data: data,
-          method: "POST",
-          contentType: false,
-          processData: false,
-          success: function success(response) {
-            iziToast.destroy();
-            iziToast.success({
-              'title': 'Success',
-              'message': 'Sukses memblokir resep',
-              'position': 'topCenter'
-            });
-            $("#AlasanBlokirReplyCommentFeed" + num).val("");
-            $("#ButtonBlokirReplyCommentFeed" + num).prop("disabled", true);
-          },
-          error: function error(xhr, error, status) {
-            iziToast.destroy();
-            iziToast.error({
-              'title': 'Error',
-              'message': xhr.responseText,
-              'position': 'topCenter'
-            });
-          }
-        });
-      });
-    }
-  </script>
+    });
+  }
+</script>
   <script>
     // Mendapatkan semua elemen dengan class "item"
     var elements = document.querySelectorAll('.item');
