@@ -3585,7 +3585,7 @@
                             } else {
                                 isSuperUser = '';
                             }
-                            }
+                            
                             console.log(response.isSuperUser);
                             let innerHtml = `
                             <div class="" id="balasan_komentar_ini2${up['id']}">
@@ -4451,10 +4451,12 @@
                                                                                                                 </small>
 
                                                                                                             </div>
-                                                                                                            <div class="d-flex pl-0 text-deskripsi ellipsis-name" style="margin-top:-1.2%;">
-                                                                                                                <p class="komentar2"><a class="text-primary ellipsis-name  text-deskripsi me-2" href="">@${penerima['name']}</a>${up['komentar']}
+                                                                                                            <a href=""
+                                                                                                                    class=" text-deskripsi ellipsis-name komentar3">@${penerima['name']}</a>
+                                                                                                                <p
+                                                                                                                    class="text-deskripsi ellipsis-name komentar3">
+                                                                                                                    ${up['komentar']}
                                                                                                                 </p>
-                                                                                                            </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex" style="margin-top: -3%;">
                                                                                                                 <div class="d-flex col-2 icon-komentar3 pl-0 mr-auto">

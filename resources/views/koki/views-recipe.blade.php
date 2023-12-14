@@ -577,6 +577,7 @@
                         @endif
                         <div class="row mx-auto reseps " style="flex-wrap: wrap;" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
+                                <a href="/artikel/{{ $my_recipe->id }}/{{ $my_recipe->nama_resep }}">
                                 <div class=" d-flex cardReseps justify-content-center col-lg-3  col-xl-3 p-1 col-md-4 col-sm-6 "
                                     style=" width: 100%; box-shadow:none; ">
                                     <div class="border card" style="border-radius: 15px">
@@ -642,6 +643,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                </a>
                                 {{-- <div class="resep-sendiri card col-lg-4 ml-3 col-xl-3 border border-black col-md-4 col-sm-12 my-3"
                                     style="border-radius:15px; bordq    eler: 1px solid black;">
                                     <div class="row mx-auto">
@@ -769,6 +771,7 @@
                         @endif
                         <div class="row my-4 gap-1">
                             @foreach ($resep_disukai as $num => $suka)
+                            <a href="/artikel/{{ $suka->id }}/{{ $suka->nama_resep }}">
                             <div class=" card col-lg-4 mx-auto  col-xl-3  border-black col-md-4 col-12 "
                             style="border-radius:15px; width: 100%; border: 1px solid black; max-width:250px">
                                 <div class="mx-auto">
@@ -834,6 +837,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                                 {{-- <div class="resep-disukai card col-lg-4 col-xl-3 col-md-4 col-sm-12 my-3 ml-3 resepDisukai"
                                     style="border-radius:15px">
                                     <div class="row mx-auto">
@@ -963,6 +967,7 @@
                         @endif
                         <div class="row my-4 gap-1">
                             @foreach ($resep_favorite as $num => $favorite)
+                            <a href="/artikel/{{ $suka->id }}/{{ $suka->nama_resep }}">
                             <div class=" card col-lg-4 mx-auto  col-xl-3  border-black col-md-4 col-12 "
                             style="border-radius:15px; width: 100%; border: 1px solid black; max-width:250px">
                                 <div class="mx-auto">
@@ -1028,6 +1033,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                                 {{-- <div class="card col-lg-4 col-xl-3 col-md-4 col-sm-12 my-3 ml-3 resep-favorite"
                                     style="border-radius:15px">
                                     <div class="row mx-auto">
