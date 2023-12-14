@@ -3098,7 +3098,7 @@
                             url = "/veed/"+item.veed.uuid;
                             nama = "postingan";
                             let ImageVeed = 'storage/'+item.veed.upload_video;
-                           file = ` <video class="video ms-5 video-fav" controls width="180"
+                           file = ` <video class="video ms-5 video-fav" controls width="165"
                                             height="120">
                                             <source src="${ImageVeed}"
                                                 type="video/mp4">
@@ -3109,10 +3109,10 @@
                             url = "/detail_kursus/"+item.kursus.id;
                             nama = item.kursus.nama_kursus;
                             deskripsi = item.kursus.deskripsi_kursus;
-                            file = `<img src="{{ asset('${ImageKursus}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:180px" alt="">`;
+                            file = `<img src="{{ asset('${ImageKursus}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:165px" alt="">`;
                         } else if(item.resep_id != null){
                             let ImageResep = 'storage/'+item.resep.foto_resep;
-                            file = `<img src="{{ asset('${ImageResep}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:180px" alt="">`;
+                            file = `<img src="{{ asset('${ImageResep}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:165px" alt="">`;
                             nama = item.resep.nama_resep;
                             url = "/artikel/"+item.resep.id+"/"+item.resep.nama_resep;
                             deskripsi = item.resep.deskripsi_resep;
@@ -3170,7 +3170,7 @@
                             url = "/veed/"+item.veed.uuid;
                             nama = "postingan";
                             let ImageVeed = 'storage/'+item.veed.upload_video;
-                           file = ` <video class="video ms-5 video-fav" controls width="180"
+                           file = ` <video class="video ms-5 video-fav" controls width="165"
                                             height="120">
                                             <source src="${ImageVeed}"
                                                 type="video/mp4">
@@ -3181,10 +3181,10 @@
                             url = "/detail_kursus/"+item.kursus.id;
                             nama = item.kursus.nama_kursus;
                             deskripsi = item.kursus.deskripsi_kursus;
-                            file = `<img src="{{ asset('${ImageKursus}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:180px" alt="">`;
+                            file = `<img src="{{ asset('${ImageKursus}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:165px" alt="">`;
                         } else if(item.resep_id != null){
                             let ImageResep = 'storage/'+item.resep.foto_resep;
-                            file = `<img src="{{ asset('${ImageResep}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:180px" alt="">`;
+                            file = `<img src="{{ asset('${ImageResep}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:165px" alt="">`;
                             nama = item.resep.nama_resep;
                             url = "/artikel/"+item.resep.id/item.resep.nama_resep;
                             deskripsi = item.resep.deskripsi_resep;
