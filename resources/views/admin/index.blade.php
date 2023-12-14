@@ -45,9 +45,12 @@
             </div>
             <div class="d-flex justify-content-between">
                 <div class="">
+                    <h5 class="fw-bold">Data Jumlah Pengguna</h5>
+                </div>
+                <div class="">
                     <div class="dropdown">
                         <button class="btn dropdown-toggle"
-                            style="background-color: #F7941E;border-radius:15px;border: none;color: white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                            style="background-color: #F7941E;border-radius:10px;border: none;color: white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             @if (request()->has('tahun'))
                                 {{ request()->tahun }}
@@ -62,9 +65,6 @@
                             @endforeach
                         </ul>
                     </div>
-                </div>
-                <div class="">
-                    <h5 class="fw-bold">Data Jumlah Pengguna</h5>
                 </div>
             </div>
             <canvas class="my-3" id="myBarChart" style="border: 1px solid black; border-radius: 15px;"></canvas>
