@@ -348,7 +348,7 @@
                     @endif
                     <div class="row daftarkursus" id="myCourse">
                         @foreach ($kursus_sendiri as $mycourse)
-                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3">
                                 <div class="my-3 myCourse" style="border-radius:15px">
                                     <div class="card">
                                         <div class=" " style="max-height:120px; min-height:120px;">
