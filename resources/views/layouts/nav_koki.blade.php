@@ -281,8 +281,13 @@
                                                         style="max-width:35px">
                                                 </a>
                                             @endif
+                                            <span class="d-flex">
                                             <p class="mt-2 text-orange ellipsis">
                                                 {{ $row->sender->name }}</p>
+                                                @if ($row->sender->isSuperUser == 'yes')
+                                                    <i class="fa-regular text-primary fa-circle-check ms-2" style="margin-top: 12px;"></i>
+                                                @endif
+                                            </span>
                                             @if ($row->reply_id != null && $row->complaint_id != null && $row->like_id == null)
                                                 <form action="{{ route('replies.notification', $row->id) }}"
                                                     method="POST">
@@ -856,7 +861,13 @@
                                                 style="max-width:40px">
                                         @endif
                                     </a>
-                                    <p class="mt-2 text-orange ellipsis"><b>{{ auth()->user()->name }}</b></p>
+                                    <span>
+                                    <p class="mt-2 text-orange ellipsis"><b>{{ auth()->user()->name }}</b>
+                                    @if ($userLogin->isSuperUser == 'yes')
+                                        <i class="fa-regular text-primary fa-circle-check ms-2" style="margin-top: 12px;"></i>
+                                    @endif
+                                    </span>
+                                </p>
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <a href="/koki/index" class="dropdown-item text-orange itemdropdown" style="width: 230px">
@@ -936,7 +947,13 @@
                                         style="max-width:40px">
                                 @endif
                             </a>
-                            <p class="mt-2 text-orange ellipsis"><b>{{ auth()->user()->name }}</b></p>
+                            <span class="d-flex">
+                            <p class="mt-2 text-orange ellipsis"><b>{{ auth()->user()->name }}</b>
+                            @if ($userLogin->isSuperUser == 'yes')
+                                <i class="fa-regular text-primary fa-circle-check ms-2" style="margin-top: 12px;"></i>
+                            @endif
+                            </span>
+                        </p>
                         </div>
                         <div class="dropdown-divider">
                             <a href="/admin/dashboard" class="dropdown-item text-orange" style="width: 230px">
