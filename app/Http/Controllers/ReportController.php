@@ -594,11 +594,12 @@ class ReportController extends Controller
         $kursus->delete();
         return redirect('/kursus')->with('success', 'Berhasil memblokir kursus');
     }
-    public function block_reply_comment_feed(Request $request, $id) {
-        $komen = BalasReplyCommentfeeds::findOrFail($id);
+    public function block_reply_reply_comment_feed(Request $request, int $id) {
+
+        $komen = BalasReplyCommentfeeds::find($id);
         $komen->user_pengirim->increment('jumlah_pelanggaran');
         $notification = new Notifications();
-        $notification->user_id = $komen->pengirim_reply_comment_id->id;
+        $notification->user_id = $komen->pengirim_reply_comment_id;
         $notification->notification_from = auth()->user()->id;
         $notification->balas_reply_comment_feed_report = 1;
         $notification->alasan = $request->alasan;
@@ -611,7 +612,7 @@ class ReportController extends Controller
             'message' => 'Berhasil memblokir balasan komentar feed ini',
         ]);
     }
-    public function block_reply1_comment_feed(Request $request, $id) {
+    public function block_reply_comment_feed(Request $request, string $id) {
         $komen = ReplyCommentFeed::findOrFail($id);
         $komen->user->increment("jumlah_pelanggaran");
         $notification = new Notifications();

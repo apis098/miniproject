@@ -223,7 +223,7 @@
                     <span class="d-flex">
                     <span class="widget-49-pro-title fw-bolder ellipsis-name">{{ $item->user->name }}</span>
                       @if ($item->user->isSuperUser == 'yes')
-                          <i class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
+                          <i class="fa-regular text-primary fa-circle-check my-auto ms-1"></i>
                       @endif
                       </span>
                     <small class="text-secondary"><i>{{ $item->user->email }}</i></small>

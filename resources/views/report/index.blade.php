@@ -470,12 +470,12 @@
                         <td style="border-left:1px solid black;" class="mt">
                           {{ $row->userSender->name }}
                           @if ($row->userSender->isSuperUser == 'yes')
-                              <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                              <i class="fa-regular text-primary fa-circle-check"></i>
                           @endif
                         </td>
                         <td>{{ $row->user->name }}
                         @if ($row->user->isSuperUser == 'yes')
-                            <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                            <i class="fa-regular text-primary fa-circle-check"></i>
                         @endif
                         </td>
                         <td>{{ $row->description }}</td>
@@ -534,12 +534,12 @@
                         <td style="border-left:1px solid black;" class="mt">
                           {{ $row->userSender->name }}
                           @if ($row->userSender->isSuperUser == 'yes')
-                              <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                              <i class="fa-regular text-primary fa-circle-check"></i>
                           @endif
                         </td>
                         <td>{{ $row->user->name }}
                         @if ($row->user->isSuperUser == 'yes')
-                            <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                            <i class="fa-regular text-primary fa-circle-check"></i>
                         @endif
                         </td>
                         <td>{{ $row->description }}</td>
@@ -596,12 +596,12 @@
                       <td style="border-left:1px solid black;" class="mt">
                         {{ $row->userSender->name }}
                         @if ($row->userSender->isSuperUser == 'yes')
-                            <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                            <i class="fa-regular text-primary fa-circle-check"></i>
                         @endif
                       </td>
                       <td>{{ $row->user->name }}
                       @if ($row->user->isSuperUser == 'yes')
-                          <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                          <i class="fa-regular text-primary fa-circle-check"></i>
                       @endif
                       </td>
                       <td>{{ $row->description }}</td>
@@ -657,12 +657,12 @@
                       <td style="border-left:1px solid black;" class="mt">
                         {{ $row->userSender->name }}
                         @if ($row->userSender->isSuperUser == 'yes')
-                            <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                            <i class="fa-regular text-primary fa-circle-check"></i>
                         @endif
                       </td>
                       <td>{{ $row->user->name }}
                       @if ($row->user->isSuperUser == 'yes')
-                          <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                          <i class="fa-regular text-primary fa-circle-check"></i>
                       @endif
                       </td>
                       <td>{{ $row->description }}</td>
@@ -718,12 +718,12 @@
                       <td style="border-left:1px solid black;" class="mt">
                         {{ $row->userSender->name }}
                         @if ($row->userSender->isSuperUser == 'yes')
-                            <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                            <i class="fa-regular text-primary fa-circle-check"></i>
                         @endif
                       </td>
                       <td>{{ $row->user->name }}
                       @if ($row->user->isSuperUser == 'yes')
-                          <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                          <i class="fa-regular text-primary fa-circle-check"></i>
                       @endif
                       </td>
                       <td>{{ $row->description }}</td>
@@ -777,12 +777,12 @@
                       <td style="border-left:1px solid black;" class="mt">
                         {{ $row->userSender->name }}
                         @if ($row->userSender->isSuperUser == 'yes')
-                            <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                            <i class="fa-regular text-primary fa-circle-check"></i>
                         @endif
                       </td>
                       <td>{{ $row->user->name }}
                       @if ($row->user->isSuperUser == 'yes')
-                          <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                          <i class="fa-regular text-primary fa-circle-check"></i>
                       @endif
                       </td>
                       <td>{{ $row->description }}</td>

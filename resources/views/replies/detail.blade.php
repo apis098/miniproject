@@ -144,7 +144,7 @@
                                 <span style="display: flex; align-items: center;">
                                     <p class="ms-3 fw-bolder ellipsis-name mb-0">{{ $data->user->name }}</p>
                                     @if ($data->user->isSuperUser == 'yes')
-                                        <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                                        <i class="fa-regular text-primary fa-circle-check ms-1"></i>
                                     @endif
                                 </span>
                                 <div class="ms-3">
@@ -370,7 +370,7 @@
                                         <div class="font-weight-semibold ms-1 me-2">
                                             <small class="font-weight-bolder ellipsis-name">{{ $row->user->name }}</small>
                                             @if ($row->user->isSuperUser == 'yes')
-                                            <i class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
+                                            <i class="fa-regular text-primary fa-circle-check my-auto ms-1"></i>
                                             @endif
                                             <svg class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg"
                                                 width="15" height="15" viewBox="0 0 24 24">
@@ -394,7 +394,7 @@
                                                 <small
                                                     class="font-weight-bolder font-weight-bolder ellipsis-name">{{ $row->user->name }}</small>
                                                     @if ($row->user->isSuperUser == 'yes')
-                                                    <i class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
+                                                    <i class="fa-regular text-primary fa-circle-check my-auto ms-1"></i>
                                                     @endif
                                                 </span>
                                                     @if ($repliesCount > 0)
@@ -514,7 +514,7 @@
                                                     <div class="d-flex">
                                                         <small class="font-weight-bolder ellipsis-name">{{ $item->userSender->name }}</small>
                                                         @if ($item->userSender->isSuperUser == 'yes')
-                                                        <i class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
+                                                        <i class="fa-regular text-primary fa-circle-check my-auto ms-1"></i>
                                                         @endif
                                                         @if ($item->userSender->role == 'admin')
                                                         <svg class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg"
@@ -1137,7 +1137,7 @@
                                 });
                                 let isSuperUser = response.isSuperUser;
                                     if (isSuperUser.isSuperUser == 'yes') {
-                                    isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+                                    isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-1"></i>';
                                     } else {
                                     isSuperUser = 'yooo'
                                     }
@@ -1495,7 +1495,7 @@
                             $("#reply_comment" + num).val('');
                             let isSuperUser = response.isSuperUser;
                             if (isSuperUser.isSuperUser == 'yes') {
-                            isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+                            isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-1"></i>';
                             } else {
                             isSuperUser = 'yooo'
                             }
@@ -1681,7 +1681,7 @@
                             $("#reply_comment" + num).val('');
                             let isSuperUser = response.isSuperUser;
                             if (isSuperUser.isSuperUser == 'yes') {
-                            isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+                            isSuperUser = '<i class="fa-regular text-primary fa-circle-check mt-1 ms-1"></i>';
                             } else {
                             isSuperUser = 'yooo'
                             }

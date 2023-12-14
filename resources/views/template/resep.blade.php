@@ -795,7 +795,7 @@
                                             </strong>
                                             <span class="ellipsis-name">{{ $item->User->name }} </span>
                                             @if ($item->user->isSuperUser == 'yes')
-                                                <i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                                                <i class="fa-regular text-primary fa-circle-check mt-1"></i>
                                             @endif
                                              <br>
                                         

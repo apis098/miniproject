@@ -358,7 +358,11 @@
                                     <h5 class="mb-0">
                                         <a href="#" style="color: black">
                                             {{ $detail_course->user->name }}
+
                                         </a>
+                                        @if ($detail_course->user->isSuperUser == 'yes')
+                                            <i class="fa-regular text-primary fa-circle-check mt-2"></i>
+                                        @endif
                                     </h5>
 
                                     <div class="d-flex justify-content-center mt-2 ">
@@ -903,5 +907,34 @@
                 });
             }
         </script>
+        <script>
+        function limitName() {
+        let elements = document.querySelectorAll('.ellipsis-name');
+
+        elements.forEach(element => {
+            let text = element.textContent.trim(); // Mengambil teks asli dari elemen
+            let screenWidth = window.innerWidth;
+            let maxLength;
+
+            if (screenWidth <= 425) {
+            maxLength = 5;
+            } else if (screenWidth <= 767 && screenWidth >= 426) {
+            maxLength = 10;
+            } else {
+            maxLength = 15;
+            }
+
+            let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+            element.textContent = shortenedText;
+        });
+        }
+
+        document.addEventListener('readystatechange', () => {
+        if (document.readyState === 'interactive') {
+            limitName();
+            window.addEventListener('resize', limitName);
+        }
+        });
+    </script>
 
     @endsection

@@ -888,9 +888,9 @@
     <div id="customCarousel1" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <div class="container">
-                    <div class="row ms-2">
-                        <div class="col-md-7 col-lg-6 mt-5">
+                <div class="m-5">
+                    <div class="row ms-1">
+                        <div class="col-md-7 col-lg-6 mt-5 p-0">
                             <div class="detail-box text-poppins text-dark mt-5">
                                 <h3 class="text-poppins text-dark">
                                     <b>Tentang Kami</b>
