@@ -115,7 +115,6 @@
       cursor: pointer;
       outline: inherit;
     }
-
     .btn-edit {
       background: #F7941E;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -209,7 +208,7 @@
       color: #eee
     }
 
-    @media(min-width:992px) {
+    @media(min-width:991px) {
       .search-2 button {
         position: absolute;
         top: 0px;
@@ -232,7 +231,7 @@
       }
     }
 
-    @media(max-width:991px) {
+    @media(max-width:992px) {
       .search-2 button {
         position: absolute;
         top: 0px;
@@ -277,6 +276,12 @@
         justify-content: center;
       }
     }
+
+    @media(max-width:991px) {
+        .imagesAlasan {
+        display: none;
+      }
+    }
   </style>
   <script>
     $(document).ready(function() {
@@ -318,8 +323,11 @@
             <tr class="mt-5">
               <td style="border-left:1px solid black;">
                 <a href="#" data-toggle="modal" data-target="#modalKursus{{ $item->id }}" class="">
-                  <img src="{{ asset('storage/' . $item->foto_kursus) }}" class="img-fluid shadow-1-strong rounded"
-                    style=" width: 150px;height: 80px;" alt="Hollywood Sign on The Hill" />
+                  <img src="{{ asset('storage/' . $item->foto_kursus) }}"
+                  class="card-img-top"
+                  style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%; border-top-left-radius:15px;
+                 border-top-right-radius: 15px"
+                  alt="Hollywood Sign on The Hill" />
                 </a>
                 <div class="modal fade bd-example-modal-xl rounded-5" id="modalKursus{{ $item->id }}" tabindex="-1"
                   role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" style="text-align: left;">
@@ -370,12 +378,17 @@
                               <div class="col-xl-3 col-sm-4 mb-4 my-5">
                                 <div class="bg-white shadow-sm py-5 border border-secondary text-center"
                                   style="border-radius: 20px; height:16rem;">
-                                  <img src="{{ asset('storage/' . $item->foto_kursus) }}" alt="" width="70%"
-                                    height="70%" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                                  <img src="{{ asset('storage/' . $item->foto_kursus) }}" alt=""
+                                  class="card-img-top mb-3"
+                                  style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%; border-top-left-radius:15px;
+                                 border-top-right-radius: 15px">
                                   <h5 class="mb-0">
                                     <a href="#"
                                       style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                       {{ $item->user->name }}
+                                      @if ($item->user->isSuperUser == 'yes')
+                                          <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                                      @endif
                                     </a>
                                   </h5>
 
@@ -391,7 +404,9 @@
                 </div>
               </td>
               <td>
+                <p data-toggle="modal" data-target="#modalKursus{{ $item->id }}">
                 {{ $item->nama_kursus }}
+                </p>
               </td>
               <td>
                 {{ $item->user->name }}
@@ -452,36 +467,47 @@
               </div>
             </div>
             <div class="modal" id="ModalTolak{{ $item->id }}">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" style="width: 100%;">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Kirim alasan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body" style="text-align: right;">
-                    <form action="{{ route('eksekusi.kursus', ['ditolak', $item->id]) }}" method="post">
-                      @csrf
-                      @method('PATCH')
-                      <div class="row mb-3">
-                        <div class="col-lg-5 col-md-12">
-                          <img class="my-auto" src="{{ asset('images/alasan.png') }}" width="100%" height="100%"
-                            alt="">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="width: 100%;">
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bolder">Kirim alasan
+                            </h5>
+                            <button type="button" class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
-                        <div class="col-lg-7 col-md-12">
-                          <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
-                            cols="5" rows="5"></textarea>
+                        <div class="modal-body" style="text-align: right;">
+                            <form
+                                action={{ route('eksekusi.kursus', ['ditolak', $item->id]) }}" id="FormBlockReplyCommentRecipe{{$item->id}}"
+                                method="post">
+                                @csrf
+                                @method('PATCH')
+                                <input type="hidden" name="block_resep"
+                                    value="yes">
+                                <div class="row mb-3">
+                                    <div
+                                        class="col-lg-4 col-md-12 align-items-ceneter text-center">
+                                        <img class="img-fluid imagesAlasan"
+                                            src="{{ asset('images/alasan.png') }}"
+                                            width="100%" alt="">
+                                    </div>
+                                    <div
+                                        class="col-lg-8 col-md-12 align-items-center">
+                                        <textarea name="alasan" class="form-control" style="border-radius: 15px;" id="AlasanBlockReplyCommentRecipe{{$item->id}}"
+                                            placeholder="Alasan..." cols="5" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" id="ButtonBlockReplyCommentRecipe{{$item->id}}" onclick="BlockReplyCommentRecipe({{$item->id}})"
+                                    style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    class="btn  btn-sm text-light">
+                                    <b class="me-3 ms-3">Kirim</b></button>
+                            </form>
                         </div>
-                      </div>
 
-                      <button type="submit"
-                        style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                        class="btn  btn-sm text-light">
-                        <b class="me-3 ms-3">Kirim</b></button>
-                    </form>
-                  </div>
-
+                    </div>
                 </div>
-              </div>
+
+
             </div>
           @endforeach
         </tbody>

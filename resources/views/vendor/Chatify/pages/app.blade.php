@@ -59,7 +59,7 @@
                     <a href="#" class="show-listView"><i class="fas fa-arrow-left"></i></a>
                     <div class="avatar av-s header-avatar" style="margin: 0px 10px; margin-top: -5px; margin-bottom: -5px;">
                     </div>
-                    <a href="#" class="user-name">Pilih satu pengguna untuk memulai percakapan</a>
+                    <a href="#" class="user-name">Pilih satu pengguna untuk memulai percakapan</a><i style="display: none;" class="verifed-icon ms-1 text-primary fa-regular fa-circle-check"></i>
                 </div>
                 {{-- header buttons --}}
                 <nav class="m-header-right">

@@ -790,18 +790,15 @@
                                                   class="judul-resep" href="">
                                                   {{ $item->nama_resep }}</a>
                                           </h5>
-                                          <strong style="flex-direction: column;">
+                                          <strong>
                                             Oleh :
                                             </strong>
-                                            <br>
                                             <span class="ellipsis-name">{{ $item->User->name }} </span>
                                             @if ($item->user->isSuperUser == 'yes')
                                                 <i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
                                             @endif
                                              <br>
-                                          <p class="mt-2 my-2">RP.
-                                              {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}
-                                          </p>
+                                        
                                       </div>
                                       <div class="col-12 row d-flex justify-content-between">
                                           <div class="col-6 d-flex align-items-center pr-0">
@@ -885,7 +882,7 @@
         } else if (screenWidth <= 767 && screenWidth >= 426) {
           maxLength = 10;
         } else {
-          maxLength = 15;
+          maxLength = 10;
         }
 
         let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;

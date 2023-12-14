@@ -430,6 +430,11 @@ function IDinfo(id) {
         // update info in view
         $(".messenger-infoView .info-name").text(data.fetch.name);
         $(".m-header-messaging .user-name").text(data.fetch.name);
+        if(data.fetch.isSuperUser == "yes"){
+          $(".verifed-icon").css('display','block');
+        }else{
+          $(".verifed-icon").css('display','none');
+        }
         // Star status
         data.favorite > 0
           ? $(".add-to-favorite").addClass("favorite")
