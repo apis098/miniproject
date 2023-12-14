@@ -140,17 +140,20 @@
                                 <img src="{{ asset('images/default.jpg') }}" width="52px" height="52px"
                                     style="border-radius: 50%" alt="">
                             @endif
-                            <div class="d-flex">
-                                <span style="flex-direction: column;">
-                                <p class="ms-3 fw-bolder ellipsis-name mb-0">{{ $data->user->name }}</p>
-                                    <small class="ms-3">
+                            <div class="mt-1 align-items-center">
+                                <span style="display: flex; align-items: center;">
+                                    <p class="ms-3 fw-bolder ellipsis-name mb-0">{{ $data->user->name }}</p>
+                                    @if ($data->user->isSuperUser == 'yes')
+                                        <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                                    @endif
+                                </span>
+                                <div class="ms-3">
+                                    <small>
                                         <i>{{ $data->user->email }}</i>
                                     </small>
-                                </span>
-                                @if ($data->user->isSuperUser == 'yes')
-                                    <i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
-                                @endif
+                                </div>
                             </div>
+
                         </div>
                         <div class="" style="">
                             @if (Auth::check())

@@ -45,10 +45,10 @@
                   <div>
                     <div class="bg-light rounded-3 px-3 py-1">
                       <a href="/profile-orang-lain/{{ $row->id }}" class="text-dark mb-0">
-                        <div class="pl-0 pr-0 d-flex justify-content-between">
-                          <strong class="ellipsis">{{ explode(' ', $row->name)[0] }}</strong>
+                        <div class="pl-0 pr-0 d-flex">
+                          <strong class="ellipsis-menu">{{ explode(' ', $row->name)[0] }}</strong>
                           @if ($row->isSuperUser == 'yes')
-                            <i class="fa-duotone fa-circle-check my-auto"></i>
+                            <i class="fa-duotone fa-circle-check my-auto ms-2"></i>
                           @endif
                         </div>
                       </a>
@@ -2935,10 +2935,10 @@
                   <div>
                     <div class="bg-light rounded-3 px-3 py-1">
                       <a href="/artikel/{{ $resep->id }}/{{ $resep->nama_resep }}" class="text-dark mb-0">
-                        <div class="pl-0 pr-0 d-flex justify-content-between">
-                          <strong class="ellipsis">{{ explode(' ', $resep->user->name)[0] }}</strong>
+                        <div class="pl-0 pr-0 d-flex">
+                          <strong class="ellipsis-menu">{{ explode(' ', $resep->user->name)[0] }}</strong>
                           @if ($resep->user->isSuperUser == 'yes')
-                            <i class="fa-regular fa-sm text-primary fa-circle-check my-auto"></i>
+                            <i class="fa-regular fa-sm text-primary fa-circle-check my-auto ms-2"></i>
                           @endif
                         </div>
                         <small class="ellipsis">{{ $resep->nama_resep }}</small>
@@ -2974,10 +2974,10 @@
 
                     <div class="bg-light rounded-3 px-3 py-1">
                       <a href="/detail_kursus/{{ $kursus->id }}" class="text-dark mb-0">
-                        <div class="pl-0 pr-0 d-flex justify-content-between">
-                          <strong class="ellipsis">{{ explode(' ', $kursus->user->name)[0] }}</strong>
+                        <div class="pl-0 pr-0 d-flex">
+                          <strong class="ellipsis-menu">{{ explode(' ', $kursus->user->name)[0] }}</strong>
                           @if ($kursus->user->isSuperUser == 'yes')
-                            <i class="fa-regular text-primary fa-circle-check my-auto"></i>
+                            <i class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
                           @endif
                         </div>
                       </a>
@@ -4833,6 +4833,7 @@
   <script>
     function limitName() {
       let elements = document.querySelectorAll('.ellipsis-name');
+      let menu = document.querySelectorAll('.ellipsis-menu');
 
       elements.forEach(element => {
         let text = element.textContent.trim(); // Mengambil teks asli dari elemen
@@ -4850,6 +4851,23 @@
         let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
         element.textContent = shortenedText;
       });
+
+      menu.forEach(element => {
+        let text = element.textContent.trim(); // Mengambil teks asli dari elemen
+        let screenWidth = window.innerWidth;
+        let maxLength;
+
+        if (screenWidth <= 425) {
+          maxLength = 2;
+        } else if (screenWidth <= 767 && screenWidth >= 426) {
+          maxLength = 7;
+        } else {
+          maxLength = 7;
+        }
+
+        let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+        element.textContent = shortenedText;
+      });
     }
 
     document.addEventListener('readystatechange', () => {
@@ -4859,7 +4877,6 @@
       }
     });
   </script>
-
 
   <!-- <script>
     //    // Fungsi untuk mengatur kelas pada lebar layar tertentu
