@@ -19,7 +19,10 @@ class FavoriteController extends Controller
                 ->orderBy('created_at', 'desc')->with('resep', 'kursus', 'veed', 'user')
                 ->get();
         }
-        return response()->json(['favorite'=>$favorite]);
+        return response()->json([
+            'favorite'=>$favorite,
+            'FavoriteCount' =>$favorite->count()
+        ]);
     }
     public function store($id)
     {

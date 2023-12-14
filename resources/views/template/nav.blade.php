@@ -2232,14 +2232,13 @@
                                     </div> --}}
                                 {{-- @endif --}}
                             </form>
-                        @forelse ($favorite as $row)
-                        @empty
-                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+
+                            <div class=" flex-column h-100 justify-content-center align-items-center " id="Nondata"
                                 style="margin-top: 2em">
                                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
                                 <p style="color: #1d1919"><b>Tidak ada data</b></p>
                             </div>
-                        @endforelse
+
                         <div class="modal-footer d-flex justify-content-between">
                             <div class="ms-3">
                                 <input name="select-all" type="checkbox" class="form-check-input"
@@ -2825,16 +2824,16 @@
                 })
                 .get();
                 console.log(selectedIds);
-            if ($('#select-all').prop('checked')) {
-                $('.data-checkbox').prop('checked', true);
-            } else {
-                $('.data-checkbox').prop('checked', false);
-            }
+            // if ($('#select-all').prop('checked')) {
+            //     $('.data-checkbox').prop('checked', true);
+            // } else {
+            //     $('.data-checkbox').prop('checked', false);
+            // }
 
             if (selectedIds.length === 0) {
-                iziToast.show({
-                    backgroundColor: 'red',
-                    title: '<i class="fa-solid fa-triangle-exclamation"></i> Peringatan',
+                iziToast.error({
+                    // backgroundColor: 'red',
+                    // title: '<i class="fa-solid fa-triangle-exclamation"></i> Peringatan',
                     titleColor: 'dark',
                     messageColor: 'dark',
                     message: 'Pilih setidaknya satu data yang akan dihapus.',
@@ -2844,9 +2843,9 @@
                 return;
             }
 
-            iziToast.show({
-                backgroundColor: 'red',
-                title: '<i class="fa-regular fa-circle-question"></i>',
+            iziToast.question({
+                // backgroundColor: 'red',
+                // title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'dark',
                 messageColor: 'dark',
                 message: 'Anda yakin ingin menghapus data terpilih?',
@@ -3066,7 +3065,13 @@
                    type: 'GET',
                    success: function(response) {
                     $('#NotificationsUser').empty();
+                    if(response.FavoriteCount < 1){
+                        $('#Nondata').css('display', 'block');
+                    } else {
+                        $('#Nondata').css('display', 'none');
+                    }
                     $.each(response.favorite, function(index, item) {
+
                         let file, url, nama, deskripsi;
 
                         if(item.feed_id != null){
@@ -3095,9 +3100,9 @@
 
 
                         let Notifications = `
-                            <div class="modal-body row">
+                            <div class="modal-body row" id="card">
                                 <div class=" d-flex align-items-center justify-content-start col-12 col-sm-6 ">
-                                    <input type="checkbox" name="selected_ids[]" class="form-check-input ms-3 data-checkbox" data-id="${item.id}">
+                                    <input type="checkbox" onClick="selectedInput()" name="selected_ids[]" class="form-check-input ms-3 data-checkbox" data-id="${item.id}">
                                     ${file}
                                 </div>
                                 <div class="card mx-auto col-12 col-sm-6 " style="box-shadow:none; border:none;">
@@ -3133,6 +3138,11 @@
                    type: 'GET',
                    success: function(response) {
                     $('#NotificationsUser').empty();
+                    if(response.FavoriteCount < 1){
+                        $('#Nondata').css('display', 'flex');
+                    } else {
+                        $('#Nondata').css('display', 'none');
+                    }
                     $.each(response.favorite, function(index, item) {
                         let file, url, nama, deskripsi;
 
@@ -3162,7 +3172,7 @@
 
 
                         let Notifications = `
-                            <div class="modal-body row">
+                            <div class="modal-body row" id="card">
                                 <div class=" d-flex align-items-center justify-content-start col-12 col-sm-6 ">
                                     <input type="checkbox" name="selected_ids[]" class="form-check-input ms-3 data-checkbox" data-id="${item.id}">
                                     ${file}
@@ -3188,6 +3198,16 @@
                        console.log(error);
                    } // Removed unnecessary semicolon
            });
+        }
+
+        function selectedInput(){
+            var count = document.querySelectorAll('#card').length;
+            const selectedIds = document.querySelectorAll('.data-checkbox:checked').length;
+            if(selectedIds == count){
+                $('#select-all').prop('checked', true);
+            }else{
+                $('#select-all').prop('checked', false);
+            }
         }
     </script>
 </body>
