@@ -2948,6 +2948,7 @@
 
                     if (response.ok) {
                         const responseData1 = await response.json();
+                        Pesan();
                         if (responseData1.favorited) {
                             // Reset button color and SVG here
                             button1.style.backgroundColor = "#F7941E";
@@ -3115,4 +3116,3 @@
     });
   </script>
 @endsection
- 
