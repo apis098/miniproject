@@ -556,7 +556,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <button
+                            <button onclick="ToCResep()"
                                 style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                 class="btn btn-sm ml-4 btn-buat-resep">
                                 <span style="font-weight: 600">
@@ -567,6 +567,7 @@
                             </button>
                         </div>
                     </div>
+
                     {{-- start tab 1 --}}
                         @if ($resep_dibuat->count() < 1)
                             <div class="d-flex mt-5 mr-5 flex-column h-100 justify-content-center align-items-center">
@@ -746,7 +747,7 @@
                                 </div>
 
                             </div>
-                            <button
+                            <button onclick="ToCResep()"
                             style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                             class="btn btn-sm ml-4 btn-buat-resep">
                             <span style="font-weight: 600">
@@ -940,7 +941,7 @@
                                 </div>
 
                             </div>
-                            <button
+                            <button onclick="ToCResep()"
                             style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                             class="btn btn-sm ml-4 btn-buat-resep">
                             <span style="font-weight: 600">
@@ -1185,5 +1186,10 @@
                             });
                         });
                     });
+                </script>
+                 <script>
+                    function ToCResep() {
+                        window.location.href = '/koki/resep';
+                    }
                 </script>
             @endsection
