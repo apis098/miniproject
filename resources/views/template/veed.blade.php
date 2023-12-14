@@ -1759,6 +1759,7 @@
                             if (xhr.readyState === 4 && xhr.status === 200) {
                               // Handle response (mungkin Anda ingin memperbarui ikon favorit berdasarkan respons dari server)
                               var response = JSON.parse(xhr.responseText);
+                              Pesan();
                               if (response.favorited) {
                                 // Reset button color and SVG her
                                 icon.classList.remove('text-dark');
@@ -4412,8 +4413,8 @@
                                                                                 </p>
                                                                                 ${isSuperUser}
                                                                             </span>
-                                                                            
-                                                                                
+
+
                                                                             <div class="d-flex flex-row-reverse ml-auto" style="margin-left: 50%;">
                                                                                 <small class="text-small limit-waktu">
                                                                                     ${time}
@@ -4564,7 +4565,7 @@
             balasButton.addEventListener('click', function() {
 
             });
-            
+
           }
         },
         error: function error(xhr, status, errors) {
