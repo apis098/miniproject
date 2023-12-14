@@ -364,12 +364,12 @@
                     <div class="row daftarkursus" id="myCourse">
                         @foreach ($kursus_sendiri as $mycourse)
                             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3" style="border-radius:15px">
-                                <div class="my-3 myCourse" style="border-radius:15px; ">
-                                    <div class="card" style="border: 1px solid #808080">
+                                <div class="my-3 myCourse" style=" ">
+                                    <div class="card" style="border: 1px solid #808080;border-radius:15px;">
                                         <div class=" " style="max-height:120px; min-height:120px;">
                                             <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}"
                                                 class="card-img-top"
-                                                style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%; "
+                                                style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%;border-radius:15px 15px 0 0; "
                                                 alt="...">
                                         </div>
                                         <div class="card-body"
