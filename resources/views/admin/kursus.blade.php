@@ -386,6 +386,9 @@
                                     <a href="#"
                                       style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                       {{ $item->user->name }}
+                                      @if ($item->user->isSuperUser == 'yes')
+                                          <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                                      @endif
                                     </a>
                                   </h5>
 
@@ -470,7 +473,7 @@
                             <h5 class="modal-title fw-bolder">Kirim alasan
                             </h5>
                             <button type="button" class="btn-close"
-                                data-dismiss="modal"
+                                data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body" style="text-align: right;">
