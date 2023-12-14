@@ -317,6 +317,9 @@
                         <tr class="mt-5">
                             <td style="border-left:1px solid black;">
                                 {{ $data->name }}
+                                @if ($row->isSuperUser == 'yes')
+                                    <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                                @endif
                             </td>
                             <td>
                                 {{ $data->jumlah_pelanggaran }}

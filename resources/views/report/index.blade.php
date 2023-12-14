@@ -469,8 +469,15 @@
                       <tr class="mt-5">
                         <td style="border-left:1px solid black;" class="mt">
                           {{ $row->userSender->name }}
+                          @if ($row->userSender->isSuperUser == 'yes')
+                              <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                          @endif
                         </td>
-                        <td>{{ $row->user->name }}</td>
+                        <td>{{ $row->user->name }}
+                        @if ($row->user->isSuperUser == 'yes')
+                            <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                        @endif
+                        </td>
                         <td>{{ $row->description }}</td>
                         <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
                         <td style="border-right:1px solid black;">
@@ -526,8 +533,15 @@
                       <tr class="mt-5">
                         <td style="border-left:1px solid black;" class="mt">
                           {{ $row->userSender->name }}
+                          @if ($row->userSender->isSuperUser == 'yes')
+                              <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                          @endif
                         </td>
-                        <td>{{ $row->user->name }}</td>
+                        <td>{{ $row->user->name }}
+                        @if ($row->user->isSuperUser == 'yes')
+                            <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                        @endif
+                        </td>
                         <td>{{ $row->description }}</td>
                         <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
                         <td style="border-right:1px solid black;">
@@ -581,8 +595,15 @@
                     <tr class="mt-5">
                       <td style="border-left:1px solid black;" class="mt">
                         {{ $row->userSender->name }}
+                        @if ($row->userSender->isSuperUser == 'yes')
+                            <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                        @endif
                       </td>
-                      <td>{{ $row->user->name }}</td>
+                      <td>{{ $row->user->name }}
+                      @if ($row->user->isSuperUser == 'yes')
+                          <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                      @endif
+                      </td>
                       <td>{{ $row->description }}</td>
                       <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
                       <td style="border-right:1px solid black;">
@@ -635,8 +656,15 @@
                     <tr class="mt-5">
                       <td style="border-left:1px solid black;" class="mt">
                         {{ $row->userSender->name }}
+                        @if ($row->userSender->isSuperUser == 'yes')
+                            <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                        @endif
                       </td>
-                      <td>{{ $row->user->name }}</td>
+                      <td>{{ $row->user->name }}
+                      @if ($row->user->isSuperUser == 'yes')
+                          <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                      @endif
+                      </td>
                       <td>{{ $row->description }}</td>
                       <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
                       <td style="border-right:1px solid black;">
@@ -689,8 +717,15 @@
                     <tr class="mt-5">
                       <td style="border-left:1px solid black;" class="mt">
                         {{ $row->userSender->name }}
+                        @if ($row->userSender->isSuperUser == 'yes')
+                            <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                        @endif
                       </td>
-                      <td>{{ $row->user->name }}</td>
+                      <td>{{ $row->user->name }}
+                      @if ($row->user->isSuperUser == 'yes')
+                          <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                      @endif
+                      </td>
                       <td>{{ $row->description }}</td>
                       <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
                       <td style="border-right:1px solid black;">
@@ -741,8 +776,15 @@
                     <tr class="mt-5">
                       <td style="border-left:1px solid black;" class="mt">
                         {{ $row->userSender->name }}
+                        @if ($row->userSender->isSuperUser == 'yes')
+                            <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                        @endif
                       </td>
-                      <td>{{ $row->user->name }}</td>
+                      <td>{{ $row->user->name }}
+                      @if ($row->user->isSuperUser == 'yes')
+                          <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                      @endif
+                      </td>
                       <td>{{ $row->description }}</td>
                       <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
                       <td style="border-right:1px solid black;">
