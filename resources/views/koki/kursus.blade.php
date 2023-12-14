@@ -217,6 +217,21 @@
                 -webkit-box-orient: vertical;
             }
         }
+        .keterangan {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+
+            @supports (-webkit-line-clamp: 1) {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: initial;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+            }
+        }
 
         @media(max-width: 578px) {
             .ul_kursus li a h5 {
@@ -348,21 +363,20 @@
                     @endif
                     <div class="row daftarkursus" id="myCourse">
                         @foreach ($kursus_sendiri as $mycourse)
-                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3">
-                                <div class="my-3 myCourse" style="border-radius:15px">
-                                    <div class="card">
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3" style="border-radius:15px">
+                                <div class="my-3 myCourse" style="border-radius:15px; ">
+                                    <div class="card" style="border: 1px solid #808080">
                                         <div class=" " style="max-height:120px; min-height:120px;">
                                             <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}"
                                                 class="card-img-top"
-                                                style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%; border-top-left-radius:15px;
-                                               border-top-right-radius: 15px"
+                                                style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%; "
                                                 alt="...">
                                         </div>
                                         <div class="card-body"
-                                            style="padding: 0.7rem 0.7rem 0 0.7rem;  min-height:125px; max-height:125px">
+                                            style="padding: 0.7rem 0.7rem 0.7rem 0.7rem;  min-height:125px; max-height:auto">
                                             <div class="mx-1 ">
                                                 <span class="d-flex justify-content-between">
-                                                    <span>
+                                                    <span class="keterangan">
                                                         @foreach ($mycourse->jenis_kursus as $item)
                                                             {{ $item->jenis_kursus }}
                                                         @endforeach
