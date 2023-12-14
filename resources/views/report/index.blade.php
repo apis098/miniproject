@@ -286,6 +286,54 @@
         justify-content: center;
       }
     }
+    .Judul {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+
+        @supports (-webkit-line-clamp: 2) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: initial;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        }
+    }
+    .Deskripsi::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    .Deskripsi::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(247, 148, 31, 1);
+        border-radius: 10px;
+    }
+
+    .Deskripsi::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(247, 148, 31, 1);
+    }
+    .button1{
+        width: 100%;
+    }
+    .button2{
+        width: 100%;
+    }
+    .button3{
+        width: 100%;
+    }
+    @media (min-width:550px){
+        .button1{
+            width: 30%;
+        }
+        .button2{
+            width: 30%;
+        }
+        .button3{
+            width: 30%;
+        }
+    }
   </style>
   <div class="mx-lg-5 mx-xl-1" style="overflow-x:auto;">
     <div class="">
@@ -716,7 +764,7 @@
                               </button>
                               <div class="container">
                                 <div class="row">
-                                  <div class="col lg-6 my-3">
+                                  <div class="col-lg-8 col-12 my-3">
                                     <button type="button"class="btn"
                                       style=" background: #F7941E;color:white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  color: white; font-size: 16px; font-family: Poppins; font-weight: 400; letter-spacing: 0.36px; word-wrap: break-word">
                                       @foreach ($row->course->jenis_kursus as $jenis_kursus)
@@ -751,12 +799,16 @@
                                     </div>
 
                                   </div>
-                                  <div class="col-xl-3 col-sm-4 mb-4 my-5">
+                                  <div class="col-lg-4 col-12  mb-4 my-5">
                                     <div class="bg-white shadow-sm py-5 border border-secondary text-center"
                                       style="border-radius: 20px; height:16rem;">
-                                      <img src="{{ asset('storage/' . $row->course->foto_kursus) }}" alt=""
-                                        width="70%" height="70%"
-                                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                                      <div class="d-flex justify-content-center">
+                                          <div class="" style="max-width: 150px; min-width: 150px; max-height:150px; min-height:150px">
+                                              <img src="{{ asset('storage/' . $row->course->foto_kursus) }}" alt=""
+                                                style="object-fit: cover;max-width: 150px; min-width: 150px; max-height:150px; min-height:150px"
+                                                class="img-fluid rounded-circle mb-3  shadow-sm">
+                                          </div>
+                                      </div>
                                       <h5 class="mb-0">
                                         <a href="#"
                                           style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
@@ -912,13 +964,13 @@
                 <img src="{{ asset('images/default.jpg') }}" class="ms-2 me-5 img-fluid rounded-circle me-2"
                   style="max-width:106px" alt="">
               @endif
-              <a href="">
-                <div style="justify-content: space-between;" class="mb-1">
-                  <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">
+              <a href="" class="card" style="box-shadow: none; border: none">
+                <div style="justify-content: space-between;" class="mb-1 ">
+                  <h6 class="fw-bolder modal-title mt-2 me-5 text-orange Judul">
                     {{ $row->complaint->subject }}</h6>
-
-                  <small class="text-secondary  me-3">{{ $row->complaint->description }}</small>
-
+                    <div class="Deskripsi" style="max-height: 150px; overflow: auto">
+                        <span class="text-secondary  me-3 " style="">{{ $row->complaint->description }}</span>
+                    </div>
                 </div>
               </a>
             </div>
@@ -966,19 +1018,56 @@
               </button>
             </div>
             <div class="modal-body">
-              @csrf
+                {{-- content 1  --}}
+                <div class="row">
+                    {{-- image --}}
+                    <div class="col-12 col-sm-3 d-flex justify-content-center mb-2">
+                        @if ($row->user->foto)
+                            <img src="{{ asset('storage/' . $row->user->foto) }}" width="106px" height="104px"
+                            style="border-radius: 50%;" id="profile-image">
+                        @else
+                            <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
+                            style="border-radius: 50%;" id="profile-image">
+                        @endif
+                    </div>
+                    {{-- deskripsi --}}
+                    <div class="col-12 col-sm-9 d-flex align-items-center">
+                        <div style="width: 100%">
+                            <input readonly type="text" value="{{ $row->user->name }}" name="name"
+                                class="form-control form-control-sm">
+                            <input readonly type="text" name="email" value="{{ $row->user->email }}"
+                                class="form-control form-control-sm mt-3">
+                        </div>
+                    </div>
+                </div>
+                {{-- content 2  --}}
+                <div class="row ">
+                    <div class="col-12 col-sm-6 pl-sm-1">
+                        <a href="{{ route('randomName.update', $row->id) }}"
+                            class="btn btn-light text-light btn-sm rounded-3 text-light mt-2  "
+                            style="border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%"
+                            type="submit" id="saveProfileButton"><b class="ms-1 me-1">Berikan nama acak</b></a>
+                    </div>
+                    <div class="col-12 col-sm-6 pr-sm-1">
+                        <a href="{{ route('blockContent.destroy', $row->id) }}"
+                            class="btn btn-light text-light btn-sm rounded-3  mt-2 "
+                            style="border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%"><b
+                              class="ms-1 me-1 text-light">Hapus foto saat ini</b></a>
+                    </div>
+                </div>
               {{-- @method('put') --}}
-              <div class="profile d-flex justify-content-center">
+              {{-- <div class="profile d-flex justify-content-center" style="">
+                <div>
+                    <a href="{{ route('blockContent.destroy', $row->id) }}"
+                      class="btn btn-light text-light btn-sm rounded-3"
+                      style="border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                        class="ms-1 me-1 text-light">Hapus foto saat ini</b></a>
 
-                <a href="{{ route('blockContent.destroy', $row->id) }}"
-                  class="btn btn-light text-light btn-sm rounded-3"
-                  style="position: absolute; top: 80%; right: 38%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                    class="ms-1 me-1 text-light">Hapus foto saat ini</b></a>
-
-                <a href="{{ route('randomName.update', $row->id) }}"
-                  class="btn btn-light text-light btn-sm rounded-3 text-light me-3"
-                  style="position: absolute; top: 80%; right: 3%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                  type="submit" id="saveProfileButton"><b class="ms-1 me-1">Berikan nama acak</b></a>
+                    <a href="{{ route('randomName.update', $row->id) }}"
+                      class="btn btn-light text-light btn-sm rounded-3 text-light me-3"
+                      style="border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                      type="submit" id="saveProfileButton"><b class="ms-1 me-1">Berikan nama acak</b></a>
+                </div>
 
                 <input type="file" id="fileInputA" name="profile_picture" style="display:none">
 
@@ -997,29 +1086,33 @@
                     class="form-control form-control-sm mt-3">
                 </div>
 
-              </div>
+              </div> --}}
             </div>
 
-            <div class="modal-footer mt-3 ">
-              <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
-                id="deleteLaporan{{ $row->id }}">
-                @csrf
-                @method('DELETE')
-                <button type="button" onclick="confirmation({{ $row->id }})"
-                  class="btn btn-outline-dark btn-sm rounded-3 me-3"
-                  style="border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                  <b class="">Hapus laporan</b>
-                </button>
-              </form>
-              <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{ $row->id }}">
-                @csrf
-                @method('put')
-                <button type="button" onclick="buttonAllert({{ $row->id }})"
-                  id="buttonBlokir{{ $row->id }}"
-                  style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                  class="btn btn-light btn-sm text-light rounded-3 me-2"><b>Blokir pengguna</b>
-                </button>
-              </form>
+            <div class=" p-3 row mt-3 border-top" style="  margin-right: 0;margin-left: 0;">
+                <div class="col-12  mt-1">
+                    <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{ $row->id }}" style="width: 100%">
+                      @csrf
+                      @method('put')
+                      <button type="button" onclick="buttonAllert({{ $row->id }})"
+                        id="buttonBlokir{{ $row->id }}"
+                        style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);width:100%"
+                        class="btn btn-light btn-sm text-light rounded-3 "><b>Blokir pengguna</b>
+                      </button>
+                    </form>
+                </div>
+                <div class="col-12 d-flex justify-content-center mt-1">
+                    <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
+                      id="deleteLaporan{{ $row->id }}" style="width: 100%">
+                      @csrf
+                      @method('DELETE')
+                      <button type="button" onclick="confirmation({{ $row->id }})"
+                        class="btn btn-outline-dark btn-sm rounded-3 "
+                        style="border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width:100%">
+                        <b class="">Hapus laporan</b>
+                      </button>
+                    </form>
+                </div>
 
             </div>
           </div>
@@ -1054,10 +1147,11 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body d-flex align-items-center col-12">
+          <div class="modal-body row align-items-center col-12">
             <!-- Tambahkan kelas "align-items-center" -->
-            <div class="col-3 mt-2  ms-3">
+            <div class="col-12 col-sm-3 mt-2 mb-2 mb-sm-0   d-flex justify-content-center justify-content-sm-start align-items-center">
               @if ($row->user->foto)
+
                 <img class="" src="{{ asset('storage/' . $row->user->foto) }}" width="100px" height="100px"
                   style="border-radius: 50%" alt="">
               @else
@@ -1069,10 +1163,7 @@
                                     style="margin-left: 30px;">{{ $row->user->name }}</span><br>
                                 <small class="text-secondary ms-2"><i>{{ $row->user->email }}</i></small> --}}
             </div>
-            <div class="col-md-8">
-              <div class="widget-49-meeting-info">
-
-              </div>
+            <div class="col-12 col-sm-9 pr-0">
 
               @if (!empty($row->replies->reply))
                 <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies->reply }}</textarea>
@@ -1090,26 +1181,26 @@
 
             </div>
           </div>
-          <div class="modal-footer">
-            <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
+          <div class="modal-footer  d-flex justify-content-start w-full " style="flex-wrap: wrap; width:100%;">
+            <form action="{{ route('Report.destroy', $row->id) }}" class="button1" method="POST" style=""
               id="deleteLaporan{{ $row->id }}">
               @csrf
               @method('DELETE')
-              <button type="button" onclick="confirmation({{ $row->id }})" class="btn btn-light text-black"
-                style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                  class="ms-2 me-2">Hapus Laporan</b></button>
+              <button type="button" onclick="confirmation({{ $row->id }})" class="btn btn-light text-black "
+                style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width:100%"><b
+                  class="ms-1 me-1">Hapus Laporan</b></button>
             </form>
 
             <button type="button" data-target="#modalTerimalaporan{{ $row->id }}" data-toggle="modal"
-              data-dismiss="modal" class="btn btn-light text-light rounded-3"
-              style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b class="ms-2 me-2">Terima
+              data-dismiss="modal" class="btn btn-light text-light rounded-3 button1"
+              style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); "><b class="">Terima
                 Laporan</b></button>
-            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{ $row->id }}">
+            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{ $row->id }} " style="" class="button1">
               @csrf
               @method('put')
               <button type="button" onclick="buttonAllert({{ $row->id }})" id="buttonBlokir{{ $row->id }}"
-                style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
+                style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width:100%;"
+                class="btn btn-light text-light rounded-3 me-0"><p style="font-size: 15px" class="fw-bold   mb-0">Blokir pengguna</p>
               </button>
             </form>
           </div>
@@ -1412,24 +1503,24 @@
             </div>
             <div class="modal-footer">
               <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
-                id="deleteLaporan{{ $row->id }}">
+                id="deleteLaporan{{ $row->id }}" class="button1">
                 @csrf
                 @method('DELETE')
                 <button type="button" onclick="confirmation({{ $row->id }})"
-                  class="btn btn-outline-dark rounded-3" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus
+                  class="btn btn-outline-dark rounded-3" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%"><b>Hapus
                     Laporan</b></button>
               </form>
               <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{ $row->id }}"
-                data-dismiss="modal" class="btn btn-light text-light rounded-3"
+                data-dismiss="modal" class="btn btn-light text-light rounded-3 button1"
                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                  class="ms-2 me-2">Terima Laporan</b></button>
-              <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{ $row->id }}">
+                  class="">Terima Laporan</b></button>
+              <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{ $row->id }}" class="button1">
                 @csrf
                 @method('put')
                 <button type="button" onclick="buttonAllert({{ $row->id }})"
                   id="buttonBlokir{{ $row->id }}"
-                  style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                  class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
+                  style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%"
+                  class="btn btn-light text-light rounded-3 "><p class="mb-0" style="font-size: 15px; font-weight: bold ">Blokir pengguna</p>
                 </button>
               </form>
             </div>
@@ -1504,25 +1595,25 @@
               </div>
             </div>
             <div class="modal-footer">
-              <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
+              <form action="{{ route('Report.destroy', $row->id) }}" method="POST" class="button1
                 id="deleteLaporan{{ $row->id }}">
                 @csrf
                 @method('DELETE')
                 <button type="button" onclick="confirmation({{ $row->id }})"
-                  class="btn btn-outline-dark rounded-3" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus
+                  class="btn btn-outline-dark rounded-3" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width:100%"><b>Hapus
                     Laporan</b></button>
               </form>
               <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{ $row->id }}"
-                data-dismiss="modal" class="btn btn-light text-light rounded-3"
+                data-dismiss="modal" class="btn btn-light text-light rounded-3 button1"
                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                  class="ms-2 me-2">Terima Laporan</b></button>
-              <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{ $row->id }}">
+                  class="">Terima Laporan</b></button>
+              <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{ $row->id }} " class="button1">
                 @csrf
                 @method('put')
                 <button type="button" onclick="buttonAllert({{ $row->id }})"
                   id="buttonBlokir{{ $row->id }}"
-                  style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                  class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
+                  style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width:100%"
+                  class="btn btn-light text-light rounded-3 "><p style="font-size: 15px; font-weight: bold; margin-bottom:0">Blokir pengguna</p>
                 </button>
               </form>
             </div>

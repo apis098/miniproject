@@ -442,11 +442,11 @@
                                     @if (Auth::check())
                                         @if (Auth::user()->isFavoriteCourse($detail_course->id))
                                             <button type="submit" class="btn text-dark mx-1 border-tepi" onclick="favoriteKursus()"><b
-                                                    class="ms-3 me-3"><i id="bookmark" 
+                                                    class="ms-3 me-3"><i id="bookmark"
                                                         class="fa-regular fa-solid fa-bookmark color-yellow"></i></b></button>
                                         @else
                                             <button type="submit" class="btn text-dark mx-1 border-tepi" onclick="favoriteKursus()"><b
-                                                    class="ms-3 me-3"><i id="bookmark" 
+                                                    class="ms-3 me-3"><i id="bookmark"
                                                         class="fa-regular fa-bookmark color-grey"></i></b></button>
                                         @endif
                                     @else
@@ -836,6 +836,7 @@
                         "X-Csrf-Token": "{{ csrf_token() }}"
                     },
                     success: function(response) {
+                        Pesan();
                         if (response.favorite) {
                             $("#bookmark").removeClass("fa-regular");
                             $("#bookmark").addClass("fa-solid");

@@ -3065,12 +3065,12 @@
                    url: formUrl,
                    type: 'GET',
                    success: function(response) {
-
+                    $('#NotificationsUser').empty();
                     $.each(response.favorite, function(index, item) {
                         let file, url, nama, deskripsi;
 
                         if(item.feed_id != null){
-                            url = "#";
+                            url = "/veed/"+item.veed.uuid;
                             nama = "postingan";
                             let ImageVeed = 'storage/'+item.veed.upload_video;
                            file = ` <video class="video ms-5 video-fav" controls width="180"
@@ -3081,7 +3081,74 @@
                             deskripsi = item.veed.deskripsi_video;
                         } else if(item.kursus_id != null){
                             let ImageKursus = 'storage/'+item.kursus.foto_kursus;
-                            url = "#";
+                            url = "/detail_kursus/"+item.kursus.id;
+                            nama = item.kursus.nama_kursus;
+                            deskripsi = item.kursus.deskripsi_kursus;
+                            file = `<img src="{{ asset('${ImageKursus}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:180px" alt="">`;
+                        } else if(item.resep_id != null){
+                            let ImageResep = 'storage/'+item.resep.foto_resep;
+                            file = `<img src="{{ asset('${ImageResep}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:180px" alt="">`;
+                            nama = item.resep.nama_resep;
+                            url = "/artikel/"+item.resep.id+"/"+item.resep.nama_resep;
+                            deskripsi = item.resep.deskripsi_resep;
+                        }
+
+
+                        let Notifications = `
+                            <div class="modal-body row">
+                                <div class=" d-flex align-items-center justify-content-start col-12 col-sm-6 ">
+                                    <input type="checkbox" name="selected_ids[]" class="form-check-input ms-3 data-checkbox" data-id="${item.id}">
+                                    ${file}
+                                </div>
+                                <div class="card mx-auto col-12 col-sm-6 " style="box-shadow:none; border:none;">
+                                    <a class="ml-5 ml-sm-0" href="${url}">
+                                        <div  style="" class="mb-1 d-flex justify-content-start justify-content-sm-center">
+                                            <h6 class="fw-bolder modal-title mt-2  text-orange">${nama}</h6>
+                                        </div>
+                                        <div style="" class="mb-1 d-flex justify-content-start justify-content-sm-center">
+                                            <small class="text-secondary text-break deskripsi ">${deskripsi}</small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                        $('#NotificationsUser').append(Notifications);
+                    });
+
+
+                   },
+                   error: function(error) {
+                       console.log(error);
+                   } // Removed unnecessary semicolon
+           });
+        })
+
+
+    </script>
+    <script>
+          function Pesan(){
+            let formUrl = "{{route('NotificationNavbar')}}"
+            $.ajax({
+                   url: formUrl,
+                   type: 'GET',
+                   success: function(response) {
+                    $('#NotificationsUser').empty();
+                    $.each(response.favorite, function(index, item) {
+                        let file, url, nama, deskripsi;
+
+                        if(item.feed_id != null){
+                            url = "/veed/"+item.veed.uuid;
+                            nama = "postingan";
+                            let ImageVeed = 'storage/'+item.veed.upload_video;
+                           file = ` <video class="video ms-5 video-fav" controls width="180"
+                                            height="120">
+                                            <source src="${ImageVeed}"
+                                                type="video/mp4">
+                                        </video>`;
+                            deskripsi = item.veed.deskripsi_video;
+                        } else if(item.kursus_id != null){
+                            let ImageKursus = 'storage/'+item.kursus.foto_kursus;
+                            url = "/detail_kursus/"+item.kursus.id;
                             nama = item.kursus.nama_kursus;
                             deskripsi = item.kursus.deskripsi_kursus;
                             file = `<img src="{{ asset('${ImageKursus}') }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:180px" alt="">`;
@@ -3121,7 +3188,7 @@
                        console.log(error);
                    } // Removed unnecessary semicolon
            });
-        })
+        }
     </script>
 </body>
 
