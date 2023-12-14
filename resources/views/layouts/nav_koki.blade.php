@@ -282,7 +282,7 @@
                                                 </a>
                                             @endif
                                             <span class="d-flex">
-                                            <p class="mt-2 text-orange ellipsis">
+                                            <p class="text-orange ellipsis-name" style="margin-top: 7px;">
                                                 {{ $row->sender->name }}</p>
                                                 @if ($row->sender->isSuperUser == 'yes')
                                                     <i class="fa-regular text-primary fa-circle-check ms-2" style="margin-top: 12px;"></i>
@@ -861,13 +861,13 @@
                                                 style="max-width:40px">
                                         @endif
                                     </a>
-                                    <span>
-                                    <p class="mt-2 text-orange ellipsis"><b>{{ auth()->user()->name }}</b>
+                                    <span class="d-flex">
+                                    <p class="text-orange ellipsis-name" style="margin-top: 7px;"><b>{{ auth()->user()->name }}</b></p>
                                     @if ($userLogin->isSuperUser == 'yes')
                                         <i class="fa-regular text-primary fa-circle-check ms-2" style="margin-top: 12px;"></i>
                                     @endif
                                     </span>
-                                </p>
+                                
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <a href="/koki/index" class="dropdown-item text-orange itemdropdown" style="width: 230px">
@@ -948,12 +948,12 @@
                                 @endif
                             </a>
                             <span class="d-flex">
-                            <p class="mt-2 text-orange ellipsis"><b>{{ auth()->user()->name }}</b>
+                            <p class="text-orange ellipsis-name" style="margin-top: 7px;"><b>{{ auth()->user()->name }}</b></p>
                             @if ($userLogin->isSuperUser == 'yes')
                                 <i class="fa-regular text-primary fa-circle-check ms-2" style="margin-top: 12px;"></i>
                             @endif
                             </span>
-                        </p>
+                        
                         </div>
                         <div class="dropdown-divider">
                             <a href="/admin/dashboard" class="dropdown-item text-orange" style="width: 230px">
@@ -1580,6 +1580,35 @@
                         }
                     });
                 });
+            });
+        </script>
+        <script>
+            function limitName() {
+            let elements = document.querySelectorAll('.ellipsis-name');
+
+            elements.forEach(element => {
+                let text = element.textContent.trim(); // Mengambil teks asli dari elemen
+                let screenWidth = window.innerWidth;
+                let maxLength;
+
+                if (screenWidth <= 425) {
+                maxLength = 5;
+                } else if (screenWidth <= 767 && screenWidth >= 426) {
+                maxLength = 10;
+                } else {
+                maxLength = 10;
+                }
+
+                let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+                element.textContent = shortenedText;
+            });
+            }
+
+            document.addEventListener('readystatechange', () => {
+            if (document.readyState === 'interactive') {
+                limitName();
+                window.addEventListener('resize', limitName);
+            }
             });
         </script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
