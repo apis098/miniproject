@@ -2668,7 +2668,7 @@
                                                                                                                                                     komentar
                                                                                                                                                 </h5>
                                                                                                                                                 <button
-                                                                                                                                                   id="Button_DismissBlokirKomen{{$item_comment->id}}"
+                                                                                                                                                   id="ButtonDismissBlokirKomen{{$reply_comment->id}}"
                                                                                                                                                     type="button"
                                                                                                                                                     class="close"
                                                                                                                                                     data-dismiss="modal"
@@ -3585,7 +3585,7 @@
                             } else {
                                 isSuperUser = '';
                             }
-                            
+
                             console.log(response.isSuperUser);
                             let innerHtml = `
                             <div class="" id="balasan_komentar_ini2${up['id']}">
@@ -5247,7 +5247,7 @@
                         $("#AlasanBlokirKomen" + num).val("");
                         $("#ButtonBlokirKomen" + num).prop("disabled", true);
                         $("#balasan_komentar_ini" + num).css("display", "none");
-                        location.reload();
+                        $("#ButtonDismissBlokirKomen"+num).click();
                     },
                     error: function error(xhr, error, status) {
                         iziToast.destroy();
@@ -5431,7 +5431,7 @@
                 let elements = document.querySelectorAll(selector);
 
                 elements.forEach(element => {
-                    let text = element.textContent.trim(); 
+                    let text = element.textContent.trim();
                     let screenWidth = window.innerWidth;
                     let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
                     element.textContent = shortenedText;
