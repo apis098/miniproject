@@ -781,14 +781,14 @@
                                   <!--  End Modal-->
 
                               </div>
-                              <div class="p-0">
+                              <div class="p-0" style="color:#000">
                                   <div class="row">
                                       <div class="col-12 mb-3">
                                           <!-- untuk koki lain -->
                                           <h5>
-                                              <a style="color: black; font-weight: bold; font-size: 25px; margin-left:-1px"
+                                              <p style="color: black; font-weight: bold; font-size: 25px; margin-left:-1px"
                                                   class="judul-resep" href="">
-                                                  {{ $item->nama_resep }}</a>
+                                                  {{ $item->nama_resep }}</p>
                                           </h5>
                                           <strong>
                                             Oleh :
@@ -798,7 +798,7 @@
                                                 <i class="fa-regular text-primary fa-circle-check mt-1"></i>
                                             @endif
                                              <br>
-                                        
+
                                       </div>
                                       <div class="col-12 row d-flex justify-content-between">
                                           <div class="col-6 d-flex align-items-center pr-0">
