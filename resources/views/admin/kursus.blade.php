@@ -386,6 +386,9 @@
                                     <a href="#"
                                       style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                       {{ $item->user->name }}
+                                      @if ($item->user->isSuperUser == 'yes')
+                                          <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                                      @endif
                                     </a>
                                   </h5>
 
