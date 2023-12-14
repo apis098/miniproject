@@ -542,7 +542,7 @@
                                                 <strong class="text-truncate text-deskripsi ellipsis-name"
                                                     id="ellipsis">{{ $item_video->user->name }}</strong>
                                                 @if ($item_video->user->isSuperUser == 'yes')
-                                                    <i class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
+                                                    <i class="fa-regular text-primary fa-circle-check my-auto ms-1"></i>
                                                 @endif
                                             </a>
                                             <small class="text-muted text-small">
@@ -2038,7 +2038,7 @@
                                                                             </p>
                                                                             @if ($item_comment->user_pengirim->isSuperUser == 'yes')
                                                                                 <i
-                                                                                    class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                                                                                    class="fa-regular text-primary fa-circle-check mt-1 ms-1"></i>
                                                                             @endif
                                                                             <div class="d-flex flex-row-reverse ml-auto">
                                                                                 <small class="text-small limit-waktu">
@@ -2460,7 +2460,7 @@
                                                                                                                     </p>
                                                                                                                     @if ($reply_comment->user->isSuperUser == 'yes')
                                                                                                                         <i
-                                                                                                                            class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                                                                                                                            class="fa-regular text-primary fa-circle-check mt-1 ms-1"></i>
                                                                                                                     @endif
                                                                                                                 </span>
 
@@ -2886,7 +2886,7 @@
                                                                                                                         </p>
                                                                                                                         @if ($reply_replyComment->user_pengirim->isSuperUser == 'yes')
                                                                                                                             <i
-                                                                                                                                class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>
+                                                                                                                                class="fa-regular text-primary fa-circle-check mt-1 ms-1"></i>
                                                                                                                         @endif
                                                                                                                     </span>
 
@@ -3384,7 +3384,7 @@
                                                         class="ellipsis-menu">{{ explode(' ', $kursus->user->name)[0] }}</strong>
                                                     @if ($kursus->user->isSuperUser == 'yes')
                                                         <i
-                                                            class="fa-regular text-primary fa-circle-check my-auto ms-2"></i>
+                                                            class="fa-regular text-primary fa-circle-check my-auto ms-1"></i>
                                                     @endif
                                                 </div>
                                             </a>
@@ -3581,9 +3581,10 @@
 
                             if (isSuperUser.isSuperUser === 'yes') {
                                 isSuperUser =
-                                    '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+                                    '<i class="fa-regular text-primary fa-circle-check mt-1 ms-1"></i>';
                             } else {
-                                isSuperUser = 'yooo'
+                                isSuperUser = '';
+                            }
                             }
                             console.log(response.isSuperUser);
                             let innerHtml = `
@@ -3805,9 +3806,9 @@
                             console.log(pengirim);
                             if (isSuperUser.isSuperUser === 'yes') {
                                 isSuperUser =
-                                    '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+                                    '<i class="fa-regular text-primary fa-circle-check mt-1 ms-1"></i>';
                             } else {
-                                isSuperUser = 'yooo'
+                                isSuperUser = '';
                             }
                             console.log(response.isSuperUser);
                             let innerHtml = `
@@ -4422,9 +4423,9 @@
 
                             if (isSuperUser.isSuperUser === 'yes') {
                                 isSuperUser =
-                                    '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+                                    '<i class="fa-regular text-primary fa-circle-check mt-1 ms-1"></i>';
                             } else {
-                                isSuperUser = 'yooo'
+                                isSuperUser = '';
                             }
                             console.log(response.isSuperUser);
                             let innerHtml = `
@@ -4767,9 +4768,9 @@
                             console.log(pengirim);
                             if (isSuperUser.isSuperUser == 'yes') {
                                 isSuperUser =
-                                    '<i class="fa-regular text-primary fa-circle-check mt-1 ms-2"></i>';
+                                    '<i class="fa-regular text-primary fa-circle-check mt-1 ms-1"></i>';
                             } else {
-                                isSuperUser = 'yooo'
+                                isSuperUser = '';
                             }
                             console.log(isSuperUser.isSuperUser);
                             if (response.active) {
@@ -5422,5 +5423,44 @@
               // Menjalankan fungsi ketika ukuran layar berubah
               window.addEventListener('resize', removeClassOnResize);
           </script> -->
+
+          <script>
+            function limitText(selector, maxLength) {
+                let elements = document.querySelectorAll(selector);
+
+                elements.forEach(element => {
+                    let text = element.textContent.trim(); 
+                    let screenWidth = window.innerWidth;
+                    let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+                    element.textContent = shortenedText;
+                });
+            }
+
+            function limitContent() {
+                let nameMaxLength, menuMaxLength;
+                let screenWidth = window.innerWidth;
+
+                if (screenWidth <= 425) {
+                    nameMaxLength = 5;
+                    menuMaxLength = 5;
+                } else if (screenWidth <= 767 && screenWidth >= 426) {
+                    nameMaxLength = 10;
+                    menuMaxLength = 7;
+                } else {
+                    nameMaxLength = 20;
+                    menuMaxLength = 7;
+                }
+
+                limitText('.ellipsis-name', nameMaxLength);
+                limitText('.ellipsis-menu', menuMaxLength);
+            }
+
+            document.addEventListener('readystatechange', () => {
+                if (document.readyState === 'interactive') {
+                    limitContent();
+                    window.addEventListener('resize', limitContent);
+                }
+            });
+        </script>
 
 @endsection
