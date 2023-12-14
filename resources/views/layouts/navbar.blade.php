@@ -77,7 +77,7 @@
             margin-right: -50px;
         }
 
-        @media (max-width: 991.98px) {
+        @media (max-width: 991px) {
             .cascading-right {
                 margin-right: 0;
             }
@@ -101,6 +101,11 @@
         @media(max-width:992px) {
             aside {
                 display: none;
+            }
+        }
+        @media(min-width:992px) {
+            aside {
+                display: inline-block;
             }
         }
     </style>
