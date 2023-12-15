@@ -454,12 +454,15 @@
                                                 </div>
                                                 <div class="mr-auto ml-2">
 
-                                                        <strong> {{ $r->nama_resep }} </strong>
+                                                        <strong class="ellipsis-judul"> {{ $r->nama_resep }} </strong>
                                                     <br>
                                                     <!-- Modal -->
 
                                                     <span class="ai">
-                                                        Oleh {{ $r->User->name }}
+                                                        Oleh 
+                                                        <span class="ellipsis-name">
+                                                        {{ $r->User->name }}
+                                                        </span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -740,6 +743,44 @@
             });
         }
     </script>
+     <script>
+            function limitText(selector, maxLength) {
+                let elements = document.querySelectorAll(selector);
+
+                elements.forEach(element => {
+                    let text = element.textContent.trim();
+                    let screenWidth = window.innerWidth;
+                    let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+                    element.textContent = shortenedText;
+                });
+            }
+
+            function limitContent() {
+                let nameMaxLength, menuMaxLength;
+                let screenWidth = window.innerWidth;
+
+                if (screenWidth <= 425) {
+                    nameMaxLength = 5;
+                    menuMaxLength = 5;
+                } else if (screenWidth <= 767 && screenWidth >= 426) {
+                    nameMaxLength = 10;
+                    menuMaxLength = 7;
+                } else {
+                    nameMaxLength = 12;
+                    menuMaxLength = 7;
+                }
+
+                limitText('.ellipsis-judul', nameMaxLength);
+                limitText('.ellipsis-name', menuMaxLength);
+            }
+
+            document.addEventListener('readystatechange', () => {
+                if (document.readyState === 'interactive') {
+                    limitContent();
+                    window.addEventListener('resize', limitContent);
+                }
+            });
+        </script>
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
