@@ -496,14 +496,14 @@
                                     <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Video
                                         Dibuat </h5>
                                     <div id="border3" class=""
-                                        style="width:120%; height: 100%; border: 1px #F7941E solid;" hidden>
+                                        style="width:100%; height: 100%; border: 1px #F7941E solid;" hidden>
                                     </div>
                                 </a>
                             </li>
 
                             @if ($user->isSuperUser === 'yes')
                                 <li class="nav-item tabs" role="presentation">
-                                    <button id="button-kursus-dibuat" class="nav-link yuhu mt-2" data-bs-toggle="tab"
+                                    <button id="button-kursus-dibuat" class="nav-link border-0" data-bs-toggle="tab" style="background-color: white;"
                                         data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
                                         aria-selected="false">
                                         <h5 class="text-dark"
@@ -514,9 +514,21 @@
                                         </div>
                                     </button>
                                 </li>
+
+                                <!-- <li class="nav-item tabs" role="presentation">
+                                    <a id="button-kursus-dibuat" class="nav-link" data-bs-toggle="tab"
+                                        data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                                        aria-selected="false">
+                                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Kursus
+                                            Dibuat </h5>
+                                        <div id="border3" class=""
+                                            style="width:120%; height: 100%; border: 1px #F7941E solid;" hidden>
+                                        </div>
+                                    </a>
+                                </li> -->
                             @else
                                 <li style="display: none;" class="nav-item tabs" role="presentation">
-                                    <button id="button-kursus-dibuat" class="nav-link yuhu mt-2" data-bs-toggle="tab"
+                                    <button id="button-kursus-dibuat" class="nav-link border-0" data-bs-toggle="tab" style="background-color: white;"
                                         data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
                                         aria-selected="false">
                                         <h5 class="text-dark"
@@ -527,6 +539,17 @@
                                         </div>
                                     </button>
                                 </li>
+                                <!-- <li class="nav-item tabs" role="presentation">
+                                    <a id="button-kursus-dibuat" class="nav-link" data-bs-toggle="tab"
+                                        data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                                        aria-selected="false">
+                                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Kursus
+                                            Dibuat </h5>
+                                        <div id="border3" class=""
+                                            style="width:120%; height: 100%; border: 1px #F7941E solid;" hidden>
+                                        </div>
+                                    </a>
+                                </li> -->
                             @endif
                         </ul>
 
@@ -588,7 +611,7 @@
                             @endif
                             <div class="row mb-5" style="margin-top: -50px; margin-left: -25px;">
                                 @foreach ($upload_video as $video)
-                                    <div class="col-lg-4 col-md-6 my-1">
+                                    <div class="col-lg-4 col-md-6 mt-2">
                                         <div class="card"
                                             style="width: 100%;  border-radius: 15px; border: 0.50px black solid;">
                                             <a href="/veed/{{ $video->uuid }}">
@@ -601,7 +624,7 @@
                                                         style="margin-top: 0px; height: 65%; width: 100%"
                                                         alt="Hollywood Sign on The Hill" /> --}}
                                             </a>
-                                            <div class="d-flex justify-content-between ash my-2 mx-2">
+                                            <div class="d-flex justify-content-between ash mt-2 mb-3 mx-3">
                                                 <div>
                                                     <a type="button" class="text-dark hu my-auto" onclick="openModel()"
                                                         id="button-modal-komentar-feed" href="#"
