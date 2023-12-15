@@ -408,7 +408,7 @@
                                 </li>
 
                                     <li class="nav-item tabs" role="presentation" style="">
-                                        <button id="button-kursus-dibuat" class="nav-link yuhu mt-2" data-bs-toggle="tab"
+                                        <button id="button-kursus-dibuat" class="nav-link yuhu ml-md-3 mt-2" data-bs-toggle="tab"
                                             data-bs-target="#profile" type="button" role="tab"
                                             aria-controls="profile" aria-selected="false">
                                             <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Kursus
@@ -542,7 +542,7 @@
                                                             style="margin-top: 0px; height: 65%; width: 100%"
                                                             alt="Hollywood Sign on The Hill" /> --}}
                                             </a>
-                                            <div class="d-flex justify-content-between ms-2 me-2">
+                                            <div class="d-flex justify-content-between ms-3 me-3 py-2">
                                                 <div>
                                                     <a type="button" class="text-dark my-auto" onclick="openModel()"
                                                         id="button-modal-komentar-feed" href="#"
