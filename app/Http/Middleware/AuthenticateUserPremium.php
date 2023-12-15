@@ -16,6 +16,9 @@ class AuthenticateUserPremium
 
        // mencari resep dengan id yang sama dengan $recipeId
        $resep = reseps::find($recipeId);
+       if(!$resep) {
+        abort('404');
+       }
 
        // untuk user yang belum login
        if (!Auth::check()) {

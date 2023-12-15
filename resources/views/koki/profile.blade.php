@@ -445,20 +445,24 @@
                                             style="height: 95%; border-radius: 15px; border: 0.50px black solid">
                                             <div class="row my-1">
                                                 <div class="col-4">
+                                                    <a type="button" class="as"
+                                                    href="/artikel/{{ $r->id }}/{{ $r->nama_resep }}">
                                                     <img class="rounded-circle mb-1" style="max-width:55px;"
                                                         src="{{ asset('storage/' . $r->foto_resep) }}" width="55px"
                                                         height="55px" alt="dsdaa">
+                                                    </a>
                                                 </div>
                                                 <div class=" col-8">
                                                     <a type="button" class="as"
                                                         href="/artikel/{{ $r->id }}/{{ $r->nama_resep }}">
                                                         <strong> {{ $r->nama_resep }} </strong>
-                                                    </a> <br>
+                                                    <br>
                                                     <!-- Modal -->
 
                                                     <span class="ai">
                                                         Oleh {{ $r->User->name }}
                                                     </span>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
