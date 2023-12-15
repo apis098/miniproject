@@ -428,12 +428,14 @@ function IDinfo(id) {
         // focus on messaging input
         messageInput.focus();
         // update info in view
-        $(".messenger-infoView .info-name").text(data.fetch.name);
+        
         $(".m-header-messaging .user-name").text(data.fetch.name);
         if(data.fetch.isSuperUser == "yes"){
           $(".verifed-icon").css('display','block');
+          $(".messenger-infoView .info-name").html(data.fetch.name + '<i class="ms-1 text-primary fa-regular fa-circle-check"></i>');
         }else{
           $(".verifed-icon").css('display','none');
+          $(".messenger-infoView .info-name").html(data.fetch.name);
         }
         // Star status
         data.favorite > 0
@@ -661,7 +663,7 @@ channel.bind("messaging", function (data) {
     makeSeen(true);
     // remove unseen counter for the user from the contacts list
     $(".messenger-list-item[data-contact=" + getMessengerId() + "]")
-      .find("tr>td>b")
+      .find(".seenStatus")
       .remove();
   }
 
@@ -771,7 +773,7 @@ function makeSeen(status) {
   }
   // remove unseen counter for the user from the contacts list
   $(".messenger-list-item[data-contact=" + getMessengerId() + "]")
-    .find("tr>td>b")
+    .find(".seenStatus")
     .remove();
   // seen
   $.ajax({
@@ -1725,13 +1727,15 @@ function playNotificationSound(soundName, condition = false) {
  *-------------------------------------------------------------
  */
 function updateElementsDateToTimeAgo() {
-  $(".message-time").each(function () {
-    const time = $(this).attr("data-time");
-    $(this).find(".time").text(dateStringToTimeAgo(time));
+  $('.message-time').each(function(){
+    const time = $(this).attr('data-time');
+    const formattedTime = moment(time).locale('id').fromNow();
+    $(this).text(formattedTime)
   });
   $(".contact-item-time").each(function () {
     const time = $(this).attr("data-time");
-    $(this).text(dateStringToTimeAgo(time));
+    const formattedTime = moment(time).locale("id").fromNow();
+    $(this).text(formattedTime);
   });
 }
 setInterval(() => {

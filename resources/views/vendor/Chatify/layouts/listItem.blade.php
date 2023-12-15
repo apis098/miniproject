@@ -43,19 +43,20 @@ $lastMessageBody = strlen($lastMessageBody) > 30 ? mb_substr($lastMessageBody, 0
         {{-- center side --}}
         <td>
         <p data-id="{{ $user->id }}" data-type="user">
-            <small class="d-flex">
+            <small class="d-flex flex-row position-relative">
                 {{ strlen($user->name) > 12 ? trim(substr($user->name,0,12)).'..' : $user->name }}
                 @if($user->isSuperUser == "yes")
                     <i class=" ms-1 text-primary fa-regular fa-circle-check"></i>
                 @endif
+                <span class="contact-item-time position-absolute  end-0" style="right:0%;" data-time="{{$lastMessage->created_at}}">{{ \Carbon\Carbon::parse($lastMessage->created_at)->locale('id_ID')->diffForHumans() }}</span>
             </small>
-            <span class="contact-item-time" data-time="{{$lastMessage->created_at}}">{{ $lastMessage->timeAgo }}</span>
+            <span class="seenStatus mt-1"> {!! $unseenCounter > 0 ? "<b>".$unseenCounter."</b>" : '' !!}</span>
         </p>
         <span>
             {{-- Last Message user indicator --}}
             {!!
                 $lastMessage->from_id == Auth::user()->id
-                ? '<span class="lastMessageIndicator">You :</span>'
+                ? '<span class="lastMessageIndicator">Anda :</span>'
                 : ''
             !!}
             {{-- Last message body --}}
@@ -68,7 +69,7 @@ $lastMessageBody = strlen($lastMessageBody) > 30 ? mb_substr($lastMessageBody, 0
             @endif
         </span>
         {{-- New messages counter --}}
-            {!! $unseenCounter > 0 ? "<b>".$unseenCounter."</b>" : '' !!}
+            
         </td>
     </tr>
 </table>
