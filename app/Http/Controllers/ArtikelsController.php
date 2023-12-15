@@ -27,9 +27,7 @@ class ArtikelsController extends Controller
         // check isPremium
         $show_resep = Reseps::find($id);
         $r = Reseps::find($id);
-        if($r->judul != $judul) {
-            abort('404');
-        }
+
         $isPremium = $r->isPremium;
         if ($isPremium == "yes") {
             event(new ShowRecipePremium(Auth::user()->id, $r->user->id, $id, "resep"));
