@@ -3,7 +3,7 @@
     <style>
         .as {
             color: black;
-            font-size: 20px;
+            font-size: 15px;
             font-family: Poppins;
             font-weight: 500;
         }
@@ -569,29 +569,35 @@
                                     <p><b>Tidak ada resep</b></p>
                                 </div>
                             @endif
-                            <div class="row mb-5" style="margin-top: -50px; margin-left: -25px;">
+                            <div class="row mb-5" style="margin-top:-50px;">
                                 @foreach ($recipes as $r)
-                                    <div class="col-lg-4 my-1">
+                                    <div class="col-lg-6 col-xl-4 col-md-6 my-1">
                                         <div class="card p-3"
-                                            style="width: 100%; height: 95%; border-radius: 15px; border: 0.50px black solid">
-                                            <div class="row my-1">
-                                                <div class="col-4">
+                                            style="height: 95%; border-radius: 15px; border: 0.50px black solid">
+                                            <a type="button" class="as"
+                                            href="/artikel/{{ $r->id }}/{{ $r->nama_resep }}">
+                                            <div class="d-flex justify-content-between my-1">
+                                                <div>
+
                                                     <img class="rounded-circle mb-1" style="max-width:55px;"
                                                         src="{{ asset('storage/' . $r->foto_resep) }}" width="55px"
                                                         height="55px" alt="dsdaa">
                                                 </div>
-                                                <div class=" col-8">
-                                                    <a type="button" class="as"
-                                                        href="/artikel/{{ $r->id }}/{{ $r->nama_resep }}">
-                                                        <strong> {{ $r->nama_resep }} </strong>
-                                                    </a> <br>
+                                                <div class="mr-auto ml-2">
+
+                                                        <strong class="ellipsis-judul"> {{ $r->nama_resep }} </strong>
+                                                        <br>
                                                     <!-- Modal -->
 
                                                     <span class="ai">
-                                                        Oleh {{ $r->User->name }}
+                                                        Oleh 
+                                                        <span class="ellipsis-name">
+                                                        {{ $r->User->name }}
+                                                        </span>
                                                     </span>
                                                 </div>
                                             </div>
+                                            </a>
                                         </div>
                                     </div>
                                 @endforeach
@@ -681,29 +687,29 @@
                                     <p><b>Tidak ada kursus</b></p>
                                 </div>
                             @endif
-                            <div class="row mb-5" style="margin-top: -50px; margin-left: -25px;">
+                            <div class="row mb-5" style="margin-top: -50px; ">
                                 @foreach ($courses as $course)
-                                    <div class="col-lg-4 my-1">
-                                        <div class="card p-3 wid" style="border-radius: 15px; border: 0.50px black solid">
-                                            <div class="row my-1 ">
+                                    <div class="col-lg-6 col-md-6 my-1">
+                                        <div class="card p-2"
+                                            style="width: 100%; height: 95%; border-radius: 15px; border: 0.50px black solid">
+                                            <div class="d-flex my-1">
                                                 <div class="col-2">
-                                                    <img class="rounded-circle mt-1"
-                                                        style="max-width:55px; margin-left: 10px;"
+                                                    <img class="rounded-circle mb-1" style="max-width:55px;"
                                                         src="{{ asset('storage/' . $course->foto_kursus) }}"
                                                         width="55px" height="55px" alt="dsdaa">
                                                 </div>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <div class=" col-9 widt">
-                                                    <a type="button" class="as" href="">
-                                                        <strong> {{ $course->nama_kursus }} </strong>
+                                                <div class="col-10">
+                                                    <a type="button" class="text-dark knan"
+                                                        href="/detail_kursus/{{ $course->id }}">
+                                                        <strong class="ellipsis-kursus">{{ $course->nama_kursus }}</strong>
                                                     </a> <br>
                                                     <!-- Modal -->
 
                                                     <span class="ai">
-                                                        Oleh {{ $course->user->name }}
+                                                        Oleh <span class="ellipsis-name">{{ $course->user->name }}</span>
                                                     </span>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -820,4 +826,46 @@
             });
         });
     </script>
+     <script>
+            function limitText(selector, maxLength) {
+                let elements = document.querySelectorAll(selector);
+
+                elements.forEach(element => {
+                    let text = element.textContent.trim();
+                    let screenWidth = window.innerWidth;
+                    let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+                    element.textContent = shortenedText;
+                });
+            }
+
+            function limitContent() {
+                let nameMaxLength, menuMaxLength;
+                let screenWidth = window.innerWidth;
+
+                if (screenWidth <= 425) {
+                    nameMaxLength = 5;
+                    menuMaxLength = 5;
+                    kursusMaxLength = 5;
+                } else if (screenWidth <= 767 && screenWidth >= 426) {
+                    nameMaxLength = 10;
+                    menuMaxLength = 7;
+                    kursusMaxLength = 10;
+                } else {
+                    nameMaxLength = 12;
+                    menuMaxLength = 7;
+                    kursusMaxLength = 20;
+                }
+
+                limitText('.ellipsis-judul', nameMaxLength);
+                limitText('.ellipsis-kursus', kursusMaxLength);
+                limitText('.ellipsis-name', menuMaxLength);
+            }
+
+            document.addEventListener('readystatechange', () => {
+                if (document.readyState === 'interactive') {
+                    limitContent();
+                    window.addEventListener('resize', limitContent);
+                }
+            });
+        </script>
 @endsection

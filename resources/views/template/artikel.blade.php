@@ -1173,7 +1173,7 @@
                     tabindex="0">
                     <div class="row mt-5">
                         @foreach ($show_resep->bahan as $item_bahan)
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 pl-0">
                                 <div class="card p-3"
                                     style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid;box-shadow: none">
                                     <div class="row my-1">
@@ -1217,7 +1217,7 @@
                     tabindex="0">
                     <div class="row mt-5">
                         @foreach ($show_resep->alat as $num => $item_langkah)
-                            <div class="col-lg-4 mb-3">
+                            <div class="col-lg-4 mb-3 pl-0">
                                 <div class="card p-3"
                                     style="width: 100%; height: 100%; border-radius: 15px; border: 0.50px black solid;box-shadow: none">
                                     <div class="row my-1">

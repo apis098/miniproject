@@ -7,13 +7,23 @@
 <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,700" rel="stylesheet"><link rel="stylesheet" href="{{asset('Errors/style.css')}}">
 
 </head>
+<style>
+    @media (max-width:740px){
+        .width-sm{
+            width:95%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5px;
+        }
+    }
+</style>
 <body>
 <!-- partial:index.partial.html -->
 <main class="page fade-in">
 	<div id="top-bar" class="top-bar">
-		<span class="action-btn action-btn_primary" style="font-family: poppies"><a href="{{ url()->previous() }}">&larr; Kembali ke Beranda</a></span>
-		<span class="game-counter-panel" style="font-family: Poppins;"><span id="time" class="game-time">0</span> Waktu yang tersisa</span>
-		<span class="game-counter-panel" style="font-family: Poppins;"><span id="game-counter" class="game-counter">0</span> Kutu yang terbunuh</span>
+		<span class="action-btn action-btn_primary" style="font-family: poppies"><a href="{{route('home') }}">&larr; Kembali ke Beranda</a></span>
+		<span class="game-counter-panel width-sm" style="font-family: Poppins; padding:6px "><span id="time" class="game-time">0</span> Waktu yang tersisa</span>
+		<span class="game-counter-panel width-sm" style="font-family: Poppins;"><span id="game-counter" class="game-counter">0</span> Kutu yang terbunuh</span>
 	</div>
 	<div class="flex-container" id="error-message">
 		<div>
@@ -47,10 +57,10 @@
     let timerId = setInterval(function() {
         if(countDown === 0) {
             clearInterval(timerId);
-            window.location.href = '{{ url()->previous() }}'; // Ganti dengan URL tujuan Anda
+            window.location.href = '{{ route('home') }}'; // Ganti dengan URL tujuan Anda
         } else {
 			$('#time').html(countDown);
-			console.log("Menghitung mundur: " + countDown + " detik");
+			    console.log("Menghitung mundur: " + countDown + " detik");
 			countDown--;
         }
     }, 1000);

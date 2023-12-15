@@ -163,10 +163,10 @@
                 <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
               </div>
               <div class="">
-                <input type="text" class="form-control" id="subject" name="subject" placeholder="Keluhan" />
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Keluhan" required />
               </div>
               <div class="">
-                <textarea style="height:180px;" class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
+                <textarea style="height:180px;" class="form-control" id="description" name="description" placeholder="Deskripsi" required></textarea>
               </div>
               <div>
                 <button

@@ -454,12 +454,15 @@
                                                 </div>
                                                 <div class="mr-auto ml-2">
 
-                                                        <strong> {{ $r->nama_resep }} </strong>
+                                                        <strong class="ellipsis-judul"> {{ $r->nama_resep }} </strong>
                                                     <br>
                                                     <!-- Modal -->
 
                                                     <span class="ai">
-                                                        Oleh {{ $r->User->name }}
+                                                        Oleh 
+                                                        <span class="ellipsis-name">
+                                                        {{ $r->User->name }}
+                                                        </span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -611,7 +614,7 @@
                                             style="width: 100%; height: 95%; border-radius: 15px; border: 0.50px black solid">
                                             <div class="d-flex my-1">
                                                 <div class="col-2">
-                                                    <img class="rounded-circle mt-1" style="max-width:55px;"
+                                                    <img class="rounded-circle mb-1" style="max-width:55px;"
                                                         src="{{ asset('storage/' . $course->foto_kursus) }}"
                                                         width="55px" height="55px" alt="dsdaa">
                                                 </div>
@@ -619,12 +622,12 @@
                                                 <div class="col-10">
                                                     <a type="button" class="text-dark knan"
                                                         href="/detail_kursus/{{ $course->id }}">
-                                                        <strong>{{ $course->nama_kursus }}</strong>
+                                                        <strong class="ellipsis-kursus">{{ $course->nama_kursus }}</strong>
                                                     </a> <br>
                                                     <!-- Modal -->
 
                                                     <span class="ai">
-                                                        Oleh {{ $course->user->name }}
+                                                        Oleh <span class="ellipsis-name">{{ $course->user->name }}</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -740,6 +743,48 @@
             });
         }
     </script>
+     <script>
+            function limitText(selector, maxLength) {
+                let elements = document.querySelectorAll(selector);
+
+                elements.forEach(element => {
+                    let text = element.textContent.trim();
+                    let screenWidth = window.innerWidth;
+                    let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+                    element.textContent = shortenedText;
+                });
+            }
+
+            function limitContent() {
+                let nameMaxLength, menuMaxLength;
+                let screenWidth = window.innerWidth;
+
+                if (screenWidth <= 425) {
+                    nameMaxLength = 5;
+                    menuMaxLength = 5;
+                    kursusMaxLength = 5;
+                } else if (screenWidth <= 767 && screenWidth >= 426) {
+                    nameMaxLength = 10;
+                    menuMaxLength = 7;
+                    kursusMaxLength = 10;
+                } else {
+                    nameMaxLength = 12;
+                    menuMaxLength = 7;
+                    kursusMaxLength = 20;
+                }
+
+                limitText('.ellipsis-judul', nameMaxLength);
+                limitText('.ellipsis-kursus', kursusMaxLength);
+                limitText('.ellipsis-name', menuMaxLength);
+            }
+
+            document.addEventListener('readystatechange', () => {
+                if (document.readyState === 'interactive') {
+                    limitContent();
+                    window.addEventListener('resize', limitContent);
+                }
+            });
+        </script>
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

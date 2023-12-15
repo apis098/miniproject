@@ -364,115 +364,113 @@
                     <div class="row daftarkursus" id="myCourse">
                         @foreach ($kursus_sendiri as $mycourse)
                             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3" style="border-radius:15px">
-                                <div class="my-3 myCourse" style=" ">
-                                    <div class="card" style="border: 1px solid #808080;border-radius:15px;">
-                                        <div class=" " style="max-height:120px; min-height:120px;">
-                                            <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}"
-                                                class="card-img-top"
-                                                style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%;border-radius:15px 15px 0 0; "
-                                                alt="...">
-                                        </div>
-                                        <div class="card-body"
-                                            style="padding: 0.7rem 0.7rem 0.7rem 0.7rem;  min-height:125px; max-height:auto">
-                                            <div class="mx-1 ">
-                                                <span class="d-flex justify-content-between">
-                                                    <span class="keterangan">
-                                                        @foreach ($mycourse->jenis_kursus as $item)
-                                                            {{ $item->jenis_kursus }}
-                                                        @endforeach
-                                                    </span>
-                                                    @if ($mycourse->status === 'ditunggu')
-                                                        <div class="d-flex gap-1 px-1 "
-                                                            style="border:1px solid gray; align-items: center; border-radius:15px; color: white; background-color:gray; opacity: 50%;">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" viewBox="0 0 48 48">
-                                                                <defs>
-                                                                    <mask id="ipSAlarmClock0">
-                                                                        <g fill="none" stroke-linejoin="round"
-                                                                            stroke-width="4">
-                                                                            <path fill="#fff" stroke="#fff"
-                                                                                d="M24 44.333c10.125 0 18.333-8.208 18.333-18.333c0-10.125-8.208-18.333-18.333-18.333C13.875 7.667 5.667 15.875 5.667 26c0 10.125 8.208 18.333 18.333 18.333Z" />
-                                                                            <path stroke="#000" stroke-linecap="round"
-                                                                                d="m23.76 15.354l-.002 11.008l7.773 7.773" />
-                                                                            <path stroke="#fff" stroke-linecap="round"
-                                                                                d="m4 9l7-5m33 5l-7-5" />
+                                @if ($mycourse->status === 'diterima')
+                                <a href="{{ route('detail.kursus', $mycourse->id) }}" style="color: black">
+                                @else
+                                <a href="#" style="color: black">
+                                @endif
+                                    <div class="my-3 myCourse" style=" ">
+                                        <div class="card" style="border: 1px solid #808080;border-radius:15px;">
+                                            <div class=" " style="max-height:120px; min-height:120px;">
+                                                <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}"
+                                                    class="card-img-top"
+                                                    style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%;border-radius:15px 15px 0 0; "
+                                                    alt="...">
+                                            </div>
+                                            <div class="card-body"
+                                                style="padding: 0.7rem 0.7rem 0.7rem 0.7rem;  min-height:125px; max-height:auto">
+                                                <div class="mx-1 ">
+                                                    <span class="d-flex justify-content-between">
+                                                        <span class="keterangan"  style="color: black">
+                                                            @foreach ($mycourse->jenis_kursus as $item)
+                                                                {{ $item->jenis_kursus }}
+                                                            @endforeach
+                                                        </span>
+                                                        @if ($mycourse->status === 'ditunggu')
+                                                            <div class="d-flex gap-1 px-1 "
+                                                                style="border:1px solid gray; align-items: center; border-radius:15px; color: white; background-color:gray; opacity: 50%;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" viewBox="0 0 48 48">
+                                                                    <defs>
+                                                                        <mask id="ipSAlarmClock0">
+                                                                            <g fill="none" stroke-linejoin="round"
+                                                                                stroke-width="4">
+                                                                                <path fill="#fff" stroke="#fff"
+                                                                                    d="M24 44.333c10.125 0 18.333-8.208 18.333-18.333c0-10.125-8.208-18.333-18.333-18.333C13.875 7.667 5.667 15.875 5.667 26c0 10.125 8.208 18.333 18.333 18.333Z" />
+                                                                                <path stroke="#000" stroke-linecap="round"
+                                                                                    d="m23.76 15.354l-.002 11.008l7.773 7.773" />
+                                                                                <path stroke="#fff" stroke-linecap="round"
+                                                                                    d="m4 9l7-5m33 5l-7-5" />
+                                                                            </g>
+                                                                        </mask>
+                                                                    </defs>
+                                                                    <path fill="currentColor" d="M0 0h48v48H0z"
+                                                                        mask="url(#ipSAlarmClock0)" />
+                                                                </svg>
+                                                                <span class="fw-bold" style="font-size: 12px">Menunggu</span>
+                                                            </div>
+                                                        @elseif ($mycourse->status === 'diterima')
+                                                            <div class="d-flex gap-1 px-1 "
+                                                                style="border:1px solid #21BE8D; align-items: center; border-radius:15px; color: white; background-color:#21BE8D; opacity: 100%;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" viewBox="0 0 48 48">
+                                                                    <mask id="ipSCheckCorrect0">
+                                                                        <g fill="none">
+                                                                            <g stroke="#fff" stroke-linecap="round"
+                                                                                stroke-linejoin="round" stroke-width="4"
+                                                                                clip-path="url(#ipSCheckCorrect1)">
+                                                                                <path
+                                                                                    d="M42 20v19a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3h21" />
+                                                                                <path d="m16 20l10 8L41 7" />
+                                                                            </g>
+                                                                            <defs>
+                                                                                <clipPath id="ipSCheckCorrect1">
+                                                                                    <path fill="#000" d="M0 0h48v48H0z" />
+                                                                                </clipPath>
+                                                                            </defs>
                                                                         </g>
                                                                     </mask>
-                                                                </defs>
-                                                                <path fill="currentColor" d="M0 0h48v48H0z"
-                                                                    mask="url(#ipSAlarmClock0)" />
-                                                            </svg>
-                                                            <span class="fw-bold" style="font-size: 12px">Menunggu</span>
-                                                        </div>
-                                                    @elseif ($mycourse->status === 'diterima')
-                                                        <div class="d-flex gap-1 px-1 "
-                                                            style="border:1px solid #21BE8D; align-items: center; border-radius:15px; color: white; background-color:#21BE8D; opacity: 100%;">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" viewBox="0 0 48 48">
-                                                                <mask id="ipSCheckCorrect0">
-                                                                    <g fill="none">
-                                                                        <g stroke="#fff" stroke-linecap="round"
-                                                                            stroke-linejoin="round" stroke-width="4"
-                                                                            clip-path="url(#ipSCheckCorrect1)">
-                                                                            <path
-                                                                                d="M42 20v19a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3h21" />
-                                                                            <path d="m16 20l10 8L41 7" />
-                                                                        </g>
-                                                                        <defs>
-                                                                            <clipPath id="ipSCheckCorrect1">
-                                                                                <path fill="#000" d="M0 0h48v48H0z" />
-                                                                            </clipPath>
-                                                                        </defs>
-                                                                    </g>
-                                                                </mask>
-                                                                <path fill="currentColor" d="M0 0h48v48H0z"
-                                                                    mask="url(#ipSCheckCorrect0)" />
-                                                            </svg>
-                                                            <span class="fw-bold" style="font-size: 12px">Diterima</span>
-                                                        </div>
-                                                    @endif
-                                                </span>
-                                                @if ($mycourse->status === 'diterima')
-                                                    <a href="{{ route('detail.kursus', $mycourse->id) }}"
-                                                        class="btn judul-kursus text-break pt-0 pb-0 pl-0 text-start fw-bold"
-                                                        style="font-family: poppins;border:none; min-height:53px; max-height:53px">
-                                                        {{ $mycourse->nama_kursus }}
-                                                    </a>
-                                                @else
-                                                    <a href="#"
-                                                        class="btn judul-kursus text-break pl-0  text-start fw-bold"
-                                                        style="font-family: poppins;border:none;">
-                                                        {{ $mycourse->nama_kursus }}
-                                                    </a>
-                                                @endif
-                                                <div class="d-flex justify-content-between" style="float: right;">
-                                                    @if ($mycourse->status === 'diterima')
-                                                        <a href="{{ route('koki.user', $mycourse->id) }}"
-                                                            class="btn  mr-2"
-                                                            style="display: flex; background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;height:30px; align-items: center">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                height="25" viewBox="0 0 24 24">
-                                                                <path fill="currentColor"
-                                                                    d="M11 12q-1.65 0-2.825-1.175T7 8q0-1.65 1.175-2.825T11 4q1.65 0 2.825 1.175T15 8q0 1.65-1.175 2.825T11 12Zm10.4 10.8l-2.5-2.5q-.525.3-1.125.5T16.5 21q-1.875 0-3.187-1.313T12 16.5q0-1.875 1.313-3.188T16.5 12q1.875 0 3.188 1.313T21 16.5q0 .675-.2 1.275t-.5 1.125l2.5 2.5q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275ZM16.5 19q1.05 0 1.775-.725T19 16.5q0-1.05-.725-1.775T16.5 14q-1.05 0-1.775.725T14 16.5q0 1.05.725 1.775T16.5 19ZM5 20q-.825 0-1.413-.588T3 18v-.775q0-.85.425-1.575t1.175-1.1q1.275-.65 2.875-1.1t3.55-.45q-.5.775-.763 1.663T10 16.5q0 .925.263 1.813T11.024 20H5Z" />
-                                                            </svg>
-                                                        </a>
-                                                        <a href="{{ route('koki.content', $mycourse->id) }}"
-                                                            class="btn "
-                                                            style="display: flex; background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; height:30px; align-items: center">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" viewBox="0 0 24 24">
-                                                                <path fill="currentColor"
-                                                                    d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2v-6Z" />
-                                                            </svg>
-                                                            <span>Konten</span>
-                                                        </a>
-                                                    @endif
+                                                                    <path fill="currentColor" d="M0 0h48v48H0z"
+                                                                        mask="url(#ipSCheckCorrect0)" />
+                                                                </svg>
+                                                                <span class="fw-bold" style="font-size: 12px">Diterima</span>
+                                                            </div>
+                                                        @endif
+                                                    </span>
+
+                                                        <p  class="btn judul-kursus text-break pt-0 pb-0 pl-0 text-start fw-bold"
+                                                            style="font-family: poppins;border:none; min-height:53px; max-height:53px">
+                                                            {{ $mycourse->nama_kursus }}
+                                                        </p>
+                                                    <div class="d-flex justify-content-between" style="float: right;">
+                                                        @if ($mycourse->status === 'diterima')
+                                                            <a href="{{ route('koki.user', $mycourse->id) }}"
+                                                                class="btn  mr-2"
+                                                                style="display: flex; background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;height:30px; align-items: center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="25" viewBox="0 0 24 24">
+                                                                    <path fill="currentColor"
+                                                                        d="M11 12q-1.65 0-2.825-1.175T7 8q0-1.65 1.175-2.825T11 4q1.65 0 2.825 1.175T15 8q0 1.65-1.175 2.825T11 12Zm10.4 10.8l-2.5-2.5q-.525.3-1.125.5T16.5 21q-1.875 0-3.187-1.313T12 16.5q0-1.875 1.313-3.188T16.5 12q1.875 0 3.188 1.313T21 16.5q0 .675-.2 1.275t-.5 1.125l2.5 2.5q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275ZM16.5 19q1.05 0 1.775-.725T19 16.5q0-1.05-.725-1.775T16.5 14q-1.05 0-1.775.725T14 16.5q0 1.05.725 1.775T16.5 19ZM5 20q-.825 0-1.413-.588T3 18v-.775q0-.85.425-1.575t1.175-1.1q1.275-.65 2.875-1.1t3.55-.45q-.5.775-.763 1.663T10 16.5q0 .925.263 1.813T11.024 20H5Z" />
+                                                                </svg>
+                                                            </a>
+                                                            <a href="{{ route('koki.content', $mycourse->id) }}"
+                                                                class="btn "
+                                                                style="display: flex; background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; height:30px; align-items: center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" viewBox="0 0 24 24">
+                                                                    <path fill="currentColor"
+                                                                        d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2v-6Z" />
+                                                                </svg>
+                                                                <span>Konten</span>
+                                                            </a>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>
