@@ -230,12 +230,12 @@
                   </div>
                 </div>
                 <div class="mt-3 ms-1">
-                  <p>
+                  <p style="flex-direction: column;">
                     <b>
                       <a class="subject" style="color: black;" href="/show-reply-by/{{ $item->id }}">
                         {{ $item->subject }}
                       </a>
-                    </b><br>
+                    </b
 
                     <small class="description">
                       {{ $item->description }}
