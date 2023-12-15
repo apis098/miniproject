@@ -522,6 +522,7 @@ class ReportController extends Controller
         $notification->user_id = $resep->user_id;
         $notification->notification_from = auth()->user()->id;
         $notification->resep_id_report = 1;
+        $notification->message = "Resep anda telah diblokir";
         $notification->alasan = $request->alasan;
         $notification->save();
         $up = Notifications::find($notification->id);
@@ -571,6 +572,7 @@ class ReportController extends Controller
         $notification->user_id = $complaint->user_id;
         $notification->notification_from = auth()->user()->id;
         $notification->complaint_id_report = 1;
+        $notification->message = "Pertanyaan anda telah diblokir";
         $notification->alasan = $request->alasan;
         $notification->save();
         $up = Notifications::find($notification->id);
@@ -586,6 +588,7 @@ class ReportController extends Controller
         $notification->user_id = $kursus->users_id;
         $notification->notification_from = auth()->user()->id;
         $notification->block_kursus_id = 1;
+        $notification->message = "Kursus anda telah diblokir.";
         $notification->alasan = $request->alasan;
         $notification->save();
         $up = Notifications::find($notification->id);
@@ -602,6 +605,7 @@ class ReportController extends Controller
         $notification->user_id = $komen->pengirim_reply_comment_id;
         $notification->notification_from = auth()->user()->id;
         $notification->balas_reply_comment_feed_report = 1;
+        $notification->message = "Komentar balasan anda telah diblokir.";
         $notification->alasan = $request->alasan;
         $notification->save();
         $komen->delete();
@@ -619,6 +623,7 @@ class ReportController extends Controller
         $notification->user_id = $komen->user->id;
         $notification->notification_from = auth()->user()->id;
         $notification->reply_comment_feed_report = 1;
+        $notification->message = "Komentar balasan anda di feed telah diblokir.";
         $notification->alasan = $request->alasan;
         $notification->save();
         $komen->delete();
@@ -636,6 +641,7 @@ class ReportController extends Controller
         $notification->user_id = $komen->user_pengirim->id;
         $notification->notification_from = auth()->user()->id;
         $notification->comment_feed_report = 1;
+        $notification->message = "Komentar anda di feed telah diblokir.";
         $notification->alasan = $request->alasan;
         $notification->save();
         $komen->delete();
@@ -653,6 +659,7 @@ class ReportController extends Controller
         $notification->user_id = $komen->user_id;
         $notification->notification_from = auth()->user()->id;
         $notification->reply_id_comment = 1;
+        $notification->message = "Komentar anda di diskusi telah diblokir.";
         $notification->alasan = $request->alasan;
         $notification->save();
         $up = Notifications::find($notification->id);
@@ -674,6 +681,7 @@ class ReportController extends Controller
         $notification->user_id = $feed->users_id;
         $notification->notification_from = auth()->user()->id;
         $notification->veed_id_report = 1;
+        $notification->message = "Feed anda telah diblokir.";
         $notification->alasan = $request->alasan;
         $notification->save();
         $feed->delete();
@@ -691,6 +699,7 @@ class ReportController extends Controller
         $notification->user_id = $komen->user_id;
         $notification->notification_from = auth()->user()->id;
         $notification->reply_id_report = 1;
+        $notification->message = "Komentar balasan anda di diskusi telah diblokir.";
         $notification->alasan = $request->alasan;
         $notification->save();
         $up = Notifications::find($notification->id);
@@ -715,6 +724,7 @@ class ReportController extends Controller
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->reply_id_report = 1;
+            $notification->message = "Komentar anda telah diblokir.";
             $notification->alasan = $request->alasan;
             $notification->save();
             $up = Notifications::find($notification->id);
@@ -728,6 +738,7 @@ class ReportController extends Controller
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->complaint_id_report = 1;
+            $notification->message = "Keluhan anda telah diblokir.";
             $notification->alasan = $request->alasan;
             $notification->save();
             $up = Notifications::find($notification->id);
@@ -741,6 +752,7 @@ class ReportController extends Controller
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->resep_id_report = 1;
+            $notification->message = "Resep anda telah diblokir.";
             $notification->alasan = $request->alasan;
             $notification->save();
             $up = Notifications::find($notification->id);
@@ -754,6 +766,7 @@ class ReportController extends Controller
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->veed_id_report = 1;
+            $notification->message = "Postingan anda telah diblokir.";
             $notification->alasan = $request->alasan;
             $notification->save();
             $up = Notifications::find($notification->id);
@@ -773,6 +786,7 @@ class ReportController extends Controller
                 $notification->user_id = $report->profile_id;
                 $notification->notification_from = auth()->user()->id;
                 $notification->profile_id = $report->profile_id;
+                $notification->message = "Foto profile anda telah diblokir.";
                 $notification->alasan = $request->alasan;
                 $notification->save();
                 $up = Notifications::find($notification->id);
