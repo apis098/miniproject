@@ -614,7 +614,7 @@
                                             style="width: 100%; height: 95%; border-radius: 15px; border: 0.50px black solid">
                                             <div class="d-flex my-1">
                                                 <div class="col-2">
-                                                    <img class="rounded-circle mt-1" style="max-width:55px;"
+                                                    <img class="rounded-circle mb-1" style="max-width:55px;"
                                                         src="{{ asset('storage/' . $course->foto_kursus) }}"
                                                         width="55px" height="55px" alt="dsdaa">
                                                 </div>
@@ -622,12 +622,12 @@
                                                 <div class="col-10">
                                                     <a type="button" class="text-dark knan"
                                                         href="/detail_kursus/{{ $course->id }}">
-                                                        <strong>{{ $course->nama_kursus }}</strong>
+                                                        <strong class="ellipsis-kursus">{{ $course->nama_kursus }}</strong>
                                                     </a> <br>
                                                     <!-- Modal -->
 
                                                     <span class="ai">
-                                                        Oleh {{ $course->user->name }}
+                                                        Oleh <span class="ellipsis-name">{{ $course->user->name }}</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -762,15 +762,19 @@
                 if (screenWidth <= 425) {
                     nameMaxLength = 5;
                     menuMaxLength = 5;
+                    kursusMaxLength = 5;
                 } else if (screenWidth <= 767 && screenWidth >= 426) {
                     nameMaxLength = 10;
                     menuMaxLength = 7;
+                    kursusMaxLength = 10;
                 } else {
                     nameMaxLength = 12;
                     menuMaxLength = 7;
+                    kursusMaxLength = 20;
                 }
 
                 limitText('.ellipsis-judul', nameMaxLength);
+                limitText('.ellipsis-kursus', kursusMaxLength);
                 limitText('.ellipsis-name', menuMaxLength);
             }
 
