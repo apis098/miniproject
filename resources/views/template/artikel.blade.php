@@ -373,7 +373,7 @@
                                     </button>
                                 @endif
                             @else
-                                <button type="submit" style="position: absolute;  background-color:#F7941E; "
+                                <button type="submit" style="position: absolute;  background-color:#F7941E; z-index: 100;"
                                     class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2 knn" data-toggle="modal"
                                     data-target="#incomeModal{{ $show_resep->id }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512">
@@ -421,7 +421,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class=" col-4 col-md-6 col-lg-5 col-xl-4      " style="width:auto; max-height:180px ">
+                    <div class=" col-4 col-md-6 col-lg-5 col-xl-4" style="width:auto; max-height:180px ">
                         <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}"
                             width="180px" height="180px" style="border-radius: 50%; border:none; object-fit: cover" class="p-2">
                     </div>
@@ -438,8 +438,8 @@
 
                 </div>
             </div>
-            <div class="col-12 col-md-6  pl-4 pl-md-0" style="">
-                 <div class="judul d-flex justify-content-md-end">
+            <div class="col-12 col-md-6  pl-4 pl-md-0">
+                 <div class="judul d-flex justify-content-md-end" style="margin-top: 6%;">
 
                         <div class=" mt-3 mt-md-0">
                             <div class="d-flex">
