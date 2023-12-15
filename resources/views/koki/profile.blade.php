@@ -440,21 +440,20 @@
                             @endif
                             <div class="row mb-5" style="margin-top:-50px;">
                                 @foreach ($recipes as $r)
-                                    <div class="col-lg-4 col-md-6 my-1">
+                                    <div class="col-lg-6 col-xl-4 col-md-6 my-1">
                                         <div class="card p-3"
                                             style="height: 95%; border-radius: 15px; border: 0.50px black solid">
-                                            <div class="row my-1">
-                                                <div class="col-4">
-                                                    <a type="button" class="as"
-                                                    href="/artikel/{{ $r->id }}/{{ $r->nama_resep }}">
+                                            <a type="button" class="as"
+                                            href="/artikel/{{ $r->id }}/{{ $r->nama_resep }}">
+                                            <div class="d-flex justify-content-between my-1">
+                                                <div>
+
                                                     <img class="rounded-circle mb-1" style="max-width:55px;"
                                                         src="{{ asset('storage/' . $r->foto_resep) }}" width="55px"
                                                         height="55px" alt="dsdaa">
-                                                    </a>
                                                 </div>
-                                                <div class=" col-8">
-                                                    <a type="button" class="as"
-                                                        href="/artikel/{{ $r->id }}/{{ $r->nama_resep }}">
+                                                <div class="mr-auto ml-2">
+
                                                         <strong> {{ $r->nama_resep }} </strong>
                                                     <br>
                                                     <!-- Modal -->
@@ -462,9 +461,9 @@
                                                     <span class="ai">
                                                         Oleh {{ $r->User->name }}
                                                     </span>
-                                                    </a>
                                                 </div>
                                             </div>
+                                            </a>
                                         </div>
                                     </div>
                                 @endforeach
