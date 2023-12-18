@@ -44,7 +44,8 @@
                 <div class="col-lg-3 mb-5">
                     <div id="div" class="card mt-5 mb-5 border border-dark" style="border-radius: 15px;">
                         <div class="card-body text-center">
-                            <img id="image-course" src="" style="max-width: 250px; display:none; margin-left:-15px;"
+                            <img id="image-course" src=""
+                            style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%;border-radius:0 0 0 0; "
                                 alt="" id="uploadedImage" class="">
                             <svg id="svg-course" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5" width="100"
                                 height="100" viewBox="0 0 24 24">
@@ -112,7 +113,7 @@
                                 <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
                                     <label for="tipe_kursus" class="form-label" style="margin-left: -10px;"><b>
                                             Tipe Kursus</b></label>
-                                    <input type="text" name="jumlah_siswa" class="form-control col-10"
+                                    <input type="number" name="jumlah_siswa" class="form-control col-10"
                                         id="tipe_kursus90" placeholder="Masukkan jumlah siswa dalam grup..."
                                         value="{{ old('jumlah_siswa') }}">
                                     <input type="hidden" name="jumlah_siswa" id="tipe_kursus91" disabled>

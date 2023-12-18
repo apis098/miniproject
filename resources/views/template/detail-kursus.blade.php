@@ -729,9 +729,9 @@
                                                     </div>
                                                 </div>
                                             @elseif(Auth::user()->id == $detail_course->user->id)
-                                                <div class="my-auto" id="buttonBukaFormBalas{{ $review->id }}"
+                                                <div class="mb-auto mx-2" style="margin-top: -5px;" id="buttonBukaFormBalas{{ $review->id }}"
                                                     onclick="formBalasUlasan({{ $review->id }})">
-                                                    <p style="border: 1px solid black;padding:2px;border-radius:10px;">
+                                                    <p style="font-size:14px;border: 1px solid black;padding:2px;border-radius:10px;">
                                                         Balas</p>
                                                 </div>
                                             @endif
@@ -772,6 +772,7 @@
                         @endif
                     @endif
                     @foreach ($review->balasanChef($detail_course->id, $detail_course->user->id) as $balasanChef)
+                    <div class="d-flex justify-content-end">
                         <div class="card mb-5" style="width: 66%;margin-top:-15px;border-radius:15px;">
                             <div class="card-body">
                                 <div class="row">
@@ -790,6 +791,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     @endforeach
                 @endforeach
             </div>

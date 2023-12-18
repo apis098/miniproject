@@ -48,6 +48,11 @@ class UlasanRatingController extends Controller
       if ($request->rating != null) {
         $rating = $request->rating;
       }
+      // validasi agar pengguna tidak bisa memberi ulasan berkali-kali pada 1 kursus yang sama.
+      $checkUlasan = UlasanKursus::where('course_id', $course)->where('chef_id', $chef)->where('user_id', $user)->exists();
+      if($checkUlasan) {
+        return redirect()->back()->with('error', 'Anda sudah memberi ulasan kepada kursus ini!');
+      }
       $ulasan = UlasanKursus::create([
         "course_id" => $course,
         "chef_id" => $chef,

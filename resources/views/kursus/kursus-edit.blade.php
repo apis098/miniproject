@@ -40,7 +40,8 @@
                     <div id="div" class="card mt-5 mb-5 border border-dark" style="border-radius: 15px;">
                         <div class="card-body text-center">
                             <img id="image-course" src="{{ asset('storage/' . $kursus->foto_kursus) }}"
-                                style="max-width: 250px; margin-left:-15px;" alt="{{ $kursus->foto_kursus }}"
+                            style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%;border-radius:0 0 0 0; "
+                            alt="{{ $kursus->foto_kursus }}"
                                 id="uploadedImage" class="">
                         </div>
                     </div>
@@ -123,7 +124,7 @@
                                 <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
                                     <label for="tipe_kursus" class="form-label" style="margin-left: -10px;"><b>
                                             Tipe Kursus</b></label>
-                                    <input type="text" name="jumlah_siswa" class="form-control col-10"
+                                    <input type="number" name="jumlah_siswa" class="form-control col-10"
                                         id="tipe_kursus90" placeholder="Masukkan jumlah siswa dalam grup..."
                                         value="{{ $kursus->jumlah_siswa }}">
                                     <select name="tipe_kursus" id="informasi_tipe_kursus90" class="form-control col-2">
