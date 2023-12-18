@@ -226,13 +226,16 @@
                                                         {{ $nomer += 1 }}</th>
                                                     <td>{{ $detail_session->detail_sesi }}</td>
                                                     <td style="width: 20%;text-align: end;">
+
+
                                                         @if ($detail_session->lama_sesi >= 60)
-                                                            <span>{{ $detail_session->lama_sesi / 60 }}
-                                                                {{ $detail_session->informasi_lama_sesi }}</span>
-                                                        @else
-                                                            <span>{{ $detail_session->lama_sesi }}
-                                                                {{ $detail_session->informasi_lama_sesi }}</span>
-                                                        @endif
+                                                        <span class="ml-auto">{{ number_format($detail_session->lama_sesi / 60, 1) }}
+                                                            jam</span>
+                                                    @else
+                                                        <span class="ml-auto">{{ $detail_session->lama_sesi }}
+                                                            {{ $detail_session->informasi_lama_sesi }}</span>
+                                                    @endif
+
                                                     </td>
                                                 </tr>
                                             @endforeach
