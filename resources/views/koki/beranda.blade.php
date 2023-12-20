@@ -37,7 +37,6 @@
                     <h4>Selamat datang kembali {{ $koki->name }}</h4>
                     <span>Saldo anda Rp {{ number_format($koki->saldo, 2, ',', '.') }}</span>
                     <br>
-                    <span>Waktu Langganan : {{ $waktu }} Hari</span>
                 </div>
             </div>
         </div>
