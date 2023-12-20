@@ -577,9 +577,8 @@
                         @endif
                         <div class="row mx-auto reseps " style="flex-wrap: wrap;" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
-                                <a href="/artikel/{{ $my_recipe->id }}/{{ $my_recipe->nama_resep }}">
-                                <div class=" d-flex cardReseps justify-content-center col-lg-3  col-xl-3 p-1 col-md-4 col-sm-6 "
-                                    style=" width: 100%; box-shadow:none; ">
+                                <a href="/artikel/{{ $my_recipe->id }}/{{ $my_recipe->nama_resep }}" class=" d-flex cardReseps justify-content-center col-lg-3  col-xl-3 p-1 col-md-4 col-sm-6 "
+                                    style=" width: 100%; box-shadow:none; color:black ">
                                     <div class="border card" style="border-radius: 15px">
                                         <div class=" " style="border: none; max-height:120px; padding:10px 0px;">
                                             <img src="{{ asset('storage/' . $my_recipe->foto_resep) }}" class="mx-2"
@@ -588,10 +587,10 @@
                                         </div>
                                         <div class="mx-auto col-12">
                                             <div class="col-12 p-0">
-                                                <a style="color: black; font-size: 24px; margin-left:-1px;text-align:left;"
+                                                <span style="color: black; font-size: 24px; margin-left:-1px;text-align:left;"
                                                     href="/artikel/{{ $my_recipe->id }}/{{ $my_recipe->nama_resep }}">
                                                     <p class="fw-bold mb-0 text">{{ $my_recipe->nama_resep }}</p>
-                                                </a>
+                                                </span>
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 col-md-12 col-xl-5 d-flex">
@@ -642,7 +641,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 </a>
                                 {{-- <div class="resep-sendiri card col-lg-4 ml-3 col-xl-3 border border-black col-md-4 col-sm-12 my-3"
                                     style="border-radius:15px; bordq    eler: 1px solid black;">
