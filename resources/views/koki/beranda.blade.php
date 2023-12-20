@@ -34,10 +34,8 @@
         <div class="content-header mx-4">
             <div class="d-flex justify-content-start mt-1">
                 <div class="col-sm-6 col-md-5 col-lg-4">
-                    <h4>Selamat datang kembali {{ $koki->name }}</h4>
-                    <span>Saldo anda Rp {{ number_format($koki->saldo, 2, ',', '.') }}</span>
+                    
                     <br>
-                    <span>Waktu Langganan : {{ $waktu }} Hari</span>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <?php
-$seenIcon = (!!$seen ? 'check-double' : 'check');
+$seenIcon = (!!$seen ? 'check-double text-info' : 'check');
 $timeAndSeen = "<span data-time='$created_at' class='message-time'>
-        ".($isSender ? "<span class='fas fa-$seenIcon' seen></span>" : '' )." <span class='time'>$timeAgo</span>
+        ".($isSender ? "<span class='fas fa-$seenIcon seen'></span>" : '' )." <span class='time'>$timeAgo</span>
     </span>";
 ?>
 
@@ -19,7 +19,7 @@ $timeAndSeen = "<span data-time='$created_at' class='message-time'>
                 {!! ($message == null && $attachment != null && @$attachment->type != 'file') ? $attachment->title : nl2br($message) !!}
                 <span data-time="{{$created_at}}" class="message-time">
                     @if($isSender)
-                        <span class="fas fa-{{$seenIcon}}" seen></span>
+                        <span class="fas fa-{{$seenIcon}} seen"></span>
                     @endif
                     <span class="time">{{ \Carbon\Carbon::parse($timeAgo)->locale('id_ID')->diffForHumans() }}</span>
                 </span>
@@ -57,7 +57,7 @@ $timeAndSeen = "<span data-time='$created_at' class='message-time'>
             <div style="margin-bottom:5px" class=" @if(!$isSender) ms-3 @else me-3 text-light @endif mt-1">
                 <span data-time="{{$created_at}}" class="message-time">
                     @if($isSender)
-                        <span class="fas fa-{{$seenIcon}}" seen></span>
+                        <span class="fas fa-{{$seenIcon}} seen"></span>
                     @endif
                     <span class="time">{{ \Carbon\Carbon::parse($timeAgo)->locale('id_ID')->diffForHumans() }}</span>
                 </span>

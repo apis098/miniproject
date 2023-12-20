@@ -226,13 +226,16 @@
                                                         {{ $nomer += 1 }}</th>
                                                     <td>{{ $detail_session->detail_sesi }}</td>
                                                     <td style="width: 20%;text-align: end;">
+
+
                                                         @if ($detail_session->lama_sesi >= 60)
-                                                            <span>{{ $detail_session->lama_sesi / 60 }}
-                                                                {{ $detail_session->informasi_lama_sesi }}</span>
-                                                        @else
-                                                            <span>{{ $detail_session->lama_sesi }}
-                                                                {{ $detail_session->informasi_lama_sesi }}</span>
-                                                        @endif
+                                                        <span class="ml-auto">{{ number_format($detail_session->lama_sesi / 60, 1) }}
+                                                            jam</span>
+                                                    @else
+                                                        <span class="ml-auto">{{ $detail_session->lama_sesi }}
+                                                            {{ $detail_session->informasi_lama_sesi }}</span>
+                                                    @endif
+
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -278,37 +281,40 @@
                                             </button>
                                             <div class="modal" id="modalBlokirKursus">
                                                 <div class="modal-dialog modal-dialog-centered">
-                                                  <div class="modal-content" style="width: 100%;">
-                                                    <div class="modal-header">
-                                                      <h5 class="modal-title">Kirim alasan</h5>
-                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body" style="text-align: right;">
-                                                      <form action="{{ route('block.kursus', $detail_course->id) }}" method="post">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <input type="hidden" name="block_resep" value="yes">
-                                                        <div class="row mb-3">
-                                                          <div class="col-lg-5 col-md-12">
-                                                            <img class="my-auto" src="{{ asset('images/alasan.png') }}" width="100%" height="100%"
-                                                              alt="">
-                                                          </div>
-                                                          <div class="col-lg-7 col-md-12">
-                                                            <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
-                                                              cols="5" rows="5"></textarea>
-                                                          </div>
+                                                    <div class="modal-content" style="width: 100%;">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Kirim alasan</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body" style="text-align: right;">
+                                                            <form action="{{ route('block.kursus', $detail_course->id) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="block_resep" value="yes">
+                                                                <div class="row mb-3">
+                                                                    <div class="col-lg-5 col-md-12">
+                                                                        <img class="my-auto"
+                                                                            src="{{ asset('images/alasan.png') }}"
+                                                                            width="100%" height="100%" alt="">
+                                                                    </div>
+                                                                    <div class="col-lg-7 col-md-12">
+                                                                        <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
+                                                                            cols="5" rows="5"></textarea>
+                                                                    </div>
+                                                                </div>
+
+                                                                <button type="submit"
+                                                                    style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                    class="btn  btn-sm text-light">
+                                                                    <b class="me-3 ms-3">Kirim</b></button>
+                                                            </form>
                                                         </div>
 
-                                                        <button type="submit"
-                                                          style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                          class="btn  btn-sm text-light">
-                                                          <b class="me-3 ms-3">Kirim</b></button>
-                                                      </form>
                                                     </div>
-
-                                                  </div>
                                                 </div>
-                                              </div>
+                                            </div>
                                         @endif
                                     @else
                                         <button id="buttonPremium" type="button" onclick="harusLogin()"
@@ -445,17 +451,18 @@
                                     @endif
                                     @if (Auth::check())
                                         @if (Auth::user()->isFavoriteCourse($detail_course->id))
-                                            <button type="submit" class="btn text-dark mx-1 border-tepi" onclick="favoriteKursus()"><b
-                                                    class="ms-3 me-3"><i id="bookmark"
+                                            <button type="submit" class="btn text-dark mx-1 border-tepi"
+                                                onclick="favoriteKursus()"><b class="ms-3 me-3"><i id="bookmark"
                                                         class="fa-regular fa-solid fa-bookmark color-yellow"></i></b></button>
                                         @else
-                                            <button type="submit" class="btn text-dark mx-1 border-tepi" onclick="favoriteKursus()"><b
-                                                    class="ms-3 me-3"><i id="bookmark"
+                                            <button type="submit" class="btn text-dark mx-1 border-tepi"
+                                                onclick="favoriteKursus()"><b class="ms-3 me-3"><i id="bookmark"
                                                         class="fa-regular fa-bookmark color-grey"></i></b></button>
                                         @endif
                                     @else
-                                        <button type="submit" class="btn text-dark mx-1 border-tepi"><b class="ms-3 me-3"><i
-                                                    id="bookmark" class="fa-regular fa-bookmark color-grey"></i></b></button>
+                                        <button type="submit" class="btn text-dark mx-1 border-tepi"><b
+                                                class="ms-3 me-3"><i id="bookmark"
+                                                    class="fa-regular fa-bookmark color-grey"></i></b></button>
                                     @endif
                                 </div>
 
@@ -664,86 +671,132 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                    </div>
-                                    {{-- untuk hapus ulasan&rating --}}
-                                    <form action="{{ route('delete.ulasan', $review->id) }}" hidden method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" id="hapusUlasan{{ $review->id }}"
-                                            type="submit">Hapus</button>
-                                    </form>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
-                                        viewBox="0 0 24 24" onclick="konfirmasi_hapus_ulasanrating({{ $review->id }})">
-                                        <path fill="#B70404"
-                                            d="M9.525 13.765a.5.5 0 0 0 .71.71c.59-.59 1.175-1.18 1.765-1.76l1.765 1.76a.5.5 0 0 0 .71-.71c-.59-.58-1.18-1.175-1.76-1.765c.41-.42.82-.825 1.23-1.235c.18-.18.35-.36.53-.53a.5.5 0 0 0-.71-.71L12 11.293l-1.765-1.768a.5.5 0 0 0-.71.71L11.293 12Z" />
-                                        <path fill="#B70404"
-                                            d="M12 21.933A9.933 9.933 0 1 1 21.934 12A9.945 9.945 0 0 1 12 21.933Zm0-18.866A8.933 8.933 0 1 0 20.934 12A8.944 8.944 0 0 0 12 3.067Z" />
-                                    </svg>
-                                @elseif(Auth::user()->id == $detail_course->user->id)
-                                    <div class="my-auto" id="buttonBukaFormBalas{{ $review->id }}"
-                                        onclick="formBalasUlasan({{ $review->id }})">
-                                        <p style="border: 1px solid black;padding:2px;border-radius:10px;">
-                                            Balas</p>
-                                    </div>
-                @endif
-                @endif
-                @for ($i = 1; $i <= $review->rating; $i++)
-                    <i class="fas fa-star actived"></i>
-                @endfor
-                @if ($review->rating < 5)
-                    @for ($i = 1; $i <= 5 - $review->rating; $i++)
-                        <i class="fas fa-star"></i>
-                    @endfor
-                @endif
-                <span class="mx-1">{{ $review->rating }}</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
+                                                    viewBox="0 0 24 24" data-bs-toggle="modal" data-bs-target="#ModalKonfirmasiHapus{{ $review->id }}">
+                                                    <path fill="#B70404"
+                                                        d="M9.525 13.765a.5.5 0 0 0 .71.71c.59-.59 1.175-1.18 1.765-1.76l1.765 1.76a.5.5 0 0 0 .71-.71c-.59-.58-1.18-1.175-1.76-1.765c.41-.42.82-.825 1.23-1.235c.18-.18.35-.36.53-.53a.5.5 0 0 0-.71-.71L12 11.293l-1.765-1.768a.5.5 0 0 0-.71.71L11.293 12Z" />
+                                                    <path fill="#B70404"
+                                                        d="M12 21.933A9.933 9.933 0 1 1 21.934 12A9.945 9.945 0 0 1 12 21.933Zm0-18.866A8.933 8.933 0 1 0 20.934 12A8.944 8.944 0 0 0 12 3.067Z" />
+                                                </svg>
+                                                <div class="modal fade" id="ModalKonfirmasiHapus{{ $review->id }}"
+                                                    tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
 
-            </div>
-            </div>
-            <p>
-                {{ $review->ulasan }}
-            </p>
-            </div>
-            </div>
-            </div>
-            @if (Auth::check())
-                @if (Auth::user()->id == $detail_course->user->id)
-                    <div id="formBalasUlasan{{ $review->id }}" class="mb-5 mt-3 ml-5 hide"
-                        style="border-radius:15px;">
-                        <form action="{{ route('balas.ulasan', [$detail_course->id, $review->user->id, $review->id]) }}"
-                            method="post">
-                            @csrf
-                            <div class="d-flex justify-content-between">
-                                <input type="text" id="reply" name="ulasan" maxlength="255"
-                                    {{-- $userLog === 1 ? 'disabled' : '' --}} class="form-control me-2"
-                                    placeholder="Tambahkan Balasan Ulasan...">
-                                <button type="submit"
-                                    style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                    class="btn btn-sm text-light"><b class="me-3 ms-3">Kirim</b></button>
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="reportModal"
+                                                                    style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                    Peringatan</h5>
+                                                                <button type="button" class="close text-black"
+                                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div
+                                                                class="modal-body d-flex justify-content- align-items-center col-12">
+                                                                <!-- Tambahkan kelas "align-items-center" -->
+                                                                <div class="mt-2">
+                                                                    <img class="mr-3" src="{{ asset('image 94.png') }}"
+                                                                        width="100px" height="100px"
+                                                                        style="border-radius: 50%" alt="">
+                                                                </div>
+                                                                <div class="">
+                                                                    <div class="widget-49-meeting-info">
+
+                                                                    </div>
+                                                                    <p class="ml-4">
+                                                                        Apakah anda yakin ingin menghapus ulasan anda?
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                {{-- untuk hapus ulasan&rating --}}
+                                                                <form action="{{ route('delete.ulasan', $review->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit"
+                                                                        class="btn btn-light text-light rounded-3"
+                                                                        style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                                            class="ms-2 me-2">Ya</b>
+                                                                    </button>
+                                                                </form>
+                                                                <button type="button" data-dismiss="modal"
+                                                                    class="btn btn-light text-light rounded-3"
+                                                                    style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                                        class="ms-2 me-2">Tidak</b>
+                                                                </button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @elseif(Auth::user()->id == $detail_course->user->id)
+                                                <div class="mb-auto mx-2" style="margin-top: -5px;" id="buttonBukaFormBalas{{ $review->id }}"
+                                                    onclick="formBalasUlasan({{ $review->id }})">
+                                                    <p style="font-size:14px;border: 1px solid black;padding:2px;border-radius:10px;">
+                                                        Balas</p>
+                                                </div>
+                                            @endif
+                                        @endif
+                                        @for ($i = 1; $i <= $review->rating; $i++)
+                                            <i class="fas fa-star actived"></i>
+                                        @endfor
+                                        @if ($review->rating < 5)
+                                            @for ($i = 1; $i <= 5 - $review->rating; $i++)
+                                                <i class="fas fa-star"></i>
+                                            @endfor
+                                        @endif
+                                        <span class="mx-1">{{ $review->rating }}</span>
+                                    </div>
+                                </div>
+                                <p>{{ $review->ulasan }}</p>
                             </div>
-                        </form>
-                    </div>
-                @endif
-            @endif
-            @foreach ($review->balasanChef($detail_course->id, $detail_course->user->id) as $balasanChef)
-                <div class="card mb-5" style="width: 66%;margin-top:-15px;border-radius:15px;">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="d-flex">
-                                @if ($balasanChef->chef_teacher->foto)
-                                    <img src="{{ asset('storage/' . $balasanChef->chef_teacher->foto) }}" alt=""
-                                        width="30px" class="img-fluid rounded-circle mb-3 shadow-sm">
-                                @else
-                                    <img src="{{ asset('images/default.jpg') }}" alt="" width="30px"
-                                        class="img-fluid rounded-circle mb-3 shadow-sm">
-                                @endif
-                                <p class="text center my-1 mx-3"><b>{{ $balasanChef->chef_teacher->name }}</b></p>
-                            </div>
-                            <p>{{ $balasanChef->ulasan }}</p>
                         </div>
                     </div>
-                </div>
-            @endforeach
-            @endforeach
+                    @if (Auth::check())
+                        @if (Auth::user()->id == $detail_course->user->id)
+                            <div id="formBalasUlasan{{ $review->id }}" class="mb-5 mt-3 ml-5 hide"
+                                style="border-radius:15px;">
+                                <form
+                                    action="{{ route('balas.ulasan', [$detail_course->id, $review->user->id, $review->id]) }}"
+                                    method="post">
+                                    @csrf
+                                    <div class="d-flex justify-content-between">
+                                        <input type="text" id="reply" name="ulasan" maxlength="255"
+                                            {{-- $userLog === 1 ? 'disabled' : '' --}} class="form-control me-2"
+                                            placeholder="Tambahkan Balasan Ulasan...">
+                                        <button type="submit"
+                                            style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                            class="btn btn-sm text-light"><b class="me-3 ms-3">Kirim</b></button>
+                                    </div>
+                                </form>
+                            </div>
+                        @endif
+                    @endif
+                    @foreach ($review->balasanChef($detail_course->id, $detail_course->user->id) as $balasanChef)
+                    <div class="d-flex justify-content-end">
+                        <div class="card mb-5" style="width: 66%;margin-top:-15px;border-radius:15px;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="d-flex">
+                                        @if ($balasanChef->chef_teacher->foto)
+                                            <img src="{{ asset('storage/' . $balasanChef->chef_teacher->foto) }}"
+                                                alt="" width="30px"
+                                                class="img-fluid rounded-circle mb-3 shadow-sm">
+                                        @else
+                                            <img src="{{ asset('images/default.jpg') }}" alt="" width="30px"
+                                                class="img-fluid rounded-circle mb-3 shadow-sm">
+                                        @endif
+                                        <p class="text center my-1 mx-3"><b>{{ $balasanChef->chef_teacher->name }}</b></p>
+                                    </div>
+                                    <p>{{ $balasanChef->ulasan }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                @endforeach
             </div>
         </section>
 
@@ -846,13 +899,15 @@
                             $("#bookmark").addClass("fa-solid");
                             $("#bookmark").removeClass("color-grey");
                             $("#bookmark").addClass("color-yellow");
-                            $(".border-tepi").css("border-color", "#FFD700"); // Ganti warna border ke kuning (#FFD700)
+                            $(".border-tepi").css("border-color",
+                                "#FFD700"); // Ganti warna border ke kuning (#FFD700)
                         } else if (response.unfavorite) {
                             $("#bookmark").removeClass("fa-solid");
                             $("#bookmark").addClass("fa-regular");
                             $("#bookmark").removeClass("color-yellow");
                             $("#bookmark").addClass("color-grey");
-                            $(".border-tepi").css("border-color", "#000"); // Ganti warna border ke abu-abu (#808080)
+                            $(".border-tepi").css("border-color",
+                                "#000"); // Ganti warna border ke abu-abu (#808080)
                         }
                     },
                     error: function(xhr, error, status) {
@@ -908,33 +963,33 @@
             }
         </script>
         <script>
-        function limitName() {
-        let elements = document.querySelectorAll('.ellipsis-name');
+            function limitName() {
+                let elements = document.querySelectorAll('.ellipsis-name');
 
-        elements.forEach(element => {
-            let text = element.textContent.trim(); // Mengambil teks asli dari elemen
-            let screenWidth = window.innerWidth;
-            let maxLength;
+                elements.forEach(element => {
+                    let text = element.textContent.trim(); // Mengambil teks asli dari elemen
+                    let screenWidth = window.innerWidth;
+                    let maxLength;
 
-            if (screenWidth <= 425) {
-            maxLength = 5;
-            } else if (screenWidth <= 767 && screenWidth >= 426) {
-            maxLength = 10;
-            } else {
-            maxLength = 15;
+                    if (screenWidth <= 425) {
+                        maxLength = 5;
+                    } else if (screenWidth <= 767 && screenWidth >= 426) {
+                        maxLength = 10;
+                    } else {
+                        maxLength = 15;
+                    }
+
+                    let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+                    element.textContent = shortenedText;
+                });
             }
 
-            let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
-            element.textContent = shortenedText;
-        });
-        }
-
-        document.addEventListener('readystatechange', () => {
-        if (document.readyState === 'interactive') {
-            limitName();
-            window.addEventListener('resize', limitName);
-        }
-        });
-    </script>
+            document.addEventListener('readystatechange', () => {
+                if (document.readyState === 'interactive') {
+                    limitName();
+                    window.addEventListener('resize', limitName);
+                }
+            });
+        </script>
 
     @endsection

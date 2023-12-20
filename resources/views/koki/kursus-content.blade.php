@@ -286,7 +286,7 @@
                                     <label class="col-sm-2 fw-bold">Waktu </label>
                                     <div class="col-sm-10">
                                         <div class="row mx-auto">
-                                            <input type="integer" min="0" id="tambahLamaSesi" name="lama_sesi"
+                                            <input type="number" min="0" id="tambahLamaSesi" name="lama_sesi"
                                                 class="form-control col-9" placeholder="Masukkan Jumlah Waktu...">
                                             <select class="form-select col-3" name="informasi_lama_sesi" id="">
                                                 <option value="menit">Menit</option>

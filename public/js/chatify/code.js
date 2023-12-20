@@ -690,7 +690,7 @@ clientListenChannel.bind("client-seen", function (data) {
     if (data.seen == true) {
       $(".message-time")
         .find(".fa-check")
-        .before('<span class="fas fa-check-double seen"></span> ');
+        .before('<span class="fas fa-check-double text-info seen"></span> ');
       $(".message-time").find(".fa-check").remove();
     }
   }
@@ -1730,12 +1730,12 @@ function updateElementsDateToTimeAgo() {
   $('.message-time').each(function(){
     const time = $(this).attr('data-time');
     const formattedTime = moment(time).locale('id').fromNow();
-    $(this).text(formattedTime)
+    $(this).find('.time').text(formattedTime)
   });
   $(".contact-item-time").each(function () {
     const time = $(this).attr("data-time");
     const formattedTime = moment(time).locale("id").fromNow();
-    $(this).text(formattedTime);
+    $(this).find('time').text(formattedTime);
   });
 }
 setInterval(() => {

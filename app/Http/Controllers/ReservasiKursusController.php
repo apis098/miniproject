@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\TransaksiKursus;
 use App\Models\IncomeChefs;
 use App\Models\DetailSesiDibeli;
-use App\Models\SessionCourses;
+use App\Models\SessionsCourses;
 
 class ReservasiKursusController extends Controller
 {
@@ -61,7 +61,7 @@ class ReservasiKursusController extends Controller
     {
         $detail_transaksiKursus = TransaksiKursus::where('course_id', $id)->where('user_id', Auth::user()->id)->first();
         $id2 = $detail_transaksiKursus->id;
-        $detail_sesiDibeli = SessionCourses::whereHas('DetailSesiDibeli', function ($query) use ($id2) {
+        $detail_sesiDibeli = SessionsCourses::whereHas('DetailSesiDibeli', function ($query) use ($id2) {
             $query->where('transaksi_kursus_id', $id2);
         })->get();
         $user = User::find($detail_transaksiKursus->user_id);

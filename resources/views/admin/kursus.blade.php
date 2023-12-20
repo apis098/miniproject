@@ -359,7 +359,7 @@
                                     <b>Tentang kursus</b>
                                   </h3>
 
-                                  <p>{{ $item->deskripsi_kursus }}</p>
+                                  <p class="ellipsis-name">{{ $item->deskripsi_kursus }}</p>
 
                                 </div>
                                 <div class=" mt-3">
@@ -385,9 +385,9 @@
                                   <h5 class="mb-0">
                                     <a href="#"
                                       style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                      {{ $item->user->name }}
+                                      <span class="ellipsis-name">{{ $item->user->name }}</span>
                                       @if ($item->user->isSuperUser == 'yes')
-                                          <i class="fa-regular text-primary fa-circle-check ms-2"></i>
+                                          <i class="fa-regular text-primary fa-circle-check ms-1"></i>
                                       @endif
                                     </a>
                                   </h5>
@@ -521,4 +521,33 @@
       @endif
     </div>
   </div>
+  <script>
+    function limitName() {
+      let elements = document.querySelectorAll('.ellipsis-name');
+
+      elements.forEach(element => {
+        let text = element.textContent.trim(); // Mengambil teks asli dari elemen
+        let screenWidth = window.innerWidth;
+        let maxLength;
+
+        if (screenWidth <= 425) {
+          maxLength = 5;
+        } else if (screenWidth <= 767 && screenWidth >= 426) {
+          maxLength = 10;
+        } else {
+          maxLength = 20;
+        }
+
+        let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+        element.textContent = shortenedText;
+      });
+    }
+
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        limitName();
+        window.addEventListener('resize', limitName);
+      }
+    });
+  </script>
 @endsection

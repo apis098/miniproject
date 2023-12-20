@@ -232,7 +232,6 @@ class KursusController extends Controller
                 'message' => 'Kursus anda tidak diterima!',
                 'alasan' => $request->alasan,
                 'categories' => 'kursus',
-                'kursus_id' => $id
             ]);
             $update = Notifications::findOrFail($notifikasi->id);
             $update->route = '/status-baca/kursus/'.$notifikasi->id;
