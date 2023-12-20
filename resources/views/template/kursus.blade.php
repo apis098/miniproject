@@ -997,6 +997,11 @@
     let rating3 = document.getElementById("rating3");
     let rating4 = document.getElementById("rating4");
     let rating5 = document.getElementById("rating5");
+    let rate1 = document.getElementById("rate1");
+    let rate2 = document.getElementById("rate2");
+    let rate3 = document.getElementById("rate3");
+    let rate4 = document.getElementById("rate4");
+    let rate5 = document.getElementById("rate5");
     let valueRating = document.getElementById("valueRating");
     rating1.addEventListener("click", function() {
       rating1.style.backgroundColor = "orange";
@@ -1004,6 +1009,11 @@
       rating3.style.backgroundColor = "white";
       rating4.style.backgroundColor = "white";
       rating5.style.backgroundColor = "white";
+      rate1.style.color = "white";
+      rate2.style.color = "black";
+      rate3.style.color = "black";
+      rate4.style.color = "black";
+      rate5.style.color = "black";
       valueRating.value = 1;
     });
     rating2.addEventListener("click", function() {
@@ -1012,6 +1022,11 @@
       rating3.style.backgroundColor = "white";
       rating4.style.backgroundColor = "white";
       rating5.style.backgroundColor = "white";
+      rate2.style.color = "white";
+      rate1.style.color = "black";
+      rate3.style.color = "black";
+      rate4.style.color = "black";
+      rate5.style.color = "black";
       valueRating.value = 2;
     });
     rating3.addEventListener("click", function() {
@@ -1020,6 +1035,11 @@
       rating3.style.backgroundColor = "orange";
       rating4.style.backgroundColor = "white";
       rating5.style.backgroundColor = "white";
+      rate3.style.color = "white";
+      rate2.style.color = "black";
+      rate1.style.color = "black";
+      rate4.style.color = "black";
+      rate5.style.color = "black";
       valueRating.value = 3;
     });
     rating4.addEventListener("click", function() {
@@ -1028,6 +1048,11 @@
       rating3.style.backgroundColor = "white";
       rating4.style.backgroundColor = "orange";
       rating5.style.backgroundColor = "white";
+      rate4.style.color = "white";
+      rate2.style.color = "black";
+      rate3.style.color = "black";
+      rate1.style.color = "black";
+      rate5.style.color = "black";
       valueRating.value = 4;
     });
     rating5.addEventListener("click", function() {
@@ -1036,52 +1061,16 @@
       rating3.style.backgroundColor = "white";
       rating4.style.backgroundColor = "white";
       rating5.style.backgroundColor = "orange";
-      valueRating.value = 5;
-    });
-  </script>
-  <script>
-    //
-    let rate1 = document.getElementById("rate1");
-    let rate2 = document.getElementById("rate2");
-    let rate3 = document.getElementById("rate3");
-    let rate4 = document.getElementById("rate4");
-    let rate5 = document.getElementById("rate5");
-    rate1.addEventListener('click', function() {
-      rate1.style.color = "white";
-      rate2.style.color = "black";
-      rate3.style.color = "black";
-      rate4.style.color = "black";
-      rate5.style.color = "black";
-    });
-    rate2.addEventListener('click', function() {
-      rate2.style.color = "white";
-      rate1.style.color = "black";
-      rate3.style.color = "black";
-      rate4.style.color = "black";
-      rate5.style.color = "black";
-    });
-    rate3.addEventListener('click', function() {
-      rate3.style.color = "white";
-      rate2.style.color = "black";
-      rate1.style.color = "black";
-      rate4.style.color = "black";
-      rate5.style.color = "black";
-    });
-    rate4.addEventListener('click', function() {
-      rate4.style.color = "white";
-      rate2.style.color = "black";
-      rate3.style.color = "black";
-      rate1.style.color = "black";
-      rate5.style.color = "black";
-    });
-    rate5.addEventListener('click', function() {
       rate5.style.color = "white";
       rate2.style.color = "black";
       rate3.style.color = "black";
       rate4.style.color = "black";
       rate1.style.color = "black";
+      valueRating.value = 5;
     });
-    //
+  </script>
+  <script>
+   
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(posisi) {
         let lat = posisi.coords.latitude;
