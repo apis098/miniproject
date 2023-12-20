@@ -221,7 +221,10 @@
                             href="#" role="button"><i class="fas fa-xl fa-bars"></i></a>
                     </li>
                 </ul>
-
+                <div class="">
+                 <h4>Selamat datang kembali {{ $koki->name }}</h4> 
+                 <span>Saldo anda Rp {{ number_format($koki->saldo, 2, ',', '.') }}</span>
+                </div>
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="d-flex">
