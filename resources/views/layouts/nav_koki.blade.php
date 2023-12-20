@@ -245,7 +245,7 @@
                                           </svg>
                         </div>
                         <div class="d-flex p-1 pl-4 pr-3 text-center" style="border:1px solid black; border-radius: 15px;border-left:none;">
-                        <span class="pl-1 pr-1">0</span> <span>Hari</span>
+                            <span class="pl-1 pr-1">{{ \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse(Auth()->User()->akhir_langganan)) }}</span> <span>Hari</span>
                         </div>
                     </li>
                     <!-- Messages Dropdown Menu -->
