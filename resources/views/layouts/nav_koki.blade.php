@@ -222,8 +222,8 @@
                     </li>
                 </ul>
                 <div class="">
-                 <h4>Selamat datang kembali {{ $koki->name }}</h4> 
-                 <span>Saldo anda Rp {{ number_format($koki->saldo, 2, ',', '.') }}</span>
+                 <h4>Selamat datang kembali {{Auth()->User()->name }}</h4>
+                 <span>Saldo anda Rp {{ number_format(Auth()->User()->saldo, 2, ',', '.') }}</span>
                 </div>
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
@@ -245,7 +245,7 @@
                                           </svg>
                         </div>
                         <div class="d-flex p-1 pl-4 pr-3 text-center" style="border:1px solid black; border-radius: 15px;border-left:none;">
-                        <span class="pl-1 pr-1">{{ $waktu }}</span> <span>Hari</span>
+                        <span class="pl-1 pr-1">0</span> <span>Hari</span>
                         </div>
                     </li>
                     <!-- Messages Dropdown Menu -->
@@ -891,7 +891,7 @@
                                         <i class="fa-regular text-primary fa-circle-check ms-2" style="margin-top: 12px;"></i>
                                     @endif
                                     </span>
-                                
+
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <a href="/koki/index" class="dropdown-item text-orange itemdropdown" style="width: 230px">
@@ -977,7 +977,7 @@
                                 <i class="fa-regular text-primary fa-circle-check ms-2" style="margin-top: 12px;"></i>
                             @endif
                             </span>
-                        
+
                         </div>
                         <div class="dropdown-divider">
                             <a href="/admin/dashboard" class="dropdown-item text-orange" style="width: 230px">
