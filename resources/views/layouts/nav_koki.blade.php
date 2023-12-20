@@ -104,7 +104,7 @@
             }
         }
 
-        @media (max-width: 991.98px) {
+        @media (max-width: 992px) {
 
             .cascading-right {
                 margin-right: 0;
@@ -175,6 +175,17 @@
                 padding-right: 2%;
             }
         }
+        @media(max-width:768px) {
+            .welcome {
+                display:none;
+            }
+            
+        }
+        @media(min-width:769px) {
+            .welcome2 {
+                display:none;
+            }
+        }
     </style>
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
@@ -221,15 +232,15 @@
                             href="#" role="button"><i class="fas fa-xl fa-bars"></i></a>
                     </li>
                 </ul>
-                <div class="">
+                <div class="welcome">
                  <h4>Selamat datang kembali {{Auth()->User()->name }}</h4>
                  <span>Saldo anda Rp {{ number_format(Auth()->User()->saldo, 2, ',', '.') }}</span>
                 </div>
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
-                    <li class="d-flex">
-
-                        <div class="p-1 rounded-circle" style="border:1px solid white;background-color:orange;color:white;position:absolute;right:24%;">
+                    <li class="d-flex" style="position:relative;">
+                   
+                        <div class="p-1 rounded-circle" style="border:1px solid white;background-color:orange;color:white;position:absolute;left:-20px;top:0;">
                          <svg xmlns="http://www.w3.org/2000/svg" class="my-auto" width="28" height="28"
                                               viewBox="0 0 20 20">
                                               <g fill="currentColor">

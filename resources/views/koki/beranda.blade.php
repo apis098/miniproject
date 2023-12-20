@@ -28,13 +28,13 @@
         }
         }
 
-
     </style>
-    <div style="overflow-x:hidden">
+    <div class="welcome2" style="overflow-x:hidden">
         <div class="content-header mx-4">
             <div class="d-flex justify-content-start mt-1">
                 <div class="col-sm-6 col-md-5 col-lg-4">
-                    
+                <h4>Selamat datang kembali {{Auth()->User()->name }}</h4>
+                 <span>Saldo anda Rp {{ number_format(Auth()->User()->saldo, 2, ',', '.') }}</span>
                     <br>
                 </div>
             </div>
@@ -42,7 +42,7 @@
     </div>
 
     <!-- Sale & Revenue Start -->
-    <div class=" container-fluid su mx-3">
+    <div class="mt-3 container-fluid su mx-3">
         <div class="row g-2 su mx-2">
             <div class="col-12 col-md-4 col-lg-4">
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card"
