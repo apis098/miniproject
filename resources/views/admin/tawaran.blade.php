@@ -215,8 +215,10 @@
     <div class="tab-content ms-3 me-3" id="pills-tabContent">
       <div class="tab-pane fade show active" id="berlangganan" role="tabpanel" aria-labelledby="pills-home-tab"
         tabindex="0">
-        <div>
-          <div>
+        <div class="modal fade" id="ModalTambahLangganan">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
             <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
               @csrf
 
@@ -261,6 +263,8 @@
               </button>
               </div>
             </form>
+                </div>
+            </div>
           </div>
         </div>
         <style>
@@ -486,15 +490,9 @@
 
         <section class="section pricing ms-1 me-3 mt-5 mb-3">
             <div class="row">
-              @if ($penawaran_premium->count() == 0)
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                  <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                  <p><b>Tidak ada data</b></p>
-                </div>
-              @endif
               @foreach ($penawaran_premium as $item_prem)
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                  <div class="pricing-item animated-card">
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="pricing-item animated-card" style="height:415px;">
                     <div class="pricing-heading">
                     <button type="button" style="right: 12%; top: -6%; position: absolute; border: none;"
                             class="btn btn-lg text-light rounded-circle" data-bs-toggle="modal"
@@ -506,7 +504,7 @@
 
                     </button>
                     <style>
-                     
+
 
 
                     </style>
@@ -626,6 +624,56 @@
                 </div>
                 {{-- end modal edit --}}
               @endforeach
+              @if ($penawaran_premium->count() == 2)
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="pricing-item">
+                    <div class="pricing-heading text-center" style="height: 415px;">
+                        <span class="" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M480 480V128a32 32 0 0 1 64 0v352h352a32 32 0 1 1 0 64H544v352a32 32 0 1 1-64 0V544H128a32 32 0 0 1 0-64z"/></svg>
+                        </span>
+                    </div>
+                </div>
+              </div>
+              @endif
+              @if ($penawaran_premium->count() == 1)
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="pricing-item">
+                    <div class="pricing-heading text-center" style="height: 415px;">
+                        <span class="" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">+</span>
+                    </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="pricing-item">
+                    <div class="pricing-heading text-center" style="height: 415px;">
+                        <span class="" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">+</span>
+                    </div>
+                </div>
+              </div>
+              @endif
+              @if ($penawaran_premium->count() == 0)
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="pricing-item">
+                    <div class="pricing-heading text-center" style="height: 415px;">
+                        <span class="" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">+</span>
+                    </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="pricing-item">
+                    <div class="pricing-heading text-center" style="height: 415px;">
+                        <span class="" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">+</span>
+                    </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="pricing-item">
+                    <div class="pricing-heading text-center" style="height: 415px;">
+                        <span class="" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">+</span>
+                    </div>
+                </div>
+              </div>
+              @endif
             </div>
         </section>
 
@@ -946,6 +994,9 @@
     let num = 1;
     document.getElementById("button-add-detail").addEventListener("click", function(e) {
       num++;
+      if(num <= 4) {
+
+
       let div = document.createElement('div');
       div.innerHTML = `
             <div class="row mb-3" id="detail${num}">
@@ -963,6 +1014,7 @@
         </div>
             `;
       document.getElementById("details").appendChild(div);
+    }
     });
 
     function hapus_details(num) {
