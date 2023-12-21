@@ -627,8 +627,8 @@
               @if ($penawaran_premium->count() == 2)
               <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="pricing-item">
-                    <div class="pricing-heading text-center" style="height: 415px;">
-                        <span class="" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">
+                    <div class="pricing-heading" style="height: 415px;position:relative;">
+                        <span class="" style="position:absolute;top:45%;left:45%;" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M480 480V128a32 32 0 0 1 64 0v352h352a32 32 0 1 1 0 64H544v352a32 32 0 1 1-64 0V544H128a32 32 0 0 1 0-64z"/></svg>
                         </span>
                     </div>
@@ -638,15 +638,19 @@
               @if ($penawaran_premium->count() == 1)
               <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="pricing-item">
-                    <div class="pricing-heading text-center" style="height: 415px;">
-                        <span class="" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">+</span>
+                    <div class="pricing-heading" style="height: 415px;position:relative;">
+                        <span class="" style="position:absolute;top:45%;left:45%;" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M480 480V128a32 32 0 0 1 64 0v352h352a32 32 0 1 1 0 64H544v352a32 32 0 1 1-64 0V544H128a32 32 0 0 1 0-64z"/></svg>
+                        </span>
                     </div>
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="pricing-item">
-                    <div class="pricing-heading text-center" style="height: 415px;">
-                        <span class="" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">+</span>
+                    <div class="pricing-heading" style="height: 415px;position:relative;">
+                        <span class="" style="position:absolute;top:45%;left:45%;" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M480 480V128a32 32 0 0 1 64 0v352h352a32 32 0 1 1 0 64H544v352a32 32 0 1 1-64 0V544H128a32 32 0 0 1 0-64z"/></svg>
+                        </span>
                     </div>
                 </div>
               </div>
@@ -654,22 +658,28 @@
               @if ($penawaran_premium->count() == 0)
               <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="pricing-item">
-                    <div class="pricing-heading text-center" style="height: 415px;">
-                        <span class="" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">+</span>
+                    <div class="pricing-heading" style="height: 415px;position:relative;">
+                        <span class="" style="position:absolute;top:45%;left:45%;" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M480 480V128a32 32 0 0 1 64 0v352h352a32 32 0 1 1 0 64H544v352a32 32 0 1 1-64 0V544H128a32 32 0 0 1 0-64z"/></svg>
+                        </span>
                     </div>
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="pricing-item">
-                    <div class="pricing-heading text-center" style="height: 415px;">
-                        <span class="" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">+</span>
+                    <div class="pricing-heading" style="height: 415px;position:relative;">
+                        <span class="" style="position:absolute;top:45%;left:45%;" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M480 480V128a32 32 0 0 1 64 0v352h352a32 32 0 1 1 0 64H544v352a32 32 0 1 1-64 0V544H128a32 32 0 0 1 0-64z"/></svg>
+                        </span>
                     </div>
                 </div>
               </div>
               <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="pricing-item">
-                    <div class="pricing-heading text-center" style="height: 415px;">
-                        <span class="" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">+</span>
+                    <div class="pricing-heading" style="height: 415px;position:relative;">
+                        <span class="" style="position:absolute;top:45%;left:45%;" data-bs-toggle="modal" data-bs-target="#ModalTambahLangganan">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1024 1024"><path fill="currentColor" d="M480 480V128a32 32 0 0 1 64 0v352h352a32 32 0 1 1 0 64H544v352a32 32 0 1 1-64 0V544H128a32 32 0 0 1 0-64z"/></svg>
+                        </span>
                     </div>
                 </div>
               </div>
