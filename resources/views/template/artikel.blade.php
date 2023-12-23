@@ -427,7 +427,7 @@
                     </div>
                     {{-- data  --}}
                     <div class="col-sm-4  col-md-5 ">
-                        <h3 class="fw-bolder" style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}
+                        <h3 class="fw-bolder ellipsis-menu" style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}
                         </h3>
                         <span class="text-nowrap"><strong>Oleh :</strong> <span class="ellipsis-name">{{ $show_resep->User->name }}</span>
                         @if ($show_resep->User->isSuperUser == 'yes')
@@ -721,7 +721,6 @@
                                                 width: 60px;
                                             }
 
-
                                             @media (max-width: 767px) {
                                                 .search-1 input {
 
@@ -869,88 +868,86 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <div class="modal-body">
-                                                            <div class="d-flex ">
-                                                                <label for="inputKecil" class="col-lg-3 my-1">
-                                                                    <div class="card border-2 scale" id="smallGift"
+                                                        <div class="modal-body p-4 col-12">
+                                                            <div class="row">
+                                                                <label for="inputKecil" class="col-lg-3 col-md-6 col-12 my-1 mb-3">
+                                                                    <div class="card border-2 border-black scale" id="smallGift"
                                                                         data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                        style="width: auto; height: auto;">
                                                                         <img src="{{ asset('img/kecil.png') }}"
                                                                             class="card-img-top" alt="">
-                                                                        <div class=card-body">
+                                                                        <div class="card-body">
                                                                             <input hidden type="radio" value="5000"
                                                                                 name="giftInput" id="inputKecil">
                                                                             <div class="text-center">
-                                                                                <a href="#"
-                                                                                    class="card-title text-center"
+                                                                                <p href="#"
+                                                                                    class="card-title text-center mb-0"
                                                                                     style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
                                                                                     Kecil</a>
-                                                                            </div>
-                                                                            <p class="text-center"
+                                                                            </div> 
+                                                                            <p class="text-center mb-0"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                                 Rp. 5.000,00</p>
                                                                         </div>
                                                                     </div>
                                                                 </label>
 
-                                                                <label for="mediumInput" class="col-lg-3 my-1">
-                                                                    <div class="card border-2 scale" id="mediumGift"
+                                                                <label for="mediumInput" class="col-lg-3 col-md-6 col-12 my-1 mb-3">
+                                                                    <div class="card border-2 border-black scale" id="mediumGift"
                                                                         data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                        style="width: auto; height: auto;">
                                                                         <img src="{{ asset('img/sedang.png') }}"
                                                                             class="card-img-top" alt="">
-                                                                        <div class=card-body">
+                                                                        <div class="card-body">
                                                                             <input hidden type="radio" value="10000"
                                                                                 name="giftInput" id="mediumInput">
                                                                             <div class="text-center">
-                                                                                <a href="#"
-                                                                                    class="card-title text-center"
+                                                                                <p href="#"
+                                                                                    class="card-title text-center mb-0"
                                                                                     style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                    Sedang</a>
+                                                                                    Sedang</p>
                                                                             </div>
-                                                                            <p class="text-center"
+                                                                            <p class="text-center mb-0"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                                 Rp. 10.000,00</p>
                                                                         </div>
                                                                     </div>
                                                                 </label>
 
-                                                                <label for="extraInput" class="col-lg-3 my-1">
-                                                                    <div class="card border-2 scale" id="extraGift"
+                                                                 
+
+                                                                <label for="extraInput" class="col-lg-3 col-md-6 col-12 my-1 mb-3">
+                                                                    <div class="card border-2 border-black scale" id="extraGift"
                                                                         data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                        style="width: auto; height: auto;">
                                                                         <img src="{{ asset('img/besar.png') }}"
                                                                             class="card-img-top" alt="">
-                                                                        <div class=card-body">
+                                                                        <div class="card-body">
                                                                             <input hidden type="radio" value="20000"
                                                                                 name="giftInput" id="extraInput">
                                                                             <div class="text-center">
-                                                                                <a href="#"
-                                                                                    class="card-title text-center"
+                                                                                <p href="#"
+                                                                                    class="card-title text-center mb-0"
                                                                                     style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                    Besar</a>
+                                                                                    Besar</p>
                                                                             </div>
-                                                                            <p class="text-center"
+                                                                            <p class="text-center mb-0"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                                 Rp. 20.000,00</p>
                                                                         </div>
                                                                     </div>
                                                                 </label>
 
-                                                                <label for="moreInput" class="col-lg-3 my-1">
-                                                                    <button type="button" id="moreGift"
-                                                                        class="card border-2 scale"
-                                                                        data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                <label for="moreInput" class="col-lg-3 col-md-6 col-12 my-1">
+                                                                    <button type="button" id="moreGift" class="card border-2 scale border-black" data-card-selected="false" style="width: 100%; height: auto;">
                                                                         <img src="{{ asset('img/lainnya.png') }}"
-                                                                            class="card-img-top" alt="">
-                                                                        <div class=card-body">
-
-                                                                            <div class="mx-4 mt-2">
-                                                                                <a href="#" class="card-title "
-                                                                                    style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
+                                                                            class="card-img-top mb-3" alt="">
+                                                                        <div class="card-body" style="width: 100%; padding-right: 3%; padding-left: 3%; padding-top: 3%;">
+                                                                            <div class="mx-3 mt-2">
+                                                                                <p href="#" class="card-title text-center mb-0 text-lainnya "
+                                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word;">Lainnya</p>
                                                                             </div>
-                                                                            <p id="displayNumber" class="text-center"
+                                                                            <p id="displayNumber" class="text-center mb-0"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                                 Masukkan Nilai</p>
                                                                         </div>
@@ -958,30 +955,128 @@
                                                                 </label>
 
                                                             </div>
-                                                            <div class="d-flex mt-4 ml-3">
-                                                                <input type="number" id="moreInput" name="moreInput"
-                                                                    width="500px"
-                                                                    class="form-control border-2 rounded-3 me-3 moreInput{{ $show_resep->id }}"
-                                                                    style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
-                                                                    placeholder="Masukkan jumlah donasi lainya...">
-                                                                <input type="text" id="message" name="message"
-                                                                    width="500px"
-                                                                    class="form-control border-2 rounded-3 me-3 message{{ $show_resep->id }}"
-                                                                    style="margin-top: 12px; border:solid black; border-radius:100px;"
-                                                                    placeholder="Tambahkan pesan untuk pembuat...">
+                                                            <div class="col-12">
+                                                                <div class="row mt-4">
+                                                                    <div class="col-lg-5 col-md-6 col-12 pl-0 removePadding1">
+                                                                        <input type="number" id="moreInput" name="moreInput"
+                                                                            width="500px"
+                                                                            class="form-control border-2 rounded-3 me-3 moreInput{{ $show_resep->id }}"
+                                                                            style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
+                                                                            placeholder="Masukkan jumlah donasi lainya...">
+                                                                    </div>
+                                                                    <div id="button-pengganti"
+                                                                                class="col-lg-10 col-md-12 col-12 removePadding2">
+                                                                    <input type="text" id="message" name="message"
+                                                                        width="500px"
+                                                                        class="form-control border-2 rounded-3 me-3 message{{ $show_resep->id }}"
+                                                                        style="margin-top: 12px; border:solid black; border-radius:100px;"
+                                                                        placeholder="Tambahkan pesan untuk pembuat...">
+                                                                    </div>
 
-                                                                <button type="submit"
-                                                                    onclick="giftButton({{ $show_resep->id }})"
-                                                                    id="gift-btn{{ $show_resep->id }}"
-                                                                    style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                                    class="btn  btn-sm text-light">
-                                                                    <b class="me-3 ms-3">Kirim</b></button>
+                                                                    <div class="col-lg-2 col-md-12 col-12 pr-0 pl-0 penempatan-button">
+                                                                    <button type="submit"
+                                                                        onclick="giftButton({{ $show_resep->id }})"
+                                                                        id="gift-btn{{ $show_resep->id }}"
+                                                                        style="height: 40px; margin-top: 10px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                        class="btn  btn-sm text-light button-kirim">
+                                                                        <b class="me-3 ms-3">Kirim</b></button>
+                                                                    </div>
+                                                                    
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <style>
+                                                            /* Style untuk layar berukuran lebih kecil dari 1000px */
+                                                            @media (max-width: 1000px) {
+
+                                                                /* Menyembunyikan gambar dengan class card-img-top pada elemen dengan ID yang memiliki pola id yang di-generate */
+                                                                [id^="smallGift"] .card-img-top,
+                                                                [id^="mediumGift"] .card-img-top,
+                                                                [id^="extraGift"] .card-img-top,
+                                                                [id^="moreGift"] .card-img-top {
+                                                                    display: none;
+                                                                }
+                                                            }
+
+
+
+                                                            @media (max-width: 767px) {
+
+                                                                .removePadding1 {
+                                                                    padding-right: 0;
+                                                                }
+
+                                                                .removePadding2 {
+                                                                    padding-left: 0;
+                                                                }
+                                                            }
+
+                                                            @media (max-width: 999px) {
+
+                                                                .removePadding2 {
+                                                                    padding-right: 0;
+                                                                }
+                                                            }
+
+                                                            @media (min-width: 767px) {
+                                                                .removePadding2 {
+                                                                    padding-left: 0%;
+                                                                }
+                                                            }
+
+                                                            @media (min-width: 768px) {
+                                                                .text-lainnya {
+                                                                    margin-top: 9%;
+                                                                }
+                                                            }
+
+                                                            @media (max-width: 375px) {
+                                                                .text-lainnya {
+                                                                    margin-top: 5%;
+                                                                }
+                                                            }
+
+                                                            @media (min-width:425px) and (max-width: 500px) {
+                                                                .text-lainnya {
+                                                                    margin-top: 4%;
+                                                                }
+                                                            }
+
+                                                            @media (min-width:501px) and (max-width: 767px) {
+                                                                .text-lainnya {
+                                                                    margin-top: 2%;
+                                                                }
+                                                            }
+
+                                                            @media (max-width: 1000px) {
+                                                                .penempatan-button {
+                                                                    text-align: center;
+                                                                }
+                                                            }
+
+                                                            @media (min-width: 1000px) {
+                                                                .button-kirim {
+                                                                    float: right;
+                                                                }
+                                                            }
+                                                            .border-orange {
+                                                                border-radius: 15px !important;
+                                                                border: 2px solid #F7941E !important; /* Menambahkan ketebalan (2px) dan jenis border (solid) */
+                                                                overflow: hidden;
+                                                            }
+
+                                                            .border-black {
+                                                                border-radius: 15px !important;
+                                                                border: 2px solid black !important; /* Menambahkan ketebalan (2px) dan jenis border (solid) */
+                                                                overflow: hidden;
+                                                            }
+
+                                                        </style>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
+
                                         {{-- end gift modal --}}
                                         {{-- end favorite --}}
                                         {{-- modal --}}
@@ -3042,6 +3137,11 @@
         const message = document.getElementById("message");
         // const anotherText = document.getElementById("anotherText");
         smallGift.addEventListener('click', function() {
+            const buttonPengganti = document.getElementById('button-pengganti');
+            if (buttonPengganti.classList.contains('col-lg-5', 'col-md-6')) {
+                buttonPengganti.classList.remove('col-lg-5', 'col-md-6');
+                buttonPengganti.classList.add('col-lg-10', 'col-md-12');
+            }
             smallGift.style.borderColor = "#F7941E";
             message.style.borderColor = "#F7941E";
             mediumGift.style.borderColor = "black";
@@ -3050,8 +3150,25 @@
             inputanLainya.style.display = "none";
             moreInput.value = "";
             displayNumber.textContent = "Masukkan nilai";
+
+            $('#smallGift').removeClass('border-black');
+            $('#smallGift').addClass('border-orange');
+            $('#mediumGift').removeClass('border-orange');
+            $('#mediumGift').addClass('border-black');
+            $('#extraGift').removeClass('border-orange');
+            $('#extraGift').addClass('border-black');
+            $('#moreGift').removeClass('border-orange');
+            $('#moreGift').addClass('border-black');
+            $('#message').css('border-color', '#F7941E');
+            $('#moreInput').css('display', 'none');
+            $('#moreInput').val('');
         });
         mediumGift.addEventListener("click", function() {
+            const buttonPengganti = document.getElementById('button-pengganti');
+            if (buttonPengganti.classList.contains('col-lg-5', 'col-md-6')) {
+                buttonPengganti.classList.remove('col-lg-5', 'col-md-6');
+                buttonPengganti.classList.add('col-lg-10', 'col-md-12');
+            }
             mediumGift.style.borderColor = "#F7941E";
             message.style.borderColor = "#F7941E";
             smallGift.style.borderColor = "black";
@@ -3060,8 +3177,25 @@
             moreInput.style.display = "none";
             moreInput.value = "";
             displayNumber.textContent = "Masukkan nilai";
+
+            $('#mediumGift').removeClass('border-black');
+            $('#mediumGift').addClass('border-orange');
+            $('#smallGift').removeClass('border-orange');
+            $('#smallGift').addClass('border-black');
+            $('#extraGift').removeClass('border-orange');
+            $('#extraGift').addClass('border-black');
+            $('#moreGift').removeClass('border-orange');
+            $('#moreGift').addClass('border-black');
+            $('#message').css('border-color', '#F7941E');
+            $('#moreInput').css('display', 'none');
+            $('#moreInput').val('');
         });
         extraGift.addEventListener("click", function() {
+            const buttonPengganti = document.getElementById('button-pengganti');
+            if (buttonPengganti.classList.contains('col-lg-5', 'col-md-6')) {
+                buttonPengganti.classList.remove('col-lg-5', 'col-md-6');
+                buttonPengganti.classList.add('col-lg-10', 'col-md-12');
+            }
             extraGift.style.borderColor = "#F7941E";
             message.style.borderColor = "#F7941E";
             smallGift.style.borderColor = "black";
@@ -3070,8 +3204,25 @@
             moreInput.style.display = "none";
             moreInput.val = "";
             displayNumber.textContent = "Masukkan nilai";
+
+            $('#extraGift').removeClass('border-black');
+            $('#extraGift').addClass('border-orange');
+            $('#mediumGift').removeClass('border-orange');
+            $('#mediumGift').addClass('border-black');
+            $('#smallGift').removeClass('border-orange');
+            $('#smallGift').addClass('border-black');
+            $('#moreGift').removeClass('border-orange');
+            $('#moreGift').addClass('border-black');
+            $('#message').css('border-color', '#F7941E');
+            $('#moreInput').css('display', 'none');
+            $('#moreInput').val('');
         });
         moreGift.addEventListener('click', function() {
+            const buttonPengganti = document.getElementById('button-pengganti');
+            if (buttonPengganti.classList.contains('col-lg-10', 'col-md-12')) {
+                buttonPengganti.classList.remove('col-lg-10', 'col-md-12');
+                buttonPengganti.classList.add('col-lg-5', 'col-md-6');
+            }
             moreGift.style.borderColor = "#F7941E";
             message.style.borderColor = "#F7941E";
             smallGift.style.borderColor = "black";
@@ -3079,7 +3230,16 @@
             extraGift.style.borderColor = "black";
             moreInput.style.display = "block";
             moreInput.style.borderColor = "#F7941E";
+
+            $('#moreGift').removeClass('border-black').addClass('border-orange');
+            $('#extraGift').removeClass('border-orange').addClass('border-black');
+            $('#mediumGift').removeClass('border-orange').addClass('border-black');
+            $('#smallGift').removeClass('border-orange').addClass('border-black');
+            $('#message').css('border-color', '#F7941E');
+            $('#moreInput').css('display', 'block').css('border-color', '#F7941E');
+            $('input[name="giftInput"]').prop('checked', false);
         });
+        
         moreInput.addEventListener("input", function() {
             const inputValue = moreInput.value;
             const formattedValue = formatNumber(inputValue);
@@ -3101,32 +3261,42 @@
         }
     </script>
     <script>
-    function limitName() {
-      let elements = document.querySelectorAll('.ellipsis-name');
+        function limitText(selector, maxLength) {
+            let elements = document.querySelectorAll(selector);
 
-      elements.forEach(element => {
-        let text = element.textContent.trim(); // Mengambil teks asli dari elemen
-        let screenWidth = window.innerWidth;
-        let maxLength;
-
-        if (screenWidth <= 425) {
-          maxLength = 5;
-        } else if (screenWidth <= 767 && screenWidth >= 426) {
-          maxLength = 10;
-        } else {
-          maxLength = 50;
+            elements.forEach(element => {
+                let text = element.textContent.trim();
+                let screenWidth = window.innerWidth;
+                let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
+                element.textContent = shortenedText;
+            });
         }
 
-        let shortenedText = text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
-        element.textContent = shortenedText;
-      });
-    }
+        function limitContent() {
+            let nameMaxLength, menuMaxLength;
+            let screenWidth = window.innerWidth;
 
-    document.addEventListener('readystatechange', () => {
-      if (document.readyState === 'interactive') {
-        limitName();
-        window.addEventListener('resize', limitName);
-      }
-    });
-  </script>
+            if (screenWidth <= 425) {
+                nameMaxLength = 10;
+                menuMaxLength = 7;
+            } else if (screenWidth <= 767 && screenWidth >= 426) {
+                nameMaxLength = 10;
+                menuMaxLength = 7;
+            } else {
+                nameMaxLength = 20;
+                menuMaxLength = 40;
+            }
+
+            limitText('.ellipsis-name', nameMaxLength);
+            limitText('.ellipsis-menu', menuMaxLength);
+        }
+
+        document.addEventListener('readystatechange', () => {
+            if (document.readyState === 'interactive') {
+                limitContent();
+                window.addEventListener('resize', limitContent);
+            }
+        });
+    </script>
+
 @endsection

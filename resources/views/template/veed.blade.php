@@ -1368,8 +1368,8 @@
                                                                             <div class="card-body"
                                                                                 style="width: 100%; padding-right: 3%; padding-left: 3%; padding-top: 3%;">
                                                                                 <div class="mx-3 mt-2">
-                                                                                    <p class="card-title text-center mb-0"
-                                                                                        style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word; margin-top: 9%;">
+                                                                                    <p class="card-title text-center mb-0 text-lainnya"
+                                                                                        style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word;">
                                                                                         Lainnya</p>
                                                                                 </div>
                                                                                 <p id="displayNumber{{ $item_video->id }}"
@@ -1479,6 +1479,30 @@
                                                 @media (min-width: 767px) {
                                                     .removePadding2 {
                                                         padding-left: 0%;
+                                                    }
+                                                }
+
+                                                @media (min-width: 768px) {
+                                                    .text-lainnya {
+                                                        margin-top: 9%;
+                                                    }
+                                                }
+
+                                                @media (max-width: 375px) {
+                                                    .text-lainnya {
+                                                        margin-top: 5%;
+                                                    }
+                                                }
+
+                                                @media (min-width:425px) and (max-width: 500px) {
+                                                    .text-lainnya {
+                                                        margin-top: 4%;
+                                                    }
+                                                }
+
+                                                @media (min-width:501px) and (max-width: 767px) {
+                                                    .text-lainnya {
+                                                        margin-top: 2%;
                                                     }
                                                 }
 
