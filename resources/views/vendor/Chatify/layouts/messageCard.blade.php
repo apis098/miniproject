@@ -51,9 +51,10 @@ $timeAndSeen = "<span data-time='$created_at' class='message-time'>
         @endif
         @if(@$attachment->type == 'image')
         <div class="image-wrapper" style="text-align: {{$isSender ? 'end' : 'start'}}; ">
-            <div class="image-file chat-image" style="background-image: url('/storage/attachments/{{$attachment->file}}');">
+            <img class="image-file chat-image" src="/storage/attachments/{{$attachment->file}}"  alt="">
+            {{-- <div class="image-file chat-image" style="background-image: url('/storage/attachments/{{$attachment->file}}');">
                 <div>{{ $attachment->title }}</div>
-            </div>
+            </div> --}}
             <div style="margin-bottom:5px" class=" @if(!$isSender) ms-3 @else me-3 text-light @endif mt-1">
                 <span data-time="{{$created_at}}" class="message-time">
                     @if($isSender)
