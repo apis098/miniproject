@@ -29,6 +29,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         # Server port to connect to (read your web hosts docs)
         port: ${{ secrets.FTP_PORT }}
+        dry-run: true
         # protocol to deploy with - ftp, ftps, or ftps-legacy
         protocol: ftp
         # An array of glob patterns, these files will not be included in the publish/delete process
