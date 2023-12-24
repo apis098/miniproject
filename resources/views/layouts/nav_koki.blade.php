@@ -245,7 +245,7 @@
                 </ul>
                 <div class="welcome">
                  <h4>Selamat datang kembali {{Auth()->User()->name }}</h4>
-                 <span>Saldo pukiz Rp {{ number_format(Auth()->User()->saldo, 2, ',', '.') }}</span>
+                 <span>Saldo pukimale Rp {{ number_format(Auth()->User()->saldo, 2, ',', '.') }}</span>
                 </div>
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
