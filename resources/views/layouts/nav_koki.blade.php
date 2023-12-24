@@ -179,7 +179,7 @@
             .welcome {
                 display:none;
             }
-            
+
         }
         @media(min-width:769px) {
             .welcome2 {
@@ -190,7 +190,7 @@
             .IconMessage {
                 display:none;
             }
-         
+
         }
         @media(min-width:579px) {
             .IconMessage2 {
@@ -245,12 +245,12 @@
                 </ul>
                 <div class="welcome">
                  <h4>Selamat datang kembali {{Auth()->User()->name }}</h4>
-                 <span>Saldo dgete Rp {{ number_format(Auth()->User()->saldo, 2, ',', '.') }}</span>
+                 <span>Saldo lo ya Rp {{ number_format(Auth()->User()->saldo, 2, ',', '.') }}</span>
                 </div>
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="d-flex" style="position:relative;">
-                   
+
                         <div class="p-1 rounded-circle" style="border:1px solid white;background-color:orange;color:white;position:absolute;left:-20px;top:0;">
                          <svg xmlns="http://www.w3.org/2000/svg" class="my-auto" width="28" height="28"
                                               viewBox="0 0 20 20">
@@ -872,7 +872,7 @@
                     </li>
 
 
-                    {{-- expand fullscreen 
+                    {{-- expand fullscreen
                     <li class="nav-item">
                         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                             <i class="fas fa-xl fa-expand-arrows-alt"></i>
@@ -963,14 +963,14 @@
                                     </svg>
                                     Riwayat Top up
                                 </a>
-                                <div class="dropdown-divider"></div>   
+                                <div class="dropdown-divider"></div>
                                 <div class="IconMessage2">        <!-- Messages Dropdown Menu -->
                                 <a href="/roomchat" style="width: 230px;"
                                  class="dropdown-item text-orange ">
                                  <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9h8m-8 3h8m-8 3h3m10-3a9 9 0 0 1-13.815 7.605L3 21l1.395-4.185A9 9 0 1 1 21 12"/></svg>
                                  Roomchat
                                 </a>
-                 
+
                                 <div class="dropdown-divider"></div>
                     </div>
                                 <a href="{{ route('actionlogout') }}" style="width: 230px;"
