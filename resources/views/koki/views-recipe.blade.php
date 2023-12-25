@@ -575,7 +575,7 @@
                                 <p><b>Tidak ada resep</b></p>
                             </div>
                         @endif
-                        <div class="row mx-auto reseps resepDibuat " style="flex-wrap: wrap;" id="resepDibuat">
+                        <div class="row my-3 mx-3 reseps resepDibuat " style="flex-wrap: wrap;" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
                                 <a href="/artikel/{{ $my_recipe->id }}/{{ $my_recipe->nama_resep }}" class=" d-flex cardReseps justify-content-center col-lg-3  col-xl-3 p-1 col-md-4 col-sm-6 "
                                     style=" width: 100%; box-shadow:none; color:black ">
@@ -767,26 +767,25 @@
                                 <p><b>Tidak ada data</b></p>
                             </div>
                         @endif
-                        <div class="row my-4 resepDisukai gap-1">
-                            @foreach ($resep_disukai as $num => $suka)
-                            <a href="/artikel/{{ $suka->id }}/{{ $suka->nama_resep }}">
-                            <div class=" card col-lg-4 mx-auto resepDisukai col-xl-3  border-black col-md-4 col-12 "
-                            style="border-radius:15px; width: 100%; border: 1px solid black; max-width:250px">
-                                <div class="mx-auto">
-                                    <div class="col-12 card-header mx-auto  text-center" style="border: none; max-height:200px; padding:10px 0px;">
-                                        <img src="{{ asset('storage/' . $suka->foto_resep) }}" class="card-img-top"
-                                            style="max-width:auto; max-height: 200px; border-radius:15px; object-fit: cover"
+                        <div class="row my-3 mx-3 resepDisukai ">
+                            @foreach ($resep_disukai as $num => $my_recipe)
+                            <a href="/artikel/{{ $my_recipe->id }}/{{ $my_recipe->nama_resep }}" class=" d-flex cardReseps justify-content-center col-lg-3  col-xl-3 p-1 col-md-4 col-sm-6 "
+                                style=" width: 100%; box-shadow:none; color:black ">
+                                <div class="border card" style="border-radius: 15px">
+                                    <div class=" " style="border: none; max-height:120px; padding:10px 0px;">
+                                        <img src="{{ asset('storage/' . $my_recipe->foto_resep) }}" class="mx-2"
+                                            style="max-width:90%; min-width:90%; min-height: 150px; max-height:150px;  border-radius:15px; object-fit: cover"
                                             alt="...">
                                     </div>
                                     <div class="mx-auto col-12">
                                         <div class="col-12 p-0">
-                                            <a style="color: black; font-size: 24px; margin-left:-1px;text-align:left;"
-                                                href="/artikel/{{ $suka->id }}/{{ $suka->nama_resep }}">
-                                                <p class="fw-bold mb-0">{{ $suka->nama_resep }}</p>
-                                            </a>
+                                            <span style="color: black; font-size: 24px; margin-left:-1px;text-align:left;"
+                                                href="/artikel/{{ $my_recipe->id }}/{{ $my_recipe->nama_resep }}">
+                                                <p class="fw-bold mb-0 text">{{ $my_recipe->nama_resep }}</p>
+                                            </span>
                                         </div>
                                         <div class="row">
-                                            <div class="col-12 col-md-12 col-lg-5 d-flex">
+                                            <div class="col-12 col-md-12 col-xl-5 d-flex">
                                                 <svg width="17" height="23" viewBox="0 0 28 28"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g id="&#240;&#159;&#166;&#134; icon &#34;thumbs up&#34;">
@@ -795,9 +794,9 @@
                                                             fill="black" />
                                                     </g>
                                                 </svg>
-                                                <span class="ml-1">{{ $suka->likes()->count() }} suka</span>
+                                                <span class="ml-1">{{ $my_recipe->likes()->count() }} suka</span>
                                             </div>
-                                            <div class="col-12 col-md-12 col-lg-7 ">
+                                            <div class="col-12 col-md-12 col-xl-7 ">
                                                 <svg width="15" height="16" viewBox="0 0 30 31"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g
@@ -817,7 +816,7 @@
                                                     </g>
                                                 </svg>
                                                 <span
-                                                    class="text-center ml-1">{{ $suka->comment_recipes()->count() }} komen</span>
+                                                    class="text-center ml-1">{{ $my_recipe->comment_recipes()->count() }} komen</span>
                                             </div>
                                             <div class=" col-12 mt-1 mb-3">
                                                 <svg width="16" height="20" viewBox="0 0 24 33"
@@ -829,12 +828,11 @@
                                                             stroke-linejoin="round" />
                                                     </g>
                                                 </svg>
-                                                <span class="text-center ml-1">{{ $suka->favorite()->count() }} favorit </span>
+                                                <span class="text-center ml-1">{{ $my_recipe->favorite()->count() }} favorit </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </a>
                                 {{-- <div class="resep-disukai card col-lg-4 col-xl-3 col-md-4 col-sm-12 my-3 ml-3 resepDisukai"
                                     style="border-radius:15px">
@@ -963,26 +961,25 @@
                                 <p><b>Tidak ada data</b></p>
                             </div>
                         @endif
-                        <div class="row my-4 gap-1 resepFavorite">
-                            @foreach ($resep_favorite as $num => $favorite)
-                            <a href="/artikel/{{ $suka->id }}/{{ $suka->nama_resep }}">
-                            <div class="resepFavorite card col-lg-4 mx-auto  col-xl-3  border-black col-md-4 col-12 "
-                            style="border-radius:15px; width: 100%; border: 1px solid black; max-width:250px">
-                                <div class="mx-auto">
-                                    <div class="col-12 card-header mx-auto  text-center" style="border: none; max-height:200px; padding:10px 0px;">
-                                        <img src="{{ asset('storage/' . $favorite->foto_resep) }}" class="card-img-top"
-                                            style="max-width:auto; max-height: 200px; border-radius:15px; object-fit: cover"
+                        <div class="row my-3 mx-3 gap-1 resepFavorite">
+                            @foreach ($resep_favorite as $num => $my_recipe)
+                            <a href="/artikel/{{ $my_recipe->id }}/{{ $my_recipe->nama_resep }}" class=" d-flex cardReseps justify-content-center col-lg-3  col-xl-3 p-1 col-md-4 col-sm-6 "
+                                style=" width: 100%; box-shadow:none; color:black ">
+                                <div class="border card" style="border-radius: 15px">
+                                    <div class=" " style="border: none; max-height:120px; padding:10px 0px;">
+                                        <img src="{{ asset('storage/' . $my_recipe->foto_resep) }}" class="mx-2"
+                                            style="max-width:90%; min-width:90%; min-height: 150px; max-height:150px;  border-radius:15px; object-fit: cover"
                                             alt="...">
                                     </div>
                                     <div class="mx-auto col-12">
                                         <div class="col-12 p-0">
-                                            <a style="color: black; font-size: 24px; margin-left:-1px;text-align:left;"
-                                                href="/artikel/{{ $favorite->id }}/{{ $favorite->nama_resep }}">
-                                                <p class="fw-bold mb-0">{{ $favorite->nama_resep }}</p>
-                                            </a>
+                                            <span style="color: black; font-size: 24px; margin-left:-1px;text-align:left;"
+                                                href="/artikel/{{ $my_recipe->id }}/{{ $my_recipe->nama_resep }}">
+                                                <p class="fw-bold mb-0 text">{{ $my_recipe->nama_resep }}</p>
+                                            </span>
                                         </div>
                                         <div class="row">
-                                            <div class="col-12 col-md-12 col-lg-5 d-flex">
+                                            <div class="col-12 col-md-12 col-xl-5 d-flex">
                                                 <svg width="17" height="23" viewBox="0 0 28 28"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g id="&#240;&#159;&#166;&#134; icon &#34;thumbs up&#34;">
@@ -991,9 +988,9 @@
                                                             fill="black" />
                                                     </g>
                                                 </svg>
-                                                <span class="ml-1">{{ $favorite->likes()->count() }} suka</span>
+                                                <span class="ml-1">{{ $my_recipe->likes()->count() }} suka</span>
                                             </div>
-                                            <div class="col-12 col-md-12 col-lg-7 ">
+                                            <div class="col-12 col-md-12 col-xl-7 ">
                                                 <svg width="15" height="16" viewBox="0 0 30 31"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <g
@@ -1013,7 +1010,7 @@
                                                     </g>
                                                 </svg>
                                                 <span
-                                                    class="text-center ml-1">{{ $favorite->comment_recipes()->count() }} komen</span>
+                                                    class="text-center ml-1">{{ $my_recipe->comment_recipes()->count() }} komen</span>
                                             </div>
                                             <div class=" col-12 mt-1 mb-3">
                                                 <svg width="16" height="20" viewBox="0 0 24 33"
@@ -1025,12 +1022,11 @@
                                                             stroke-linejoin="round" />
                                                     </g>
                                                 </svg>
-                                                <span class="text-center ml-1">{{ $favorite->favorite()->count() }} favorit </span>
+                                                <span class="text-center ml-1">{{ $my_recipe->favorite()->count() }} favorit </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </a>
                                 {{-- <div class="card col-lg-4 col-xl-3 col-md-4 col-sm-12 my-3 ml-3 resep-favorite"
                                     style="border-radius:15px">

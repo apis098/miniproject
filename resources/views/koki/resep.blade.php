@@ -190,7 +190,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <label for="formFile" class="form-label"><b>Langkah-langkah</b></label>
+                                    <label class="form-label"><b>Langkah-langkah</b></label>
                                     <div id="div2" class="card my-4 col-lg-4 border border-dark"
                                         style="border-radius: 15px;">
                                         <div class="card-body text-center">
@@ -499,7 +499,7 @@
             input2.innerHTML = `
                         <div class="row" id="close2_${num2}">
                             <button type="button" style="width: 50px;" class="btn btn-danger fa-solid fa-x" onclick="close2(${num2})"></button>
-                            <label for="formFile" class="form-label"><b>Langkah-langkah</b></label>
+                            <label class="form-label"><b>Langkah-langkah</b></label>
                             <div id="div3${num2}" class="card my-5 col-lg-4 border border-dark"
                                 style="border-radius: 15px;">
                                 <div class="card-body text-center">

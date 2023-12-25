@@ -742,12 +742,12 @@
                             <div class="col-12 row mb-3">
                                 <div class="col-6 mx-auto">
                                     <img width="20px" height="20px"
-                                        src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
+                                        src="{{ asset('images/icon _thumbs up_.svg') }}" alt="">
                                     {{ $item->likes }} suka
                                 </div>
                                 <div class="col-6 mx-auto">
                                     <img width="20px" height="20px"
-                                        src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                        src="{{ asset('images/icon _time_.svg') }}" alt="">
                                     @if ($item->lama_memasak >= 60)
                                         {{ number_format($item->lama_memasak / 60, 1) }} jam
                                     @else
@@ -756,13 +756,13 @@
                                 </div>
                                 <div class="col-6 my-2">
                                     <img width="20px" height="20px"
-                                        src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}"
+                                        src="{{ asset('images/icon _comment square chat message_.svg') }}"
                                         alt="">
-                                    {{ $item->comment_recipes->count() }} Komentar
+                                    {{ $item->comment_recipes->count() }} Komen
                                 </div>
                                 <div class="col-6 my-2">
                                     <img width="20px" height="20px"
-                                        src="{{ asset('images/🦆 icon _bookmark save_.svg') }}" alt="">
+                                        src="{{ asset('images/icon _bookmark save_.svg') }}" alt="">
                                     {{ $item->favorite_count }} Favorit
                                 </div>
                             </div>

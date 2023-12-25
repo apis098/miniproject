@@ -804,7 +804,7 @@
                                           <div class="col-6 d-flex align-items-center pr-0">
                                               <span class="text-nowrap">
                                                   <img class="mb-1" width="17px" height="17px"
-                                                      src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
+                                                      src="{{ asset('images/icon _thumbs up_.svg') }}"
                                                       alt="">
 
                                                   {{ $item->likes }} </span>
@@ -815,7 +815,7 @@
                                               <span class="text-nowrap d-flex gap-2 align-items-center"
                                                   style="font-size: 15px">
                                                   <img width="17px" height="17px"
-                                                      src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                                      src="{{ asset('images/icon _time_.svg') }}" alt="">
 
                                                   @if ($item->lama_memasak >= 60)
                                                       {{ number_format($item->lama_memasak / 60, 1) }} <span
@@ -829,7 +829,7 @@
                                           <div class="col-6 my-3 d-flex gap-2 align-items-center pr-0">
                                               <span class="text-nowrap">
                                                   <img width="16px" height="16px"
-                                                      src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}"
+                                                      src="{{ asset('images/icon _comment square chat message_.svg') }}"
                                                       alt="">
                                                   {{ $item->comment_recipes->count() }}
                                               </span>
@@ -841,7 +841,7 @@
 
                                               <span class="text-nowrap  d-flex gap-2 align-items-center">
                                                   <img width="17px" height="17px"
-                                                      src="{{ asset('images/🦆 icon _bookmark save_.svg') }}"
+                                                      src="{{ asset('images/icon _bookmark save_.svg') }}"
                                                       alt="">
                                                   {{ $item->favorite_count }}
                                                   <span class="tesk " style="font-size: 15px"> Favorit </span>

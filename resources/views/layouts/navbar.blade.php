@@ -116,8 +116,8 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="/dist/img/AdminLTELogo.png" alt="HummacookLogo" height="60"
-                width="60">
+            <img class="animation__shake" src="{{ asset('images/LogoHummacookHitam.png') }}" alt="HummacookLogo" height="80px"
+                width="240px">
         </div>
 
         <!-- Main Sidebar Container -->
@@ -619,9 +619,9 @@
                             </a>
                         </li>
                         <div class="dropdown-divider"></div>
-                        <li><a href="{{ route('actionlogout') }}" style="margin-left: 8%;margin-right: 3%; color: #fd7e14;">
-                                <svg style="margin-right: 4%;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    viewBox="0 0 24 24">
+                        <li><a href="{{ route('actionlogout') }}" class="mx-3" style="color: #fd7e14;">
+                                <svg style="" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                    viewBox="0 0 24 24" class="me-2">
                                     <path fill="currentColor"
                                         d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
                                     <path fill="currentColor"
