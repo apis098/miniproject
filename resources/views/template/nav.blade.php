@@ -2765,7 +2765,7 @@
 
 
     <!-- footer section -->
-    <!-- jQery -->
+    <!-- jQery --> 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
