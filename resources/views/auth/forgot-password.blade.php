@@ -37,8 +37,8 @@
                         password</button>
                 </form>
                 <div class="d-flex justify-content-between mt-4">
-                    <a class="/login" style="text-decoration:none;color:black;" href="#">Login</a>
-                    <a class="/register" style="text-decoration:none;color:black;" href="#">Register</a>
+                    <a href="/login" style="text-decoration:none;color:black;">Login</a>
+                    <a href="/register" style="text-decoration:none;color:black;">Register</a>
                 </div>
             </div>
         </div>
