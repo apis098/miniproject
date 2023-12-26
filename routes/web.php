@@ -31,6 +31,7 @@ use App\Http\Controllers\IncomeChefsController;
 use App\Http\Controllers\ReservasiKursusController;
 use App\Http\Controllers\TestingController;
 use App\Http\Controllers\UlasanRatingController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Models\Notifications;
 
 /*
@@ -293,3 +294,9 @@ Route::put('/update-ulasan/{id}', [UlasanRatingController::class, "update"])->na
 Route::post('/favorite/kursus/{chef}/{course}', [KursusController::class, 'favoriteKursus'])->name('favorite.kursus');
 // route reply reply comment di resep dan diskusi
 Route::post('/reply-reply-comment', [KokiController::class, 'replyReplyComment'])->name('reply.reply.comment');
+
+// route for forget password
+Route::get('/forgot-password', [ChangePasswordController::class, "index_forgot_password"])->middleware('guest')->name('password.request');
+Route::post('/forgot-password',[ChangePasswordController::class, "forgot_password"])->middleware('guest')->name('password.email');
+Route::get('/reset-password/{token}', [ChangePasswordController::class, "index_reset_password"])->middleware('guest')->name('password.reset');
+Route::post('/reset-password', [ChangePasswordController::class, "reset_password"])->middleware('guest')->name('password.update');

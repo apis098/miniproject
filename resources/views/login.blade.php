@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +10,11 @@
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -42,7 +42,7 @@
         .register-container {
             /* flex:0;
             display: flex; */
-            flex-direction:row;
+            flex-direction: row;
             justify-content: center;
             height: 100%;
             /* width: 100%; */
@@ -52,24 +52,25 @@
         }
 
         .bg-image {
-        background: #f7941e;
-        height: 100vh;
-        width: 50%; /* Adjust the width percentage as needed */
-        position: relative;
-        border-radius: 0 15px 15px 0;
-        overflow: hidden;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+            background: #f7941e;
+            height: 100vh;
+            width: 50%;
+            /* Adjust the width percentage as needed */
+            position: relative;
+            border-radius: 0 15px 15px 0;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         .frame-47 {
-        max-width: 100%;
-        height: 80%;
-        /* width: 80%; */
-        position: absolute;
-        top: 50%;
-        left: 60%;
-        transform: translate(-50%, -50%);
+            max-width: 100%;
+            height: 80%;
+            /* width: 80%; */
+            position: absolute;
+            top: 50%;
+            left: 60%;
+            transform: translate(-50%, -50%);
         }
 
         .content-container {
@@ -134,100 +135,113 @@
         .alert {
             margin-top: 10px;
         }
+
         /* Extra small devices (phones, 600px and down) */
         @media only screen and (max-width: 600px) {
             body {
-                 font-size: 14px; /* Mengurangi ukuran font */
-             }
-
-
-          .content-container{
-            text-align:center;
-            margin-top:5%;
-            width: 100%
-
-
+                font-size: 14px;
+                /* Mengurangi ukuran font */
             }
+
+
+            .content-container {
+                text-align: center;
+                margin-top: 5%;
+                width: 100%
+            }
+
             .bg-image {
                 display: none
+            }
 
-        }
-        .mobileImage{
-            display: flex;
-            justify-content: center;
-        }
-        .TitleTwo{
-            display: none;
-        }
+            .mobileImage {
+                display: flex;
+                justify-content: center;
+            }
 
-        }
-
-
-    @media only screen and (min-width: 601px) and (max-width: 992px) {
-        /* Aturan CSS untuk perangkat berukuran sedang di sini */
-        body {
-            font-size: 16px; /* Mengubah ukuran font */
-        }
-        .content-container{
-            text-align:center;
-            margin-top:23%;
-            width:100%
-
-        }
-        .bg-image{
-        display:none;
-
-        }
-        .mobileImage{
-            display: flex;
-            justify-content: center;
-        }
-        .TitleTwo{
-            display: none;
-        }
-
-
-        .frame-47 {
-            display: block;
+            .TitleTwo {
+                display: none;
+            }
 
         }
 
-    }
 
-     @media only screen and (min-width: 992px) {
-    /* Aturan CSS untuk perangkat berukuran besar di sini */
-    .register-container {
-        width: 100%; /* Mengurangi lebar container */
-        display: flex;
-    }
-    .content-container{
-        margin-top:10px;
-        width:50%;
+        @media only screen and (min-width: 601px) and (max-width: 992px) {
 
-    }
-    .bg-image{
-       width: 70%;
-       display: block;
-    }
+            /* Aturan CSS untuk perangkat berukuran sedang di sini */
+            body {
+                font-size: 16px;
+                /* Mengubah ukuran font */
+            }
 
-    .frame-47 {
-        display: block;
-        /* top: 14%;
+            .content-container {
+                text-align: center;
+                margin-top: 23%;
+                width: 100%
+            }
+
+            .bg-image {
+                display: none;
+
+            }
+
+            .mobileImage {
+                display: flex;
+                justify-content: center;
+            }
+
+            .TitleTwo {
+                display: none;
+            }
+
+
+            .frame-47 {
+                display: block;
+
+            }
+
+        }
+
+        @media only screen and (min-width: 992px) {
+
+            /* Aturan CSS untuk perangkat berukuran besar di sini */
+            .register-container {
+                width: 100%;
+                /* Mengurangi lebar container */
+                display: flex;
+            }
+
+            .content-container {
+                margin-top: 10px;
+                width: 50%;
+
+            }
+
+            .bg-image {
+                width: 70%;
+                display: block;
+            }
+
+            .frame-47 {
+                display: block;
+                /* top: 14%;
         left: 12%; */
 
-    }
-    .TitleOne{
-        display: none;
-    }
-    .TitleTwo{
-        display: block;
-    }
-    .mobileImage{
-        display: none;
-    }
+            }
 
-    }
+            .TitleOne {
+                display: none;
+            }
 
+            .TitleTwo {
+                display: block;
+            }
+
+            .mobileImage {
+                display: none;
+            }
+
+        }
     </style>
 </head>
 @if ($errors->any())
@@ -258,20 +272,21 @@
 <body>
     <div class="register-container" style="">
         <div class="bg-image">
-            <div class="humma-cook"> <img src="{{asset('images/logo.png')}}" width="80%" alt="" srcset=""></div>
+            <div class="humma-cook"> <img src="{{ asset('images/logo.png') }}" width="80%" alt=""
+                    srcset=""></div>
             <img src="{{ asset('images/frame 47.png') }}" class="frame-47" alt="" srcset="">
         </div>
         <div class="p-3 mb-auto TitleOne">
             <div
                 style="color: black; font-size: 28px; font-family: Poppins; font-weight: 600; letter-spacing: 0.80px; word-wrap: break-word">
                 Masuk</div>
-                <br>
+            <br>
             <div
                 style="width: 100%; color: black; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.34px; word-wrap: break-word;margin-bottom:3%">
                 Masuk Dengan Mengunakan Email Dan Password</div>
         </div>
-        <div class="mobileImage  " >
-            <img src="{{asset('images/logoLogin.png')}}" alt="" srcset="">
+        <div class="mobileImage  ">
+            <img src="{{ asset('images/logoLogin.png') }}" alt="" srcset="">
         </div>
         <div class="content-container mx-lg-5 my-lg-auto mt-auto" style="height: full">
             <div class="p-3 mb-auto TitleTwo ">
@@ -284,132 +299,154 @@
                     Masuk Dengan Mengunakan Email Dan Password</div>
             </div>
             <div class=" mb-3 ">
-                <form action="{{ route('actionlogin') }}" method="post" id="myForm" onsubmit="return validateForm()" >
+                <form action="{{ route('actionlogin') }}" method="post" id="myForm"
+                    onsubmit="return validateForm()">
                     @csrf
                     <!-- Email input -->
                     <div class="form-outline mb-3">
-                        <input type="email" id="email" name="email"
-                            class="form-control username rounded-4 mb-1" placeholder="E-mail..."
-                            value="{{ old('email') }}" />
+                        <input type="email" id="email" name="email" class="form-control username rounded-4 mb-1"
+                            placeholder="E-mail..." value="{{ old('email') }}" />
                     </div>
                     <!-- Password input -->
                     <div class="form mb-3">
-                        <input type="password" name="password" id="pass" class="form-control username rounded-4 form-input" placeholder="password...">
-                        <a id="mybutton" onclick="change()"><span id="mybutton" class="left-pan"><i class="fa-solid fa-eye"></i></span></a>
+                        <input type="password" name="password" id="pass"
+                            class="form-control username rounded-4 form-input" placeholder="password...">
+                        <a id="mybutton" onclick="change()"><span id="mybutton" class="left-pan"><i
+                                    class="fa-solid fa-eye"></i></span></a>
                     </div>
                     <!-- Register buttons -->
 
                     <!-- Submit button -->
                     <div class="d-flex gap-2 pl-2 mt-3 mb-2">
-                        <input class="form-check-input" type="checkbox" value="" name="kebijakanPrivasi" id="kebijakanPrivasi">
-                        <label type="button" class="form-check-label"data-bs-toggle="modal" data-bs-target="#exampleModal">
-                          Kebijakan Privasi
+                        <input class="form-check-input" type="checkbox" value="" name="kebijakanPrivasi"
+                            id="kebijakanPrivasi">
+                        <label type="button" class="form-check-label"data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            Kebijakan Privasi
                         </label>
                     </div>
+                    <a href="/forgot-password" style="text-decoration: none;">Lupa password anda?</a>
                     <button type="submit" class="button-buat rounded-4 p-2"> <b style="color:white">Login</b></button>
-                    <p class="mt-2">Belum punya akun? <a style="color: #f7941e;" href="{{ route('register') }}">Register</a> </p>
+                    <p class="mt-2">Belum punya akun? <a style="color: #f7941e;"
+                            href="{{ route('register') }}">Register</a> </p>
 
-                  <div id="kebijakanPrivasiError" style="color: red;"></div>
+                    <div id="kebijakanPrivasiError" style="color: red;"></div>
             </div>
         </div>
     </div>
     <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-animation="false">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Kebijakan Privasi</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-           <b>-Kebijakan Privasi - Hummacook</b>
-           <br>
-            <p>Kebijakan Privasi ini menjelaskan bagaimana Hummacook  situs kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda
-            saat Anda menggunakan situs web kami. Kami sangat menghargai privasi Anda dan berkomitmen untuk melindungi data pribadi Anda. Dengan menggunakan situs kami,
-            Anda setuju dengan praktik yang dijelaskan dalam kebijakan privasi ini.
-            </p>
-            <br>
-            <p>
-            <b>Informasi yang Kami Kumpulkan</b>
-            <br>
-            <p>
-            <b>-Informasi Pribadi</b><br>
-                Kami dapat mengumpulkan informasi pribadi yang Anda berikan kepada kami saat mendaftar
-                atau menggunakan layanan kami, seperti nama, alamat email, alamat fisik, nomor telepon, dan informasi identifikasi lainnya.
-                Kami hanya akan menggunakan informasi pribadi ini untuk tujuan yang relevan dan legal yang telah dijelaskan kepada Anda pada saat pengumpulan data.
-            </p>
-             <br>
-             <p>
-            <b>-Informasi Otomatis</b><br>
-                Kami juga dapat mengumpulkan informasi otomatis saat Anda mengakses situs kami, termasuk informasi seperti alamat IP Anda, jenis perangkat yang Anda gunakan, browser web Anda, dan aktivitas yang Anda lakukan di situs kami.
-                Informasi ini membantu kami memahami bagaimana pengguna menggunakan situs kami dan dapat digunakan untuk mengoptimalkan pengalaman pengguna dan keamanan.
-            </p>
-             <br>
-             <p>
-            <b>-Penggunaan Informasi</b><br>
-                Kami dapat menggunakan informasi yang kami kumpulkan untuk beberapa tujuan, termasuk:
-                <br>
-                    1. Memberikan layanan kami, seperti memungkinkan Anda untuk membuat resep, berbagi feed, dan mengikuti kursus koki.
-                <br>
-                    2. Mengirimkan email dan komunikasi lainnya terkait dengan akun Anda.
-                <br>
-                    3. Memahami bagaimana Anda menggunakan situs kami untuk meningkatkan pengalaman pengguna.
-                <br>
-                    4. Melindungi keamanan dan integritas situs kami.
-                <br>
-            </p>
-            <p>
-                <br>
-            <b>-Berbagi Informasi</b><br>
-                 Kami dapat berbagi informasi Anda hanya dalam situasi tertentu, termasuk: <br>
-                    1. Dengan pengguna lain sesuai dengan fitur situs kami yang Anda gunakan, seperti berbagi feed.
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        data-bs-animation="false">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Kebijakan Privasi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <b>-Kebijakan Privasi - Hummacook</b>
                     <br>
-                    2. Dengan pihak ketiga yang kami rekrut untuk membantu kami dalam penyediaan layanan, seperti penyedia hosting dan pembayaran.
+                    <p>Kebijakan Privasi ini menjelaskan bagaimana Hummacook situs kami mengumpulkan, menggunakan, dan
+                        melindungi informasi pribadi Anda
+                        saat Anda menggunakan situs web kami. Kami sangat menghargai privasi Anda dan berkomitmen untuk
+                        melindungi data pribadi Anda. Dengan menggunakan situs kami,
+                        Anda setuju dengan praktik yang dijelaskan dalam kebijakan privasi ini.
+                    </p>
                     <br>
-                    3. Dalam situasi hukum yang diperlukan, seperti pematuhan terhadap undang-undang yang berlaku.
-                </p>
-                <br>
-            <p>
-            <b>-Keamanan Data</b><br>
-                Kami sangat memprioritaskan keamanan data Anda.
-                Kami akan mengambil tindakan yang sesuai untuk melindungi data pribadi Anda dari akses yang tidak sah, penyalahgunaan, perubahan, atau pengungkapan yang tidak sah.
-            </p>
-            <br>
-            <p>
-            <b>-Akses dan Kontrol atas Informasi Anda</b><br>
-                Anda memiliki hak untuk mengakses dan mengontrol informasi pribadi Anda yang kami simpan.
-                Jika Anda ingin mengakses, mengoreksi, atau menghapus data pribadi Anda yang kami simpan, Anda dapat menghubungi kami melalui kontak kami->(Hummacook@gmail.com).
-            </p>
-            <br>
-            <p>
-            <b>-Perubahan pada Kebijakan Privasi</b><br>
-                Kebijakan Privasi ini mungkin diperbarui dari waktu ke waktu untuk mencerminkan perubahan dalam praktik kami atau persyaratan hukum yang berlaku.
-                Perubahan penting akan diinformasikan kepada Anda melalui email atau pemberitahuan di situs web kami.
-            </p>
-            <br>
-            <p>
-            <b>-Hubungi Kami</b><br>
-            Jika Anda memiliki pertanyaan tentang Kebijakan Privasi kami atau ingin mengajukan permintaan terkait privasi Anda, Anda dapat menghubungi kami melalui kontak kami->(Hummacook@gmail.com).
-            Kami berterima kasih atas kepercayaan Anda kepada kami dan berkomitmen untuk melindungi privasi Anda dengan baik.
-            </p>
-            <br>
-            <p class="text-center"><b><i>Terima kasih telah menggunakan Hummacook.</i></b></p>
+                    <p>
+                        <b>Informasi yang Kami Kumpulkan</b>
+                        <br>
+                    <p>
+                        <b>-Informasi Pribadi</b><br>
+                        Kami dapat mengumpulkan informasi pribadi yang Anda berikan kepada kami saat mendaftar
+                        atau menggunakan layanan kami, seperti nama, alamat email, alamat fisik, nomor telepon, dan
+                        informasi identifikasi lainnya.
+                        Kami hanya akan menggunakan informasi pribadi ini untuk tujuan yang relevan dan legal yang telah
+                        dijelaskan kepada Anda pada saat pengumpulan data.
+                    </p>
+                    <br>
+                    <p>
+                        <b>-Informasi Otomatis</b><br>
+                        Kami juga dapat mengumpulkan informasi otomatis saat Anda mengakses situs kami, termasuk
+                        informasi seperti alamat IP Anda, jenis perangkat yang Anda gunakan, browser web Anda, dan
+                        aktivitas yang Anda lakukan di situs kami.
+                        Informasi ini membantu kami memahami bagaimana pengguna menggunakan situs kami dan dapat
+                        digunakan untuk mengoptimalkan pengalaman pengguna dan keamanan.
+                    </p>
+                    <br>
+                    <p>
+                        <b>-Penggunaan Informasi</b><br>
+                        Kami dapat menggunakan informasi yang kami kumpulkan untuk beberapa tujuan, termasuk:
+                        <br>
+                        1. Memberikan layanan kami, seperti memungkinkan Anda untuk membuat resep, berbagi feed, dan
+                        mengikuti kursus koki.
+                        <br>
+                        2. Mengirimkan email dan komunikasi lainnya terkait dengan akun Anda.
+                        <br>
+                        3. Memahami bagaimana Anda menggunakan situs kami untuk meningkatkan pengalaman pengguna.
+                        <br>
+                        4. Melindungi keamanan dan integritas situs kami.
+                        <br>
+                    </p>
+                    <p>
+                        <br>
+                        <b>-Berbagi Informasi</b><br>
+                        Kami dapat berbagi informasi Anda hanya dalam situasi tertentu, termasuk: <br>
+                        1. Dengan pengguna lain sesuai dengan fitur situs kami yang Anda gunakan, seperti berbagi feed.
+                        <br>
+                        2. Dengan pihak ketiga yang kami rekrut untuk membantu kami dalam penyediaan layanan, seperti
+                        penyedia hosting dan pembayaran.
+                        <br>
+                        3. Dalam situasi hukum yang diperlukan, seperti pematuhan terhadap undang-undang yang berlaku.
+                    </p>
+                    <br>
+                    <p>
+                        <b>-Keamanan Data</b><br>
+                        Kami sangat memprioritaskan keamanan data Anda.
+                        Kami akan mengambil tindakan yang sesuai untuk melindungi data pribadi Anda dari akses yang
+                        tidak sah, penyalahgunaan, perubahan, atau pengungkapan yang tidak sah.
+                    </p>
+                    <br>
+                    <p>
+                        <b>-Akses dan Kontrol atas Informasi Anda</b><br>
+                        Anda memiliki hak untuk mengakses dan mengontrol informasi pribadi Anda yang kami simpan.
+                        Jika Anda ingin mengakses, mengoreksi, atau menghapus data pribadi Anda yang kami simpan, Anda
+                        dapat menghubungi kami melalui kontak kami->(Hummacook@gmail.com).
+                    </p>
+                    <br>
+                    <p>
+                        <b>-Perubahan pada Kebijakan Privasi</b><br>
+                        Kebijakan Privasi ini mungkin diperbarui dari waktu ke waktu untuk mencerminkan perubahan dalam
+                        praktik kami atau persyaratan hukum yang berlaku.
+                        Perubahan penting akan diinformasikan kepada Anda melalui email atau pemberitahuan di situs web
+                        kami.
+                    </p>
+                    <br>
+                    <p>
+                        <b>-Hubungi Kami</b><br>
+                        Jika Anda memiliki pertanyaan tentang Kebijakan Privasi kami atau ingin mengajukan permintaan
+                        terkait privasi Anda, Anda dapat menghubungi kami melalui kontak kami->(Hummacook@gmail.com).
+                        Kami berterima kasih atas kepercayaan Anda kepada kami dan berkomitmen untuk melindungi privasi
+                        Anda dengan baik.
+                    </p>
+                    <br>
+                    <p class="text-center"><b><i>Terima kasih telah menggunakan Hummacook.</i></b></p>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
     {{-- </div>
     </div>
     </div> --}}
     </section>
-     <!-- Include Bootstrap JS (make sure the path is correct) -->
+    <!-- Include Bootstrap JS (make sure the path is correct) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-     <!-- Include jQuery -->
+    <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         function validateForm() {
             const checkbox = document.getElementById('kebijakanPrivasi');
@@ -438,14 +475,16 @@
                 document.getElementById('pass').type = 'text';
 
                 //ubah icon mata terbuka menjadi tertutup
-                document.getElementById('mybutton').innerHTML = `<span id="mybutton" class="left-pan"><i class="fa-solid fa-eye-slash"></i></span>`;
+                document.getElementById('mybutton').innerHTML =
+                    `<span id="mybutton" class="left-pan"><i class="fa-solid fa-eye-slash"></i></span>`;
             } else {
 
                 //ubah form input password menjadi text
                 document.getElementById('pass').type = 'password';
 
                 //ubah icon mata terbuka menjadi tertutup
-                document.getElementById('mybutton').innerHTML = `<span id="mybutton" class="left-pan"><i class="fa-solid fa-eye"></i></span>`;
+                document.getElementById('mybutton').innerHTML =
+                    `<span id="mybutton" class="left-pan"><i class="fa-solid fa-eye"></i></span>`;
             }
         }
     </script>
@@ -469,4 +508,5 @@
     </script>
 </body>
 </form>
+
 </html>

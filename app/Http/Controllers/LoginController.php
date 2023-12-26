@@ -34,8 +34,6 @@ class LoginController extends Controller
 {
     public function login()
     {
-
-
         if (Auth::check()) {
             return redirect()->route('admin.index');
         } else {
@@ -110,7 +108,7 @@ class LoginController extends Controller
         }
         if ($userLogin) {
             $notification = Notifications::where('user_id', auth()->user()->id)
-                ->where('status','belum')
+                ->where('status', 'belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
             $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
@@ -125,10 +123,10 @@ class LoginController extends Controller
         $feed_populer = UploadVideo::query()->withCount('like_veed')->orderBy('like_veed_count', 'desc')->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->take(3)->get();
         // mengecek apakah koki berlangganan sudah habis atau belum masa berlangganannya,
         if (Auth::user()) {
-            if(auth()->user()->status_langganan == "sedang berlangganan") {
+            if (auth()->user()->status_langganan == "sedang berlangganan") {
                 $tanggal_berakhir_langganan = Carbon::parse(auth()->user()->akhir_langganan);
                 $tanggal_saat_ini = Carbon::now();
-                if($tanggal_saat_ini->gt($tanggal_berakhir_langganan)) {
+                if ($tanggal_saat_ini->gt($tanggal_berakhir_langganan)) {
                     $update_status = User::find(auth()->user()->id);
                     $update_status->status_langganan = "belum berlangganan";
                     $update_status->awal_langganan = null;
@@ -137,7 +135,7 @@ class LoginController extends Controller
                 }
             }
         }
-        return view('template.home', compact('feed_premium_favorite','feed_populer','resep_premium_favorite','categorytopup','messageCount', 'favorite_resep', 'recipes', 'categories_foods', 'top_users', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
+        return view('template.home', compact('feed_premium_favorite', 'feed_populer', 'resep_premium_favorite', 'categorytopup', 'messageCount', 'favorite_resep', 'recipes', 'categories_foods', 'top_users', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 
     public function keluhan()
@@ -158,9 +156,9 @@ class LoginController extends Controller
         }
         if ($userLogin) {
             $notification = Notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
             $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -168,7 +166,7 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('template.keluhan', compact('messageCount','categorytopup', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
+        return view('template.keluhan', compact('messageCount', 'categorytopup', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 
     public function penawaranPremium()
@@ -185,7 +183,7 @@ class LoginController extends Controller
         }
         if ($userLogin) {
             $notification = Notifications::where('user_id', auth()->user()->id)
-                ->where('status','belum')
+                ->where('status', 'belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
             $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
@@ -196,7 +194,7 @@ class LoginController extends Controller
                 ->paginate(10);
         }
         $penawaran_premium = Premiums::all();
-        return view('template.penawaran-premium', compact('penawaran_premium','categorytopup','messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.penawaran-premium', compact('penawaran_premium', 'categorytopup', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function riwayat()
@@ -213,9 +211,9 @@ class LoginController extends Controller
         }
         if ($userLogin) {
             $notification = Notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
             $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -223,9 +221,9 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $history_top_up = TransactionTopUp::where('user_id',auth()->user()->id)->latest()->get();
+        $history_top_up = TransactionTopUp::where('user_id', auth()->user()->id)->latest()->get();
         $history_transaksi = HistoryPremium::where('users_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         $history_penarikan = Penarikans::where('chef_id', Auth::user()->id)->where("status", "diterima")->latest()->get();
-        return view('template.riwayat', compact('history_penarikan','history_transaksi','history_top_up','messageCount','categorytopup', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.riwayat', compact('history_penarikan', 'history_transaksi', 'history_top_up', 'messageCount', 'categorytopup', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
