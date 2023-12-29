@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendEmailRegistrasi;
+use App\Models\Tokens;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
-
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -34,12 +37,21 @@ class RegisterController extends Controller
             'profile_picture.mimes' => 'Format gambar yang diizinkan: jpeg, png, jpg, gif.',
             'profile_picture.max' => 'Ukuran gambar maksimal 2MB.',
         ]);
+        $token = uniqid();
+        $expired_time = Carbon::now()->addMinutes(5);
+        Mail::to($request->email)->send(new SendEmailRegistrasi($token, $expired_time));
+
 
         $user = User::create([
             'email' => $request->email,
             'name' => $request->name,
             'password' => Hash::make($request->password),
             'role' => 'koki',
+        ]);
+        Tokens::create([
+            'user_id' => $user->id,
+            'token' => $token,
+            'expired_time' => $expired_time
         ]);
 
         // Handle profile picture upload
@@ -60,6 +72,33 @@ class RegisterController extends Controller
 
 
         Session::flash('success_message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan username dan password.');
-        return redirect('login');
+        return redirect('auth-register/'.$request->email);
+    }
+    public function authregister($email)
+    {
+        return view('auth.AuthenticateRegister', compact('email'));
+    }
+    public function tokenregister(Request $request)
+    {
+        $user = User::where('email', $request->email)->where('status', 'nonaktif')->exists();
+        if (!$user) {
+            return redirect()->back()->with('error', 'Email tidak terdaftar!');
+        }
+        $pengguna = User::where('email', $request->email)->where('status', 'nonaktif')->first();
+        $verified_token = Tokens::where('user_id', $pengguna->id)->first();
+        $now_time = Carbon::now();
+        $expired_time = Carbon::parse($verified_token->expired_time);
+        if ($expired_time->gt($now_time)) {
+            if ($request->token == $verified_token->token) {
+                $up = User::findOrFail($pengguna->id);
+                $up->status = "aktif";
+                $up->save();
+                return redirect('/login')->with('success', 'Anda telah berhasil register');
+            } else {
+                return redirect()->back()->with('error', 'Token tidak valid!');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Token kadaluarsa.');
+        }
     }
 }

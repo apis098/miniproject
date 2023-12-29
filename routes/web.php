@@ -105,6 +105,8 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 Route::get('register', [RegisterController::class, 'register'])->name('register')->middleware('guest');
 Route::get('voice-note', [TestingController::class, 'voice_note'])->name('voice.note');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
+Route::get('auth-register/{email}', [RegisterController::class, 'authregister'])->name('authregister');
+Route::post('token-register', [RegisterController::class, 'tokenregister'])->name('token.register');
 Route::post('update/profile', [KokiController::class, 'updateProfile'])->name('update.profile');
 Route::post('update/password', [KokiController::class, 'updatePassword'])->name('update.password');
 Route::get('delete/profile', [KokiController::class, 'deleteProfilePicture'])->name('delete.profile');

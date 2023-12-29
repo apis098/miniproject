@@ -262,7 +262,7 @@
                         {{ session('message') }}
                     </div>
                 @endif
-                <form action="{{ route('actionregister') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('actionregister') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="">
                         <div class="row">

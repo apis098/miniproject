@@ -20,7 +20,8 @@ class AdminSeeder extends Seeder
                 'email' => 'admin_laporan@gmail.com',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
-                'isSuperUser' => 'admin_laporan'
+                'isSuperUser' => 'admin_laporan',
+                'status' => 'aktif'
             ],
         );
 
@@ -30,7 +31,8 @@ class AdminSeeder extends Seeder
                 'email' => 'admin_informasi_web@gmail.com',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
-                'isSuperUser' => 'admin_informasi_web'
+                'isSuperUser' => 'admin_informasi_web',
+                'status' => 'aktif'
             ],
         );
 
@@ -40,7 +42,8 @@ class AdminSeeder extends Seeder
                 'email' => 'admin_keuangan@gmail.com',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
-                'isSuperUser' => 'admin_keuangan'
+                'isSuperUser' => 'admin_keuangan',
+                'status' => 'aktif'
             ],
         );
 
@@ -50,7 +53,8 @@ class AdminSeeder extends Seeder
                 'email' => 'admin_approval@gmail.com',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
-                'isSuperUser' => 'admin_approval'
+                'isSuperUser' => 'admin_approval',
+                'status' => 'aktif'
             ],
         );
 
@@ -61,6 +65,7 @@ class AdminSeeder extends Seeder
                 'password' => Hash::make('koki123'),
                 'role' => 'koki',
                 'isSuperUser' => 'yes',
+                'status' => 'aktif'
             ],
         );
         User::create(
@@ -70,6 +75,7 @@ class AdminSeeder extends Seeder
                 'password' => Hash::make('dummy123'),
                 'role' => 'koki',
                 'isSuperUser' => 'yes',
+                'status' => 'aktif'
             ],
         );
         User::create(
@@ -79,6 +85,8 @@ class AdminSeeder extends Seeder
                 'password' => Hash::make('user123'),
                 'role' => 'koki',
                 'isSuperUser' => 'yes',
+                'status' => 'aktif'
+
             ],
         );
         User::create(
@@ -87,6 +95,8 @@ class AdminSeeder extends Seeder
                 'email' => 'arif@gmail.com',
                 'password' => Hash::make('arif123'),
                 'role' => 'koki',
+                'status' => 'aktif'
+
             ],
         );
         User::create(
@@ -95,6 +105,7 @@ class AdminSeeder extends Seeder
                 'email' => 'reno@gmail.com',
                 'password' => Hash::make('reno123'),
                 'role' => 'koki',
+                'status' => 'aktif'
             ],
         );
         User::create(
@@ -103,6 +114,7 @@ class AdminSeeder extends Seeder
                 'email' => 'clara@gmail.com',
                 'password' => Hash::make('clara123'),
                 'role' => 'koki',
+                'status' => 'aktif'
             ],
         );
         User::create(
@@ -111,6 +123,7 @@ class AdminSeeder extends Seeder
                 'email' => 'hamdan@gmail.com',
                 'password' => Hash::make('hamdan123'),
                 'role' => 'koki',
+                'status' => 'aktif'
             ],
         );
         User::create(
@@ -119,6 +132,7 @@ class AdminSeeder extends Seeder
                 'email' => 'rahmat@gmail.com',
                 'password' => Hash::make('rahmat123'),
                 'role' => 'koki',
+                'status' => 'aktif'
             ],
         );
         User::create(
@@ -127,6 +141,7 @@ class AdminSeeder extends Seeder
                 'email' => 'daffa@gmail.com',
                 'password' => Hash::make('daffa123'),
                 'role' => 'koki',
+                'status' => 'aktif'
             ],
         );
     }

@@ -54,6 +54,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function Token() {
+        return $this->hasMany(Tokens::class, 'user_id');
+    }
     public function notification_verifed() {
         return $this->hasMany(Notifications::class, 'verifed_id');
     }
@@ -145,8 +148,5 @@ class User extends Authenticatable
     }
     public function user_ulasan_kursus() {
         return $this->hasMany(User::class, "user_id");
-    }
-    public function rating_kursus() {
-        return $this->hasMany(RatingKursus::class, "user_id");
     }
 }
