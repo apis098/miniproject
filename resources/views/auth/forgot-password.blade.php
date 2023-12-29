@@ -5,40 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Hummacook</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>
     <div class="d-flex justify-content-center my-5">
-        <div class="card text-center" style="width: 300px;">
-            <div class="card-header h5 text-white" style="background-color:#f7941e">Forgot Password</div>
-            <div class="card-body px-5">
-            @foreach ($errors->all() as $item)
-             <div class="alert alert-danger">
-                {{ $item }}
-             </div>
-            @endforeach
-            @if(session()->has('status'))
-            <div class="alert alert-success">
-                {{ session()->get('status') }}
-            </div>
-            @endif
-                <p class="card-text py-2">
-                    Enter your email address and we'll send you an email with instructions to reset your password.
-                </p>
-                <form action="{{ route('password.email') }}" method="POST">
-                    @csrf
-                    <div class="form-outline">
-                        <input type="email" name="email" id="typeEmail" class="form-control my-3" placeholder="Email input" required/>
+        <div class="card" style="width: 28rem;">
+            <div class="card-body mx-3">
+                @foreach ($errors->all() as $item)
+                    <div class="alert alert-danger">
+                        {{ $item }}
                     </div>
-                    <button type="submit" class="btn btn-primary w-75" style="background-color: #f7941e;">Reset
-                        password</button>
+                @endforeach
+                @if (session()->has('status'))
+                    <div class="alert alert-success">
+                        {{ session()->get('status') }}
+                    </div>
+                @endif
+                <h5>Lupa Password</h5>
+                <p style="font-size: 14px;">
+                    E-Mail verifikasi akan dikirim ke mailbox. <br>
+                    Tolong cek E-Mail anda
+                </p>
+                <form action="{{ route('password.email') }}" method="post">
+                    @csrf
+                    <div class="mb-3">
+                        <input style="border-radius: 15px;" type="email" name="email" id="email"
+                            placeholder="Email" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary"
+                        style="background-color: #f7941e;width:100%;border-radius:15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border-color:#f7941e;">
+                        <b>Konfirmasi</b>
+                    </button>
                 </form>
-                <div class="d-flex justify-content-between mt-4">
-                    <a href="/login" style="text-decoration:none;color:black;">Login</a>
-                    <a href="/register" style="text-decoration:none;color:black;">Register</a>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" style="width: 100%;border:1px solid black;border-radius:15px;" class="btn btn-light"><a style="color: black;" href="/login">Login</a></button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" style="width: 100%;border:1px solid black;border-radius:15px;" class="btn btn-light"><a style="color: black;" href="/register">Register</a></button>
+                    </div>
                 </div>
             </div>
         </div>

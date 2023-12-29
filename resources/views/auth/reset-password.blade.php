@@ -12,33 +12,48 @@
 
 <body>
     <div class="d-flex justify-content-center my-5">
-        <div class="card text-center" style="width: 300px;">
-            <div class="card-header h5 text-white" style="background-color:#f7941e">Password Reset</div>
-            <div class="card-body px-5">
-            @foreach ($errors->all() as $item)
-             <div class="alert alert-danger">
-                {{ $item }}
-             </div>
-            @endforeach
-            @if(session()->has('status'))
-            <div class="alert alert-success">
-                {{ session()->get('status') }}
-            </div>
-            @endif
+        <div class="card" style="width: 28rem;">
+            <div class="card-body mx-3">
+                @foreach ($errors->all() as $item)
+                    <div class="alert alert-danger">
+                        {{ $item }}
+                    </div>
+                @endforeach
+                @if (session()->has('status'))
+                    <div class="alert alert-success">
+                        {{ session()->get('status') }}
+                    </div>
+                @endif
+                <h5>Reset Password</h5>
                 <form action="{{ route('password.update') }}" method="POST">
                     @csrf
-                    <input type="text" name="token" value="{{ request()->token }}" hidden id="">
+                    <input type="text" name="token" value="{{ request()->token }}" hidden>
                     <input type="email" name="email" id="" value="{{ request()->email }}" hidden>
                     <div class="form-outline">
-                        <input type="password" name="password" id="typeEmail" class="form-control my-3" placeholder="Password" required/>
-                        <input type="password" name="password_confirmation" id="" class="form-control my-3" placeholder="Password Confirmation" required>
+                        <div class="mb-3">
+                            <input type="password" style="border-radius:15px;" name="password" id="typeEmail"
+                                class="form-control my-3" placeholder="Password" required />
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" style="border-radius: 15px;" name="password_confirmation"
+                                id="" class="form-control my-3" placeholder="Konfirmasi Password" required>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary w-75" style="background-color: #f7941e;">Reset
-                        password</button>
+                    <button type="submit" class="btn btn-primary"
+                        style="background-color: #f7941e;width:100%;border-radius:15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border-color:#f7941e;">
+                        <b>Konfirmasi</b>
+                    </button>
                 </form>
-                <div class="d-flex justify-content-between mt-4">
-                    <a class="/login" style="text-decoration:none;color:black;" href="#">Login</a>
-                    <a class="/register" style="text-decoration:none;color:black;" href="#">Register</a>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" style="width: 100%;border:1px solid black;border-radius:15px;"
+                            class="btn btn-light"><a style="color: black;" href="/login">Login</a></button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" style="width: 100%;border:1px solid black;border-radius:15px;"
+                            class="btn btn-light"><a style="color: black;" href="/register">Register</a></button>
+                    </div>
                 </div>
             </div>
         </div>
