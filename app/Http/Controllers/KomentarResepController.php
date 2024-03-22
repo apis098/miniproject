@@ -109,7 +109,7 @@ class KomentarResepController extends Controller
             'komentar' => $request->reply_comment,
             'id' => $reply->id,
             'user_id' => $reply->user->id,
-            'user_name' => $reply->user->name,
+            'user_name' => $reply->user->name, 
             'user' => $user,
             'id2' => $id,
             'comment_id' => $comment->id,
